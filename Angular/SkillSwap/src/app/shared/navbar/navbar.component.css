@@ -1,0 +1,9 @@
+.container-nav {
+    background-color: var(--ppal);
+    width: 100%;
+    height: 10vh;
+}
+
+.navbar span {
+    font-family: var(--tituloPpal);
+}
