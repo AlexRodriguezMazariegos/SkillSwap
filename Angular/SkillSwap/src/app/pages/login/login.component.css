@@ -1,0 +1,21 @@
+body, html {
+    height: 100%;
+}
+.login-container {
+    height: 100%;
+    display: flex;
+    justify-content: flex-end; /* Alinea el contenido a la derecha */
+    align-items: center;
+    padding: 0 20px;
+}
+.login-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    height: 100%; /* Ocupar todo el alto disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
