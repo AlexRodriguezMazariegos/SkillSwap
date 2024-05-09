@@ -1,0 +1,36 @@
+* {
+    font-family: var(--texto);
+}
+
+#sidebar {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 250px;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #E7E7E7;
+  }
+
+  #sidebar .nav a{
+    background: none;
+    border-bottom: 1px solid #455A64;
+    color: #CFD8DC;
+    font-size: 14px;
+    padding: 16px 24px;
+    text-align: center; 
+  }
+
+  #sidebar .nav a:hover{
+    background: none;
+    color: #ECEFF1;
+  }
+
+  #sidebar .nav a i{
+    margin-right: 16px;
+  }
+
+  .nav-item {
+    width: 100%;
+  }

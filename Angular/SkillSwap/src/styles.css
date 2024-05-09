@@ -6,7 +6,7 @@
 :root {
     --body: #ffff;
     --ppal: #7328AB;
-    --degradado: linear-gradient(to right, #44a647, #ffd438);
+    --degradado: linear-gradient(to right, #7328AB 0%, #B063E9 60%, #B063E9 80%, #7328AB 100%);
     --tituloPpal: "Orbitron", sans-serif;
     --texto: "Lato", sans-serif;
   }
