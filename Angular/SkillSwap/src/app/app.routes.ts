@@ -6,10 +6,10 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
     {
-        path: '', component:AppComponent
+        path: 'login', component:AppComponent
     },
     {
-        path: 'login', component:LoginComponent
+        path: '', component:LoginComponent
     },
     {
         path: 'home', component:HomeComponent
