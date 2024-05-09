@@ -1,9 +1,9 @@
 .container-nav {
-    background-color: var(--ppal);
-    width: 100%;
-    height: 10vh;
+    background-color: red;
 }
 
 .navbar span {
     font-family: var(--tituloPpal);
+    font-size: 72px;
+    font-weight: bold;
 }

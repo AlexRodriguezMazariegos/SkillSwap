@@ -2,6 +2,7 @@
 /* Reset styles */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import "bootstrap/dist/css/bootstrap.css";
 :root {
     --body: #ffff;
     --ppal: #7328AB;
