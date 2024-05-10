@@ -1,0 +1,13 @@
+* {
+    font-family: var(--texto);
+    margin: 0px;
+}
+
+.perfil{
+    background: #E7E7E7;
+    border-radius: 10px;
+}
+
+.info-usuario{
+    /* display: flex; Para ponerlo uno al lado del otro*/ 
+}

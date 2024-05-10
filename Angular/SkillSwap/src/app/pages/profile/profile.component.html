@@ -1,18 +1,72 @@
 <app-navbar></app-navbar>
-<div class="container mt-5">
+<div class="container-fluid">
     <div class="row">
-        <div class="col">
-            <div class="bg-light p-3">
-                <img src="../../../assets/img/perfinprovisional.jpg" class="img-fluid rounded-circle" style="width: 200px; height: 200px;" alt="Imagen">
-                <button class="btn btn-primary ml-3">Cambiar foto</button>
+      <app-sidebar class="col-12 col-md-2"></app-sidebar>
+      <div class="col">
+        <div class="container mt-3">
+          <div class="p-3 perfil">
+            <img
+              src="../../../assets/img/perfinprovisional.jpg"
+              class="img-fluid rounded-circle"
+              style="width: 200px; height: 200px"
+              alt="Imagen"
+            />
+            <button class="btn btn-primary ml-3">Cambiar foto</button>
+            <div class="container mt-3 info-usuario">
+              <p class="font-weight-bold">Nombre de usuario</p>
+              <p>Juan Menendez</p>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <div class="row mt-3">
-        <div class="col">
-            <div class="bg-light p-3">
-                kasjfdñlkjdsa.
+    <div class="row">
+      <div class="col-12 col-md-2"></div> <!-- Espacio reservado para la barra lateral en dispositivos pequeños -->
+      <div class="col-12 col-md-10">
+        <div class="container mt-3">
+          <div class="p-3 perfil">
+            <h2>Información personal</h2>
+            <table class="table">
+              <tbody>
+                <tr>
+                  <th scope="row">Puesto</th>
+                  <td>Web Developer</td>
+                </tr>
+                <tr>
+                  <th scope="row">Email</th>
+                  <td>Juangmail.com</td>
+                </tr>
+                <tr>
+                  <th scope="row">Github</th>
+                  <td>https://github.com/Sergiolopez</td>
+                </tr>
+                <tr>
+                    <th scope="row">Lenguajes</th>
+                    <td>Angular, Spring, SAP</td>
+                  </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-md-2"></div> <!-- Espacio reservado para la barra lateral en dispositivos pequeños -->
+            <div class="col-12 col-md-10">
+            <div class="container mt-3">
+              <div class="row">
+                <div class="col d-flex justify-content-center">
+                  <div class="p-3 rounded">
+                    <button class="btn btn-primary p-5">Botón 1</button>
+                    <button class="btn btn-secondary ">Botón 2</button>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
+      
 </div>
+  
