@@ -1,0 +1,21 @@
+.carta{
+    margin-top: 3%;
+    display: inline-block;
+    height: 10%;
+    width: 100%;
+    padding: 8%;
+    background: #E7E7E7;
+    border-bottom: 0.5px solid black;
+
+}
+img{
+    display: inline-block;
+    width: 15%;
+    margin-right: 5%;
+}
+
+h4{
+    font-size: 18px;
+    font-family: var(--texto);
+    display: inline-block;
+}

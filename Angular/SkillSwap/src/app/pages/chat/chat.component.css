@@ -1,0 +1,6 @@
+.chat{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: 91vh;
+}
