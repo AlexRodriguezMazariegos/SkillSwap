@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit{
 
   @ViewChild('animatedText', { static: true }) animatedTextElement: ElementRef<HTMLHeadingElement> | undefined;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     if (this.animatedTextElement && this.animatedTextElement.nativeElement) {
@@ -23,13 +24,17 @@ export class LoginComponent implements OnInit{
         for (let i = 0; i < textContent.length; i++) {
           const charSpan = document.createElement('span');
           charSpan.textContent = textContent[i];
-          charSpan.style.animationDelay = `${i * 100}ms`; 
+          charSpan.style.animationDelay = `${i * 50}ms`; 
           textElement.appendChild(charSpan);
         }
       } else {
         console.error('El contenido del elemento es nulo.');
       }
     }
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/home']); // Navegar a la ruta '/home'
   }
 
 }
