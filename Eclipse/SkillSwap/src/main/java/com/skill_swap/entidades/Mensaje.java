@@ -1,4 +1,4 @@
-package atos.eviden.entidades;
+package com.skill_swap.entidades;
 
 import java.util.Date;
 
@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Mensaje {
@@ -24,6 +25,7 @@ public class Mensaje {
     @JoinColumn(name = "id_chat")
     private Chat chat;
 	
+	@Size(max = 200)
 	private String texto;
 	
 	private Date fecha;
