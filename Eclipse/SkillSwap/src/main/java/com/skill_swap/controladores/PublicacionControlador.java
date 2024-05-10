@@ -24,6 +24,7 @@ public class PublicacionControlador {
         return publicacionServicio.obtenerTodasLasPublicaciones();
     }
 
+    //hola
     // Endpoint para obtener una publicación por su ID
     @GetMapping("/{id}")
     public Publicacion obtenerPublicacionPorId(@PathVariable Long id) {
