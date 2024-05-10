@@ -1,140 +1,166 @@
-body {
-    height: 100vh; 
-    margin: 0;
-    padding: 0; 
-    display: flex;
-    justify-content: flex-end; 
-    align-items: flex-start;
-    background-image: url('../../../assets/img/login-background.png');
-    background-size: cover;
-    background-position: center; 
+h1{
+  color: white;
+  text-align: center;
+  font-family: var(--tituloPpal);
+  font-weight: bold;
+}
+
+.typewriter {
+  overflow: hidden; 
+  border-right: .15em solid rgb(255, 255, 255);
+  white-space: nowrap; 
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(255, 255, 255); }
 }
 
 h2 {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin: 50px;
-    font-family: var(--tituloPpal);
-    color: transparent; /* Hace el texto transparente para que el degradado sea visible */
-    background-image: linear-gradient(to right, var(--ppal), var(--ppal_2)); /* Define el degradado */
-    -webkit-background-clip: text; /* Establece el área de recorte para el degradado */
-    background-clip: text; /* Establece el área de recorte para el degradado */
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 50px;
+  font-family: var(--tituloPpal);
+  color: transparent; 
+  background-image: linear-gradient(
+    to right,
+    var(--ppal),
+    var(--ppal_2)
+  ); 
+  -webkit-background-clip: text; 
+  background-clip: text; 
 }
 
-.welcome{
-    text-align: center;
+.welcome {
+  text-align: center;
 }
 
-.welcome-login{
-    margin: 0;
-    font-family: var(--tituloPpal);
-    font-weight: bold;
+.welcome-login {
+  margin: 0;
+  font-family: var(--tituloPpal);
+  font-weight: bold;
 }
 
-.login-container {
-    position: relative; 
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    padding: 0;
-    width: 100vw; 
-    height: 100vh;
+.contenedor{
+  display: flex;
+  height: 100%;
+  margin: 0px;
+  width: 100;
+  background-image: url("../../../assets/img/login-background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.right-column {
+  width: 30%;
+}
+
+.left-column {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  padding: 5%;
+  height: 100vh;
 }
 
 .login-form {
-    position: relative;
-    height: 100vh;
-    max-width: 375px;
-    padding: 25px;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 8px;
+  position: relative;
+  height: 100vh;
+  padding: 25px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
 }
 
-.form-group{
-    padding: 0px;
-    margin-top: 5%;
+.form-group {
+  padding: 0px;
+  margin-top: 5%;
 }
 
-input{
-    width: 100%;
-    height: 45px;
-    padding: 7px;
-    background-color: var(--secn);
+input {
+  width: 100%;
+  height: 45px;
+  padding: 7px;
+  background-color: var(--secn);
 }
 
-/* Estilos adicionales para el botón de login */
 .btn-primary {
-    width: 100%; /* Botón ocupa todo el ancho del contenedor */
-    background-color: var(--ppal);
-    margin-top: 7%;
-    border: var(--ppal);
-    font-family: var(--tituloPpal);
+  width: 100%; 
+  background-color: var(--ppal);
+  margin-top: 7%;
+  border: var(--ppal);
+  font-family: var(--tituloPpal);
 }
 
 .copyright {
-    position: absolute; /* Establece posicionamiento absoluto */
-    bottom: 10px; /* Lo posiciona 10px desde la parte inferior del contenedor */
-    left: 50%; /* Centra horizontalmente */
-    transform: translateX(-50%); /* Centra horizontalmente respecto al contenido */
-    color: rgb(94, 94, 94);
-    font-family: var(--texto);
-    text-align: center;
-    width: 100%; /* Ocupa todo el ancho del contenedor */
+  position: absolute; 
+  bottom: 10px; 
+  left: 50%; 
+  transform: translateX(
+    -50%
+  ); 
+  color: rgb(94, 94, 94);
+  font-family: var(--texto);
+  text-align: center;
+  width: 100%; 
 }
 
 .form-check-input {
-    margin-right: 10px; /* Margen a la derecha del input del switch */
+  margin-right: 10px;
 }
-
 
 /*---------- SWITCH -----------*/
 
 .custom-switch {
-    display: flex;
-    align-items: center;
-    margin-top: 5%;
-  }
-  
-  .toggle-switch {
-    /*---------- Oculta el checkbox -----------*/
-    display: none; 
-  }
-  
-  .switch-label {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  
-  .switch-label::after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: white;
-    transition: transform 0.3s ease;
-  }
-  
-  .toggle-switch:checked + .switch-label {
-    /* Color cuando esta true */
-    background-color: var(--ppal); 
-  }
-  
-  .toggle-switch:checked + .switch-label::after {
-    transform: translateX(20px); 
-  }
-  
-  .switch-text {
-    margin-left: 10px;
-    font-size: 14px;
-    color: #333;
-  }
-  
+  display: flex;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.toggle-switch {
+  /*---------- Oculta el checkbox -----------*/
+  display: none;
+}
+
+.switch-label {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.switch-label::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: white;
+  transition: transform 0.3s ease;
+}
+
+.toggle-switch:checked + .switch-label {
+  /* Color cuando esta true */
+  background-color: var(--ppal);
+}
+
+.toggle-switch:checked + .switch-label::after {
+  transform: translateX(20px);
+}
+
+.switch-text {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #333;
+}

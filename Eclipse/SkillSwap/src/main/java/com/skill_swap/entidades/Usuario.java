@@ -1,12 +1,12 @@
-package com.skill_swap.entidades;
+package atos.eviden.entidades;
 
 import java.util.List;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 
@@ -15,52 +15,48 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id_usuario;
+	public Long id_usuario;
 
-	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinTable(name = "usuario_skill")
-	private List<Skill> skills;
-
-	@Column(length = 15)
 	private String nombre;
 
-	@Column(length = 15)
 	private String apellido;
 
-	@Column(length = 25)
 	private String email;
-
-	@Column(length = 25)
+	
 	private String contrasena;
-
-	@Column(length = 40)
+	
 	private String urlGitHub;
-
-	@Column(length = 15)
+	
 	private String puestoEmpresa;
+	
+	@ManyToMany
+	@JoinTable
+    private List<Habilidad> habilidades;
 
+	
+	
 	public Usuario() {
 		super();
 	}
-
-	public Usuario(int id_usuario, List<Skill> skills, String nombre, String apellido, String email, String contrasena,
-			String urlGitHub, String puestoEmpresa) {
+	
+	public Usuario(Long id_usuario, String nombre, String apellido, String email, String contrasena, String urlGitHub,
+			String puestoEmpresa, List<Habilidad> habilidades) {
 		super();
 		this.id_usuario = id_usuario;
-		this.skills = skills;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
 		this.contrasena = contrasena;
 		this.urlGitHub = urlGitHub;
 		this.puestoEmpresa = puestoEmpresa;
+		this.habilidades = habilidades;
 	}
 
-	public int getId_usuario() {
+	public Long getId_usuario() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(int id_usuario) {
+	public void setId_usuario(Long id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 
@@ -112,4 +108,17 @@ public class Usuario {
 		this.puestoEmpresa = puestoEmpresa;
 	}
 
+	public List<Habilidad> getHabilidades() {
+		return habilidades;
+	}
+
+	public void setHabilidades(List<Habilidad> habilidades) {
+		this.habilidades = habilidades;
+	}
+
+	
+	
+
+
+	
 }

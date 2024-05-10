@@ -1,4 +1,4 @@
-package com.skill_swap.entidades;
+package atos.eviden.entidades;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,34 +10,36 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Chat {
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int id_chat;
-
+	public Long id_chat;
+	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario1")
-	private Usuario usuario1;
-
+    @JoinColumn(name = "id_usuario1")
+    private Usuario usuario1;
+	
 	@ManyToOne
-	@JoinColumn(name = "id_usuario2")
-	private Usuario usuario2;
-
-	public Chat() {
-		super();
-	}
-
-	public Chat(int id_chat, Usuario usuario1, Usuario usuario2) {
+    @JoinColumn(name = "id_usuario2")
+    private Usuario usuario2;
+	
+	
+	public Chat(Long id_chat, Usuario usuario1, Usuario usuario2) {
 		super();
 		this.id_chat = id_chat;
 		this.usuario1 = usuario1;
 		this.usuario2 = usuario2;
 	}
 
-	public int getId_chat() {
+	public Chat() {
+		super();
+	}
+	
+	public Long getId_chat() {
 		return id_chat;
 	}
 
-	public void setId_chat(int id_chat) {
+	public void setId_chat(Long id_chat) {
 		this.id_chat = id_chat;
 	}
 
@@ -56,4 +58,7 @@ public class Chat {
 	public void setUsuario2(Usuario usuario2) {
 		this.usuario2 = usuario2;
 	}
+	
+	
+	
 }
