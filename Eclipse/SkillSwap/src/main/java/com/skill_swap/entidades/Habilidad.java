@@ -1,5 +1,4 @@
-package com.skill_swap.entidades;
-
+package atos.eviden.entidades;
 
 import java.util.List;
 
@@ -9,7 +8,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 
 @Entity

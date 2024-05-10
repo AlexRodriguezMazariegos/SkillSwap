@@ -1,5 +1,4 @@
-package com.skill_swap.entidades;
-
+package atos.eviden.entidades;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

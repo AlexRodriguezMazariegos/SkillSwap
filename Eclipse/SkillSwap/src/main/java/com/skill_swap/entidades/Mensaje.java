@@ -1,4 +1,4 @@
-package com.skill_swap.entidades;
+package atos.eviden.entidades;
 
 import java.util.Date;
 
