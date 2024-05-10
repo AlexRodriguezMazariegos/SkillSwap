@@ -1,36 +1,68 @@
+
 * {
-    font-family: var(--texto);
+  font-family: var(--texto);
 }
 
 #sidebar {
-    z-index: 1000;
-    position: fixed;
-    left: 250px;
-    width: 250px;
-    height: 100%;
-    margin-left: -250px;
-    overflow-y: auto;
-    background: #E7E7E7;
+  z-index: 1000;
+  position: fixed;
+  left: 0;
+  width: 17%;
+  height: 100%;
+  margin-left: -300px;
+  overflow-y: auto;
+  background: var(--secn);
+  transition: margin-left 0.5s;
+}
+
+.container-sidebar {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding-top: 60px;
+}
+
+.nav-item {
+  display: flex;
+  height: 50px;
+  justify-content: start;
+  align-items: center;
+}
+
+.nav-item a {
+  margin-left: 20px;
+}
+
+.nav-item a:hover {
+  color: var(--ppal);
+}
+
+#sidebar.open {
+  margin-left: 0;
+}
+
+.hamburger {
+  display: block;
+  position: fixed;
+  margin-top: 12px;
+  top: 60px;
+  left: 10px;
+  z-index: 1100;
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  color: #000000;
+  cursor: pointer;
+}
+
+button:hover {
+  color: var(--ppal);
+}
+
+@media (max-width: 767px) {
+  #sidebar {
+    display: block;
+    width: 40%;
   }
 
-  #sidebar .nav a{
-    background: none;
-    border-bottom: 1px solid #455A64;
-    color: #CFD8DC;
-    font-size: 14px;
-    padding: 16px 24px;
-    text-align: center; 
-  }
-
-  #sidebar .nav a:hover{
-    background: none;
-    color: #ECEFF1;
-  }
-
-  #sidebar .nav a i{
-    margin-right: 16px;
-  }
-
-  .nav-item {
-    width: 100%;
-  }
+}
