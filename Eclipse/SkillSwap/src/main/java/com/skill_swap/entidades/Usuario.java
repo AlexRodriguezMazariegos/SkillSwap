@@ -1,4 +1,4 @@
-package atos.eviden.entidades;
+package com.skill_swap.entidades;
 
 import java.util.List;
 
