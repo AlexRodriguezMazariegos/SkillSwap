@@ -1,15 +1,13 @@
 package com.skill_swap.entidades;
 
-
 import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Usuario {
@@ -18,30 +16,33 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id_usuario;
 
+	@Size(max = 20)
 	private String nombre;
 
+	@Size(max = 40)
 	private String apellido;
 
+	@Size(max = 30)
 	private String email;
-	
+
+	//Aqui no se pone nada de longitud xq se va a hashear
 	private String contrasena;
-	
+
 	private String urlGitHub;
-	
+
+	@Size(max = 50)
 	private String puestoEmpresa;
-	
+
 	@ManyToMany
 	@JoinTable
-    private List<Habilidad> habilidades;
+	private List<Skill> skills;
 
-	
-	
 	public Usuario() {
 		super();
 	}
-	
+
 	public Usuario(Long id_usuario, String nombre, String apellido, String email, String contrasena, String urlGitHub,
-			String puestoEmpresa, List<Habilidad> habilidades) {
+			String puestoEmpresa, List<Skill> skills) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nombre = nombre;
@@ -50,7 +51,7 @@ public class Usuario {
 		this.contrasena = contrasena;
 		this.urlGitHub = urlGitHub;
 		this.puestoEmpresa = puestoEmpresa;
-		this.habilidades = habilidades;
+		this.skills = skills;
 	}
 
 	public Long getId_usuario() {
@@ -109,17 +110,12 @@ public class Usuario {
 		this.puestoEmpresa = puestoEmpresa;
 	}
 
-	public List<Habilidad> getHabilidades() {
-		return habilidades;
+	public List<Skill> getHabilidades() {
+		return skills;
 	}
 
-	public void setHabilidades(List<Habilidad> habilidades) {
-		this.habilidades = habilidades;
+	public void setHabilidades(List<Skill> habilidades) {
+		this.skills = habilidades;
 	}
 
-	
-	
-
-
-	
 }

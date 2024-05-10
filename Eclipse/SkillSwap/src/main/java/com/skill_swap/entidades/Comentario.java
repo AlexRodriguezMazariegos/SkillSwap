@@ -1,6 +1,6 @@
 package com.skill_swap.entidades;
 
-
+import java.sql.Clob;
 import java.util.Date;
 
 import jakarta.persistence.Entity;
@@ -8,39 +8,41 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id_comentario;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario id_usuario;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_publicacion")
-    private Publicacion id_publicacion;
 
-	
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario id_usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "id_articulo")
+	private Articulo id_articulo;
+
 	private Date fecha;
-	
-	private String texto;
 
-	public Comentario(Long id_comentario, Usuario id_usuario, Publicacion id_publicacion, Date fecha, String texto) {
+	@Lob
+	private Clob texto;
+
+	public Comentario(Long id_comentario, Usuario id_usuario, Articulo id_articulo, Date fecha, Clob texto) {
 		super();
 		this.id_comentario = id_comentario;
 		this.id_usuario = id_usuario;
-		this.id_publicacion = id_publicacion;
+		this.id_articulo = id_articulo;
 		this.fecha = fecha;
 		this.texto = texto;
 	}
-	
+
 	public Comentario() {
 		super();
-		
+
 	}
 
 	public Long getId_comentario() {
@@ -59,12 +61,12 @@ public class Comentario {
 		this.id_usuario = id_usuario;
 	}
 
-	public Publicacion getId_publicacion() {
-		return id_publicacion;
+	public Articulo getId_articulo() {
+		return id_articulo;
 	}
 
-	public void setId_publicacion(Publicacion id_publicacion) {
-		this.id_publicacion = id_publicacion;
+	public void setId_articulo(Articulo id_articulo) {
+		this.id_articulo = id_articulo;
 	}
 
 	public Date getFecha() {
@@ -75,13 +77,12 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 
-	public String getTexto() {
+	public Clob getTexto() {
 		return texto;
 	}
 
-	public void setTexto(String texto) {
+	public void setTexto(Clob texto) {
 		this.texto = texto;
 	}
-	
-	
+
 }
