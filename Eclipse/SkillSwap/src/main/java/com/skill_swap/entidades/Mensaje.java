@@ -1,7 +1,6 @@
 package com.skill_swap.entidades;
 
-import java.util.Date;
-
+import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,28 +14,28 @@ public class Mensaje {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id_mensaje;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_usuario")
-    private Usuario usuario;
-	
-	@ManyToOne
-    @JoinColumn(name = "id_chat")
-    private Chat chat;
-	
-	private String texto;
-	
-	private Date fecha;
 
-	public Mensaje(Long id_mensaje, Usuario usuario, Chat chat, String texto, Date fecha) {
+	@ManyToOne
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
+
+	@ManyToOne
+	@JoinColumn(name = "id_chat")
+	private Chat chat;
+
+	private String mensaje;
+
+	private LocalDate fecha;
+
+	public Mensaje(Long id_mensaje, Usuario usuario, Chat chat, String mensaje, LocalDate fecha) {
 		super();
 		this.id_mensaje = id_mensaje;
 		this.usuario = usuario;
 		this.chat = chat;
-		this.texto = texto;
+		this.mensaje = mensaje;
 		this.fecha = fecha;
 	}
-	
+
 	public Mensaje() {
 		super();
 	}
@@ -65,21 +64,19 @@ public class Mensaje {
 		this.chat = chat;
 	}
 
-	public String getTexto() {
-		return texto;
+	public String getMensaje() {
+		return mensaje;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	
-	
 }

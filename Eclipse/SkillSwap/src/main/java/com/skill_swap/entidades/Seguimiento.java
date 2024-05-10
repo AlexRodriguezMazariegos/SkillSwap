@@ -3,10 +3,12 @@ package com.skill_swap.entidades;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@IdClass(SeguimientoId.class)
 public class Seguimiento {
 
 	@Id
