@@ -1,13 +1,25 @@
-body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  background-image: url("../../../assets/img/login-background.png");
-  background-size: cover;
-  background-position: center;
+h1{
+  color: white;
+  text-align: center;
+  font-family: var(--tituloPpal);
+  font-weight: bold;
+}
+
+.typewriter {
+  overflow: hidden; 
+  border-right: .15em solid rgb(255, 255, 255);
+  white-space: nowrap; 
+  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: rgb(255, 255, 255); }
 }
 
 h2 {
@@ -16,14 +28,14 @@ h2 {
   text-align: center;
   margin: 50px;
   font-family: var(--tituloPpal);
-  color: transparent; /* Hace el texto transparente para que el degradado sea visible */
+  color: transparent; 
   background-image: linear-gradient(
     to right,
     var(--ppal),
     var(--ppal_2)
-  ); /* Define el degradado */
-  -webkit-background-clip: text; /* Establece el área de recorte para el degradado */
-  background-clip: text; /* Establece el área de recorte para el degradado */
+  ); 
+  -webkit-background-clip: text; 
+  background-clip: text; 
 }
 
 .welcome {
@@ -36,20 +48,31 @@ h2 {
   font-weight: bold;
 }
 
-.login-container {
-  position: relative;
+.contenedor{
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 0;
-  width: 300px;
+  height: 100%;
+  margin: 0px;
+  width: 100;
+  background-image: url("../../../assets/img/login-background.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.right-column {
+  width: 30%;
+}
+
+.left-column {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  padding: 5%;
   height: 100vh;
 }
 
 .login-form {
   position: relative;
   height: 100vh;
-  max-width: 375px;
   padding: 25px;
   background: rgba(255, 255, 255, 1);
   border-radius: 8px;
@@ -67,9 +90,8 @@ input {
   background-color: var(--secn);
 }
 
-/* Estilos adicionales para el botón de login */
 .btn-primary {
-  width: 100%; /* Botón ocupa todo el ancho del contenedor */
+  width: 100%; 
   background-color: var(--ppal);
   margin-top: 7%;
   border: var(--ppal);
@@ -77,20 +99,20 @@ input {
 }
 
 .copyright {
-  position: absolute; /* Establece posicionamiento absoluto */
-  bottom: 10px; /* Lo posiciona 10px desde la parte inferior del contenedor */
-  left: 50%; /* Centra horizontalmente */
+  position: absolute; 
+  bottom: 10px; 
+  left: 50%; 
   transform: translateX(
     -50%
-  ); /* Centra horizontalmente respecto al contenido */
+  ); 
   color: rgb(94, 94, 94);
   font-family: var(--texto);
   text-align: center;
-  width: 100%; /* Ocupa todo el ancho del contenedor */
+  width: 100%; 
 }
 
 .form-check-input {
-  margin-right: 10px; /* Margen a la derecha del input del switch */
+  margin-right: 10px;
 }
 
 /*---------- SWITCH -----------*/
