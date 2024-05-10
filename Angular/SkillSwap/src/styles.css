@@ -1,1 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
+/* Reset styles */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import "bootstrap/dist/css/bootstrap.css";
+:root {
+    --body: #ffff;
+    --ppal: #7328AB;
+    --ppal_2: #B063E9;
+    --secn: #E7E7E7;
+    --degradado: linear-gradient(to right, #ffffff, #7328AB);
+    --tituloPpal: "Orbitron", sans-serif;
+    --texto: "Lato", sans-serif;
+  }
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
