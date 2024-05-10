@@ -9,7 +9,6 @@
   left: 0;
   width: 17%;
   height: 100%;
-  margin-left: -300px;
   overflow-y: auto;
   background: var(--secn);
   transition: margin-left 0.5s;
@@ -37,23 +36,10 @@
   color: var(--ppal);
 }
 
-#sidebar.open {
-  margin-left: 0;
+.hamburger {
+  display: none;
 }
 
-.hamburger {
-  display: block;
-  position: fixed;
-  margin-top: 12px;
-  top: 60px;
-  left: 10px;
-  z-index: 1100;
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  color: #000000;
-  cursor: pointer;
-}
 
 button:hover {
   color: var(--ppal);
@@ -61,8 +47,26 @@ button:hover {
 
 @media (max-width: 767px) {
   #sidebar {
+    margin-left: -300px;
+  }
+
+  #sidebar.open {
+    margin-left: 0px;
+    width: 30%;
+  }
+
+  .hamburger {
     display: block;
-    width: 40%;
+    position: fixed;
+    margin-top: 12px;
+    top: 60px;
+    left: 10px;
+    z-index: 1100;
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #000000;
+    cursor: pointer;
   }
 
 }
