@@ -80,7 +80,7 @@ h1{
   
   .form-group {
     padding: 0px;
-    margin-top: 5%;
+    margin-top: 4%;
   }
   
   input {
@@ -93,7 +93,7 @@ h1{
   .btn-primary {
     width: 100%; 
     background-color: var(--ppal);
-    margin-top: 7%;
+    margin-top: 6%;
     border: var(--ppal);
     font-family: var(--tituloPpal);
   }
@@ -126,55 +126,5 @@ h1{
   
   .form-check-input {
     margin-right: 10px;
-  }
-  
-  /*---------- SWITCH -----------*/
-  
-  .custom-switch {
-    display: flex;
-    align-items: center;
-    margin-top: 5%;
-  }
-  
-  .toggle-switch {
-    /*---------- Oculta el checkbox -----------*/
-    display: none;
-  }
-  
-  .switch-label {
-    position: relative;
-    display: inline-block;
-    width: 40px;
-    height: 20px;
-    background-color: #ccc;
-    border-radius: 20px;
-    cursor: pointer;
-  }
-  
-  .switch-label::after {
-    content: "";
-    position: absolute;
-    top: 2px;
-    left: 2px;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background-color: white;
-    transition: transform 0.3s ease;
-  }
-  
-  .toggle-switch:checked + .switch-label {
-    /* Color cuando esta true */
-    background-color: var(--ppal);
-  }
-  
-  .toggle-switch:checked + .switch-label::after {
-    transform: translateX(20px);
-  }
-  
-  .switch-text {
-    margin-left: 10px;
-    font-size: 14px;
-    color: #333;
   }
   
