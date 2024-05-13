@@ -1,6 +1,6 @@
 <div class="contenedor">
     <div class="left-column">
-      <h1 class="typewriter">Bienvenido a SkillSwap</h1>
+      <h1 class="typewriter">{{ textoAleatorio }}</h1>
     </div>
     <div class="right-column">
       <form class="login-form">
@@ -16,6 +16,15 @@
           />
         </div>
         <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
           <label for="password">Password</label>
           <input
             type="password"
@@ -24,12 +33,16 @@
             placeholder="Password"
           />
         </div>
-        <div class="custom-switch">
-          <input type="checkbox" id="toggle" class="toggle-switch" />
-          <label for="toggle" class="switch-label"></label>
-          <span class="switch-text">Recordarme</span>
+        <div class="form-group">
+          <label for="confirm-password">Confirm password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirm-password"
+            placeholder="Confirm password"
+          />
         </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+        <button type="submit" class="btn btn-primary" (click)="navigateToHome()">Registrarse</button>
         <p class="no-account">¿Ya tienes cuenta? <a href="/">Inicia sesion</a></p>
         <p class="copyright">©Atos 2024</p>
       </form>
