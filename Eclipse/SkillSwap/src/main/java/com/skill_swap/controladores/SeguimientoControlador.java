@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill_swap.entidades.Seguimiento;
+import com.skill_swap.entidades.SeguimientoId;
 import com.skill_swap.servicios.SeguimientoServicio;
 
 
@@ -40,20 +41,22 @@ public class SeguimientoControlador {
 		return this.seguimientoServicio.saveSeguimiento(seguimiento);
 	}
 	
+	//AQUI ALGO FALLA
 	@GetMapping(path = "/{id}")
-	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id") Long id)
+	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id") SeguimientoId id)
 	{
+		
 		return this.seguimientoServicio.getById(id);
 	}
 	
 	@PutMapping(path = "/{id}")
-	public Seguimiento updateByIdPut(@RequestBody Seguimiento request,@PathVariable Long id)
+	public Seguimiento updateByIdPut(@RequestBody Seguimiento request,@PathVariable SeguimientoId id)
 	{
 		return this.seguimientoServicio.updateByIdPut(request, id);
 	}
 
 	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
+	public ResponseEntity<?> deleteById(@PathVariable("id") SeguimientoId id) {
 		seguimientoServicio.deleteSeguimiento(id);
 		return ResponseEntity.ok().build();
 	}
