@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skill_swap.entidades.Seguimiento;
+import com.skill_swap.entidades.SeguimientoId;
 import com.skill_swap.repositorios.SeguimientoRepositorio;
 
 @Service
@@ -25,11 +26,11 @@ public class SeguimientoServicio {
 		return seguimientoRepositorio.save(seguimiento);
 	}
 	
-	public Optional<Seguimiento> getById(Long id){
+	public Optional<Seguimiento> getById(SeguimientoId id){
 		return seguimientoRepositorio.findById(id);
 	}
 	
-	public Seguimiento updateByIdPut(Seguimiento request, Long id) 
+	public Seguimiento updateByIdPut(Seguimiento request, SeguimientoId id) 
 	{
 		Seguimiento seguimiento = seguimientoRepositorio.findById(id).get();
 		seguimiento.setId_seguidor(request.getId_seguidor());
@@ -39,7 +40,7 @@ public class SeguimientoServicio {
 	}
 	
 	
-	public Boolean deleteSeguimiento (Long id) 
+	public Boolean deleteSeguimiento (SeguimientoId id) 
 	{
 		try
 		{
