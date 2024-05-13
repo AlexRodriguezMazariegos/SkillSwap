@@ -98,6 +98,19 @@ input {
   font-family: var(--tituloPpal);
 }
 
+.btn-primary:hover {
+  background-color: var(--ppal_2);
+}
+
+a{
+  text-decoration: none;
+}
+
+.no-account{
+  margin-top: 7%;
+  text-align: center;
+}
+
 .copyright {
   position: absolute; 
   bottom: 10px; 
