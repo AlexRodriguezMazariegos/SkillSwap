@@ -1,6 +1,5 @@
 package com.skill_swap.entidades;
 
-import java.io.Serializable;
 
 
 public class SeguimientoId {
