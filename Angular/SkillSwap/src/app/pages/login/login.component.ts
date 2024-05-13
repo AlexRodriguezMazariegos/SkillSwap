@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit{
 
   constructor(private router: Router) { }
 
+  //Metodo de inicio
   ngOnInit(): void {
     if (this.animatedTextElement && this.animatedTextElement.nativeElement) {
       const textElement = this.animatedTextElement.nativeElement;
