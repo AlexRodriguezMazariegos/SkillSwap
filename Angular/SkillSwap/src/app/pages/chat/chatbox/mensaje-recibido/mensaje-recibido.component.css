@@ -1,0 +1,13 @@
+.mensajeRecibido{
+    display: flex;
+    padding: 5px;
+    margin-left: auto;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+p{
+    color: white;
+    padding: 10px;
+    background-color: var(--ppal_2);
+    max-width: 50%;
+}
