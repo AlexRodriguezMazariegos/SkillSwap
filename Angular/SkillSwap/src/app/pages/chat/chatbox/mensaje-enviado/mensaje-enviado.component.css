@@ -1,0 +1,14 @@
+.mensajeEnviado{
+
+    padding: 5px;
+    margin-left: 50%;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+p{
+    width: auto;
+    padding: 10px;
+    color: white;
+    background-color: var(--ppal_2);
+}
