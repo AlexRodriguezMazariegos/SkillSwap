@@ -3,7 +3,7 @@ package com.skill_swap.entidades;
 import java.io.Serializable;
 
 
-public class SeguimientoId implements Serializable{
+public class SeguimientoId {
 	
 	public SeguimientoId(Long id_seguidor, Long id_seguido) {
 		super();
