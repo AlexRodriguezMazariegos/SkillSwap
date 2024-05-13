@@ -1,51 +1,46 @@
 package com.skill_swap.controladores;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import com.skill_swap.entidades.Articulo;
 import com.skill_swap.servicios.ArticuloServicio;
+
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/publicaciones")
+@RequestMapping("/api/v1/articulo")
 public class ArticuloControlador {
 
-    private final ArticuloServicio articuloServicio;
-
     @Autowired
-    public ArticuloControlador(ArticuloServicio articuloServicio) {
-        this.articuloServicio = articuloServicio;
-    }
+    private ArticuloServicio articuloServicio;
 
-    // Endpoint para obtener todas las publicaciones
     @GetMapping
-    public List<Articulo> obtenerTodosLosArticulos() {
-        return articuloServicio.obtenerTodosLosArticulos();
+    public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
+        return ResponseEntity.ok(articuloServicio.obtenerTodosLosArticulos());
     }
 
-    //hola
-    // Endpoint para obtener una publicación por su ID
     @GetMapping("/{id}")
-    public Articulo obtenerArticuloPorId(@PathVariable Long id) {
-        return articuloServicio.obtenerArticuloPorId(id);
+    public ResponseEntity<Articulo> obtenerArticuloPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(articuloServicio.obtenerArticuloPorId(id));
     }
 
-    // Endpoint para crear una nueva publicación
     @PostMapping
-    public Articulo crearArticulo(@RequestBody Articulo articulo) {
-        return articuloServicio.crearOActualizarArticulo(articulo);
+    public ResponseEntity<Articulo> guardarArticulo(@RequestBody Articulo articulo) {
+        return ResponseEntity.ok(articuloServicio.guardarArticulo(articulo));
     }
 
-    // Endpoint para actualizar una publicación existente
-    @PutMapping("/{id}")
-    public Articulo actualizarArticulo(@PathVariable Long id, @RequestBody Articulo articulo) {
-    	articulo.setId(id);
-        return articuloServicio.crearOActualizarArticulo(articulo);
-    }
-
-    // Endpoint para borrar una publicación por su ID
     @DeleteMapping("/{id}")
-    public void borrarArticulo(@PathVariable Long id) {
-    	articuloServicio.borrarArticulo(id);
+    public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {
+        articuloServicio.eliminarArticulo(id);
+        return ResponseEntity.ok().build();
     }
 }
