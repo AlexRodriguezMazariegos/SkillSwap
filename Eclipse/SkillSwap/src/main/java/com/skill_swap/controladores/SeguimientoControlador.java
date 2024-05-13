@@ -41,24 +41,24 @@ public class SeguimientoControlador {
 		return this.seguimientoServicio.saveSeguimiento(seguimiento);
 	}
 	
-	//AQUI ALGO FALLA
-	@GetMapping(path = "/{id}")
-	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id") SeguimientoId id)
-	{
-		
-		return this.seguimientoServicio.getById(id);
+
+	@GetMapping(path = "/{id_seguidor}/{id_seguido}")
+	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
+	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+	    return this.seguimientoServicio.getById(id);
 	}
 	
-	@PutMapping(path = "/{id}")
-	public Seguimiento updateByIdPut(@RequestBody Seguimiento request,@PathVariable SeguimientoId id)
-	{
-		return this.seguimientoServicio.updateByIdPut(request, id);
+	@PutMapping(path = "/{id_seguidor}/{id_seguido}")
+	public Seguimiento updateByIdPut(@RequestBody Seguimiento request, @PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
+	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+	    return this.seguimientoServicio.updateByIdPut(request, id);
 	}
 
-	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable("id") SeguimientoId id) {
-		seguimientoServicio.deleteSeguimiento(id);
-		return ResponseEntity.ok().build();
+	@DeleteMapping(path = "/{id_seguidor}/{id_seguido}")
+	public ResponseEntity<?> deleteById(@PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
+	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+	    seguimientoServicio.deleteSeguimiento(id);
+	    return ResponseEntity.ok().build();
 	}
 
 }
