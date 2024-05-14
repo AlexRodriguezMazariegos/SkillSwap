@@ -16,6 +16,9 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `apellido`, `puesto_empr
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`) VALUES (NULL, 'Eva', 'eva@eviden.com', 'Gutierrez', 'Analista', '6060', 'https://github.com/eva');
 
 
+UPDATE `usuario` SET `foto_de_perfil` = '/SkillSwap/src/main/resources/img/profile.png';
+
+
 --Articulos
 
 -- Usuario 1
