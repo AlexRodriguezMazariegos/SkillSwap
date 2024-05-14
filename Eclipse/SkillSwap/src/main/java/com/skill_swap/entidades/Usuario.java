@@ -110,12 +110,13 @@ public class Usuario {
 		this.puestoEmpresa = puestoEmpresa;
 	}
 
-	public List<Skill> getHabilidades() {
+	public List<Skill> getSkills() {
 		return skills;
 	}
 
-	public void setHabilidades(List<Skill> habilidades) {
-		this.skills = habilidades;
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
 	}
 
+	
 }
