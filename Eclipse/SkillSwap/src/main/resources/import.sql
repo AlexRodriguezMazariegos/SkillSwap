@@ -16,6 +16,9 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `apellido`, `puesto_empr
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`) VALUES (NULL, 'Eva', 'eva@eviden.com', 'Gutierrez', 'Analista', '6060', 'https://github.com/eva');
 
 
+UPDATE `usuario` SET `foto_de_perfil` = 'https://icon-rainbow.com/i/icon_01993/icon_019930_256.png';
+
+
 --Articulos
 
 -- Usuario 1
