@@ -1,6 +1,9 @@
 package com.skill_swap.entidades;
 
 import java.sql.Clob;
+import java.sql.Date;
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,18 +29,21 @@ public class Articulo {
 	private Clob descripcion;
 
 	private String titulo;
+	
+	private Date fechaPublicacion;
 
 	public Articulo() {
 		super();
 	}
 
-	public Articulo(Long id_articulo, Usuario usuario, Clob contenido, Clob descripcion, String titulo) {
+	public Articulo(Long id_articulo, Usuario usuario, Clob contenido, Clob descripcion, String titulo, Date fechaPublicacion) {
 		super();
 		this.id_articulo = id_articulo;
 		this.usuario = usuario;
 		this.contenido = contenido;
 		this.descripcion = descripcion;
 		this.titulo = titulo;
+		this.fechaPublicacion = fechaPublicacion;
 		
 	}
 
