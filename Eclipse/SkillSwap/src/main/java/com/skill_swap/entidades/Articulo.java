@@ -23,15 +23,22 @@ public class Articulo {
 	@Lob
 	private Clob contenido;
 
+	private Clob descripcion;
+
+	private String titulo;
+
 	public Articulo() {
 		super();
 	}
 
-	public Articulo(Long id_articulo, Usuario usuario, Clob contenido) {
+	public Articulo(Long id_articulo, Usuario usuario, Clob contenido, Clob descripcion, String titulo) {
 		super();
 		this.id_articulo = id_articulo;
 		this.usuario = usuario;
 		this.contenido = contenido;
+		this.descripcion = descripcion;
+		this.titulo = titulo;
+		
 	}
 
 	public Long getId() {
@@ -44,6 +51,22 @@ public class Articulo {
 
 	public Usuario getUsuario() {
 		return usuario;
+	}
+
+	public Clob getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(Clob descripcion) {
+		this.descripcion = descripcion;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
 	public void setUsuario(Usuario usuario) {
