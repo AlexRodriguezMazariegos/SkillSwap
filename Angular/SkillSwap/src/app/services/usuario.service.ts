@@ -14,5 +14,9 @@ export class UsuarioService {
   getusuarios():Observable<any>{
     return this.http.get<any>(this.baseUrl)
   }
+
+  getUsuarioById(id:number):Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/${id}`)
+  }
   
 }

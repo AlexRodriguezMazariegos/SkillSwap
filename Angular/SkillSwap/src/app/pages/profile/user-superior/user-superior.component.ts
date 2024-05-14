@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-user-superior',
@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './user-superior.component.css'
 })
 export class UserSuperiorComponent {
+
+  @Input() miUsuario: any;
 
 }
