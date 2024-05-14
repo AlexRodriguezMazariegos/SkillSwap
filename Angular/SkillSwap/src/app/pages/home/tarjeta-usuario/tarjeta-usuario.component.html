@@ -6,8 +6,9 @@
       </div>
     </div>
     <div class="card-back">
+      <span class="card-back-titulo">Skills</span>
       <ul class="card-info">
-      @for (skill of miUsuario.skills; track skill) {
+      @for (skill of miUsuario.skills.slice(0,3); track skill) {
         <li>{{skill.nombre}}</li>
       }
     </ul>
