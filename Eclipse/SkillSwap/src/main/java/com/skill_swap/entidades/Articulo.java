@@ -1,6 +1,10 @@
 package com.skill_swap.entidades;
 
 import java.sql.Clob;
+import java.sql.Date;
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -8,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.websocket.Decoder.Text;
 
 @Entity
 public class Articulo {
@@ -20,24 +25,29 @@ public class Articulo {
 	@JoinColumn(name = "id_usuario")
 	private Usuario usuario;
 
-	@Lob
-	private Clob contenido;
+	@Column(columnDefinition = "Text")
+	private String contenido;
+	
+	@Column(columnDefinition = "Text")
+	private String descripcion;
 
-	private Clob descripcion;
-
+	
 	private String titulo;
+	
+	private Date fechaPublicacion;
 
 	public Articulo() {
 		super();
 	}
 
-	public Articulo(Long id_articulo, Usuario usuario, Clob contenido, Clob descripcion, String titulo) {
+	public Articulo(Long id_articulo, Usuario usuario, String contenido, String descripcion, String titulo, Date fechaPublicacion) {
 		super();
 		this.id_articulo = id_articulo;
 		this.usuario = usuario;
 		this.contenido = contenido;
 		this.descripcion = descripcion;
 		this.titulo = titulo;
+		this.fechaPublicacion = fechaPublicacion;
 		
 	}
 
@@ -53,16 +63,24 @@ public class Articulo {
 		return usuario;
 	}
 
-	public Clob getDescripcion() {
+	public String getDescripcion() {
 		return descripcion;
 	}
 
-	public void setDescripcion(Clob descripcion) {
+	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
 	public String getTitulo() {
 		return titulo;
+	}
+
+	public Date getFechaPublicacion() {
+		return fechaPublicacion;
+	}
+
+	public void setFechaPublicacion(Date fechaPublicacion) {
+		this.fechaPublicacion = fechaPublicacion;
 	}
 
 	public void setTitulo(String titulo) {
@@ -81,11 +99,11 @@ public class Articulo {
 		this.id_articulo = id_articulo;
 	}
 
-	public Clob getContenido() {
+	public String getContenido() {
 		return contenido;
 	}
 
-	public void setContenido(Clob contenido) {
+	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
 

@@ -17,8 +17,8 @@ public class SkillServicio {
 		return (ArrayList<Skill>) skillRepositorio.findAll();
 	}
 
-	public Skill saveSkill(Skill habilidad) {
-		return skillRepositorio.save(habilidad);
+	public Skill saveSkill(Skill skill) {
+		return skillRepositorio.save(skill);
 	}
 
 	public Optional<Skill> getById(Long id) {
@@ -26,11 +26,11 @@ public class SkillServicio {
 	}
 
 	public Skill updateByIdPut(Skill request, Long id) {
-		Skill habilidad = skillRepositorio.findById(id).get();
-		habilidad.setUsuarios(request.getUsuarios());
-		habilidad.setNombre(request.getNombre());
-		skillRepositorio.save(habilidad);
-		return habilidad;
+		Skill skill = skillRepositorio.findById(id).get();
+		skill.setUsuarios(request.getUsuarios());
+		skill.setNombre(request.getNombre());
+		skillRepositorio.save(skill);
+		return skill;
 	}
 
 	public Boolean deleteSkill(Long id) {

@@ -25,7 +25,9 @@ public class Usuario {
 	@Size(max = 30)
 	private String email;
 
-	//Aqui no se pone nada de longitud xq se va a hashear
+	private byte[] fotoDePerfil;
+
+	// Aqui no se pone nada de longitud xq se va a hashear
 	private String contrasena;
 
 	private String urlGitHub;
@@ -41,18 +43,22 @@ public class Usuario {
 		super();
 	}
 
-	public Usuario(Long id_usuario, String nombre, String apellido, String email, String contrasena, String urlGitHub,
-			String puestoEmpresa, List<Skill> skills) {
+	public Usuario(Long id_usuario, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
+			@Size(max = 30) String email, byte[] fotoDePerfil, String contrasena, String urlGitHub,
+			@Size(max = 50) String puestoEmpresa, List<Skill> skills) {
 		super();
 		this.id_usuario = id_usuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
+		this.fotoDePerfil = fotoDePerfil;
 		this.contrasena = contrasena;
 		this.urlGitHub = urlGitHub;
 		this.puestoEmpresa = puestoEmpresa;
 		this.skills = skills;
 	}
+
+
 
 	public Long getId_usuario() {
 		return id_usuario;
@@ -86,6 +92,14 @@ public class Usuario {
 		this.email = email;
 	}
 
+	public byte[] getFotoDePerfil() {
+		return fotoDePerfil;
+	}
+
+	public void setFotoDePerfil(byte[] fotoDePerfil) {
+		this.fotoDePerfil = fotoDePerfil;
+	}
+
 	public String getContrasena() {
 		return contrasena;
 	}
@@ -110,12 +124,13 @@ public class Usuario {
 		this.puestoEmpresa = puestoEmpresa;
 	}
 
-	public List<Skill> getHabilidades() {
+	public List<Skill> getSkills() {
 		return skills;
 	}
 
-	public void setHabilidades(List<Skill> habilidades) {
-		this.skills = habilidades;
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
 	}
 
+	
 }

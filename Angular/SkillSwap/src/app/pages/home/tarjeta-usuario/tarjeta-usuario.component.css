@@ -1,0 +1,111 @@
+.titulo {
+    font-family: var(--tituloPpal);
+    font-size: 34px;
+}
+
+.psico-card {
+    cursor: pointer;
+    width: 150px;
+    height: 200px;
+    background-color: var(--secn);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .purple-part {
+    width: 100%;
+    height: 50px;
+    background-color: var(--ppal);
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .photo {
+    position: absolute;
+    top: 20px;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 2rem;
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 4.5rem;
+  }
+  
+  .info h2 {
+    margin-top: 0;
+    font-size: 1rem;
+  }
+  
+  .separacion {
+    width: 75%;
+    margin-top: 6px;
+  }
+  
+  .info p {
+    font-size: 1rem;
+  }
+  
+  .card-back {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    position: absolute;
+    background-color: var(--ppal);
+    color: #f0f0f0;
+    padding: 20px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    transition: .6s;
+  }
+  
+  .psico-card:hover .card-back {
+    right: 0;
+  }
+  
+  .card-info{
+    font-size: 0.8rem;
+  }
+  
+  .card-btn {
+    display: block;
+    margin: auto;
+    cursor: pointer;
+    background-color: var(--body);
+    color: #000000;
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: box-shadow 0.25s ease; 
+  }
+  
+  .card-btn:hover {
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  

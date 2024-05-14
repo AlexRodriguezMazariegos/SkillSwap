@@ -1,3 +1,5 @@
+import { skill } from "./skill";
+
 export interface usuario{
     id_usuario:number,
     nombre:string,
@@ -6,5 +8,5 @@ export interface usuario{
     contrasena:string,
     urlGitHub:string,
     puestoEmpresa:string,
-    habilidades:Array<string>
+    skills:Array<skill>
 }
