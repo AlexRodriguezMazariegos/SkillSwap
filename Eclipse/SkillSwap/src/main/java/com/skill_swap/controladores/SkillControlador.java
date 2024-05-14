@@ -20,8 +20,8 @@ import com.skill_swap.servicios.SkillServicio;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200") // Configuración CORS a nivel de clase
-@RequestMapping("api/v1/habilidad")
-public class HabilidadControlador {
+@RequestMapping("api/v1/skill")
+public class SkillControlador {
 
 	@Autowired
 	private SkillServicio skillServicio;
@@ -32,12 +32,12 @@ public class HabilidadControlador {
 	}
 
 	@PostMapping
-	public Skill saveHabilidad(@RequestBody Skill skill) {
+	public Skill saveSkill(@RequestBody Skill skill) {
 		return this.skillServicio.saveSkill(skill);
 	}
 
 	@GetMapping(path = "/{id}")
-	public Optional<Skill> getHabilidadById(@PathVariable("id") Long id) {
+	public Optional<Skill> getSkillById(@PathVariable("id") Long id) {
 		return this.skillServicio.getById(id);
 	}
 
