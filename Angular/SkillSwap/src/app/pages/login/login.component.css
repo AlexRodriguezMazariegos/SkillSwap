@@ -80,7 +80,7 @@ h2 {
 
 .form-group {
   padding: 0px;
-  margin-top: 5%;
+  margin-top: 4%;
 }
 
 input {
@@ -93,9 +93,22 @@ input {
 .btn-primary {
   width: 100%; 
   background-color: var(--ppal);
-  margin-top: 7%;
+  margin-top: 6%;
   border: var(--ppal);
   font-family: var(--tituloPpal);
+}
+
+.btn-primary:hover {
+  background-color: var(--ppal_2);
+}
+
+a{
+  text-decoration: none;
+}
+
+.no-account{
+  margin-top: 7%;
+  text-align: center;
 }
 
 .copyright {

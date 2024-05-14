@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill_swap.entidades.Seguimiento;
+import com.skill_swap.entidades.SeguimientoId;
 import com.skill_swap.servicios.SeguimientoServicio;
 
 
@@ -40,22 +41,24 @@ public class SeguimientoControlador {
 		return this.seguimientoServicio.saveSeguimiento(seguimiento);
 	}
 	
-	@GetMapping(path = "/{id}")
-	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id") Long id)
-	{
-		return this.seguimientoServicio.getById(id);
+
+	@GetMapping(path = "/{id_seguidor}/{id_seguido}")
+	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
+	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+	    return this.seguimientoServicio.getById(id);
 	}
 	
-	@PutMapping(path = "/{id}")
-	public Seguimiento updateByIdPut(@RequestBody Seguimiento request,@PathVariable Long id)
-	{
-		return this.seguimientoServicio.updateByIdPut(request, id);
+	@PutMapping(path = "/{id_seguidor}/{id_seguido}")
+	public Seguimiento updateByIdPut(@RequestBody Seguimiento request, @PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
+	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+	    return this.seguimientoServicio.updateByIdPut(request, id);
 	}
 
-	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
-		seguimientoServicio.deleteSeguimiento(id);
-		return ResponseEntity.ok().build();
+	@DeleteMapping(path = "/{id_seguidor}/{id_seguido}")
+	public ResponseEntity<?> deleteById(@PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
+	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+	    seguimientoServicio.deleteSeguimiento(id);
+	    return ResponseEntity.ok().build();
 	}
 
 }

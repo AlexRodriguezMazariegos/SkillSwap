@@ -1,1 +1,55 @@
-<p>signup works!</p>
+<div class="contenedor">
+    <div class="left-column">
+      <h1 class="typewriter">{{ textoAleatorio }}</h1>
+    </div>
+    <div class="right-column">
+      <form class="login-form">
+        <h2>SkillSwap</h2>
+        <p class="welcome-login">Encantado de verte de nuevo</p>
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            placeholder="Enter username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="text"
+            class="form-control"
+            id="email"
+            placeholder="Enter email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="confirm-password">Confirm password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="confirm-password"
+            placeholder="Confirm password"
+          />
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="navigateToHome()">Registrarse</button>
+        <p class="no-account">¿Ya tienes cuenta? <a href="/">Inicia sesion</a></p>
+        <p class="copyright">©Atos 2024</p>
+      </form>
+    </div>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
