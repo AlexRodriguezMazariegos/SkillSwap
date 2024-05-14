@@ -35,13 +35,15 @@ public class Skill {
 		this.nombre = nombre;
 		this.usuarios = usuarios;
 	}
+	
+	
 
-	public Long getId_habilidad() {
+	public Long getId_skill() {
 		return id_skill;
 	}
 
-	public void setId_habilidad(Long id_habilidad) {
-		this.id_skill = id_habilidad;
+	public void setId_skill(Long id_skill) {
+		this.id_skill = id_skill;
 	}
 
 	public String getNombre() {

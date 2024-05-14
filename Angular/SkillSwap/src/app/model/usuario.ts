@@ -6,5 +6,5 @@ export interface usuario{
     contrasena:string,
     urlGitHub:string,
     puestoEmpresa:string,
-    habilidades:Array<string>
+    habilidades:Array<habilidad>
 }
