@@ -1,16 +1,16 @@
-<div class="psico-carousel d-flex gap-3">
-  <div class="psico-card">
+<div class="d-flex gap-3">
+  <div class="user-card">
     <div class="purple-part">
       <div class="photo">
         <img src="../../../../assets/img/usr-icono.png" alt="User" />
       </div>
     </div>
     <div class="card-back">
-      <p class="card-info">
+      <ul class="card-info">
       @for (skill of miUsuario.skills; track skill) {
-        {{skill.nombre}}
+        <li>{{skill.nombre}}</li>
       }
-      </p>
+    </ul>
       <button class="card-btn">Perfil</button>
     </div>
     <div class="info">
