@@ -8,9 +8,19 @@
         <div class="col-md-2">
             <app-sidebar></app-sidebar>
         </div>
+
         <div class="tarjetas-usuarios col-md-10">
-                <div class="col">
-                    <app-tarjeta-usuario></app-tarjeta-usuario>
+            <div class="row">
+                <h1 class="titulo">Usuarios destacados</h1>
+                <div class="d-flex flex-row">
+                    @for (usuario of misUsuarios.slice(0,6); track usuario) {
+                        <div class="col">
+                            <app-tarjeta-usuario [miUsuario]="usuario"></app-tarjeta-usuario>
+                        </div>
+                     }
+                </div>
             </div>
+        </div>
+        
     </div>
 </div>
