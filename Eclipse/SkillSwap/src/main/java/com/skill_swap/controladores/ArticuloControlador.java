@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,4 +44,16 @@ public class ArticuloControlador {
         articuloServicio.eliminarArticulo(id);
         return ResponseEntity.ok().build();
     }
+    
+    @PutMapping("/{id}")
+    public ResponseEntity<Articulo> actualizarArticulo(@PathVariable Long id, @RequestBody Articulo articulo) {
+        Articulo articuloActualizado = articuloServicio.actualizarArticulo(id, articulo);
+        if (articuloActualizado != null) {
+            return ResponseEntity.ok(articuloActualizado);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    
 }
