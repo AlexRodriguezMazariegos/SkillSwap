@@ -19,35 +19,37 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `email`, `apellido`, `puesto_empr
 --Articulos
 
 -- Usuario 1
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '1', 'Contenido del artículo para el usuario 1');
+-- Usuario 1
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '1', 'Contenido del artículo para el usuario 1', 'Titulo 1', CURRENT_TIMESTAMP(), 'Descripcion 1');
 -- Usuario 2
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '2', 'Contenido del artículo para el usuario 2');
--- Usuario 3
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '3', 'Contenido del artículo para el usuario 3');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '2', 'Contenido del artículo para el usuario 2', 'Titulo 2', CURRENT_TIMESTAMP(), 'Descripcion 2');
+-- Usuario 
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '3', 'Contenido del artículo para el usuario 3', 'Titulo 3', CURRENT_TIMESTAMP(), 'Descripcion 3');
 -- Usuario 4
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '4', 'Contenido del artículo para el usuario 4');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '4', 'Contenido del artículo para el usuario 4', 'Titulo 4', CURRENT_TIMESTAMP(), 'Descripcion 4');
 -- Usuario 5
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '5', 'Contenido del artículo para el usuario 5');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '5', 'Contenido del artículo para el usuario 5', 'Titulo 5', CURRENT_TIMESTAMP(), 'Descripcion 5');
 -- Usuario 6
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '6', 'Contenido del artículo para el usuario 6');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '6', 'Contenido del artículo para el usuario 6', 'Titulo 6', CURRENT_TIMESTAMP(), 'Descripcion 6');
 -- Usuario 7
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '7', 'Contenido del artículo para el usuario 7');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '7', 'Contenido del artículo para el usuario 7', 'Titulo 7', CURRENT_TIMESTAMP(), 'Descripcion 7');
 -- Usuario 8
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '8', 'Contenido del artículo para el usuario 8');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '8', 'Contenido del artículo para el usuario 8', 'Titulo 8', CURRENT_TIMESTAMP(), 'Descripcion 8');
 -- Usuario 9
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '9', 'Contenido del artículo para el usuario 9');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '9', 'Contenido del artículo para el usuario 9', 'Titulo 9', CURRENT_TIMESTAMP(), 'Descripcion 9');
 -- Usuario 10
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '10', 'Contenido del artículo para el usuario 10');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '10', 'Contenido del artículo para el usuario 10', 'Titulo 10', CURRENT_TIMESTAMP(), 'Descripcion 10');
 -- Usuario 11
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '11', 'Contenido del artículo para el usuario 11');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '11', 'Contenido del artículo para el usuario 11', 'Titulo 11', CURRENT_TIMESTAMP(), 'Descripcion 11');
 -- Usuario 12
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '12', 'Contenido del artículo para el usuario 12');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '12', 'Contenido del artículo para el usuario 12', 'Titulo 12', CURRENT_TIMESTAMP(), 'Descripcion 12');
 -- Usuario 13
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '13', 'Contenido del artículo para el usuario 13');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '13', 'Contenido del artículo para el usuario 13', 'Titulo 13', CURRENT_TIMESTAMP(), 'Descripcion 13');
 -- Usuario 14
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '14', 'Contenido del artículo para el usuario 14');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '14', 'Contenido del artículo para el usuario 14', 'Titulo 14', CURRENT_TIMESTAMP(), 'Descripcion 14');
 -- Usuario 15
-INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`) VALUES (NULL, '15', 'Contenido del artículo para el usuario 15');
+INSERT INTO `articulo` (`id_articulo`, `id_usuario`, `contenido`, `titulo`, `fecha_publicacion`, `descripcion`) VALUES (NULL, '15', 'Contenido del artículo para el usuario 15', 'Titulo 15', CURRENT_TIMESTAMP(), 'Descripcion 15');
+
 
 
 --Chats
