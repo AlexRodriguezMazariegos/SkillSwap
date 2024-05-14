@@ -64,7 +64,7 @@ button:hover {
     display: block;
     position: fixed;
     margin-top: 12px;
-    top: 60px;
+    top: 50px;
     left: 10px;
     z-index: 1100;
     background-color: transparent;

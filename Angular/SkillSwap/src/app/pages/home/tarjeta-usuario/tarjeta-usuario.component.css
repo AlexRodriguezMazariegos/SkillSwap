@@ -3,6 +3,10 @@
     font-size: 34px;
 }
 
+.container-tarjetas {
+  margin-top: 4rem;
+}
+
 .psico-card {
     cursor: pointer;
     width: 150px;
@@ -109,3 +113,33 @@
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   }
   
+  /* Responsive móvil */
+@media only screen and (max-width: 480px) {
+  .titulo {
+    font-size: 25px;
+  }
+
+  .info p {
+    font-size: 0.8rem;
+  }
+
+  .psico-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+}
+
+.card-info{
+  font-size: 0.8rem;
+}
+
+.psico-card {
+    flex: 0 0 calc(33.33% - 20px);
+    margin: 10px;
+}
+}
+
+/* Reponsive tablet */
+@media only screen and (max-width: 768px) {
+
+}
