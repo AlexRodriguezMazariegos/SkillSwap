@@ -181,35 +181,64 @@ INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Go');
 INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Swift');
 
 
-
 --Usuario_skill
--- Usuario 1 tiene habilidad en Java
+-- Usuario 1 
 INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('1', '1');
--- Usuario 2 tiene habilidad en Python
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '1');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '1');
+-- Usuario 2 
 INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '2');
--- Usuario 3 tiene habilidad en JavaScript
-INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '3');
--- Usuario 4 tiene habilidad en C++
-INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('4', '4');
--- Usuario 5 tiene habilidad en Ruby
-INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '5');
--- Usuario 6 tiene habilidad en Go
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '2');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('6', '2');
+-- Usuario 3 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('4', '3');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '3');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('6', '3');
+-- Usuario 4 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '4');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '4');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '4');
+-- Usuario 5 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('1', '5');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '5');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '5');
+-- Usuario 6 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '6');
 INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('6', '6');
--- Usuario 7 tiene habilidad en Swift
-INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '7');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '6');
+-- Usuario 7 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('1', '7');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('4', '7');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '7');
+-- Usuario 8
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('1', '8');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '8');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '8');
+-- Usuario 9 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('4', '9');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '9');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('6', '9');
+-- Usuario 10 
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('1', '10');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '10');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '10');
+-- Usuario 11
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '11');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('4', '11');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '11');
+-- Usuario 12
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '12');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('5', '12');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('6', '12');
+-- Usuario 13
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '13');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '13');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '13');
+-- Usuario 14
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('1', '14');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('2', '14');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '14');
+-- Usuario 15
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('3', '15');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('6', '15');
+INSERT INTO `usuario_skills` (`skills_id_skill`, `usuarios_id_usuario`) VALUES ('7', '15');
