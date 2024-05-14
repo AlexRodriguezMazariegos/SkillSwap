@@ -172,13 +172,13 @@ INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (
 
 
 --Skills
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion Java');
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion Python');
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion JavaScript');
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion C++');
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion Ruby');
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion Go');
-INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Lenguaje de programacion Swift');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Java');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Python');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'JavaScript');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'C++');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Ruby');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Go');
+INSERT INTO `skill` (`id_skill`, `nombre`) VALUES (NULL, 'Swift');
 
 
 
