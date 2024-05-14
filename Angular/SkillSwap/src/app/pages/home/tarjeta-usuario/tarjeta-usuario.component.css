@@ -1,12 +1,3 @@
-.titulo {
-    font-family: var(--tituloPpal);
-    font-size: 34px;
-}
-
-.container-tarjetas {
-  margin-top: 4rem;
-}
-
 .psico-card {
     cursor: pointer;
     width: 150px;
@@ -115,19 +106,9 @@
   
   /* Responsive móvil */
 @media only screen and (max-width: 480px) {
-  .titulo {
-    font-size: 25px;
-  }
-
-  .info p {
+ .info p {
     font-size: 0.8rem;
   }
-
-  .psico-carousel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content:flex-start;
-}
 
 .card-info{
   font-size: 0.8rem;

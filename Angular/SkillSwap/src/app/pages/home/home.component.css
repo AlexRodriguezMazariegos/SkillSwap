@@ -1,6 +1,11 @@
 *{
     overflow-x: hidden;
 }
+.titulo {
+    font-family: var(--tituloPpal);
+    font-size: 34px;
+}
+
 .navbar-full-width {
     width: 100%;
     margin-left: 0;
@@ -8,7 +13,7 @@
 }
 
 .tarjetas-usuarios {
-    padding-top: 1.5rem;
+    padding-top: 4rem;
     padding-left: 2rem;
 }
 
