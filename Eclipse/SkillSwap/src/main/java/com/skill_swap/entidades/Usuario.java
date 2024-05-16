@@ -14,7 +14,7 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_usuario;
+	public Long id;
 
 	@Size(max = 20)
 	private String nombre;
@@ -43,11 +43,11 @@ public class Usuario {
 		super();
 	}
 
-	public Usuario(Long id_usuario, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
+	public Usuario(Long id, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
 			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub,
 			@Size(max = 50) String puestoEmpresa, List<Skill> skills) {
 		super();
-		this.id_usuario = id_usuario;
+		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
@@ -59,11 +59,11 @@ public class Usuario {
 	}
 
 	public Long getId() {
-		return id_usuario;
+		return id;
 	}
 
-	public void setId(Long id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

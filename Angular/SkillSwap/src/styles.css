@@ -1,20 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 /* Reset styles */
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 @import "bootstrap/dist/css/bootstrap.css";
 :root {
-    --body: #ffff;
-    --ppal: #7328AB;
-    --ppal_2: #B063E9;
-    --secn: #E7E7E7;
-    --degradado: linear-gradient(to right, #ffffff, #7328AB);
-    --tituloPpal: "Orbitron", sans-serif;
-    --texto: "Lato", sans-serif;
-  }
+  --body: #ffff;
+  --ppal: #7328ab;
+  --ppal_2: #b063e9;
+  --secn: #e7e7e7;
+  --degradado: linear-gradient(to right, #ffffff, #7328ab);
+  --tituloPpal: "Orbitron", sans-serif;
+  --texto: "Lato", sans-serif;
+}
 
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-  }
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.default-button {
+  width: 100%;
+  height: 35px;
+  background-color: var(--ppal);
+  margin-top: 6%;
+  border-radius: 5px;
+  color: white;
+  text-align: center;
+  border: var(--ppal);
+  font-family: var(--tituloPpal);
+  transition: background-color 0.3s ease;
+}
+
+.default-button:hover {
+  background-color: var(--ppal_2);
+}

@@ -18,5 +18,6 @@ export class ArticuloService {
   getArticuloById(id:number):Observable<any>{
     return this.http.get<any>(`${this.baseUrl}/${id}`)
   }
+  
 
 }
