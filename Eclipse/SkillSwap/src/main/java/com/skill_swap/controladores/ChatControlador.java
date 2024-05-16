@@ -12,6 +12,7 @@ import com.skill_swap.servicios.ChatServicio;
 
 @RestController
 @RequestMapping("/api/v1/chat")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ChatControlador {
 
 	@Autowired
