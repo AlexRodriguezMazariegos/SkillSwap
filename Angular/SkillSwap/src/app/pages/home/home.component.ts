@@ -5,7 +5,7 @@ import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { TarjetaUsuarioComponent } from "./tarjeta-usuario/tarjeta-usuario.component";
 import { usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario/usuario.service';
-import { ArticuloService } from '../../services/articulo.service';
+import { ArticuloService } from '../../services/articulo/articulo.service';
 import { ArticuloComponent } from "./articulo/articulo.component";
 import { articulo } from '../../model/articulo';
 @Component({
