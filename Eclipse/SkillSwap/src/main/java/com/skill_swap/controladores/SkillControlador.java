@@ -32,7 +32,7 @@ public class SkillControlador {
 	}
 
 	// Endpoint para obtener un skill por su ID
-	@GetMapping("/listar/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Skill>> obtenerSkillPorId(@PathVariable Long id) {
 		if (skillServicio.obtenerSkillPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(skillServicio.obtenerSkillPorId(id));
@@ -43,13 +43,13 @@ public class SkillControlador {
 	}
 
 	// Endpoint para crear un nuevo skill
-	@PostMapping("/crear")
+	@PostMapping("")
 	public ResponseEntity<Skill> crearSkill(@RequestBody Skill skill) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(skillServicio.crearSkill(skill));
 	}
 
 	// Endpoint para actualizar un skill existente
-	@PutMapping("/actualizar/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Skill> actualizarSkill(@PathVariable Long id, @RequestBody Skill skill) {
 		if (skillServicio.obtenerSkillPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(skillServicio.actualizarSkill(id, skill));
@@ -59,7 +59,7 @@ public class SkillControlador {
 	}
 
 	// Endpoint para borrar un skill por su ID
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Skill> borrarSkill(@PathVariable Long id) {
 		if (skillServicio.obtenerSkillPorId(id).isPresent()) {
 			skillServicio.borrarSkill(id);

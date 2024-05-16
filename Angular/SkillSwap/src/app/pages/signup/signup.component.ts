@@ -36,7 +36,7 @@ export class SignupComponent  implements OnInit{
 
 
   nuevoUsuario:usuario = {
-    id_usuario: 0,
+    id: 0,
     nombre: '',
     apellido: '',
     email: '',

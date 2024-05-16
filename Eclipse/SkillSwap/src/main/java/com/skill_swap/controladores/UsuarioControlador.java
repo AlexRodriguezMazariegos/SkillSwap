@@ -31,7 +31,7 @@ public class UsuarioControlador {
 	}
 
 	// Endpoint para obtener un usuario por su ID
-	@GetMapping("listar//{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Usuario>> obtenerUsuarioPorId(@PathVariable Long id) {
 		if (usuarioServicio.obtenerUsuarioPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(usuarioServicio.obtenerUsuarioPorId(id));
@@ -42,13 +42,13 @@ public class UsuarioControlador {
 	}
 
 	// Endpoint para crear un nuevo usuario
-	@PostMapping("/crear")
+	@PostMapping("")
 	public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioServicio.crearUsuario(usuario));
 	}
 
 	// Endpoint para actualizar un usuario existente
-	@PutMapping("/actualizar/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Usuario> actualizarUsuario(@PathVariable Long id, @RequestBody Usuario usuario) {
 		if (usuarioServicio.obtenerUsuarioPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(usuarioServicio.actualizarUsuario(id, usuario));
@@ -58,7 +58,7 @@ public class UsuarioControlador {
 	}
 
 	// Endpoint para borrar un usuario por su ID
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Usuario> borrarUsuario(@PathVariable Long id) {
 		if (usuarioServicio.obtenerUsuarioPorId(id).isPresent()) {
 			usuarioServicio.borrarUsuario(id);

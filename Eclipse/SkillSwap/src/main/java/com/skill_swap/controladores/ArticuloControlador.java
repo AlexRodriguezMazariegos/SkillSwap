@@ -29,7 +29,7 @@ public class ArticuloControlador {
 	@Autowired
 	private ArticuloServicio articuloServicio;
 
-	@GetMapping
+	@GetMapping("")
 	public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
 		return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulos());
 	}
@@ -43,7 +43,7 @@ public class ArticuloControlador {
 		}
 	}
 
-	@PostMapping
+	@PostMapping("")
 	public ResponseEntity<Articulo> guardarArticulo(@RequestBody Articulo articulo) {
 		return ResponseEntity.ok(articuloServicio.crearArticulo(articulo));
 	}

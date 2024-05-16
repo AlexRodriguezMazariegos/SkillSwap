@@ -24,7 +24,7 @@ public class MensajeControlador {
 	}
 
 	// Endpoint para obtener un mensaje por su ID
-	@GetMapping("listar//{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Mensaje>> obtenerMensajePorId(@PathVariable Long id) {
 		if (mensajeServicio.obtenerMensajePorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(mensajeServicio.obtenerMensajePorId(id));
@@ -35,13 +35,13 @@ public class MensajeControlador {
 	}
 
 	// Endpoint para crear un nuevo mensaje
-	@PostMapping("/crear")
+	@PostMapping("")
 	public ResponseEntity<Mensaje> crearMensaje(@RequestBody Mensaje mensaje) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(mensajeServicio.crearMensaje(mensaje));
 	}
 
 	// Endpoint para actualizar un mensaje existente
-	@PutMapping("/actualizar/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Mensaje> actualizarMensaje(@PathVariable Long id, @RequestBody Mensaje mensaje) {
 		if (mensajeServicio.obtenerMensajePorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(mensajeServicio.actualizarMensaje(id, mensaje));
@@ -51,7 +51,7 @@ public class MensajeControlador {
 	}
 
 	// Endpoint para borrar un mensaje por su ID
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Mensaje> borrarMensaje(@PathVariable Long id) {
 		if (mensajeServicio.obtenerMensajePorId(id).isPresent()) {
 			mensajeServicio.borrarMensaje(id);
