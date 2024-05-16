@@ -27,12 +27,12 @@ public class SeguimientoControlador {
 	@Autowired
 	private SeguimientoServicio seguimientoServicio;
 
-	@GetMapping
+	@GetMapping("")
 	public ArrayList<Seguimiento> getSeguimientos() {
 		return seguimientoServicio.getSeguimientos();
 	}
 
-	@PostMapping
+	@PostMapping("")
 	public Seguimiento saveSeguimiento(@RequestBody Seguimiento seguimiento) {
 		return this.seguimientoServicio.saveSeguimiento(seguimiento);
 	}
@@ -44,14 +44,14 @@ public class SeguimientoControlador {
 		return this.seguimientoServicio.getById(id);
 	}
 
-	@PutMapping(path = "/{id_seguidor}/{id_seguido}")
+	@PutMapping("/{id_seguidor}/{id_seguido}")
 	public Seguimiento updateByIdPut(@RequestBody Seguimiento request, @PathVariable("id_seguidor") Long idSeguidor,
 			@PathVariable("id_seguido") Long idSeguido) {
 		SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
 		return this.seguimientoServicio.updateByIdPut(request, id);
 	}
 
-	@DeleteMapping(path = "/{id_seguidor}/{id_seguido}")
+	@DeleteMapping("/{id_seguidor}/{id_seguido}")
 	public ResponseEntity<?> deleteById(@PathVariable("id_seguidor") Long idSeguidor,
 			@PathVariable("id_seguido") Long idSeguido) {
 		SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
