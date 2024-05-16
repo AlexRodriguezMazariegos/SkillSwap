@@ -5,7 +5,7 @@ import { UserSuperiorComponent } from "./user-superior/user-superior.component";
 import { UserInfoComponent } from "./user-info/user-info.component";
 import { UserBotonesComponent } from "./user-botones/user-botones.component";
 import { usuario } from '../../model/usuario';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 
 @Component({
     selector: 'app-profile',

@@ -15,11 +15,17 @@ export class SignupComponent  implements OnInit{
   // Lista de textos posibles
   textosAleatorios: string[] = [
     '¡Bienvenido a SkillSwap!',
-    '¡Bi3nv3n1d0 a Sk1llSw4p!',
-    'Descubre nuevas habilidades en SkillSwap',
-    'Conviértete en un experto con SkillSwap',
+    'Descubre habilidades en SkillSwap',
+    'Explora nuevas habilidades',
+    'Crea conexiones profesionales',
     'Aprende y comparte en SkillSwap',
-    'Sk!llSw@p - 3xpl0r3 & L34rn'
+    'Comparte tu conocimiento',
+    'Descubre talentos únicos',
+    'Conviértete en un mentor',
+    'Innova con creatividad',
+    'Crecimiento continuo',
+    'Networking efectivo',
+    'Aprende y crece'
   ];
 
   textoAleatorio: string = '';

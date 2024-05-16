@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,7 +20,6 @@ import com.skill_swap.servicios.SeguimientoServicio;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200") // Configuración CORS a nivel de clase
 @RequestMapping("api/v1/seguimiento")
 public class SeguimientoControlador {
 
@@ -32,7 +30,7 @@ public class SeguimientoControlador {
 	@GetMapping
 	public ArrayList<Seguimiento> getSeguimientos()
 	{
-		return this.seguimientoServicio.getSeguimientos();
+		return seguimientoServicio.getSeguimientos();
 	}
 	
 	@PostMapping

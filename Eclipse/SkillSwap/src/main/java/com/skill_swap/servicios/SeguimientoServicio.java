@@ -33,8 +33,8 @@ public class SeguimientoServicio {
 	public Seguimiento updateByIdPut(Seguimiento request, SeguimientoId id) 
 	{
 		Seguimiento seguimiento = seguimientoRepositorio.findById(id).get();
-		seguimiento.setId_seguidor(request.getId_seguidor());
-		seguimiento.setId_seguido(request.getId_seguido());
+		seguimiento.setSeguidor(request.getSeguidor());
+		seguimiento.setSeguido(request.getSeguido());
 		seguimientoRepositorio.save(seguimiento);
 		return seguimiento;
 	}
