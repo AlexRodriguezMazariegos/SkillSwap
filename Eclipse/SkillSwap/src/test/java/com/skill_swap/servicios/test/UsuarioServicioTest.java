@@ -27,7 +27,7 @@ public class UsuarioServicioTest {
 	@InjectMocks
 	private UsuarioServicio usuarioServicio;
 
-	private ArrayList<Usuario> usuarios;
+	private List<Usuario> usuarios;
 
 	private Usuario usuario;
 
