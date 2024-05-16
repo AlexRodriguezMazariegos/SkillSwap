@@ -13,9 +13,9 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/mensajes")
 public class MensajeControlador {
-    
+
 	@Autowired
-    private MensajeServicio mensajeServicio;
+	private MensajeServicio mensajeServicio;
 
 	@GetMapping("")
 	public List<Mensaje> obtenerTodosLosMensajes() {

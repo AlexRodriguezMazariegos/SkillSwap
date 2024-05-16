@@ -1,21 +1,19 @@
 package com.skill_swap.entidades;
 
-
-
 public class SeguimientoId {
-	
+
 	public SeguimientoId(Long id_seguidor, Long id_seguido) {
 		super();
 		this.id_seguidor = id_seguidor;
 		this.id_seguido = id_seguido;
 	}
-	
+
 	public SeguimientoId() {
 
 	}
 
 	private Long id_seguidor;
-	
+
 	private Long id_seguido;
 
 	public Long getId_seguidor() {

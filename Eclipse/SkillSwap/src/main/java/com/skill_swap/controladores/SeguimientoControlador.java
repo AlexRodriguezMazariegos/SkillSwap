@@ -18,45 +18,43 @@ import com.skill_swap.entidades.Seguimiento;
 import com.skill_swap.entidades.SeguimientoId;
 import com.skill_swap.servicios.SeguimientoServicio;
 
-
 @RestController
 @RequestMapping("api/v1/seguimiento")
 public class SeguimientoControlador {
 
-
 	@Autowired
 	private SeguimientoServicio seguimientoServicio;
-	
+
 	@GetMapping
-	public ArrayList<Seguimiento> getSeguimientos()
-	{
+	public ArrayList<Seguimiento> getSeguimientos() {
 		return seguimientoServicio.getSeguimientos();
 	}
-	
+
 	@PostMapping
-	public Seguimiento saveSeguimiento(@RequestBody Seguimiento seguimiento) 
-	{
+	public Seguimiento saveSeguimiento(@RequestBody Seguimiento seguimiento) {
 		return this.seguimientoServicio.saveSeguimiento(seguimiento);
 	}
-	
 
 	@GetMapping(path = "/{id_seguidor}/{id_seguido}")
-	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
-	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
-	    return this.seguimientoServicio.getById(id);
+	public Optional<Seguimiento> getSeguimientoById(@PathVariable("id_seguidor") Long idSeguidor,
+			@PathVariable("id_seguido") Long idSeguido) {
+		SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+		return this.seguimientoServicio.getById(id);
 	}
-	
+
 	@PutMapping(path = "/{id_seguidor}/{id_seguido}")
-	public Seguimiento updateByIdPut(@RequestBody Seguimiento request, @PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
-	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
-	    return this.seguimientoServicio.updateByIdPut(request, id);
+	public Seguimiento updateByIdPut(@RequestBody Seguimiento request, @PathVariable("id_seguidor") Long idSeguidor,
+			@PathVariable("id_seguido") Long idSeguido) {
+		SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+		return this.seguimientoServicio.updateByIdPut(request, id);
 	}
 
 	@DeleteMapping(path = "/{id_seguidor}/{id_seguido}")
-	public ResponseEntity<?> deleteById(@PathVariable("id_seguidor") Long idSeguidor, @PathVariable("id_seguido") Long idSeguido) {
-	    SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
-	    seguimientoServicio.deleteSeguimiento(id);
-	    return ResponseEntity.ok().build();
+	public ResponseEntity<?> deleteById(@PathVariable("id_seguidor") Long idSeguidor,
+			@PathVariable("id_seguido") Long idSeguido) {
+		SeguimientoId id = new SeguimientoId(idSeguidor, idSeguido);
+		seguimientoServicio.borrarSeguimiento(id);
+		return ResponseEntity.ok().build();
 	}
 
 }

@@ -14,36 +14,43 @@ public class SkillServicio {
 	SkillRepositorio skillRepositorio;
 
 	// Método para obtener todos los skills
-    public List<Skill> obtenerTodosLosSkills() {
-        return skillRepositorio.findAll();
-    }
+	public List<Skill> obtenerTodosLosSkills() {
+		return skillRepositorio.findAll();
+	}
 
-    public Optional<Skill> obtenerSkillPorId(Long id) {
-        return skillRepositorio.findById(id);
-    }
+	public Optional<Skill> obtenerSkillPorId(Long id) {
+		return skillRepositorio.findById(id);
+	}
 
-    // Método para crear o actualizar un skill
-    public Skill crearSkill(Skill skill) {
-        return skillRepositorio.save(skill);
-    }
+	// Método para crear o actualizar un skill
+	public Skill crearSkill(Skill skill) {
+		return skillRepositorio.save(skill);
+	}
 
-    // Método para crear o actualizar un skill
-    public Skill actualizarSkill(Long id, Skill skill) {
-    	if(skillRepositorio.findById(id).isPresent()) {
-    		Skill skillAModificar= skillRepositorio.findById(id).get();
-    		//El id se queda como estaba
-    		skillAModificar.setId(id);
-    		skillAModificar.setNombre(skill.getNombre());
-    		skillAModificar.setUsuarios(skill.getUsuarios());
-            
-            return skillRepositorio.save(skillAModificar);
-    	}else {
-    		return null;
-    	}
-    }
-    
-    // Método para borrar un skill por su ID
-    public void borrarSkill(Long id) {
-        skillRepositorio.deleteById(id);
-    }
+	// Método para crear o actualizar un skill
+	public Skill actualizarSkill(Long id, Skill skill) {
+		if (skillRepositorio.findById(id).isPresent()) {
+			Skill skillAModificar = skillRepositorio.findById(id).get();
+			// El id se queda como estaba
+			skillAModificar.setId(id);
+			skillAModificar.setNombre(skill.getNombre());
+			skillAModificar.setUsuarios(skill.getUsuarios());
+
+			return skillRepositorio.save(skillAModificar);
+		} else {
+			return null;
+		}
+	}
+
+	// Método para borrar un usuario por su ID
+	public Boolean borrarSkill(Long id) {
+		{
+			try {
+				skillRepositorio.deleteById(id);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
 }
