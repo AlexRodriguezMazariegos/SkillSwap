@@ -115,4 +115,7 @@ h1{
   .form-check-input {
     margin-right: 10px;
   }
+  .error{
+    color: red;
+  }
   
