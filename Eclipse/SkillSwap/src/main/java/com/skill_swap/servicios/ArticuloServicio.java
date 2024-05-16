@@ -19,11 +19,11 @@ public class ArticuloServicio {
         return articuloRepositorio.findAll();
     }
 
-    public Articulo obtenerArticuloPorId(Long id) {
-        return articuloRepositorio.findById(id).orElse(null);
+    public Optional<Articulo> obtenerArticuloPorId(Long id) {
+        return articuloRepositorio.findById(id);
     }
 
-    public Articulo guardarArticulo(Articulo articulo) {
+    public Articulo crearArticulo(Articulo articulo) {
         return articuloRepositorio.save(articulo);
     }
 
@@ -37,7 +37,6 @@ public class ArticuloServicio {
 
         if (articuloExistente.isPresent()) {
             Articulo articuloActualizado = articuloExistente.get();
-            
             articuloActualizado.setUsuario(articulo.getUsuario());
             articuloActualizado.setContenido(articulo.getContenido());
             articuloActualizado.setDescripcion(articulo.getDescripcion());
