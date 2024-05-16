@@ -1,6 +1,7 @@
 package com.skill_swap.servicios;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,17 +30,19 @@ public class SkillServicio {
 
 	// Método para crear o actualizar un skill
 	public Skill actualizarSkill(Long id, Skill skill) {
-		if (skillRepositorio.findById(id).isPresent()) {
-			Skill skillAModificar = skillRepositorio.findById(id).get();
-			// El id se queda como estaba
-			skillAModificar.setId(id);
-			skillAModificar.setNombre(skill.getNombre());
-			skillAModificar.setUsuarios(skill.getUsuarios());
-
-			return skillRepositorio.save(skillAModificar);
-		} else {
-			return null;
-		}
+	    try 
+	    {
+		Skill skillAModificar = skillRepositorio.findById(id).get();
+		// El id se queda como estaba
+		skillAModificar.setId(id);
+		skillAModificar.setNombre(skill.getNombre());
+		skillAModificar.setUsuarios(skill.getUsuarios());
+		return skillRepositorio.save(skillAModificar);
+	    } 
+	    catch (NoSuchElementException e) {
+	        // Manejo de la excepción si el usuario no existe
+	        return null;
+	    }
 	}
 
 	// Método para borrar un usuario por su ID
