@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { ArticuloPorIdComponent } from './pages/articulo-por-id/articulo-por-id.component';
 
 export const routes: Routes = [
     {
@@ -24,5 +25,8 @@ export const routes: Routes = [
     },
     {
         path: 'chat', component:ChatComponent
+    },
+    {
+        path: 'articulo/:id', component:ArticuloPorIdComponent
     }
 ];
