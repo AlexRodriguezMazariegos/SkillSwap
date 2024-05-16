@@ -12,7 +12,7 @@ public class Chat {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_chat;
+	public Long id;
 
 	@ManyToOne
 	@JoinColumn(name = "id_usuario1")
@@ -22,9 +22,9 @@ public class Chat {
 	@JoinColumn(name = "id_usuario2")
 	private Usuario usuario2;
 
-	public Chat(Long id_chat, Usuario usuario1, Usuario usuario2) {
+	public Chat(Long id, Usuario usuario1, Usuario usuario2) {
 		super();
-		this.id_chat = id_chat;
+		this.id = id;
 		this.usuario1 = usuario1;
 		this.usuario2 = usuario2;
 	}
@@ -33,12 +33,12 @@ public class Chat {
 		super();
 	}
 
-	public Long getId_chat() {
-		return id_chat;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_chat(Long id_chat) {
-		this.id_chat = id_chat;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Usuario getUsuario1() {

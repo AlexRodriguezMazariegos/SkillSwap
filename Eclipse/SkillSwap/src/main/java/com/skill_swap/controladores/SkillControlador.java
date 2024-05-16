@@ -1,11 +1,12 @@
 package com.skill_swap.controladores;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,37 +20,52 @@ import com.skill_swap.entidades.Skill;
 import com.skill_swap.servicios.SkillServicio;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200") // Configuración CORS a nivel de clase
 @RequestMapping("api/v1/skill")
 public class SkillControlador {
 
 	@Autowired
 	private SkillServicio skillServicio;
 
-	@GetMapping
-	public ArrayList<Skill> getSkills() {
-		return this.skillServicio.getSkills();
+	@GetMapping("")
+	public List<Skill> obtenerTodosLosSkills() {
+		return skillServicio.obtenerTodosLosSkills();
 	}
 
-	@PostMapping
-	public Skill saveSkill(@RequestBody Skill skill) {
-		return this.skillServicio.saveSkill(skill);
+	// Endpoint para obtener un skill por su ID
+	@GetMapping("/listar/{id}")
+	public ResponseEntity<Optional<Skill>> obtenerSkillPorId(@PathVariable Long id) {
+		if (skillServicio.obtenerSkillPorId(id).isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(skillServicio.obtenerSkillPorId(id));
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+
+		}
 	}
 
-	@GetMapping(path = "/{id}")
-	public Optional<Skill> getSkillById(@PathVariable("id") Long id) {
-		return this.skillServicio.getById(id);
+	// Endpoint para crear un nuevo skill
+	@PostMapping("/crear")
+	public ResponseEntity<Skill> crearSkill(@RequestBody Skill skill) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(skillServicio.crearSkill(skill));
 	}
 
-	@PutMapping(path = "/{id}")
-	public Skill updateByIdPut(@RequestBody Skill request, @PathVariable Long id) {
-		return this.skillServicio.updateByIdPut(request, id);
+	// Endpoint para actualizar un skill existente
+	@PutMapping("/actualizar/{id}")
+	public ResponseEntity<Skill> actualizarSkill(@PathVariable Long id, @RequestBody Skill skill) {
+		if (skillServicio.obtenerSkillPorId(id).isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(skillServicio.actualizarSkill(id, skill));
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
 	}
 
-	@DeleteMapping(path = "/{id}")
-	public ResponseEntity<?> deleteById(@PathVariable("id") Long id) {
-		skillServicio.deleteSkill(id);
-		return ResponseEntity.ok().build();
+	// Endpoint para borrar un skill por su ID
+	@DeleteMapping("/eliminar/{id}")
+	public ResponseEntity<Skill> borrarSkill(@PathVariable Long id) {
+		if (skillServicio.obtenerSkillPorId(id).isPresent()) {
+			skillServicio.borrarSkill(id);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
 	}
-
 }
