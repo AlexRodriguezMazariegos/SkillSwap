@@ -90,18 +90,6 @@ input {
   background-color: var(--secn);
 }
 
-.btn-primary {
-  width: 100%; 
-  background-color: var(--ppal);
-  margin-top: 6%;
-  border: var(--ppal);
-  font-family: var(--tituloPpal);
-}
-
-.btn-primary:hover {
-  background-color: var(--ppal_2);
-}
-
 a{
   text-decoration: none;
 }
