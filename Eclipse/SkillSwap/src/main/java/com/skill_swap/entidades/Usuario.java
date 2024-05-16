@@ -58,8 +58,6 @@ public class Usuario {
 		this.skills = skills;
 	}
 
-
-
 	public Long getId() {
 		return id_usuario;
 	}
@@ -132,5 +130,4 @@ public class Usuario {
 		this.skills = skills;
 	}
 
-	
 }

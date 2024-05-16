@@ -35,8 +35,6 @@ public class Skill {
 		this.nombre = nombre;
 		this.usuarios = usuarios;
 	}
-	
-	
 
 	public Long getId() {
 		return id;
