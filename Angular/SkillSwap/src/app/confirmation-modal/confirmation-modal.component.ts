@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog'; // Importa MatDialog en lugar de MatDialogModule
+import { MatDialog, MatDialogRef } from '@angular/material/dialog'; 
 
 @Component({
   selector: 'app-confirmation-modal',
@@ -9,13 +9,16 @@ import { MatDialog } from '@angular/material/dialog'; // Importa MatDialog en lu
 export class ConfirmationModalComponent {
   @Output() confirmed: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor(private dialog: MatDialog) {} // Inyecta MatDialog en el constructor
+  constructor(private dialog: MatDialogRef<ConfirmationModalComponent>) {} // Inyecta MatDialog en el constructor
 
-  confirm() {
-    this.confirmed.emit(true); // Emite true cuando se confirma cerrar sesión
+  closeDialog(): void {
+    this.dialog.close(); // Cierra el diálogo
   }
 
-  cancel() {
-    this.confirmed.emit(false); // Emite false cuando se cancela cerrar sesión
+  logout(): void {
+    // Aquí colocarías la lógica para cerrar la sesión
+    console.log('Cerrar sesión');
+    // Después de cerrar la sesión, cierra el diálogo
+    this.dialog.close();
   }
 }

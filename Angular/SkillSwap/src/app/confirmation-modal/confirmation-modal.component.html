@@ -1,7 +1,7 @@
-<div class="modal">
-  <div class="modal-content">
-    <p>¿Estás seguro de que deseas cerrar sesión?</p>
-    <button (click)="confirm()">Cerrar Sesión</button>
-    <button (click)="cancel()">Volver</button>
+<div class="mat-dialog-wrapper">
+  <h2 class="title">¿Seguro que quieres cerrar sesión?</h2>
+  <div mat-dialog-actions>
+    <button mat-button class="default-button" (click)="logout()">Cerrar sesión</button>
+    <button mat-button class="default-button-reverse" (click)="closeDialog()">Volver</button>
   </div>
 </div>
