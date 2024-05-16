@@ -22,20 +22,20 @@ public class Articulo {
 
 	@Column(columnDefinition = "Text")
 	private String contenido;
-	
+
 	@Column(columnDefinition = "Text")
 	private String descripcion;
 
-	
 	private String titulo;
-	
+
 	private Date fechaPublicacion;
 
 	public Articulo() {
 		super();
 	}
 
-	public Articulo(Long id_articulo, Usuario usuario, String contenido, String descripcion, String titulo, Date fechaPublicacion) {
+	public Articulo(Long id_articulo, Usuario usuario, String contenido, String descripcion, String titulo,
+			Date fechaPublicacion) {
 		super();
 		this.id_articulo = id_articulo;
 		this.usuario = usuario;
@@ -43,7 +43,7 @@ public class Articulo {
 		this.descripcion = descripcion;
 		this.titulo = titulo;
 		this.fechaPublicacion = fechaPublicacion;
-		
+
 	}
 
 	public Long getId() {

@@ -15,7 +15,7 @@ import com.skill_swap.servicios.ChatServicio;
 public class ChatControlador {
 
 	@Autowired
-    private ChatServicio chatServicio;
+	private ChatServicio chatServicio;
 
 	@GetMapping("")
 	public List<Chat> obtenerTodosLosChats() {

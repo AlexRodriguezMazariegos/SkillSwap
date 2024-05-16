@@ -1,9 +1,19 @@
-<app-navbar></app-navbar>
-<div class="container-fluid">
-  <app-sidebar></app-sidebar>
-  <app-user-superior [miUsuario] ="miUsuario" ></app-user-superior>
-  <app-user-info></app-user-info>
-  <app-user-botones></app-user-botones>
-      
+<div class="container-100">
+  <div class="row">
+    <div class="col">
+      <app-navbar class="navbar-full-width"></app-navbar>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <app-sidebar></app-sidebar>
+    </div>
+    <div class="content-home col-md-10">
+      <div class="row">
+        <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
+        <app-user-info></app-user-info>
+        <app-user-botones></app-user-botones>
+      </div>
+    </div>
+  </div>
 </div>
-  
