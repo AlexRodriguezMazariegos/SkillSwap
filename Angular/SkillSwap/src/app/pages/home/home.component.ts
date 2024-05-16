@@ -4,7 +4,7 @@ import { NavbarComponent } from "../../shared/navbar/navbar.component";
 import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { TarjetaUsuarioComponent } from "./tarjeta-usuario/tarjeta-usuario.component";
 import { usuario } from '../../model/usuario';
-import { UsuarioService } from '../../services/usuario.service';
+import { UsuarioService } from '../../services/usuario/usuario.service';
 @Component({
     selector: 'app-home',
     standalone: true,
