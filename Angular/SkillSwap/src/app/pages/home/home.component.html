@@ -8,8 +8,7 @@
         <div class="col-md-2">
             <app-sidebar></app-sidebar>
         </div>
-
-        <div class="tarjetas-usuarios col-md-10">
+        <div class="content-home col-md-10">
             <div class="row">
                 <h1 class="titulo">Usuarios destacados</h1>
                 <div class="d-flex flex-row flex-wrap"> 
@@ -20,7 +19,16 @@
                      }
                 </div>
             </div>
+            <div class="row">
+                <h1 class="titulo">Artículos</h1>
+                <div class="d-flex flex-column  flex-wrap"> 
+                    @for (articulo of articulos.slice(0,1); track articulo) {
+                        <div class="col custom-col">
+                            <app-articulo [articulos]="articulo"></app-articulo>
+                        </div>
+                     }
+                </div>
+            </div>
         </div>
-        
     </div>
 </div>

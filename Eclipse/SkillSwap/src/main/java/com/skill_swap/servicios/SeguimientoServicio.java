@@ -15,40 +15,32 @@ public class SeguimientoServicio {
 
 	@Autowired
 	SeguimientoRepositorio seguimientoRepositorio;
-	
-	public ArrayList<Seguimiento> getSeguimientos()
-	{
+
+	public ArrayList<Seguimiento> getSeguimientos() {
 		return (ArrayList<Seguimiento>) seguimientoRepositorio.findAll();
 	}
-	
-	public Seguimiento saveSeguimiento(Seguimiento seguimiento)
-	{
+
+	public Seguimiento saveSeguimiento(Seguimiento seguimiento) {
 		return seguimientoRepositorio.save(seguimiento);
 	}
-	
-	public Optional<Seguimiento> getById(SeguimientoId id){
+
+	public Optional<Seguimiento> getById(SeguimientoId id) {
 		return seguimientoRepositorio.findById(id);
 	}
-	
-	public Seguimiento updateByIdPut(Seguimiento request, SeguimientoId id) 
-	{
+
+	public Seguimiento updateByIdPut(Seguimiento request, SeguimientoId id) {
 		Seguimiento seguimiento = seguimientoRepositorio.findById(id).get();
-		seguimiento.setId_seguidor(request.getId_seguidor());
-		seguimiento.setId_seguido(request.getId_seguido());
+		seguimiento.setSeguidor(request.getSeguidor());
+		seguimiento.setSeguido(request.getSeguido());
 		seguimientoRepositorio.save(seguimiento);
 		return seguimiento;
 	}
-	
-	
-	public Boolean deleteSeguimiento (SeguimientoId id) 
-	{
-		try
-		{
+
+	public Boolean borrarSeguimiento(SeguimientoId id) {
+		try {
 			seguimientoRepositorio.deleteById(id);
 			return true;
-		}
-		catch(Exception e)
-		{
+		} catch (Exception e) {
 			return false;
 		}
 	}
