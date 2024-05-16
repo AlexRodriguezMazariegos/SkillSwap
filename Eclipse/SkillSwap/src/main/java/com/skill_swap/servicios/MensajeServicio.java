@@ -47,13 +47,16 @@ public class MensajeServicio {
 
 	// Método para borrar un usuario por su ID
 	public Boolean borrarMensaje(Long id) {
-		{
-			try {
-				mensajeRepositorio.deleteById(id);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
+	    if (mensajeRepositorio.existsById(id)) {
+	        try {
+	            mensajeRepositorio.deleteById(id);
+	            return true;
+	        } catch (Exception e) {
+	            return false;
+	        }
+	    } else {
+	        return false;
+	    }
 	}
+
 }

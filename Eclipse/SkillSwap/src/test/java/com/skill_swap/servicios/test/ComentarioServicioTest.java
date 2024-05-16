@@ -97,20 +97,23 @@ public class ComentarioServicioTest {
     }
 
     @Test
-    void testBorrarComentario() {
-        when(comentarioRepositorio.existsById(1L)).thenReturn(true);
+    void testBorrarComentarioExistente() {
+        Long idExistente = 1L;
+        when(comentarioRepositorio.existsById(idExistente)).thenReturn(true);
 
-        boolean resultado = comentarioServicio.borrarComentario(1L);
+        boolean resultado = comentarioServicio.borrarComentario(idExistente);
 
         assertTrue(resultado);
     }
 
     @Test
     void testBorrarComentarioNoExistente() {
-        when(comentarioRepositorio.existsById(1L)).thenReturn(false);
+        Long idNoExistente = 1L;
+        when(comentarioRepositorio.existsById(idNoExistente)).thenReturn(false);
 
-        boolean resultado = comentarioServicio.borrarComentario(1L);
+        boolean resultado = comentarioServicio.borrarComentario(idNoExistente);
 
         assertFalse(resultado);
     }
+
 }

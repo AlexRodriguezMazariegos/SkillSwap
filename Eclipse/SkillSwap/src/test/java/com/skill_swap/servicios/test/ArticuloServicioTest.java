@@ -103,17 +103,29 @@ public class ArticuloServicioTest {
     void testBorrarArticulo() {
         when(articuloRepositorio.existsById(1L)).thenReturn(true);
 
-        boolean resultado = articuloServicio.borrarArticulo(1L);
+        boolean resultado = articuloServicio.eliminarArticulo(1L);
+
+        assertTrue(resultado);
+    }
+
+    @Test
+    void testBorrarArticuloExistente() {
+        Long idExistente = 1L;
+        when(articuloRepositorio.existsById(idExistente)).thenReturn(true);
+
+        boolean resultado = articuloServicio.eliminarArticulo(idExistente);
 
         assertTrue(resultado);
     }
 
     @Test
     void testBorrarArticuloNoExistente() {
-        when(articuloRepositorio.existsById(1L)).thenReturn(false);
+        Long idNoExistente = 1L;
+        when(articuloRepositorio.existsById(idNoExistente)).thenReturn(false);
 
-        boolean resultado = articuloServicio.borrarArticulo(1L);
+        boolean resultado = articuloServicio.eliminarArticulo(idNoExistente);
 
         assertFalse(resultado);
     }
+
 }

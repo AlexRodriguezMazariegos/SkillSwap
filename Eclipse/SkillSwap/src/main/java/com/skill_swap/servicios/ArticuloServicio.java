@@ -27,9 +27,15 @@ public class ArticuloServicio {
 		return articuloRepositorio.save(articulo);
 	}
 
-	public void eliminarArticulo(Long id) {
-		articuloRepositorio.deleteById(id);
+	public boolean eliminarArticulo(Long id) {
+	    if (articuloRepositorio.existsById(id)) {
+	        articuloRepositorio.deleteById(id);
+	        return true;
+	    } else {
+	        return false;
+	    }
 	}
+
 
 	public Articulo actualizarArticulo(Long id, Articulo articulo) {
 		Optional<Articulo> articuloExistente = articuloRepositorio.findById(id);
@@ -48,16 +54,6 @@ public class ArticuloServicio {
 		}
 	}
 
-	// Método para borrar un usuario por su ID
-	public Boolean borrarArticulo(Long id) {
-		{
-			try {
-				articuloRepositorio.deleteById(id);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
+
 
 }

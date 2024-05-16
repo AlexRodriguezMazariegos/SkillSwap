@@ -97,20 +97,23 @@ public class MensajeServicioTest {
     }
 
     @Test
-    void testBorrarMensaje() {
-        when(mensajeRepositorio.existsById(1L)).thenReturn(true);
+    void testBorrarMensajeExistente() {
+        Long idExistente = 1L;
+        when(mensajeRepositorio.existsById(idExistente)).thenReturn(true);
 
-        boolean resultado = mensajeServicio.borrarMensaje(1L);
+        boolean resultado = mensajeServicio.borrarMensaje(idExistente);
 
         assertTrue(resultado);
     }
 
     @Test
     void testBorrarMensajeNoExistente() {
-        when(mensajeRepositorio.existsById(1L)).thenReturn(false);
+        Long idNoExistente = 1L;
+        when(mensajeRepositorio.existsById(idNoExistente)).thenReturn(false);
 
-        boolean resultado = mensajeServicio.borrarMensaje(1L);
+        boolean resultado = mensajeServicio.borrarMensaje(idNoExistente);
 
         assertFalse(resultado);
     }
+
 }

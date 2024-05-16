@@ -94,20 +94,23 @@ public class ChatServicioTest {
     }
 
     @Test
-    void testBorrarChat() {
-        when(chatRepositorio.existsById(1L)).thenReturn(true);
+    void testBorrarChatExistente() {
+        Long idExistente = 1L;
+        when(chatRepositorio.existsById(idExistente)).thenReturn(true);
 
-        boolean resultado = chatServicio.borrarChat(1L);
+        boolean resultado = chatServicio.borrarChat(idExistente);
 
         assertTrue(resultado);
     }
 
     @Test
     void testBorrarChatNoExistente() {
-        when(chatRepositorio.existsById(1L)).thenReturn(false);
+        Long idNoExistente = 1L;
+        when(chatRepositorio.existsById(idNoExistente)).thenReturn(false);
 
-        boolean resultado = chatServicio.borrarChat(1L);
+        boolean resultado = chatServicio.borrarChat(idNoExistente);
 
         assertFalse(resultado);
     }
+
 }
