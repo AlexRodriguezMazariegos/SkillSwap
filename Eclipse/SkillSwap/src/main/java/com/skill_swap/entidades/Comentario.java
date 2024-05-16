@@ -13,26 +13,26 @@ import jakarta.persistence.ManyToOne;
 public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_comentario;
+	public Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario id_usuario;
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "id_articulo")
-	private Articulo id_articulo;
+	@JoinColumn(name = "articulo")
+	private Articulo articulo;
 
 	private Date fecha;
 
 	@Column(columnDefinition = "Text")
 	private String texto;
 
-	public Comentario(Long id_comentario, Usuario id_usuario, Articulo id_articulo, Date fecha, String texto) {
+	public Comentario(Long id, Usuario usuario, Articulo articulo, Date fecha, String texto) {
 		super();
-		this.id_comentario = id_comentario;
-		this.id_usuario = id_usuario;
-		this.id_articulo = id_articulo;
+		this.id = id;
+		this.usuario = usuario;
+		this.articulo = articulo;
 		this.fecha = fecha;
 		this.texto = texto;
 	}
@@ -42,28 +42,28 @@ public class Comentario {
 
 	}
 
-	public Long getId_comentario() {
-		return id_comentario;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_comentario(Long id_comentario) {
-		this.id_comentario = id_comentario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Usuario getId_usuario() {
-		return id_usuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setId_usuario(Usuario id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public Articulo getId_articulo() {
-		return id_articulo;
+	public Articulo getArticulo() {
+		return articulo;
 	}
 
-	public void setId_articulo(Articulo id_articulo) {
-		this.id_articulo = id_articulo;
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
 	}
 
 	public Date getFecha() {

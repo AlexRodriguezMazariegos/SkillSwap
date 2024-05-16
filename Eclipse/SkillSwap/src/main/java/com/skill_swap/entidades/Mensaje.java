@@ -15,14 +15,14 @@ public class Mensaje {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_mensaje;
+	public Long id;
 	
 	@ManyToOne
-    @JoinColumn(name = "id_usuario")
+    @JoinColumn(name = "usuario")
     private Usuario usuario;
 	
 	@ManyToOne
-    @JoinColumn(name = "id_chat")
+    @JoinColumn(name = "chat")
     private Chat chat;
 	
 	@Size(max = 200)
@@ -30,9 +30,9 @@ public class Mensaje {
 	
 	private Date fecha;
 
-	public Mensaje(Long id_mensaje, Usuario usuario, Chat chat, String texto, Date fecha) {
+	public Mensaje(Long id, Usuario usuario, Chat chat, String texto, Date fecha) {
 		super();
-		this.id_mensaje = id_mensaje;
+		this.id = id;
 		this.usuario = usuario;
 		this.chat = chat;
 		this.texto = texto;
@@ -43,12 +43,12 @@ public class Mensaje {
 		super();
 	}
 
-	public Long getId_mensaje() {
-		return id_mensaje;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_mensaje(Long id_mensaje) {
-		this.id_mensaje = id_mensaje;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Usuario getUsuario() {

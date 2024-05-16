@@ -60,11 +60,11 @@ public class Usuario {
 
 
 
-	public Long getId_usuario() {
+	public Long getId() {
 		return id_usuario;
 	}
 
-	public void setId_usuario(Long id_usuario) {
+	public void setId(Long id_usuario) {
 		this.id_usuario = id_usuario;
 	}
 
