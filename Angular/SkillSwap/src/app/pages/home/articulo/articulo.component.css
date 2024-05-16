@@ -1,9 +1,14 @@
 .container-art {
     /* background-color: var(--ppal); */
-    background-color: #883fbcaa;
+    background-color: #883fbc77;
     max-width: 95%;
     border-radius: 8px;
-    padding: 10px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.container-art:hover {
+    background-color: #883fbca1;
 }
 
 .title-art {
