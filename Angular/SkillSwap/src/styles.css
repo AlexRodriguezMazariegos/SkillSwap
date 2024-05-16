@@ -35,3 +35,23 @@
 .default-button:hover {
   background-color: var(--ppal_2);
 }
+
+.default-button-reverse {
+  width: 100%;
+  height: 35px;
+  background-color: white;
+  border: 2px solid var(--ppal);
+  margin-top: 6%;
+  border-radius: 5px;
+  color: var(--ppal);
+  text-align: center;
+  font-family: var(--tituloPpal);
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.default-button-reverse:hover {
+  background-color: var(--ppal);
+  color: white;
+  font-weight: normal;
+}

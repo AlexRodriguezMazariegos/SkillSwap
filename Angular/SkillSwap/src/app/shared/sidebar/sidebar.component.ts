@@ -14,4 +14,11 @@ export class SidebarComponent {
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }
+
+  onLogoutConfirmation(confirmed: boolean) {
+    if (confirmed) {
+      // Aquí colocarás la lógica para cerrar la sesión
+      console.log('Cerrar sesión confirmado');
+    }
+  }
 }
