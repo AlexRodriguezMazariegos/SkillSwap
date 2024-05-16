@@ -2,6 +2,12 @@
     font-family: var(--texto);
 }
 
+.navbar {
+    position: fixed;
+    z-index: 1100000001;
+    width: 100%;
+}
+
 .nav-user-img {
     width: 180px;
     height: 44px;

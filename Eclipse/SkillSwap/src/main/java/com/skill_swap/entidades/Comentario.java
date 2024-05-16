@@ -1,14 +1,12 @@
 package com.skill_swap.entidades;
 
-import java.sql.Clob;
 import java.util.Date;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 @Entity
@@ -27,10 +25,10 @@ public class Comentario {
 
 	private Date fecha;
 
-	@Lob
-	private Clob texto;
+	@Column(columnDefinition = "Text")
+	private String texto;
 
-	public Comentario(Long id_comentario, Usuario id_usuario, Articulo id_articulo, Date fecha, Clob texto) {
+	public Comentario(Long id_comentario, Usuario id_usuario, Articulo id_articulo, Date fecha, String texto) {
 		super();
 		this.id_comentario = id_comentario;
 		this.id_usuario = id_usuario;
@@ -76,11 +74,11 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 
-	public Clob getTexto() {
+	public String getTexto() {
 		return texto;
 	}
 
-	public void setTexto(Clob texto) {
+	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
