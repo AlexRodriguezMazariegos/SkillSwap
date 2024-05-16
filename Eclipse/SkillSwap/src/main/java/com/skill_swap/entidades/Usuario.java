@@ -25,7 +25,7 @@ public class Usuario {
 	@Size(max = 30)
 	private String email;
 
-	private byte[] fotoDePerfil;
+	private String fotoDePerfil;
 
 	// Aqui no se pone nada de longitud xq se va a hashear
 	private String contrasena;
@@ -44,7 +44,7 @@ public class Usuario {
 	}
 
 	public Usuario(Long id_usuario, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
-			@Size(max = 30) String email, byte[] fotoDePerfil, String contrasena, String urlGitHub,
+			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub,
 			@Size(max = 50) String puestoEmpresa, List<Skill> skills) {
 		super();
 		this.id_usuario = id_usuario;
@@ -92,11 +92,11 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public byte[] getFotoDePerfil() {
+	public String getFotoDePerfil() {
 		return fotoDePerfil;
 	}
 
-	public void setFotoDePerfil(byte[] fotoDePerfil) {
+	public void setFotoDePerfil(String fotoDePerfil) {
 		this.fotoDePerfil = fotoDePerfil;
 	}
 

@@ -50,17 +50,4 @@ public class UsuarioServicio {
 			return false;
 		}
 	}
-	
-	 @Transactional
-	    public void guardarImagenDePerfilDeUsuario(Long idUsuario, byte[] datosImagen) {
-	        Optional<Usuario> usuarioOptional = usuarioRepositorio.findById(idUsuario);
-	        if (usuarioOptional.isPresent()) {
-	            Usuario usuario = usuarioOptional.get();
-	            usuario.setFotoDePerfil(datosImagen);
-	            usuarioRepositorio.save(usuario);
-	        } else {
-	            // Manejar el caso en que el usuario no se encuentre en la base de datos
-	            System.out.println("Usuario no encontrado");
-	        }
-	    }
 }
