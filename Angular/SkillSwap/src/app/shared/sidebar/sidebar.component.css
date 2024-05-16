@@ -4,7 +4,7 @@
 }
 
 #sidebar {
-  z-index: 1000;
+  z-index: 1100000000;
   position: fixed;
   left: 0;
   width: 17%;
@@ -63,11 +63,11 @@ button:hover {
   .hamburger {
     display: block;
     position: fixed;
-    margin-top: 12px;
-    top: 60px;
+    top: 70px;
     left: 10px;
-    z-index: 1100;
-    background-color: transparent;
+    z-index: 1100000000;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
     border: none;
     font-size: 24px;
     color: #000000;

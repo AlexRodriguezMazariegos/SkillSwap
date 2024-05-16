@@ -1,14 +1,9 @@
-.titulo {
-    font-family: var(--tituloPpal);
-    font-size: 34px;
-}
-
-.psico-card {
+.user-card {
     cursor: pointer;
     width: 150px;
     height: 200px;
     background-color: var(--secn);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     border-radius: 4px;
     overflow: hidden;
     margin-bottom: 2rem;
@@ -72,18 +67,35 @@
     height: 100%;
     top: 0;
     right: -100%;
+    z-index: 100000000;
     position: absolute;
     background-color: var(--ppal);
     color: #f0f0f0;
-    padding: 20px;
+    padding: 10px;
     display: flex;
-    text-align: center;
     flex-direction: column;
     justify-content: center;
     transition: .6s;
   }
+
+  li {
+    list-style-type: none;
+}
+li::before {
+    content: "-"; 
+    margin-right: 5px; 
+}
+
+  .card-back-titulo {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: .1rem;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
   
-  .psico-card:hover .card-back {
+  .user-card:hover .card-back {
     right: 0;
   }
   
@@ -98,6 +110,8 @@
     background-color: var(--body);
     color: #000000;
     padding: 5px 10px;
+    margin-top: 20px;
+    margin-bottom: 14px;
     font-size: 14px;
     font-weight: 600;
     border: 1px solid transparent;
@@ -109,3 +123,49 @@
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
   }
   
+  /* Responsive móvil */
+@media only screen and (max-width: 480px) {
+  .user-card {
+    width: 100px;
+    height: 150px;
+  }
+
+  .info {
+    margin-top: 2.2rem;
+  }
+
+  .photo {
+    top: 10px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .purple-part {
+    height: 30px;
+  }
+
+  .info p {
+    font-size: 0.8rem;
+  }
+
+  .info h2 {
+    font-size: .8rem;
+  }
+
+.card-info{
+  font-size: 0.6rem;
+}
+
+.card-back {
+  padding: 0px;
+  padding-top: 8px;
+}
+
+.card-btn {
+  margin-top: 17px;
+  margin-bottom: 18px;
+  padding: 2.5px 5px;
+  font-size: 12px;
+}
+
+}

@@ -11,30 +11,40 @@ import java.util.Optional;
 @Service
 public class MensajeServicio {
 
-    private final MensajeRepositorio mensajeRepositorio;
+	@Autowired
+    private MensajeRepositorio mensajeRepositorio;
 
-    @Autowired
-    public MensajeServicio(MensajeRepositorio mensajeRepositorio) {
-        this.mensajeRepositorio = mensajeRepositorio;
-    }
-
+    // Método para obtener todos los mensajes
     public List<Mensaje> obtenerTodosLosMensajes() {
         return mensajeRepositorio.findAll();
     }
 
-    public Mensaje obtenerMensajePorId(Long id) {
-        Optional<Mensaje> mensajeOptional = mensajeRepositorio.findById(id);
-        if (mensajeOptional.isPresent()) {
-            return mensajeOptional.get();
-        } else {
-            throw new IllegalArgumentException("Mensaje no encontrado con ID: " + id);
-        }
+    public Optional<Mensaje> obtenerMensajePorId(Long id) {
+        return mensajeRepositorio.findById(id);
     }
 
-    public Mensaje crearOActualizarMensaje(Mensaje mensaje) {
+    // Método para crear o actualizar un mensaje
+    public Mensaje crearMensaje(Mensaje mensaje) {
         return mensajeRepositorio.save(mensaje);
     }
 
+    // Método para crear o actualizar un mensaje
+    public Mensaje actualizarMensaje(Long id, Mensaje mensaje) {
+    	if(mensajeRepositorio.findById(id).isPresent()) {
+    		Mensaje mensajeAModificar= mensajeRepositorio.findById(id).get();
+    		//El id se queda como estaba
+    		mensajeAModificar.setId(id);
+    		//Solo se podra modificar la fecha del mensaje y su texto, los demas campos permanecen
+    		mensajeAModificar.setFecha(mensaje.getFecha());
+    		mensajeAModificar.setTexto(mensaje.getTexto());
+    		
+            return mensajeRepositorio.save(mensajeAModificar);
+    	}else {
+    		return null;
+    	}
+    }
+    
+    // Método para borrar un mensaje por su ID
     public void borrarMensaje(Long id) {
         mensajeRepositorio.deleteById(id);
     }

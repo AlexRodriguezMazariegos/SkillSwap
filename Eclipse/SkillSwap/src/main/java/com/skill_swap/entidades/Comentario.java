@@ -1,40 +1,38 @@
 package com.skill_swap.entidades;
 
-import java.sql.Clob;
 import java.util.Date;
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Comentario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_comentario;
+	public Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
-	private Usuario id_usuario;
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
 
 	@ManyToOne
-	@JoinColumn(name = "id_articulo")
-	private Articulo id_articulo;
+	@JoinColumn(name = "articulo")
+	private Articulo articulo;
 
 	private Date fecha;
 
-	@Lob
-	private Clob texto;
+	@Column(columnDefinition = "Text")
+	private String texto;
 
-	public Comentario(Long id_comentario, Usuario id_usuario, Articulo id_articulo, Date fecha, Clob texto) {
+	public Comentario(Long id, Usuario usuario, Articulo articulo, Date fecha, String texto) {
 		super();
-		this.id_comentario = id_comentario;
-		this.id_usuario = id_usuario;
-		this.id_articulo = id_articulo;
+		this.id = id;
+		this.usuario = usuario;
+		this.articulo = articulo;
 		this.fecha = fecha;
 		this.texto = texto;
 	}
@@ -44,28 +42,28 @@ public class Comentario {
 
 	}
 
-	public Long getId_comentario() {
-		return id_comentario;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_comentario(Long id_comentario) {
-		this.id_comentario = id_comentario;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public Usuario getId_usuario() {
-		return id_usuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setId_usuario(Usuario id_usuario) {
-		this.id_usuario = id_usuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	public Articulo getId_articulo() {
-		return id_articulo;
+	public Articulo getArticulo() {
+		return articulo;
 	}
 
-	public void setId_articulo(Articulo id_articulo) {
-		this.id_articulo = id_articulo;
+	public void setArticulo(Articulo articulo) {
+		this.articulo = articulo;
 	}
 
 	public Date getFecha() {
@@ -76,11 +74,11 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 
-	public Clob getTexto() {
+	public String getTexto() {
 		return texto;
 	}
 
-	public void setTexto(Clob texto) {
+	public void setTexto(String texto) {
 		this.texto = texto;
 	}
 
