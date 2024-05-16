@@ -1,7 +1,6 @@
 package com.skill_swap.servicios;
 
 import com.skill_swap.entidades.Comentario;
-import com.skill_swap.entidades.Comentario;
 import com.skill_swap.repositorios.ComentarioRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

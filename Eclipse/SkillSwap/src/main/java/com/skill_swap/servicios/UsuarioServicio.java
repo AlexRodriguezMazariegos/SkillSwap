@@ -1,17 +1,11 @@
 package com.skill_swap.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.skill_swap.entidades.Usuario;
 import com.skill_swap.entidades.Usuario;
 import com.skill_swap.repositorios.UsuarioRepositorio;
-
-import jakarta.transaction.Transactional;
 
 @Service
 public class UsuarioServicio {
@@ -55,18 +49,5 @@ public class UsuarioServicio {
     // Método para borrar un usuario por su ID
     public void borrarUsuario(Long id) {
         usuarioRepositorio.deleteById(id);
-    }
-    
-    @Transactional
-    public void guardarImagenDePerfilDeUsuario(Long idUsuario, byte[] datosImagen) {
-        Optional<Usuario> usuarioOptional = usuarioRepositorio.findById(idUsuario);
-        if (usuarioOptional.isPresent()) {
-            Usuario usuario = usuarioOptional.get();
-            usuario.setFotoDePerfil(datosImagen);
-            usuarioRepositorio.save(usuario);
-        } else {
-            // Manejar el caso en que el usuario no se encuentre en la base de datos
-            System.out.println("Usuario no encontrado");
-        }
     }
 }
