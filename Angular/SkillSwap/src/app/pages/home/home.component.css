@@ -1,6 +1,11 @@
-*{
+* {
+    font-family: var(--texto);
+}
+.container-100 {
+    max-width: 100%;
     overflow-x: hidden;
 }
+
 .titulo {
     font-family: var(--tituloPpal);
     font-size: 34px;
@@ -12,14 +17,17 @@
     margin-right: 0;
 }
 
-.tarjetas-usuarios {
+.content-home {
     padding-top: 4rem;
     padding-left: 2rem;
+    font-weight: 400
 }
+
+
 
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {
-    .tarjetas-usuarios {
+    .content-home {
         padding-top: 7rem;
     }
     /* .custom-col {
