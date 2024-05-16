@@ -16,7 +16,7 @@ public class Skill {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_skill;
+	public Long id;
 
 	@Size(max = 40)
 	private String nombre;
@@ -29,21 +29,19 @@ public class Skill {
 		super();
 	}
 
-	public Skill(Long id_skill, String nombre, List<Usuario> usuarios) {
+	public Skill(Long id, String nombre, List<Usuario> usuarios) {
 		super();
-		this.id_skill = id_skill;
+		this.id = id;
 		this.nombre = nombre;
 		this.usuarios = usuarios;
 	}
-	
-	
 
-	public Long getId_skill() {
-		return id_skill;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_skill(Long id_skill) {
-		this.id_skill = id_skill;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNombre() {

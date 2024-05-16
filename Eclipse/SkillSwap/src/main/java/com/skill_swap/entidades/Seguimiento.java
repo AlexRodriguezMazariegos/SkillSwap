@@ -13,37 +13,37 @@ public class Seguimiento {
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_usuario_seguidor")
-	private Usuario id_seguidor;
+	private Usuario seguidor;
 
 	@Id
 	@ManyToOne
 	@JoinColumn(name = "id_usuario_seguido")
-	private Usuario id_seguido;
+	private Usuario seguido;
 
 	public Seguimiento() {
 		super();
 	}
 
-	public Seguimiento(Usuario id_seguidor, Usuario id_seguido) {
+	public Seguimiento(Usuario seguidor, Usuario seguido) {
 		super();
-		this.id_seguidor = id_seguidor;
-		this.id_seguido = id_seguido;
+		this.seguidor = seguidor;
+		this.seguido = seguido;
 	}
 
-	public Usuario getId_seguidor() {
-		return id_seguidor;
+	public Usuario getSeguidor() {
+		return seguidor;
 	}
 
-	public void setId_seguidor(Usuario id_seguidor) {
-		this.id_seguidor = id_seguidor;
+	public void setSeguidor(Usuario seguidor) {
+		this.seguidor = seguidor;
 	}
 
-	public Usuario getId_seguido() {
-		return id_seguido;
+	public Usuario getSeguido() {
+		return seguido;
 	}
 
-	public void setId_seguido(Usuario id_seguido) {
-		this.id_seguido = id_seguido;
+	public void setSeguido(Usuario seguido) {
+		this.seguido = seguido;
 	}
 
 }

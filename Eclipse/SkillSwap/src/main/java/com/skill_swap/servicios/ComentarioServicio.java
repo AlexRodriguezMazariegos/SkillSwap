@@ -11,35 +11,48 @@ import java.util.Optional;
 @Service
 public class ComentarioServicio {
 
-    private final ComentarioRepositorio comentarioRepositorio;
+	@Autowired
+	private ComentarioRepositorio comentarioRepositorio;
 
-    @Autowired
-    public ComentarioServicio(ComentarioRepositorio comentarioRepositorio) {
-        this.comentarioRepositorio = comentarioRepositorio;
-    }
+	// Método para obtener todos los comentarios
+	public List<Comentario> obtenerTodosLosComentarios() {
+		return comentarioRepositorio.findAll();
+	}
 
-    // Método para obtener todos los comentarios
-    public List<Comentario> obtenerTodosLosComentarios() {
-        return comentarioRepositorio.findAll();
-    }
+	public Optional<Comentario> obtenerComentarioPorId(Long id) {
+		return comentarioRepositorio.findById(id);
+	}
 
-    // Método para obtener un comentario por su ID
-    public Comentario obtenerComentarioPorId(Long id) {
-        Optional<Comentario> comentarioOptional = comentarioRepositorio.findById(id);
-        if (comentarioOptional.isPresent()) {
-            return comentarioOptional.get();
-        } else {
-            throw new IllegalArgumentException("Comentario no encontrado con ID: " + id);
-        }
-    }
+	// Método para crear o actualizar un comentario
+	public Comentario crearComentario(Comentario comentario) {
+		return comentarioRepositorio.save(comentario);
+	}
 
-    // Método para crear o actualizar un comentario
-    public Comentario crearOActualizarComentario(Comentario comentario) {
-        return comentarioRepositorio.save(comentario);
-    }
+	// Método para crear o actualizar un comentario
+	public Comentario actualizarComentario(Long id, Comentario comentario) {
+		if (comentarioRepositorio.findById(id).isPresent()) {
+			Comentario comentarioAModificar = comentarioRepositorio.findById(id).get();
+			// El id se queda como estaba
+			comentarioAModificar.setId(id);
+			comentarioAModificar.setUsuario(comentario.getUsuario());
+			comentarioAModificar.setArticulo(comentario.getArticulo());
+			comentarioAModificar.setTexto(comentario.getTexto());
 
-    // Método para borrar un comentario por su ID
-    public void borrarComentario(Long id) {
-        comentarioRepositorio.deleteById(id);
-    }
+			return comentarioRepositorio.save(comentarioAModificar);
+		} else {
+			return null;
+		}
+	}
+
+	// Método para borrar un usuario por su ID
+	public Boolean borrarComentario(Long id) {
+		{
+			try {
+				comentarioRepositorio.deleteById(id);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
 }

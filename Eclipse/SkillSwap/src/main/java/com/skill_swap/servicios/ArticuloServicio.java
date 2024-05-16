@@ -12,44 +12,52 @@ import java.util.List;
 @Service
 public class ArticuloServicio {
 
-    @Autowired
-    private ArticuloRepositorio articuloRepositorio;
+	@Autowired
+	private ArticuloRepositorio articuloRepositorio;
 
-    public List<Articulo> obtenerTodosLosArticulos() {
-        return articuloRepositorio.findAll();
-    }
+	public List<Articulo> obtenerTodosLosArticulos() {
+		return articuloRepositorio.findAll();
+	}
 
-    public Articulo obtenerArticuloPorId(Long id) {
-        return articuloRepositorio.findById(id).orElse(null);
-    }
+	public Optional<Articulo> obtenerArticuloPorId(Long id) {
+		return articuloRepositorio.findById(id);
+	}
 
-    public Articulo guardarArticulo(Articulo articulo) {
-        return articuloRepositorio.save(articulo);
-    }
+	public Articulo crearArticulo(Articulo articulo) {
+		return articuloRepositorio.save(articulo);
+	}
 
-    public void eliminarArticulo(Long id) {
-        articuloRepositorio.deleteById(id);
-    }
-    
-    
-    public Articulo actualizarArticulo(Long id, Articulo articulo) {
-        Optional<Articulo> articuloExistente = articuloRepositorio.findById(id);
+	public void eliminarArticulo(Long id) {
+		articuloRepositorio.deleteById(id);
+	}
 
-        if (articuloExistente.isPresent()) {
-            Articulo articuloActualizado = articuloExistente.get();
-            
-            articuloActualizado.setUsuario(articulo.getUsuario());
-            articuloActualizado.setContenido(articulo.getContenido());
-            articuloActualizado.setDescripcion(articulo.getDescripcion());
-            articuloActualizado.setTitulo(articulo.getTitulo());
-            articuloActualizado.setFechaPublicacion(articulo.getFechaPublicacion());
+	public Articulo actualizarArticulo(Long id, Articulo articulo) {
+		Optional<Articulo> articuloExistente = articuloRepositorio.findById(id);
 
-            return articuloRepositorio.save(articuloActualizado);
-        } else {
-            return null;
-        }
-    }
-    
-    
-    
+		if (articuloExistente.isPresent()) {
+			Articulo articuloActualizado = articuloExistente.get();
+			articuloActualizado.setUsuario(articulo.getUsuario());
+			articuloActualizado.setContenido(articulo.getContenido());
+			articuloActualizado.setDescripcion(articulo.getDescripcion());
+			articuloActualizado.setTitulo(articulo.getTitulo());
+			articuloActualizado.setFechaPublicacion(articulo.getFechaPublicacion());
+
+			return articuloRepositorio.save(articuloActualizado);
+		} else {
+			return null;
+		}
+	}
+
+	// Método para borrar un usuario por su ID
+	public Boolean borrarArticulo(Long id) {
+		{
+			try {
+				articuloRepositorio.deleteById(id);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+	}
+
 }

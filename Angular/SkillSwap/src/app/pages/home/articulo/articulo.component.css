@@ -1,0 +1,12 @@
+.container-art {
+    /* background-color: var(--ppal); */
+    background-color: #883fbcaa;
+    max-width: 95%;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.title-art {
+    font-family: var(--tituloPpal);
+    color: var(--body);
+}

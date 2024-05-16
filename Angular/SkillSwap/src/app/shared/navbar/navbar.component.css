@@ -2,6 +2,12 @@
     font-family: var(--texto);
 }
 
+.form-control:focus {
+    border-color: none;
+    box-shadow: none;
+    border: none;
+}
+
 .navbar {
     position: fixed;
     z-index: 1100000001;
