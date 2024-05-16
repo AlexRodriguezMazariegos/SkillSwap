@@ -1,7 +1,6 @@
 package com.skill_swap.servicios;
 
 import com.skill_swap.entidades.Chat;
-import com.skill_swap.entidades.Chat;
 import com.skill_swap.repositorios.ChatRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
