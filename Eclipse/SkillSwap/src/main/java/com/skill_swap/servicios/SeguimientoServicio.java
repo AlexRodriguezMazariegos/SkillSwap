@@ -1,6 +1,7 @@
 package com.skill_swap.servicios;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +30,18 @@ public class SeguimientoServicio {
 	}
 
 	public Seguimiento updateByIdPut(Seguimiento request, SeguimientoId id) {
+	    try {
 		Seguimiento seguimiento = seguimientoRepositorio.findById(id).get();
 		seguimiento.setSeguidor(request.getSeguidor());
 		seguimiento.setSeguido(request.getSeguido());
 		seguimientoRepositorio.save(seguimiento);
 		return seguimiento;
+	    } 
+	    catch (NoSuchElementException e) 
+	    {
+        // Manejo de la excepción si el usuario no existe
+        return null;
+	    }
 	}
 
 	public Boolean borrarSeguimiento(SeguimientoId id) {

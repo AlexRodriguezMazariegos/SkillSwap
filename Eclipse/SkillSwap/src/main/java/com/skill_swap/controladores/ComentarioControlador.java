@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/comentarios")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ComentarioControlador {
 
 	@Autowired
@@ -23,7 +24,7 @@ public class ComentarioControlador {
 	}
 
 	// Endpoint para obtener un comentario por su ID
-	@GetMapping("listar//{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Comentario>> obtenerComentarioPorId(@PathVariable Long id) {
 		if (comentarioServicio.obtenerComentarioPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(comentarioServicio.obtenerComentarioPorId(id));
@@ -34,13 +35,13 @@ public class ComentarioControlador {
 	}
 
 	// Endpoint para crear un nuevo comentario
-	@PostMapping("/crear")
+	@PostMapping("")
 	public ResponseEntity<Comentario> crearComentario(@RequestBody Comentario comentario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(comentarioServicio.crearComentario(comentario));
 	}
 
 	// Endpoint para actualizar un comentario existente
-	@PutMapping("/actualizar/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Comentario> actualizarComentario(@PathVariable Long id, @RequestBody Comentario comentario) {
 		if (comentarioServicio.obtenerComentarioPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(comentarioServicio.actualizarComentario(id, comentario));
@@ -50,7 +51,7 @@ public class ComentarioControlador {
 	}
 
 	// Endpoint para borrar un comentario por su ID
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Comentario> borrarComentario(@PathVariable Long id) {
 		if (comentarioServicio.obtenerComentarioPorId(id).isPresent()) {
 			comentarioServicio.borrarComentario(id);

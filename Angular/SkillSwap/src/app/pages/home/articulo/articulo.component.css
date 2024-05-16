@@ -1,12 +1,41 @@
 .container-art {
     /* background-color: var(--ppal); */
-    background-color: #883fbcaa;
+    background-color: #883fbc77;
     max-width: 95%;
     border-radius: 8px;
-    padding: 10px;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.container-art:hover {
+    background-color: #883fbca1;
 }
 
 .title-art {
     font-family: var(--tituloPpal);
     color: var(--body);
+    font-size: 28px;
 }
+
+.descr-art {
+    width: 65%;
+}
+
+.info-art {
+    margin: 0 auto;
+}
+
+.photo {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 2rem;
+  }
+  
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  

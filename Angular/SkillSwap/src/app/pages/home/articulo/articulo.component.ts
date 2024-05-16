@@ -14,6 +14,6 @@ export class ArticuloComponent {
   constructor(private router:Router){}
 
   clickArticulo() {
-    this.router.navigate(['/login'])
+    this.router.navigate([`/articulo/${this.articulos.id}`])
   }
 }

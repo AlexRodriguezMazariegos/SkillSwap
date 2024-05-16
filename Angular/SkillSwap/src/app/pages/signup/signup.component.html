@@ -13,6 +13,8 @@
             class="form-control"
             id="first-name"
             placeholder="Introduce tu nombre"
+            [(ngModel)]="nombre"
+            name = "nombre"
           />
         </div>
         
@@ -23,6 +25,8 @@
             class="form-control"
             id="last-name"
             placeholder="Introduce tus apellidos"
+            [(ngModel)]="apellido"
+            name = "apellido"
           />
         </div>
         
@@ -33,6 +37,8 @@
             class="form-control"
             id="email"
             placeholder="Introduce el email"
+            [(ngModel)]="email"
+            name = "email"
           />
         </div>
         
@@ -43,6 +49,8 @@
             class="form-control"
             id="password"
             placeholder="Introduce la contraseña"
+            [(ngModel)]="contrasena1"
+            name="contrasena1"
           />
         </div>
         
@@ -53,10 +61,13 @@
             class="form-control"
             id="confirm-password"
             placeholder="Introduce la contraseña"
+            [(ngModel)]="contrasena2"
+            name="contrasena2"
           />
+          <p class="error">{{textoError}}</p>
         </div>
         
-        <button type="submit" class="default-button" (click)="navigateToHome()">Registrarse</button>
+        <button type="submit" class="default-button" (click)="registrarUsuario()">Registrarse</button>
         <p class="no-account">¿Ya tienes cuenta? <a href="/">Inicia sesion</a></p>
         <p class="copyright">©Eviden 2024</p>
       </form>

@@ -2,11 +2,12 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { usuario } from '../../model/usuario';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -32,11 +33,11 @@ export class SignupComponent  implements OnInit{
 
   textoAleatorio: string = '';
 
-  constructor(private router: Router, private usuarioService:UsuarioService) { }
+
 
 
   nuevoUsuario:usuario = {
-    id_usuario: 0,
+    id: 0,
     nombre: '',
     apellido: '',
     email: '',
@@ -52,6 +53,7 @@ export class SignupComponent  implements OnInit{
   contrasena1:string=""
   contrasena2:string=""
 
+  constructor(private router: Router, private usuarioService:UsuarioService) { }
   //Metodo de inicio
   ngOnInit(): void {
     this.textoAleatorio = this.textosAleatorios[
@@ -76,19 +78,27 @@ export class SignupComponent  implements OnInit{
     }
   }
 
-  navigateToHome() {
-    this.router.navigate(['/home']); // Navegar a la ruta '/home'
-  }
+
 
   registrarUsuario(){
     if(this.nombre =="" || this.apellido =="" || this.email=="" || this.contrasena1 =="" || this.contrasena2 == ""){
       this.textoError= "Por favor rellene todos los campos"
     }
-    if(this.contrasena1 != this.contrasena2){
+    else if(this.contrasena1 != this.contrasena2){
       this.textoError= "Las contraseñas no coinciden"
     }
-    if (!this.email.includes("@") && !this.email.includes(".")){
+    else if (!this.email.includes("@") || !this.email.includes(".")){
       this.textoError="Introduzca un correo valido"
+    }
+    else{
+      this.nuevoUsuario.nombre=this.nombre;
+      this.nuevoUsuario.apellido=this.apellido;
+      this.nuevoUsuario.email=this.email;
+      this.nuevoUsuario.contrasena=this.contrasena1;
+      this.usuarioService.postUsuario(this.nuevoUsuario).subscribe((data:usuario)=>{
+        console.log(data)
+        this.router.navigate(['/home'])
+      });
     }
   }
 }
