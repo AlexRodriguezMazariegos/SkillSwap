@@ -1,5 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+import { usuario } from '../../model/usuario';
 
 @Component({
   selector: 'app-signup',
@@ -30,7 +32,25 @@ export class SignupComponent  implements OnInit{
 
   textoAleatorio: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usuarioService:UsuarioService) { }
+
+
+  nuevoUsuario:usuario = {
+    id_usuario: 0,
+    nombre: '',
+    apellido: '',
+    email: '',
+    contrasena: '',
+    urlGitHub: '',
+    puestoEmpresa: '',
+    skills: []
+  }
+  textoError:string=""
+  nombre:string=""
+  apellido:string=""
+  email:string=""
+  contrasena1:string=""
+  contrasena2:string=""
 
   //Metodo de inicio
   ngOnInit(): void {
@@ -58,5 +78,17 @@ export class SignupComponent  implements OnInit{
 
   navigateToHome() {
     this.router.navigate(['/home']); // Navegar a la ruta '/home'
+  }
+
+  registrarUsuario(){
+    if(this.nombre =="" || this.apellido =="" || this.email=="" || this.contrasena1 =="" || this.contrasena2 == ""){
+      this.textoError= "Por favor rellene todos los campos"
+    }
+    if(this.contrasena1 != this.contrasena2){
+      this.textoError= "Las contraseñas no coinciden"
+    }
+    if (!this.email.includes("@") && !this.email.includes(".")){
+      this.textoError="Introduzca un correo valido"
+    }
   }
 }
