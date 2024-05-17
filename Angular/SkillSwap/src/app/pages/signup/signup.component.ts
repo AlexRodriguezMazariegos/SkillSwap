@@ -9,12 +9,13 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './signup.component.html',
-  styleUrl: './signup.component.css'
+  styleUrl: './signup.component.css',
 })
-export class SignupComponent  implements OnInit{
+export class SignupComponent implements OnInit {
+  @ViewChild('animatedText', { static: true }) animatedTextElement:
+    | ElementRef<HTMLHeadingElement>
+    | undefined;
 
-  @ViewChild('animatedText', { static: true }) animatedTextElement: ElementRef<HTMLHeadingElement> | undefined;
-  
   // Lista de textos posibles
   textosAleatorios: string[] = [
     '¡Bienvenido a SkillSwap!',
@@ -28,15 +29,12 @@ export class SignupComponent  implements OnInit{
     'Innova con creatividad',
     'Crecimiento continuo',
     'Networking efectivo',
-    'Aprende y crece'
+    'Aprende y crece',
   ];
 
   textoAleatorio: string = '';
 
-
-
-
-  nuevoUsuario:usuario = {
+  nuevoUsuario: usuario = {
     id: 0,
     nombre: '',
     apellido: '',
@@ -44,32 +42,34 @@ export class SignupComponent  implements OnInit{
     contrasena: '',
     urlGitHub: '',
     puestoEmpresa: '',
-    skills: []
-  }
-  textoError:string=""
-  nombre:string=""
-  apellido:string=""
-  email:string=""
-  contrasena1:string=""
-  contrasena2:string=""
+    skills: [],
+  };
+  emailExistente: boolean = false;
+  textoError: string = '';
+  nombre: string = '';
+  apellido: string = '';
+  email: string = '';
+  contrasena1: string = '';
+  contrasena2: string = '';
 
-  constructor(private router: Router, private usuarioService:UsuarioService) { }
+  constructor(private router: Router, private usuarioService: UsuarioService) {}
   //Metodo de inicio
   ngOnInit(): void {
-    this.textoAleatorio = this.textosAleatorios[
-      Math.floor(Math.random() * this.textosAleatorios.length)
-    ];
+    this.textoAleatorio =
+      this.textosAleatorios[
+        Math.floor(Math.random() * this.textosAleatorios.length)
+      ];
 
     if (this.animatedTextElement && this.animatedTextElement.nativeElement) {
       const textElement = this.animatedTextElement.nativeElement;
       const textContent = textElement.textContent;
       if (textContent !== null) {
-        textElement.textContent = ''; 
+        textElement.textContent = '';
 
         for (let i = 0; i < textContent.length; i++) {
           const charSpan = document.createElement('span');
           charSpan.textContent = textContent[i];
-          charSpan.style.animationDelay = `${i * 50}ms`; 
+          charSpan.style.animationDelay = `${i * 50}ms`;
           textElement.appendChild(charSpan);
         }
       } else {
@@ -78,27 +78,37 @@ export class SignupComponent  implements OnInit{
     }
   }
 
+  registrarUsuario() {
+    this.usuarioService.getUsuarioByEmail(this.email).subscribe((data: any) => {
+      this.emailExistente = data;
 
-
-  registrarUsuario(){
-    if(this.nombre =="" || this.apellido =="" || this.email=="" || this.contrasena1 =="" || this.contrasena2 == ""){
-      this.textoError= "Por favor rellene todos los campos"
-    }
-    else if(this.contrasena1 != this.contrasena2){
-      this.textoError= "Las contraseñas no coinciden"
-    }
-    else if (!this.email.includes("@") || !this.email.includes(".")){
-      this.textoError="Introduzca un correo valido"
-    }
-    else{
-      this.nuevoUsuario.nombre=this.nombre;
-      this.nuevoUsuario.apellido=this.apellido;
-      this.nuevoUsuario.email=this.email;
-      this.nuevoUsuario.contrasena=this.contrasena1;
-      this.usuarioService.postUsuario(this.nuevoUsuario).subscribe((data:usuario)=>{
-        console.log(data)
-        this.router.navigate(['/home'])
-      });
-    }
+      if (
+        this.nombre == '' ||
+        this.apellido == '' ||
+        this.email == '' ||
+        this.contrasena1 == '' ||
+        this.contrasena2 == ''
+      ) {
+        this.textoError = 'Por favor rellene todos los campos';
+      } else if (this.emailExistente == true) {
+        this.textoError = 'El email ya esta registrado';
+        console.log(this.emailExistente);
+      } else if (this.contrasena1 != this.contrasena2) {
+        this.textoError = 'Las contraseñas no coinciden';
+      } else if (!this.email.includes('@') || !this.email.includes('.')) {
+        this.textoError = 'Introduzca un correo valido';
+      } else {
+        this.nuevoUsuario.nombre = this.nombre;
+        this.nuevoUsuario.apellido = this.apellido;
+        this.nuevoUsuario.email = this.email;
+        this.nuevoUsuario.contrasena = this.contrasena1;
+        this.usuarioService
+          .postUsuario(this.nuevoUsuario)
+          .subscribe((data: usuario) => {
+            console.log(data);
+            this.router.navigate(['/home']);
+          });
+      }
+    });
   }
 }
