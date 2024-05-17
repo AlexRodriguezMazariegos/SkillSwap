@@ -67,6 +67,11 @@
       		<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
       		<version>2.5.0</version>
    		</dependency>
+		   		<dependency>
+		   			<groupId>com.example</groupId>
+		   			<artifactId>ClubNautico</artifactId>
+		   			<version>0.0.1-SNAPSHOT</version>
+		   		</dependency>
 	</dependencies>
 
 	<build>

@@ -69,4 +69,8 @@ public class UsuarioServicio {
 			return false;
 		}
 	}
+	
+	public Usuario login(String email, String contrasena) {
+		return usuarioRepositorio.login(email, contrasena);
+	}
 }

@@ -1,6 +1,7 @@
 package com.skill_swap.controladores;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -68,8 +69,17 @@ public class UsuarioControlador {
 		}
 	}
 	
-	@GetMapping("email/{email}")
+	@GetMapping("/email/{email}")
 	public Boolean getMethodName(@PathVariable String email) {
 		return usuarioServicio.FindByEmail(email);
 	}
+	
+	@GetMapping("/login")
+	public Usuario login(@RequestBody Map<String, String> userData) {
+	    String email = userData.get("email");
+	    String contrasena = userData.get("contrasena");
+	    return usuarioServicio.login(email, contrasena);
+	}
+	
+	
 }
