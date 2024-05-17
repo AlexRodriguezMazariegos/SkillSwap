@@ -1,4 +1,5 @@
 import {Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tarjeta-usuario',
@@ -9,8 +10,11 @@ import {Component, Input } from '@angular/core';
 })
 export class TarjetaUsuarioComponent {
   @Input() miUsuario: any;
-
+  constructor(private router:Router){}
   ngOnInit(): void {
 
+  }
+  clickPerfil() {
+    this.router.navigate([`/profile/${this.miUsuario.id}`])
   }
 }
