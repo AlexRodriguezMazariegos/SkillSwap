@@ -1,7 +1,7 @@
 import { skill } from './skill';
 
 export interface usuario {
-  id_usuario: number;
+  id: number;
   nombre: string;
   apellido: string;
   email: string;

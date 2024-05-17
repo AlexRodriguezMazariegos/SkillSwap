@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
+import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +15,6 @@ export class SidebarComponent {
 
   constructor(public dialog: MatDialog) { }
 
-  //Abrir cerrar sesion
   openDialog(): void {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.panelClass = 'custom-dialog-container';
@@ -33,5 +34,12 @@ export class SidebarComponent {
 
   toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
+  }
+
+  onLogoutConfirmation(confirmed: boolean): void {
+    if (confirmed) {
+      console.log('Cerrar sesión confirmado');
+      // Aquí puedes implementar la lógica para cerrar la sesión
+    }
   }
 }

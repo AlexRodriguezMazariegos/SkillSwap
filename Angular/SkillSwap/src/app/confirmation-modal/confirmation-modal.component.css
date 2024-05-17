@@ -1,0 +1,26 @@
+/* Estilos para el diálogo centrado */
+
+.title {
+  text-align: center;
+  font-family: var(--tituloPpal);
+}
+
+.mat-dialog-wrapper {
+  padding: 5%;
+  border-radius: 5px;
+}
+.custom-dialog-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.custom-dialog-content {
+  max-width: 600px; /* Ancho máximo del contenido del diálogo */
+  width: 100%;
+}
+
+.default-button:hover {
+  background-color: rgb(223, 0, 0);
+}
