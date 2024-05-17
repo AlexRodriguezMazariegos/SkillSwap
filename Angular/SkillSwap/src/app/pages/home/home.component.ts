@@ -26,7 +26,6 @@ export class HomeComponent implements OnInit {
         });
         this.articuloService.getArticulos().subscribe((data:articulo[])=> {
             this.articulos = data;
-            console.log(this.articulos);
         });
     }
 

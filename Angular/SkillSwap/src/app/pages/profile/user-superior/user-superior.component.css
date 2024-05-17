@@ -1,18 +1,18 @@
 
 * {
     font-family: var(--texto);
-    margin: 0px;
 }
 
 .contenedor {
-    width: 100%;
+    background-color: var(--secn);
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px;
+    border-radius: 5px;
 }
 
 .perfil {
-    background: #E7E7E7;
     border-radius: 10px;
     width: 25%;
     display: flex;

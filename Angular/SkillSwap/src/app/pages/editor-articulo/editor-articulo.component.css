@@ -1,0 +1,51 @@
+* {
+    font-family: var(--texto);
+}
+.container-100 {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+ 
+.titulo {
+    font-family: var(--tituloPpal);
+    font-size: 34px;
+}
+
+.angular-editor-textarea {
+    max-height: 500px;
+}
+ 
+.navbar-full-width {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+}
+ 
+.content-home {
+    padding-top: 5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    font-weight: 400;
+}
+ 
+ 
+ 
+/* Responsive móvil */
+@media only screen and (max-width: 480px) {
+    .content-home {
+        padding-top: 7rem;
+    }
+    /* .custom-col {
+        flex-basis: 100%;
+        max-width: 100%;
+      } */
+  }
+ 
+/* Reponsive tablet */
+@media only screen and (max-width: 768px) {
+    .custom-col {
+        flex-basis: 33%;
+        max-width: 33%;
+      }
+  }
+ 
