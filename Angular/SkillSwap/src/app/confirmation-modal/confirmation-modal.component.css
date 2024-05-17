@@ -5,6 +5,20 @@
   font-family: var(--tituloPpal);
 }
 
+.mat-dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* fondo semitransparente */
+  z-index: 9998; /* debe ser menor que el z-index del diálogo */
+}
+
+.mat-dialog-container {
+  z-index: 9999; /* asegura que el diálogo esté por encima de la superposición */
+}
+
 .mat-dialog-wrapper {
   position: fixed; 
   top: 0; 

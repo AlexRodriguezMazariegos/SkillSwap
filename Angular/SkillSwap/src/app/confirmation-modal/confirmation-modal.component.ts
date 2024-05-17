@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog'; 
 
@@ -7,17 +6,6 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
   standalone: true,
   templateUrl: './confirmation-modal.component.html',
   styleUrls: ['./confirmation-modal.component.css'],
-  animations: [
-    trigger('fadeInOut', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('300ms', style({ opacity: 1 })),
-      ]),
-      transition(':leave', [
-        animate('300ms', style({ opacity: 0 })),
-      ]),
-    ]),
-  ],
 })
 export class ConfirmationModalComponent {
   @Output() confirmed: EventEmitter<boolean> = new EventEmitter<boolean>();
