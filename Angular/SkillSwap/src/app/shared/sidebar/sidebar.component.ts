@@ -21,7 +21,7 @@ export class SidebarComponent {
     dialogConfig.autoFocus = false;
     dialogConfig.width = '40%';
     dialogConfig.position = {
-      top: '0', // Centra verticalmente en el 50% de la pantalla (viewport height)
+      top: '20wh', // Centra verticalmente en el 50% de la pantalla (viewport height)
       left: '30vw', // Centra horizontalmente en el 50% de la pantalla (viewport width)
     };
 
@@ -30,6 +30,8 @@ export class SidebarComponent {
     dialogRef.afterClosed().subscribe(result => {
       this.onLogoutConfirmation(result); // Maneja el resultado del diálogo al cerrarse
     });
+
+    console.log('Dialog creado!');
   }
 
   toggleMenu(): void {
