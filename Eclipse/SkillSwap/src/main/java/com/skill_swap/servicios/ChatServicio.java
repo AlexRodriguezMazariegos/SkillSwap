@@ -44,13 +44,16 @@ public class ChatServicio {
 
 	// Método para borrar un usuario por su ID
 	public Boolean borrarChat(Long id) {
-		{
-			try {
-				chatRepositorio.deleteById(id);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
+	    if (chatRepositorio.existsById(id)) {
+	        try {
+	            chatRepositorio.deleteById(id);
+	            return true;
+	        } catch (Exception e) {
+	            return false;
+	        }
+	    } else {
+	        return false;
+	    }
 	}
+
 }

@@ -46,13 +46,16 @@ public class ComentarioServicio {
 
 	// Método para borrar un usuario por su ID
 	public Boolean borrarComentario(Long id) {
-		{
-			try {
-				comentarioRepositorio.deleteById(id);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
+	    if (comentarioRepositorio.existsById(id)) {
+	        try {
+	            comentarioRepositorio.deleteById(id);
+	            return true;
+	        } catch (Exception e) {
+	            return false;
+	        }
+	    } else {
+	        return false;
+	    }
 	}
+
 }
