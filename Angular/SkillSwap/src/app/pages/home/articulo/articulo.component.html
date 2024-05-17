@@ -3,12 +3,13 @@
         <h2 class="title-art">{{articulos.titulo}}<br></h2>
         <p class="descr-art">{{articulos.descripcion}}</p>
       </div>
-      <div class="user-art d-flex flex-column justify-content-center align-content-center ">
+      <div class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1 ">
         <div class="photo">
-          <img src="../../../../assets/img/usr-icono.png" alt="User" />
+          <img src="../../../../assets/img/profile/{{articulos.usuario.fotoDePerfil}}.jpg" alt="User" />
         </div>
         <p class="info-art">{{articulos.usuario.nombre}} {{articulos.usuario.apellido}}</p>
-        <p class="info-art">{{articulos.fechaPublicacion}}</p>
+        <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
+
       </div>
   </div>
 
