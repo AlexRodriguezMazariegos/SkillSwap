@@ -13,6 +13,7 @@ INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `c
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Lucia', 'lucia@eviden.com', 'Torres', 'Desarrollador', '4040', 'https://github.com/lucia', 'user12');
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Paula', 'paula@eviden.com', 'Diaz', 'Diseñador', '5050', 'https://github.com/paula', 'user13');
 INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Eva', 'eva@eviden.com', 'Gutierrez', 'Analista', '6060', 'https://github.com/eva', 'user14');
+INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Juana', 'juana@eviden.com', 'Gutierrez', 'Analista', '6060', 'https://github.com/juana', 'user15');
 
 
 --Articulos
