@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { articulo } from '../../../model/articulo';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-articulo',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './articulo.component.html',
   styleUrl: './articulo.component.css'
 })
