@@ -1,21 +1,25 @@
 .carta{
-    margin-top: 3%;
-    display: inline-block;
-    height: 10%;
-    width: 100%;
-    padding: 8%;
-    background: #E7E7E7;
-    border-bottom: 0.5px solid black;
-
+    display: flex;
+    height: 70px;
+    justify-content: start;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5%;
+    border-radius: 5px;
 }
+
+.carta:hover{
+    background-color: #d8d8d8;
+}
+
 img{
-    display: inline-block;
-    width: 15%;
-    margin-right: 5%;
+    width: 17%;
+    margin-right: 7%;
 }
 
 h4{
+    margin: 0;
     font-size: 18px;
     font-family: var(--texto);
-    display: inline-block;
 }
