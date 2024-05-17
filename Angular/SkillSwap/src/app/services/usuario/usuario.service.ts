@@ -23,5 +23,9 @@ export class UsuarioService {
   postUsuario(usuario:usuario):Observable<any>{
     return this.http.post(this.baseUrl,usuario)
   }
+
+  getUsuarioByEmail(email:string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/email/${email}`)
+  }
   
 }
