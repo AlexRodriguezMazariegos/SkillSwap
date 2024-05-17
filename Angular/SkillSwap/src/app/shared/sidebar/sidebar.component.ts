@@ -1,7 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog'; 
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,24 +12,29 @@ import { ConfirmationModalComponent } from '../../confirmation-modal/confirmatio
 })
 export class SidebarComponent {
   menuOpen = false;
+  dialogRef: MatDialogRef<ConfirmationModalComponent> | null = null; // Referencia al diálogo abierto
 
   constructor(public dialog: MatDialog) { }
 
   openDialog(): void {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.panelClass = 'custom-dialog-container';
-    dialogConfig.autoFocus = false;
-    dialogConfig.width = '40%';
-    dialogConfig.position = {
-      top: '0', // Centra verticalmente en el 50% de la pantalla (viewport height)
-      left: '30vw', // Centra horizontalmente en el 50% de la pantalla (viewport width)
-    };
+    if (!this.dialogRef) { // Verifica si ya hay un diálogo abierto
+      const dialogConfig = new MatDialogConfig();
+      dialogConfig.panelClass = 'custom-dialog-container';
+      dialogConfig.autoFocus = false;
+      dialogConfig.disableClose = true;
+      dialogConfig.width = '40%';
+      dialogConfig.position = {
+        top: '20wh',
+        left: '30vw',
+      };
 
-    const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+      this.dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-      this.onLogoutConfirmation(result); // Maneja el resultado del diálogo al cerrarse
-    });
+      this.dialogRef.afterClosed().subscribe(result => {
+        this.onLogoutConfirmation(result);
+        this.dialogRef = null; // Restablece la referencia del diálogo al cerrarse
+      });
+    }
   }
 
   toggleMenu(): void {
@@ -39,7 +44,7 @@ export class SidebarComponent {
   onLogoutConfirmation(confirmed: boolean): void {
     if (confirmed) {
       console.log('Cerrar sesión confirmado');
-      // Aquí puedes implementar la lógica para cerrar la sesión
+      // Implementa la lógica para cerrar la sesión aquí
     }
   }
 

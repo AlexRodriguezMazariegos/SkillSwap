@@ -3,8 +3,9 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmation-modal',
+  standalone: true,
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['./confirmation-modal.component.css']
+  styleUrls: ['./confirmation-modal.component.css'],
 })
 export class ConfirmationModalComponent {
   @Output() confirmed: EventEmitter<boolean> = new EventEmitter<boolean>();
