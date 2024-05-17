@@ -14,10 +14,10 @@ public class Articulo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id_articulo;
+	public Long id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_usuario")
+	@JoinColumn(name = "usuario")
 	private Usuario usuario;
 
 	@Column(columnDefinition = "Text")
@@ -34,24 +34,16 @@ public class Articulo {
 		super();
 	}
 
-	public Articulo(Long id_articulo, Usuario usuario, String contenido, String descripcion, String titulo,
+	public Articulo(Long id, Usuario usuario, String contenido, String descripcion, String titulo,
 			Date fechaPublicacion) {
 		super();
-		this.id_articulo = id_articulo;
+		this.id = id;
 		this.usuario = usuario;
 		this.contenido = contenido;
 		this.descripcion = descripcion;
 		this.titulo = titulo;
 		this.fechaPublicacion = fechaPublicacion;
 
-	}
-
-	public Long getId() {
-		return id_articulo;
-	}
-
-	public void setId(Long id_articulo) {
-		this.id_articulo = id_articulo;
 	}
 
 	public Usuario getUsuario() {
@@ -86,12 +78,12 @@ public class Articulo {
 		this.usuario = usuario;
 	}
 
-	public Long getId_articulo() {
-		return id_articulo;
+	public Long getId() {
+		return id;
 	}
 
-	public void setId_articulo(Long id_articulo) {
-		this.id_articulo = id_articulo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getContenido() {

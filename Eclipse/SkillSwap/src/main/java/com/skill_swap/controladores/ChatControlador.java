@@ -12,6 +12,7 @@ import com.skill_swap.servicios.ChatServicio;
 
 @RestController
 @RequestMapping("/api/v1/chat")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ChatControlador {
 
 	@Autowired
@@ -23,7 +24,7 @@ public class ChatControlador {
 	}
 
 	// Endpoint para obtener un chat por su ID
-	@GetMapping("listar//{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Optional<Chat>> obtenerChatPorId(@PathVariable Long id) {
 		if (chatServicio.obtenerChatPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(chatServicio.obtenerChatPorId(id));
@@ -40,7 +41,7 @@ public class ChatControlador {
 	}
 
 	// Endpoint para actualizar un chat existente
-	@PutMapping("/actualizar/{id}")
+	@PutMapping("/{id}")
 	public ResponseEntity<Chat> actualizarChat(@PathVariable Long id, @RequestBody Chat chat) {
 		if (chatServicio.obtenerChatPorId(id).isPresent()) {
 			return ResponseEntity.status(HttpStatus.OK).body(chatServicio.actualizarChat(id, chat));
@@ -50,7 +51,7 @@ public class ChatControlador {
 	}
 
 	// Endpoint para borrar un chat por su ID
-	@DeleteMapping("/eliminar/{id}")
+	@DeleteMapping("/{id}")
 	public ResponseEntity<Chat> borrarChat(@PathVariable Long id) {
 		if (chatServicio.obtenerChatPorId(id).isPresent()) {
 			chatServicio.borrarChat(id);

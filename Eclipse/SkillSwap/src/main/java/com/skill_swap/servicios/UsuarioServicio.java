@@ -1,6 +1,7 @@
 package com.skill_swap.servicios;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,22 +30,24 @@ public class UsuarioServicio {
 
 	// Método para crear o actualizar un usuario
 	public Usuario actualizarUsuario(Long id, Usuario usuario) {
-		if (usuarioRepositorio.findById(id).isPresent()) {
-			Usuario usuarioAModificar = usuarioRepositorio.findById(id).get();
-			// El id se queda como estaba
-			usuarioAModificar.setId(id);
-			usuarioAModificar.setNombre(usuario.getNombre());
-			usuarioAModificar.setApellido(usuario.getApellido());
-			usuarioAModificar.setEmail(usuario.getEmail());
-			usuarioAModificar.setFotoDePerfil(usuario.getFotoDePerfil());
-			usuarioAModificar.setContrasena(usuario.getContrasena());
-			usuarioAModificar.setUrlGitHub(usuario.getUrlGitHub());
-			usuarioAModificar.setSkills(usuario.getSkills());
-			return usuarioRepositorio.save(usuarioAModificar);
-		} else {
-			return null;
-		}
+	    try {
+	        Usuario usuarioAModificar = usuarioRepositorio.findById(id).get();
+	        // El id se queda como estaba
+	        usuarioAModificar.setId(id);
+	        usuarioAModificar.setNombre(usuario.getNombre());
+	        usuarioAModificar.setApellido(usuario.getApellido());
+	        usuarioAModificar.setEmail(usuario.getEmail());
+	        usuarioAModificar.setFotoDePerfil(usuario.getFotoDePerfil());
+	        usuarioAModificar.setContrasena(usuario.getContrasena());
+	        usuarioAModificar.setUrlGitHub(usuario.getUrlGitHub());
+	        usuarioAModificar.setSkills(usuario.getSkills());
+	        return usuarioRepositorio.save(usuarioAModificar);
+	    } catch (NoSuchElementException e) {
+	        // Manejo de la excepción si el usuario no existe
+	        return null;
+	    }
 	}
+
 
 	// Método para borrar un usuario por su ID
 	public Boolean borrarUsuario(Long id) {
