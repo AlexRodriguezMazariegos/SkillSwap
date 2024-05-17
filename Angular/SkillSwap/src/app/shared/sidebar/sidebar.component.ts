@@ -42,4 +42,5 @@ export class SidebarComponent {
       // Aquí puedes implementar la lógica para cerrar la sesión
     }
   }
+
 }
