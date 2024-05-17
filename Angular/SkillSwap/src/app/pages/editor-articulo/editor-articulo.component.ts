@@ -6,11 +6,14 @@ import { UserInfoComponent } from '../profile/user-info/user-info.component';
 import { UserBotonesComponent } from '../profile/user-botones/user-botones.component';
 import { usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario/usuario.service';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-editor-articulo',
   standalone: true,
-  imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent],
+  imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent, AngularEditorModule, FormsModule, HttpClientModule],
   templateUrl: './editor-articulo.component.html',
   styleUrl: './editor-articulo.component.css'
 })
