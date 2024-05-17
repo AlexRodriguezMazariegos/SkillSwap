@@ -11,7 +11,27 @@ import { Component } from '@angular/core';
 export class SidebarComponent {
   menuOpen = false;
 
-  toggleMenu() {
+  constructor(public dialog: MatDialog) { }
+
+  //Abrir cerrar sesion
+  openDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.panelClass = 'custom-dialog-container';
+    dialogConfig.autoFocus = false;
+    dialogConfig.width = '40%';
+    dialogConfig.position = {
+      top: '0', // Centra verticalmente en el 50% de la pantalla (viewport height)
+      left: '30vw', // Centra horizontalmente en el 50% de la pantalla (viewport width)
+    };
+
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.onLogoutConfirmation(result); // Maneja el resultado del diálogo al cerrarse
+    });
+  }
+
+  toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
   }
 }
