@@ -7,21 +7,22 @@
           <tbody>
             <tr>
               <th scope="row">Puesto</th>
-              <td>{{ miUsuario?.puestoEmpresa }}</td>
+              <td>{{miUsuario?.puestoEmpresa}}</td>
             </tr>
             <tr>
               <th scope="row">Email</th>
-              <td>{{ miUsuario?.email }}</td>
+              <td>{{miUsuario?.email}}</td>
             </tr>
             <tr>
               <th scope="row">Github</th>
-              <td>{{ miUsuario?.urlGitHub }}</td>
+              <td>{{miUsuario?.urlGitHub}}</td>
             </tr>
             <tr>
               <th scope="row">Lenguajes</th>
               <td>
-                @for (skill of miUsuario.skills.slice(0,3); track skill) { |
-                {{ skill.nombre }} | }
+                @for (skill of miUsuario.skills.slice(0,3); track skill) {
+                  |    {{skill.nombre}}    |
+                }
               </td>
             </tr>
           </tbody>
@@ -30,3 +31,4 @@
     </div>
   </div>
 </div>
+ 
