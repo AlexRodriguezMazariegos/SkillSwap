@@ -36,5 +36,6 @@ export class ProfileComponent implements OnInit {
           this.miUsuario = data;
         });
       });
+
   }
 }
