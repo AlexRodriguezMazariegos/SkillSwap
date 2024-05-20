@@ -10,8 +10,9 @@
     </div>
     <div class="content-home col-md-10">
       <div class="row">
-        <angular-editor [placeholder]="'Enter text here...'"></angular-editor>
+        <angular-editor [(ngModel)]="htmlContent" [placeholder]="'Enter text here...'"></angular-editor>
       </div>
-    </div>
+      <button class="save-button" (click)="saveContent()">Guardar artículo</button>
+    </div>    
   </div>
 </div>
