@@ -29,7 +29,9 @@ export class ArticuloPorIdComponent {
     contenido: '',
     descripcion: '',
     titulo: '',
-    fechaPublicacion: new Date()
+    fechaPublicacion: new Date(),
+    description: undefined,
+    title: undefined
   }
 
   constructor(private articuloService:ArticuloService, private route:ActivatedRoute){}
