@@ -1,16 +1,23 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { login, usuario } from '../../model/usuario';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+import { json } from 'stream/consumers';
+import { HttpHeaders } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit{
 
   @ViewChild('animatedText', { static: true }) animatedTextElement: ElementRef<HTMLHeadingElement> | undefined;
+
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   // Lista de textos posibles
   textosAleatorios: string[] = [
@@ -28,9 +35,15 @@ export class LoginComponent implements OnInit{
     'Aprende y crece'
   ];
 
+  textoError:string=""
+  usuario:login = {
+    email: '',
+    contrasena: ''
+  }
+
   textoAleatorio: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usuarioService:UsuarioService) { }
 
   //Metodo de inicio
   ngOnInit(): void {
@@ -54,10 +67,21 @@ export class LoginComponent implements OnInit{
         console.error('El contenido del elemento es nulo.');
       }
     }
+
+
   }
 
-  navigateToHome() {
-    this.router.navigate(['/home']); // Navegar a la ruta '/home'
+  login(){
+    this.usuarioService.login(this.usuario).subscribe((data:usuario)=>{
+      console.log(data)
+      if(data!=null){
+        localStorage.setItem('usuario',JSON.stringify(data))
+        this.router.navigate(['/home']); 
+      }
+      else{
+        this.textoError = "Email y/o contraseña incorrecto"
+      }
+    })
   }
 
 }

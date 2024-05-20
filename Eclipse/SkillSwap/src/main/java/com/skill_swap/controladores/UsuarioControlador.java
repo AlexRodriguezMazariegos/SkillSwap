@@ -74,7 +74,7 @@ public class UsuarioControlador {
 		return usuarioServicio.FindByEmail(email);
 	}
 	
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public Usuario login(@RequestBody Map<String, String> userData) {
 	    String email = userData.get("email");
 	    String contrasena = userData.get("contrasena");
