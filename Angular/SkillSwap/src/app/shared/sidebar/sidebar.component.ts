@@ -59,7 +59,7 @@ export class SidebarComponent {
       this.router.navigate([`/profile/${currentUser.id}`])
       
     } else {
-      console.log('El valor no existe en el localStorage.');
+      this.router.navigate([``])
     }
   }
 
