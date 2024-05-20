@@ -46,3 +46,27 @@
     object-fit: cover;
   }
   
+  @media only screen and (max-width: 480px) {
+    .container-art {
+        padding: 10px;
+        flex-direction: column;
+        gap: 2;
+    }
+
+    .user-art {
+        display: flex;
+        align-items: center;
+    }
+
+    .descr-art {
+        width: 100%;
+    }
+
+    .title-art {
+        font-size: 22px;
+    }
+
+    .info-art {
+        font-size: 12px;
+    }
+  }
