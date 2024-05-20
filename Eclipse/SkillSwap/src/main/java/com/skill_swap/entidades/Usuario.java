@@ -1,12 +1,18 @@
 package com.skill_swap.entidades;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -38,14 +44,21 @@ public class Usuario {
 	@ManyToMany
 	@JoinTable
 	private List<Skill> skills;
+	
+	//CAMBIOS DEL LOGIN
+	
+	private boolean activo = true;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="usuario")
+	private Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
 	public Usuario() {
 		super();
 	}
-
+	
 	public Usuario(Long id, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
 			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub,
-			@Size(max = 50) String puestoEmpresa, List<Skill> skills) {
+			@Size(max = 50) String puestoEmpresa, List<Skill> skills, boolean activo, Set<UsuarioRol> usuarioRoles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -56,7 +69,10 @@ public class Usuario {
 		this.urlGitHub = urlGitHub;
 		this.puestoEmpresa = puestoEmpresa;
 		this.skills = skills;
+		this.activo = activo;
+		this.usuarioRoles = usuarioRoles;
 	}
+
 
 	public Long getId() {
 		return id;
@@ -128,6 +144,22 @@ public class Usuario {
 
 	public void setSkills(List<Skill> skills) {
 		this.skills = skills;
+	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public Set<UsuarioRol> getUsuarioRoles() {
+		return usuarioRoles;
+	}
+
+	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
+		this.usuarioRoles = usuarioRoles;
 	}
 
 }
