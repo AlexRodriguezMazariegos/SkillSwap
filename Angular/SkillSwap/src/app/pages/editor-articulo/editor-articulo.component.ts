@@ -5,7 +5,7 @@ import { UserSuperiorComponent } from '../profile/user-superior/user-superior.co
 import { UserInfoComponent } from '../profile/user-info/user-info.component';
 import { UserBotonesComponent } from '../profile/user-botones/user-botones.component';
 import { UsuarioService } from '../../services/usuario/usuario.service';
-import { AngularEditorModule } from '@kolkov/angular-editor';
+import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticuloService } from '../../services/articulo/articulo.service';
@@ -32,6 +32,16 @@ export class EditorArticuloComponent {
   titulo: string = 'fffff';
   descripcion: string = 'fffff';
   htmlContent: string = '';
+
+  config: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: '25rem',
+    translate: 'no',
+    defaultParagraphSeparator: 'p',
+    defaultFontName: 'Arial',
+    placeholder: 'Introduce texto aquí...',
+  };
 
   constructor(
     private usuarioService: UsuarioService,
