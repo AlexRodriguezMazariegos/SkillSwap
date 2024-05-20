@@ -14,6 +14,8 @@
           id="email"
           placeholder="Introduce el email"
           aria-describedby="emailHelp"
+          [(ngModel)]="usuario.email"
+          name="email"
         />
       </div>
       <div class="form-group">
@@ -24,7 +26,10 @@
           id="password"
           placeholder="Introduce la contraseña"
           aria-describedby="passwordHelp"
+          [(ngModel)]="usuario.contrasena"
+          name="contrasena"
         />
+        <p class="error" style="color: red;">{{textoError}}</p>
       </div>
       <div class="custom-switch">
         <input type="checkbox" id="toggle" class="toggle-switch" />

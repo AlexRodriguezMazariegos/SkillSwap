@@ -4,11 +4,12 @@ import { login, usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { json } from 'stream/consumers';
 import { HttpHeaders } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -34,12 +35,10 @@ export class LoginComponent implements OnInit{
     'Aprende y crece'
   ];
 
-  email:string = ""
-  contrasena:string = ""
-
+  textoError:string=""
   usuario:login = {
-    email: 'juan@eviden.com',
-    contrasena: '1111'
+    email: '',
+    contrasena: ''
   }
 
   textoAleatorio: string = '';
@@ -48,9 +47,6 @@ export class LoginComponent implements OnInit{
 
   //Metodo de inicio
   ngOnInit(): void {
-
-    console.log(this.usuario)
-
     this.textoAleatorio = this.textosAleatorios[
       Math.floor(Math.random() * this.textosAleatorios.length)
     ];
@@ -72,19 +68,19 @@ export class LoginComponent implements OnInit{
       }
     }
 
-    this.usuarioService.login(this.usuario).subscribe((data:usuario)=>{
-      console.log(data)
-    })
 
-  }
-
-  navigateToHome() {
-    this.router.navigate(['/home']); // Navegar a la ruta '/home'
   }
 
   login(){
     this.usuarioService.login(this.usuario).subscribe((data:usuario)=>{
       console.log(data)
+      if(data!=null){
+        localStorage.setItem('usuario',JSON.stringify(data))
+        this.router.navigate(['/home']); 
+      }
+      else{
+        this.textoError = "Email y/o contraseña incorrecto"
+      }
     })
   }
 
