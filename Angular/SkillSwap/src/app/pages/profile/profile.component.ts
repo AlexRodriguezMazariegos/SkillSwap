@@ -7,13 +7,14 @@ import { UserBotonesComponent } from "./user-botones/user-botones.component";
 import { usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserPostComponent } from "./user-post/user-post.component";
 
 @Component({
     selector: 'app-profile',
     standalone: true,
     templateUrl: './profile.component.html',
     styleUrl: './profile.component.css',
-    imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent]
+    imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent, UserPostComponent]
 })
 export class ProfileComponent implements OnInit {
     public miUsuario:usuario = {
