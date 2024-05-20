@@ -1,5 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { login, usuario } from '../../model/usuario';
+import { UsuarioService } from '../../services/usuario/usuario.service';
+import { json } from 'stream/consumers';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,6 +15,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit{
 
   @ViewChild('animatedText', { static: true }) animatedTextElement: ElementRef<HTMLHeadingElement> | undefined;
+
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   // Lista de textos posibles
   textosAleatorios: string[] = [
@@ -28,12 +34,23 @@ export class LoginComponent implements OnInit{
     'Aprende y crece'
   ];
 
+  email:string = ""
+  contrasena:string = ""
+
+  usuario:login = {
+    email: 'juan@eviden.com',
+    contrasena: '1111'
+  }
+
   textoAleatorio: string = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private usuarioService:UsuarioService) { }
 
   //Metodo de inicio
   ngOnInit(): void {
+
+    console.log(this.usuario)
+
     this.textoAleatorio = this.textosAleatorios[
       Math.floor(Math.random() * this.textosAleatorios.length)
     ];
@@ -54,10 +71,21 @@ export class LoginComponent implements OnInit{
         console.error('El contenido del elemento es nulo.');
       }
     }
+
+    this.usuarioService.login(this.usuario).subscribe((data:usuario)=>{
+      console.log(data)
+    })
+
   }
 
   navigateToHome() {
     this.router.navigate(['/home']); // Navegar a la ruta '/home'
+  }
+
+  login(){
+    this.usuarioService.login(this.usuario).subscribe((data:usuario)=>{
+      console.log(data)
+    })
   }
 
 }
