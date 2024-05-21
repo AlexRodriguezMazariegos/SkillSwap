@@ -10,6 +10,10 @@
     font-size: 120%;
   }
 
+  h2{
+    margin-left: 2%;
+  }
+
   .contenedor {
     background-color: var(--secn);
     display: flex;
