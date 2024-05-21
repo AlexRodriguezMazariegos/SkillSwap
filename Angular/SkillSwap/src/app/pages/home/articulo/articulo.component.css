@@ -1,10 +1,11 @@
 .container-art {
     /* background-color: var(--ppal); */
-    background-color: var(--ppal_2);
+    background-color: var(--secn);
     max-width: 96%;
     border-radius: 8px;
     padding: 20px;
     cursor: pointer;
+    border: 2px solid var(--ppal_2);
 }
 
 .container-art:hover {
@@ -13,7 +14,7 @@
 
 .title-art {
     font-family: var(--tituloPpal);
-    color: var(--body);
+    color: var(--ppal);
     font-size: 28px;
 }
 
