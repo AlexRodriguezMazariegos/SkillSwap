@@ -75,18 +75,18 @@ export class EditorArticuloComponent {
     console.log('Enviando artículo:', articulo);
 
     this.toast.success('Artículo guardado', {
-      duration: 5000,
+      duration: 1400,
       style: {
-        border: '1px solid #ff6d43',
+        border: '1px solid #002d3c',
         padding: '16px',
-        color: '#ff6d43',
+        color: '#002d3c',
         zIndex: 999999999, 
         position: 'fixed', 
         top: '60px', 
         left: '650px',
       },
       iconTheme: {
-        primary: '#ff6d43',
+        primary: '#002d3c',
         secondary: '#ffff',
       },
     });
