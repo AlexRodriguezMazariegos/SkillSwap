@@ -2,9 +2,10 @@
   <div class="user-card">
     <div class="purple-part">
       <div class="photo">
-        <img src="../../../../assets/img/usr-icono.png" alt="User" />
+        <img src="../../../../assets/img/profile/{{miUsuario.fotoDePerfil}}.jpg" alt="User" />
       </div>
     </div>
+    
     <div class="card-back">
       <span class="card-back-titulo">Skills</span>
       <ul class="card-info">
@@ -12,7 +13,7 @@
         <li>{{skill.nombre}}</li>
       }
     </ul>
-      <button class="card-btn">Perfil</button>
+      <button (click)="clickPerfil()" class="card-btn">Perfil</button>
     </div>
     <div class="info">
       <h2>{{ miUsuario.nombre }}<br>{{miUsuario.apellido}}</h2>

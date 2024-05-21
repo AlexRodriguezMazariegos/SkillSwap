@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { usuario } from '../../model/usuario';
+import { login, usuario } from '../../model/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +22,15 @@ export class UsuarioService {
 
   postUsuario(usuario:usuario):Observable<any>{
     return this.http.post(this.baseUrl,usuario)
+  }
+
+  getUsuarioByEmail(email:string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/email/${email}`)
+  }
+
+  login(usuario:any):Observable<any>{
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(`${this.baseUrl}/login`,usuario, {headers})
   }
   
 }

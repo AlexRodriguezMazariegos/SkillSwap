@@ -1,4 +1,3 @@
-import { skill } from './skill';
 import { usuario } from './usuario';
 
 export interface articulo {

@@ -60,4 +60,17 @@ public class UsuarioServicio {
 			}
 		}
 	}
+	
+	public Boolean FindByEmail(String email) {
+		if (usuarioRepositorio.findByEmail(email)!= null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public Usuario login(String email, String contrasena) {
+		return usuarioRepositorio.login(email, contrasena);
+	}
 }
