@@ -36,7 +36,8 @@ export class EditorArticuloComponent {
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    height: '25rem',
+    minHeight: '35rem',
+    maxHeight: '35rem',
     translate: 'no',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
