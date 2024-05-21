@@ -10,13 +10,9 @@
 .default-button {
   margin: 10px;
 }
-svg{
-  margin-top: 5px;
-}
 
 .default-button a{
   color: inherit;
-  display: inline-block; /* Hacer que el enlace sea un bloque en línea */
   width: 100%; /* Hacer que el enlace ocupe todo el ancho del botón */
   height: 100%; /* Hacer que el enlace ocupe todo el alto del botón */
   text-align: center; /* Centrar el texto dentro del enlace */
