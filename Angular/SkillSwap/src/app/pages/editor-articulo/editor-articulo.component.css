@@ -1,9 +1,9 @@
 /* Boton */
 .save-button {
-    width: 100%;
+    width: 20%;
     height: 35px;
     background-color: var(--ppal);
-    margin-top: 6%;
+    margin-top: 10px;
     border-radius: 5px;
     color: white;
     text-align: center;
@@ -26,10 +26,6 @@
   font-size: 34px;
 }
 
-.angular-editor-textarea {
-  max-height: 500px;
-}
-
 .navbar-full-width {
   width: 100%;
   margin-left: 0;
@@ -41,6 +37,7 @@
   padding-left: 2rem;
   padding-right: 2rem;
   font-weight: 400;
+  text-align: center;
 }
 
 /* Responsive móvil */

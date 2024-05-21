@@ -7,13 +7,15 @@ import { UserBotonesComponent } from "./user-botones/user-botones.component";
 import { usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserPostComponent } from "./user-post/user-post.component";
+import { UserInfoEditComponent } from './user-info-edit/user-info-edit.component';
 
 @Component({
     selector: 'app-profile',
     standalone: true,
     templateUrl: './profile.component.html',
     styleUrl: './profile.component.css',
-    imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent]
+    imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent, UserPostComponent, UserInfoEditComponent]
 })
 export class ProfileComponent implements OnInit {
     public miUsuario:usuario = {
@@ -24,7 +26,8 @@ export class ProfileComponent implements OnInit {
         contrasena: '',
         urlGitHub: '',
         puestoEmpresa: '',
-        skills: []
+        skills: [],
+        fotoDePerfil: ''
     }
     constructor(private usuarioService:UsuarioService, private route:ActivatedRoute){}
 
