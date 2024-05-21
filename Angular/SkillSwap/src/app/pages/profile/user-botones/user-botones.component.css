@@ -10,6 +10,11 @@
   margin: 10px;
 }
 
+.default-button a{
+  /*QUITA EL COLOR AZUL DEL LINK DE EL SVG DEL BOTON*/
+  color: inherit;
+}
+
 #boton-git{
   background-color: #010409;
 }
