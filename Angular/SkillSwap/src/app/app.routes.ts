@@ -7,6 +7,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ArticuloPorIdComponent } from './pages/articulo-por-id/articulo-por-id.component';
 import { EditorArticuloComponent } from './pages/editor-articulo/editor-articulo.component';
+import { BuscarArticulosComponent } from './pages/buscar-articulos/buscar-articulos.component';
 
 export const routes: Routes = [
     {
@@ -32,6 +33,9 @@ export const routes: Routes = [
     },
     {
         path: 'postnew', component:EditorArticuloComponent
+    },
+    {
+        path: 'buscar-articulos', component:BuscarArticulosComponent
     }
     
 ];

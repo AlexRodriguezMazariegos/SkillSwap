@@ -11,5 +11,5 @@ import { UserBotonesComponent } from "../user-botones/user-botones.component";
 export class UserSuperiorComponent {
 
   @Input() miUsuario: any;
-
+  
 }

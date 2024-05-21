@@ -1,8 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ArticuloService } from '../../services/articulo/articulo.service';
 import { articulo } from '../../model/articulo';
+import { forkJoin } from 'rxjs';
+
 
 @Component({
   selector: 'app-navbar',
@@ -12,22 +14,7 @@ import { articulo } from '../../model/articulo';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  inputText: string = '';
-  retrievedText: string | null = null;
-  public miArticulo:articulo | undefined;
-  constructor (private articuloservice:ArticuloService){}
-  getarticulos(): void {
-    for (let i = 1; i < 9; i++) {
-        this.articuloservice.getArticuloById(i).subscribe((data: articulo) => {
-            this.retrievedText = this.inputText;
-            // console.log(data);
-            if (data.contenido.includes(this.inputText) || data.titulo.includes(this.inputText)) {
-                // console.log("Esta");
-                console.log(data);
-            } else {
-                // console.log("no esta");
-            }
-        });
-    }
-}
+
+  
+
 }
