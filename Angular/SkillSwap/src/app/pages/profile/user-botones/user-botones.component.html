@@ -17,42 +17,49 @@
     <span class="ms-2">Seguir</span>
   </button>
   <button class="default-button" onclick="editarPerfil()">Editar Perfil</button>
-  <button class="default-button" onclick="favorito()">
+  <button class="default-button" onclick="chat()">
     <svg
-      id="star"
+      class="w-6 h-6 text-gray-800 dark:text-white"
+      aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
       width="24"
       height="24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      fill="currentColor"
+      viewBox="0 0 24 24"
     >
       <path
-        d="M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 Z"
+        fill-rule="evenodd"
+        d="M4 3a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h1v2a1 1 0 0 0 1.707.707L9.414 13H15a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4Z"
+        clip-rule="evenodd"
+      />
+      <path
+        fill-rule="evenodd"
+        d="M8.023 17.215c.033-.03.066-.062.098-.094L10.243 15H15a3 3 0 0 0 3-3V8h2a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-1v2a1 1 0 0 1-1.707.707L14.586 18H9a1 1 0 0 1-.977-.785Z"
+        clip-rule="evenodd"
       />
     </svg>
   </button>
   <button class="default-button" id="boton-git">
-    <a href="{{ miUsuario?.urlGitHub }}" style="color: white; text-decoration: none;">
+    <a
+      href="{{ miUsuario?.urlGitHub }}"
+      style="color: white; text-decoration: none"
+    >
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
+        class="w-6 h-6 text-gray-800 dark:text-white"
+        aria-hidden="true"
+        xmlns="
+http://www.w3.org/2000/svg"
         width="24"
         height="24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        fill="currentColor"
+        viewBox="0 0 24 24"
       >
         <path
-          d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.71c-2.78.6-3.37-1.34-3.37-1.34-.45-1.14-1.1-1.44-1.1-1.44-.9-.62.07-.6.07-.6 1 .07 1.53 1.02 1.53 1.02.9 1.55 2.36 1.1 2.94.84.1-.64.35-1.1.64-1.35-2.24-.25-4.58-1.12-4.58-4.98 0-1.1.39-2 1.03-2.7-.1-.25-.45-1.28.1-2.66 0 0 .85-.27 2.78 1.03a9.28 9.28 0 012.49-.34 9.28 9.28 0 012.49.34c1.93-1.3 2.78-1.03 2.78-1.03.55 1.38.2 2.41.1 2.66.64.69 1.03 1.6 1.03 2.7 0 3.87-2.34 4.72-4.58 4.97.36.31.68.92.68 1.85v2.76c0 .26.18.57.69.48A10 10 0 0012 2z"
+          fill-rule="evenodd"
+          d="M12.006 2a9.847 9.847 0 0 0-6.484 2.44 10.32 10.32 0 0 0-3.393 6.17 10.48 10.48 0 0 0 1.317 6.955 10.045 10.045 0 0 0 5.4 4.418c.504.095.683-.223.683-.494 0-.245-.01-1.052-.014-1.908-2.78.62-3.366-1.21-3.366-1.21a2.711 2.711 0 0 0-1.11-1.5c-.907-.637.07-.621.07-.621.317.044.62.163.885.346.266.183.487.426.647.71.135.253.318.476.538.655a2.079 2.079 0 0 0 2.37.196c.045-.52.27-1.006.635-1.37-2.219-.259-4.554-1.138-4.554-5.07a4.022 4.022 0 0 1 1.031-2.75 3.77 3.77 0 0 1 .096-2.713s.839-.275 2.749 1.05a9.26 9.26 0 0 1 5.004 0c1.906-1.325 2.74-1.05 2.74-1.05.37.858.406 1.828.101 2.713a4.017 4.017 0 0 1 1.029 2.75c0 3.939-2.339 4.805-4.564 5.058a2.471 2.471 0 0 1 .679 1.897c0 1.372-.012 2.477-.012 2.814 0 .272.18.592.687.492a10.05 10.05 0 0 0 5.388-4.421 10.473 10.473 0 0 0 1.313-6.948 10.32 10.32 0 0 0-3.39-6.165A9.847 9.847 0 0 0 12.007 2Z"
+          clip-rule="evenodd"
         />
       </svg>
     </a>
   </button>
-  
 </div>
