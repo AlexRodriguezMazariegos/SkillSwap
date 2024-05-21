@@ -53,7 +53,8 @@ h1{
     height: 100%;
     margin: 0px;
     width: 100;
-    background-image: url("../../../assets/img/login-background.png");
+    background: url("../../../assets/img/login-background.png"),
+              linear-gradient(to right, var(--ppal_2), var(--ppal));
     background-size: cover;
     background-position: center;
   }
