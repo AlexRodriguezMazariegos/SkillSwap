@@ -51,6 +51,7 @@
   .info h2 {
     margin-top: 0;
     font-size: 1rem;
+    font-weight: 550;
   }
   
   .separacion {
@@ -88,7 +89,7 @@ li::before {
 
   .card-back-titulo {
     font-size: 18px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: .1rem;
     text-align: center;
     margin-bottom: 10px;

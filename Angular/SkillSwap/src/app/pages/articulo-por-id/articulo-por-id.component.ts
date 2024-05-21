@@ -24,7 +24,8 @@ export class ArticuloPorIdComponent {
       contrasena: '',
       urlGitHub: '',
       puestoEmpresa: '',
-      skills: []
+      skills: [],
+      fotoDePerfil: ''
     },
     contenido: '',
     descripcion: '',
