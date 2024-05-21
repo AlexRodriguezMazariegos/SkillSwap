@@ -1,6 +1,6 @@
 .container-art {
     /* background-color: var(--ppal); */
-    background-color: #883fbc77;
+    background-color: var(--ppal_2);
     max-width: 96%;
     border-radius: 8px;
     padding: 20px;
@@ -8,7 +8,7 @@
 }
 
 .container-art:hover {
-    background-color: #883fbca1;
+    background-color: var(--ppal_hover);
 }
 
 .title-art {
