@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +7,20 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
-
+export class NavbarComponent implements OnInit{
+  
+  usuario = localStorage.getItem('usuario')
+  nombreUsuario = ''
+  imagenUsuario = ''
+  
+  ngOnInit(): void {
+  
+    if (this.usuario) {
+      const currentUser = JSON.parse(this.usuario);
+      this.nombreUsuario = currentUser.nombre
+      this.imagenUsuario = currentUser.fotoDePerfil
+      console.log();
+      
+    } 
+}
 }
