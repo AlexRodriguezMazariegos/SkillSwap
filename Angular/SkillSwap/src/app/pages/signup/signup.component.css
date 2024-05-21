@@ -85,8 +85,6 @@ h1{
   
   input {
     width: 100%;
-    height: 45px;
-    padding: 7px;
     background-color: var(--secn);
   }
   
@@ -101,7 +99,6 @@ h1{
   
   .copyright {
     position: absolute; 
-    bottom: 10px; 
     left: 50%; 
     transform: translateX(
       -50%
@@ -119,3 +116,12 @@ h1{
     color: red;
   }
   
+  @media only screen and (max-width: 480px) {
+    .left-column {
+      display: none;
+    }
+
+    .right-column {
+      width: 100%;
+    }
+  }
