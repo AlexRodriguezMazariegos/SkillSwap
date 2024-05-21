@@ -5,12 +5,17 @@ import { UserSuperiorComponent } from '../profile/user-superior/user-superior.co
 import { UserInfoComponent } from '../profile/user-info/user-info.component';
 import { UserBotonesComponent } from '../profile/user-botones/user-botones.component';
 import { UsuarioService } from '../../services/usuario/usuario.service';
-import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
+import {
+  AngularEditorConfig,
+  AngularEditorModule,
+} from '@kolkov/angular-editor';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ArticuloService } from '../../services/articulo/articulo.service';
 import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
+import { HotToastService } from '@ngneat/hot-toast';
+import { register } from 'module';
 @Component({
   selector: 'app-editor-articulo',
   standalone: true,
@@ -46,7 +51,8 @@ export class EditorArticuloComponent {
 
   constructor(
     private usuarioService: UsuarioService,
-    private articuloService: ArticuloService
+    private articuloService: ArticuloService,
+    private toast: HotToastService
   ) {}
 
   ngOnInit(): void {
@@ -65,13 +71,28 @@ export class EditorArticuloComponent {
       contenido: JSON.stringify({ content: this.htmlContent }),
       fechaPublicacion: new Date(),
     };
-    
+
     console.log('Enviando artículo:', articulo);
 
-    this.articuloService.postArticulo(articulo).subscribe(
-      (response) => {
-        console.log('Artículo guardado', response);
-      }
-    );
+    this.toast.success('Artículo guardado', {
+      duration: 5000,
+      style: {
+        border: '1px solid #ff6d43',
+        padding: '16px',
+        color: '#ff6d43',
+        zIndex: 999999999, 
+        position: 'fixed', 
+        top: '60px', 
+        left: '650px',
+      },
+      iconTheme: {
+        primary: '#ff6d43',
+        secondary: '#ffff',
+      },
+    });
+
+    this.articuloService.postArticulo(articulo).subscribe((response) => {
+      console.log('Artículo guardado', response);
+    });
   }
 }
