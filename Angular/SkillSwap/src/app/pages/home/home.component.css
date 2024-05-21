@@ -23,7 +23,9 @@
     font-weight: 400
 }
 
-
+.filas-home {
+    margin-left: 1.25rem;
+}
 
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {
@@ -34,6 +36,9 @@
         flex-basis: 100%;
         max-width: 100%;
       } */
+    .filas-home {
+        margin-left: 0;
+    }
   }
 
 /* Reponsive tablet */
