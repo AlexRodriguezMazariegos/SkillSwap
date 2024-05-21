@@ -18,7 +18,7 @@
         <div class="nav-user-img d-flex">
             <div class="d-flex flex-row align-items-center gap-2 ">
                 <span>Hola, {{nombreUsuario}}!</span>
-                <button type="button" class="user-img-btn" style="height: 44px; width: 84px;">
+                <button type="button" class="user-img-btn" style="height: 44px; width: 84px;" (click)="abrirProfile()">
                     <img class="rounded-circle w-50 h-100" alt="..." src="../../../assets/img/profile/{{imagenUsuario}}.jpg">
                 </button>
             </div>
