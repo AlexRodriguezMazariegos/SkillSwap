@@ -14,24 +14,20 @@ import { articulo } from '../../model/articulo';
 export class NavbarComponent {
   inputText: string = '';
   retrievedText: string | null = null;
-  public miArticulo:articulo | undefined
+  public miArticulo:articulo | undefined;
   constructor (private articuloservice:ArticuloService){}
   getarticulos(): void {
-      this.articuloservice.getArticuloById(1).subscribe((data:articulo) =>{
-        this.retrievedText = this.inputText;
-        // this.miArticulo = data;
-        // console.log(data)
-        // if(this.miArticulo.descripcion.includes(this.retrievedText)){
-        //     console.log(this.articuloservice)
-        // }
-        console.log(this.inputText);
-        // console.log(this.miArticulo)
-      });
-  }
-  // getText(): void {
-  //   this.retrievedText = this.inputText;
-  //   console.log(this.inputText);
-  // }
-  
-  // @Input() articulos: any;
+    for (let i = 1; i < 9; i++) {
+        this.articuloservice.getArticuloById(i).subscribe((data: articulo) => {
+            this.retrievedText = this.inputText;
+            // console.log(data);
+            if (data.contenido.includes(this.inputText) || data.titulo.includes(this.inputText)) {
+                // console.log("Esta");
+                console.log(data);
+            } else {
+                // console.log("no esta");
+            }
+        });
+    }
+}
 }
