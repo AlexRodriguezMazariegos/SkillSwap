@@ -8,7 +8,12 @@
   --body: #ffff;
   --ppal: #7328ab;
   --ppal_2: #b063e9;
+  --ppal_hover: #c7a0e5;
   --secn: #e7e7e7;
+  /* --ppal: #7328ab;
+  --ppal_2: #b063e9;
+  --ppal_hover: #c7a0e5;
+  --secn: #e7e7e7; */
   --light-grey: #ececec;
   --rojo: rgb(223, 0, 0);
   --degradado: linear-gradient(to right, #ffffff, #7328ab);
