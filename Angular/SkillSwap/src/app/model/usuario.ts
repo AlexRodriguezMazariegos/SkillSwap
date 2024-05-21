@@ -9,6 +9,7 @@ export interface usuario {
   urlGitHub: string;
   puestoEmpresa: string;
   skills: Array<skill>;
+  fotoDePerfil: string;
 }
 
 export interface login {

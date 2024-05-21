@@ -43,6 +43,7 @@ export class SignupComponent implements OnInit {
     urlGitHub: '',
     puestoEmpresa: '',
     skills: [],
+    fotoDePerfil: 'profile'
   };
   emailExistente: boolean = false;
   textoError: string = '';
@@ -106,7 +107,7 @@ export class SignupComponent implements OnInit {
           .postUsuario(this.nuevoUsuario)
           .subscribe((data: usuario) => {
             console.log(data);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/']);
           });
       }
     });

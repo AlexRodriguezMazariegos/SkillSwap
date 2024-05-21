@@ -1,4 +1,4 @@
-<nav class="navbar" style="background-image: linear-gradient(to right, #7328AB 0%, #B063E9 60%, #B063E9 80%, #7328AB 100%);">
+<nav class="navbar" style="background-image: linear-gradient(to right, #ff6d43 0%, #f5896c 60%, #f5896c 80%, #ff6d43 100%);">
     <div class="container-fluid d-flex justify-content-between align-items-center">
         <div class="nav-logo">
             <a class="navbar-brand" href="/home">
@@ -18,9 +18,9 @@
         
         <div class="nav-user-img d-flex">
             <div class="d-flex flex-row align-items-center gap-2 ">
-                <span>Hola, usuario!</span>
-                <button type="button" class="user-img-btn" style="height: 44px; width: 84px;">
-                    <img class="rounded-circle w-50 h-100" alt="..." src="https://images.unsplash.com/photo-1522307837370-cc113a36b784?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80">
+                <span>Hola, {{nombreUsuario}}!</span>
+                <button type="button" class="user-img-btn" style="height: 44px; width: 84px;" (click)="abrirProfile()">
+                    <img class="rounded-circle w-50 h-100" alt="..." src="../../../assets/img/profile/{{imagenUsuario}}.jpg">
                 </button>
             </div>
         </div>
