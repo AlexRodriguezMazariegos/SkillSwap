@@ -165,3 +165,13 @@ a{
   font-size: 14px;
   color: #333;
 }
+
+@media only screen and (max-width: 480px) {
+  .left-column {
+    display: none;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+}
