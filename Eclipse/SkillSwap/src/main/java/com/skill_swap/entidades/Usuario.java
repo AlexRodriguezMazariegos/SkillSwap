@@ -1,18 +1,18 @@
 package com.skill_swap.entidades;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import jakarta.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -34,10 +34,14 @@ public class Usuario {
 	private String fotoDePerfil;
 
 	// Aqui no se pone nada de longitud xq se va a hashear
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String contrasena;
 
 	private String urlGitHub;
 
+	
+	private boolean enabled;
+	
 	@Size(max = 50)
 	private String puestoEmpresa;
 
@@ -45,20 +49,22 @@ public class Usuario {
 	@JoinTable
 	private List<Skill> skills;
 	
-	//CAMBIOS DEL LOGIN
-	
-	private boolean activo = true;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="usuario")
-	private Set<UsuarioRol> usuarioRoles = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id","role_id"})}
+    )
+    private List<Rol> roles;
 
 	public Usuario() {
 		super();
 	}
 	
 	public Usuario(Long id, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
-			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub,
-			@Size(max = 50) String puestoEmpresa, List<Skill> skills, boolean activo, Set<UsuarioRol> usuarioRoles) {
+			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub, boolean enabled,
+			@Size(max = 50) String puestoEmpresa, List<Skill> skills) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -67,11 +73,15 @@ public class Usuario {
 		this.fotoDePerfil = fotoDePerfil;
 		this.contrasena = contrasena;
 		this.urlGitHub = urlGitHub;
+		this.enabled = enabled;
 		this.puestoEmpresa = puestoEmpresa;
 		this.skills = skills;
-		this.activo = activo;
-		this.usuarioRoles = usuarioRoles;
 	}
+	
+    @PrePersist
+    public void prePersist(){
+        enabled = true;
+    }
 
 
 	public Long getId() {
@@ -146,20 +156,13 @@ public class Usuario {
 		this.skills = skills;
 	}
 
-	public boolean isActivo() {
-		return activo;
+	public boolean isEnabled() {
+		return enabled;
 	}
 
-	public void setActivo(boolean activo) {
-		this.activo = activo;
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
-	public Set<UsuarioRol> getUsuarioRoles() {
-		return usuarioRoles;
-	}
-
-	public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
-		this.usuarioRoles = usuarioRoles;
-	}
 
 }

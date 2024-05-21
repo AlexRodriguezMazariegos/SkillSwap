@@ -3,13 +3,10 @@ package com.skill_swap.servicios;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.skill_swap.entidades.Usuario;
-import com.skill_swap.entidades.UsuarioRol;
-import com.skill_swap.repositorios.RolRepositorio;
 import com.skill_swap.repositorios.UsuarioRepositorio;
 
 @Service
@@ -17,9 +14,6 @@ public class UsuarioServicio {
 
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
-	
-	@Autowired
-	private RolRepositorio rolRepositorio;
 
 	// Método para obtener todos los usuarios
 	public List<Usuario> obtenerTodosLosUsuarios() {
@@ -29,16 +23,19 @@ public class UsuarioServicio {
 	public Optional<Usuario> obtenerUsuarioPorId(Long id) {
 		return usuarioRepositorio.findById(id);
 	}
+	
+	public Boolean FindByEmail(String email) {
+		if (usuarioRepositorio.findByEmail(email)!= null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	// Método para crear o actualizar un usuario
 	public Usuario crearUsuario(Usuario usuario) {
 		return usuarioRepositorio.save(usuario);
-	}
-	
-	public Usuario guardarUsuario(Usuario usuario, Set<UsuarioRol> usuarioRoles) throws Exception
-	{
-		Usuario usuarioLocal = usuarioRepositorio.findByEmail(usuario.getEmail());
-		return null;
 	}
 
 	// Método para crear o actualizar un usuario
@@ -71,15 +68,6 @@ public class UsuarioServicio {
 			} catch (Exception e) {
 				return false;
 			}
-		}
-	}
-	
-	public Boolean FindByEmail(String email) {
-		if (usuarioRepositorio.findByEmail(email)!= null) {
-			return true;
-		}
-		else {
-			return false;
 		}
 	}
 	
