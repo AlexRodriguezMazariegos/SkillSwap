@@ -10,3 +10,8 @@ export interface usuario {
   puestoEmpresa: string;
   skills: Array<skill>;
 }
+
+export interface login {
+  email:string,
+  contrasena:string
+}

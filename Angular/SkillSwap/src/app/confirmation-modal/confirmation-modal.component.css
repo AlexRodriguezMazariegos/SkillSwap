@@ -12,35 +12,40 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.6); /* fondo semitransparente */
-  z-index: 9998; /* debe ser menor que el z-index del diálogo */
+  z-index: 999999999;
 }
 
 .mat-dialog-container {
-  z-index: 9999; /* asegura que el diálogo esté por encima de la superposición */
+  z-index: 999999999;
 }
 
 .mat-dialog-wrapper {
-  position: fixed; 
-  top: 0; 
-  left: 0; 
-  width: 100%; 
-  height: 100%; 
-  display: flex; 
-  align-items: center; 
-  z-index: 9999; 
-  background-color: rgba(255, 255, 255, 0.85); 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.85);
   padding: 20px;
   justify-content: center;
   flex-direction: column;
-  align-items: center;
 }
 
-.mat-container{
+.mat-container {
   border: 3px solid var(--ppal);
   border-radius: 5px;
   padding: 2%;
+  width: 30%;
   background-color: rgb(255, 255, 255);
+}
 
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .custom-dialog-container {
@@ -64,6 +69,6 @@
   background-color: var(--ppal_2);
 }
 
-.dialog-container{
+.dialog-container {
   text-align: center;
 }

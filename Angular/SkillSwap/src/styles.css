@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* Reset styles */
+@import '../node_modules/font-awesome/css/font-awesome.css';
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
 @import "bootstrap/dist/css/bootstrap.css";
@@ -8,6 +9,8 @@
   --ppal: #7328ab;
   --ppal_2: #b063e9;
   --secn: #e7e7e7;
+  --light-grey: #ececec;
+  --rojo: rgb(223, 0, 0);
   --degradado: linear-gradient(to right, #ffffff, #7328ab);
   --tituloPpal: "Orbitron", sans-serif;
   --texto: "Lato", sans-serif;

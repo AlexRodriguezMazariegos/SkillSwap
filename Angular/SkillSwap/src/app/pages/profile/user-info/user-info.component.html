@@ -1,34 +1,23 @@
-<div class="row">
-  <div class="col-12">
-    <div class="container mt-3">
-      <div class="p-3 perfil">
-        <h2>Información personal</h2>
-        <table class="table">
-          <tbody>
-            <tr>
-              <th scope="row">Puesto</th>
-              <td>{{miUsuario?.puestoEmpresa}}</td>
-            </tr>
-            <tr>
-              <th scope="row">Email</th>
-              <td>{{miUsuario?.email}}</td>
-            </tr>
-            <tr>
-              <th scope="row">Github</th>
-              <td>{{miUsuario?.urlGitHub}}</td>
-            </tr>
-            <tr>
-              <th scope="row">Lenguajes</th>
-              <td>
-                @for (skill of miUsuario.skills.slice(0,3); track skill) {
-                  |    {{skill.nombre}}    |
-                }
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<div class="info-container">
+  <h2>Información personal</h2>
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">Puesto</th>
+        <td>{{ miUsuario?.puestoEmpresa }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Email</th>
+        <td>{{ miUsuario?.email }}</td>
+      </tr>
+      <tr>
+        <th scope="row">Lenguajes</th>
+        <td>
+          @for (skill of miUsuario.skills.slice(0,3); track skill) { |
+          {{ skill.nombre }} | }
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
  

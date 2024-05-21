@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { ArticuloPorIdComponent } from './pages/articulo-por-id/articulo-por-id.component';
+import { EditorArticuloComponent } from './pages/editor-articulo/editor-articulo.component';
 
 export const routes: Routes = [
     {
@@ -18,7 +19,7 @@ export const routes: Routes = [
         path: 'home', component:HomeComponent
     },
     {
-        path: 'profile', component:ProfileComponent
+        path: 'profile/:id', component:ProfileComponent
     },
     {
         path: 'register', component:SignupComponent
@@ -28,5 +29,9 @@ export const routes: Routes = [
     },
     {
         path: 'articulo/:id', component:ArticuloPorIdComponent
+    },
+    {
+        path: 'postnew', component:EditorArticuloComponent
     }
+    
 ];

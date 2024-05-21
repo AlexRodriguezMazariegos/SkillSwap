@@ -6,14 +6,13 @@
   </div>
   <div class="row">
     <div class="col-md-2">
-      <app-contactos></app-contactos>
+      <app-sidebar></app-sidebar>
     </div>
     <div class="content-home col-md-10">
       <div class="row">
-        <div class="chat">
-          <app-chatbox></app-chatbox>
-        </div>
+        <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
       </div>
-    </div>
+      <button class="save-button" (click)="saveContent()">Guardar artículo</button>
+    </div>    
   </div>
 </div>

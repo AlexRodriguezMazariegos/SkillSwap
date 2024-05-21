@@ -1,16 +1,19 @@
-.contenedor {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .botones {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-  }
+.botones {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  flex-direction: column;
+}
 
-  .default-button{
-    margin: 10px;
-  }
+.default-button {
+  margin: 10px;
+}
+
+#boton-git{
+  background-color: #010409;
+}
+
+#boton-git:hover{
+  background-color: #2d333a;
+}
