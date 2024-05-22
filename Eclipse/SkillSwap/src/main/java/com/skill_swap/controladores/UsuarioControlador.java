@@ -71,7 +71,7 @@ public class UsuarioControlador {
 	
 	@GetMapping("/email/{email}")
 	public Boolean getMethodName(@PathVariable String email) {
-		return usuarioServicio.FindByEmail(email);
+		return usuarioServicio.findByEmail(email);
 	}
 	
 	@PostMapping("/login")
