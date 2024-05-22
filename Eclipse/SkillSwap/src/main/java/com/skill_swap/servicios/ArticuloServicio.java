@@ -22,6 +22,11 @@ public class ArticuloServicio {
 	public Optional<Articulo> obtenerArticuloPorId(Long id) {
 		return articuloRepositorio.findById(id);
 	}
+	
+	//a	
+	public List<Articulo> obtenerArticulosPorUsuario(Long idUsuario) {
+		return articuloRepositorio.findByUsuarioId(idUsuario);
+	}
 
 	public Articulo crearArticulo(Articulo articulo) {
 		return articuloRepositorio.save(articulo);
