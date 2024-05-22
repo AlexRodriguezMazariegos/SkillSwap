@@ -18,6 +18,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Usuario {
 
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long id;
@@ -64,7 +65,7 @@ public class Usuario {
 	
 	public Usuario(Long id, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
 			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub, boolean enabled,
-			@Size(max = 50) String puestoEmpresa, List<Skill> skills) {
+			@Size(max = 50) String puestoEmpresa, List<Skill> skills, List<Rol> roles) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -76,6 +77,7 @@ public class Usuario {
 		this.enabled = enabled;
 		this.puestoEmpresa = puestoEmpresa;
 		this.skills = skills;
+		this.roles = roles;
 	}
 	
     @PrePersist
@@ -162,6 +164,14 @@ public class Usuario {
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
 	}
 
 
