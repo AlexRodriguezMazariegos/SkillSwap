@@ -41,8 +41,7 @@ public class UsuarioControlador {
 		}
 	}
 
-	// Endpoint para crear un nuevo usuario
-	@PostMapping("")
+
 	public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioServicio.crearUsuario(usuario));
 	}

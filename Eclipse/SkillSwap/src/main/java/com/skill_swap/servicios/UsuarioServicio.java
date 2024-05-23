@@ -52,13 +52,13 @@ public class UsuarioServicio implements UserDetailsService {
     @Transactional
     public Usuario crearUsuario(Usuario usuario) {
 
-        Optional<Rol> RolUsuario = rolRepositorio.findByNombre("User");
+        Optional<Rol> RolUsuario = rolRepositorio.findByName("User");
         List<Rol> roles = new ArrayList<>();
 
         RolUsuario.ifPresent(roles::add);
 
         if (usuario.isAdmin()) {
-            Optional<Rol> adminRol = rolRepositorio.findByNombre("Admin");
+            Optional<Rol> adminRol = rolRepositorio.findByName("Admin");
             adminRol.ifPresent(roles::add);
         }
 
@@ -116,7 +116,7 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = usuarioOptional.orElseThrow();
 
         List<GrantedAuthority> authorities = usuario.getRoles().stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getNombre())) 
+                .map(rol -> new SimpleGrantedAuthority(rol.getName())) 
                 .collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails.User(usuario.getEmail(),
