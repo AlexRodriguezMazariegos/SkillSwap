@@ -39,6 +39,15 @@ public class JwtValidationFilter extends BasicAuthenticationFilter {
             chain.doFilter(request, response);
             return;
         }
+        
+        // Ignorar rutas de Swagger
+        String path = request.getRequestURI();
+        if (path.startsWith("/swagger-ui") || path.startsWith("/swagger-resources") || path.startsWith("/v3/api-docs")) {
+            chain.doFilter(request, response);
+            return;
+        }
+        // Procesar validación JWT normalmente
+        super.doFilterInternal(request, response, chain);
 
         String token = header.replace(PREFIX_TOKEN, "");
 

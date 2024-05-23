@@ -19,7 +19,7 @@ import com.skill_swap.servicios.UsuarioServicio;
 
 @RestController
 @RequestMapping("api/v1/usuario")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioControlador {
 
 	@Autowired
