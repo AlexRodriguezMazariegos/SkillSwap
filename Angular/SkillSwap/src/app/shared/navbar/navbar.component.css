@@ -105,3 +105,29 @@
         font-size: 32px;
     }
 }
+
+@media (max-width: 767px) {
+    .nav-logo {
+        justify-content: flex-start; /* Alinea el contenido a la izquierda en modo móvil */
+        background-color: var(--secn);
+        border-radius: 10px;
+        padding: 2px;
+    }
+
+    .nav-logo a {
+        display: none; /* Oculta el texto en modo móvil */
+    }
+
+    .nav-search {
+        width: 50%;
+    }
+
+    .nav-logo::before {
+        content: ""; /* Agrega un contenido antes del enlace */
+        background-image: url('../../../assets/img/favicon.png'); /* Establece la imagen de fondo */
+        background-size: contain; /* Ajusta el tamaño de la imagen */
+        width: 44px; /* Ajusta el ancho de la imagen */
+        height: 44px; /* Ajusta la altura de la imagen */
+        display: block; /* Permite ajustar el tamaño */
+    }
+}
