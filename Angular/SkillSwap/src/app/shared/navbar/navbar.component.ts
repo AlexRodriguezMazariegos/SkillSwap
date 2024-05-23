@@ -21,13 +21,11 @@ export class NavbarComponent implements OnInit {
       const currentUser = JSON.parse(this.usuario);
       this.nombreUsuario = currentUser.nombre;
       this.imagenUsuario = currentUser.fotoDePerfil;
-      console.log();
     }
   }
   abrirProfile() {
     if (this.usuario) {
       const currentUser = JSON.parse(this.usuario);
-      console.log(currentUser.id);
       this.router.navigate([`/profile/${currentUser.id}`]);
     } else {
       this.router.navigate([``]);
