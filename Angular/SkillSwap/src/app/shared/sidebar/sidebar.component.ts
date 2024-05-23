@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../pages/confirmation-modal/confirmation-modal.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 
