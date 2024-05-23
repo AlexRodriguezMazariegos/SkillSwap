@@ -27,7 +27,11 @@
     width: 10%;
 }
  
- 
+.valoracion{
+    position: absolute;
+    top: 100px;
+    right: 25px;
+}
  
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {
