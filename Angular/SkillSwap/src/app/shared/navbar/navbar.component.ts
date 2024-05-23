@@ -26,7 +26,6 @@ export class NavbarComponent implements OnInit {
   abrirProfile() {
     if (this.usuario) {
       const currentUser = JSON.parse(this.usuario);
-      console.log(currentUser.id);
       this.router.navigate([`/profile/${currentUser.id}`]);
     } else {
       this.router.navigate([``]);

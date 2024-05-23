@@ -15,7 +15,12 @@
       } @else {
         <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
         <app-user-info [miUsuario]="miUsuario"></app-user-info>
-        <app-user-post [miUsuario]="miUsuario"></app-user-post>
+        <div class="post-container">
+          <h2>Articulos</h2>
+          @for (articulo of articulos; track articulo) {
+                <app-articulo [articulos]="articulo"></app-articulo>
+         }
+        </div>
       }
     </div>
   </div>
