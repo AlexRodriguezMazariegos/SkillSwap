@@ -24,7 +24,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableMethodSecurity(prePostEnabled = true)
-public class SpringSecutiryConfig {
+public class SpringSecurityConfig {
 
     @Autowired
     private AuthenticationConfiguration authenticationConfiguration;

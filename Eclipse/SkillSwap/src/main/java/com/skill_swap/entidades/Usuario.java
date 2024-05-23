@@ -12,12 +12,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.PrePersist;
+import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.Size;
 
 @Entity
 public class Usuario {
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,7 +65,7 @@ public class Usuario {
 	
 	public Usuario(Long id, @Size(max = 20) String nombre, @Size(max = 40) String apellido,
 			@Size(max = 30) String email, String fotoDePerfil, String contrasena, String urlGitHub, boolean enabled,
-			@Size(max = 50) String puestoEmpresa, List<Skill> skills, List<Rol> roles) {
+			@Size(max = 50) String puestoEmpresa, List<Skill> skills, List<Rol> roles, boolean admin) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -78,12 +78,17 @@ public class Usuario {
 		this.puestoEmpresa = puestoEmpresa;
 		this.skills = skills;
 		this.roles = roles;
+		this.admin = admin;
 	}
 	
     @PrePersist
     public void prePersist(){
         enabled = true;
     }
+    
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private boolean admin;
 
 
 	public Long getId() {
@@ -173,6 +178,14 @@ public class Usuario {
 	public void setRoles(List<Rol> roles) {
 		this.roles = roles;
 	}
+	
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
 
 
 }

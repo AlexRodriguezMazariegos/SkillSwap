@@ -1,5 +1,6 @@
 package com.skill_swap.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -15,7 +16,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.skill_swap.entidades.Rol;
 import com.skill_swap.entidades.Usuario;
+import com.skill_swap.repositorios.RolRepositorio;
 import com.skill_swap.repositorios.UsuarioRepositorio;
 
 @Service
@@ -23,6 +26,9 @@ public class UsuarioServicio implements UserDetailsService {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
+    
+    @Autowired
+    private RolRepositorio rolRepositorio;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,10 +48,24 @@ public class UsuarioServicio implements UserDetailsService {
     public Boolean findByEmail(String email) {
         return usuarioRepositorio.findByEmail(email) != null;
     }
-
-    // Método para crear o actualizar un usuario
+    
     @Transactional
     public Usuario crearUsuario(Usuario usuario) {
+
+        Optional<Rol> RolUsuario = rolRepositorio.findByNombre("User");
+        List<Rol> roles = new ArrayList<>();
+
+        RolUsuario.ifPresent(roles::add);
+
+        if (usuario.isAdmin()) {
+            Optional<Rol> adminRol = rolRepositorio.findByNombre("Admin");
+            adminRol.ifPresent(roles::add);
+        }
+
+        usuario.setRoles(roles);
+        String contrasenaEncriptada = (passwordEncoder.encode(usuario.getContrasena()));
+        usuario.setContrasena(contrasenaEncriptada);
+
         return usuarioRepositorio.save(usuario);
     }
 
@@ -96,7 +116,7 @@ public class UsuarioServicio implements UserDetailsService {
         Usuario usuario = usuarioOptional.orElseThrow();
 
         List<GrantedAuthority> authorities = usuario.getRoles().stream()
-                .map(rol -> new SimpleGrantedAuthority(rol.getNombre()))
+                .map(rol -> new SimpleGrantedAuthority(rol.getNombre())) 
                 .collect(Collectors.toList());
 
         return new org.springframework.security.core.userdetails.User(usuario.getEmail(),

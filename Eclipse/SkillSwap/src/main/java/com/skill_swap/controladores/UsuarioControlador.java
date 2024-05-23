@@ -1,7 +1,6 @@
 package com.skill_swap.controladores;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -47,6 +46,12 @@ public class UsuarioControlador {
 	public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioServicio.crearUsuario(usuario));
 	}
+	
+    @PostMapping("/register")
+    public ResponseEntity<Usuario> register(@RequestBody Usuario usuario){
+        usuario.setAdmin(false);
+        return crearUsuario(usuario);
+    }
 
 	// Endpoint para actualizar un usuario existente
 	@PutMapping("/{id}")
@@ -74,12 +79,12 @@ public class UsuarioControlador {
 		return usuarioServicio.findByEmail(email);
 	}
 	
-	@PostMapping("/login")
+	/*@PostMapping("/login")
 	public Usuario login(@RequestBody Map<String, String> userData) {
 	    String email = userData.get("email");
 	    String contrasena = userData.get("contrasena");
 	    return usuarioServicio.login(email, contrasena);
-	}
+	}*/
 	
 	
 }

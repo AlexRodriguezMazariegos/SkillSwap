@@ -15,8 +15,8 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String nombre;
+    @Column(name = "nombre")
+    private String nombre; 
 
     public Rol() {
     }
@@ -34,11 +34,11 @@ public class Rol {
         this.id = id;
     }
 
-    public String getNombre() {
+    public String getNombre() { 
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre) { 
         this.nombre = nombre;
     }
 }
