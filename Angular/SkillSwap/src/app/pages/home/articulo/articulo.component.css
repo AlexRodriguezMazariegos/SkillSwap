@@ -46,6 +46,10 @@
     height: 100%;
     object-fit: cover;
   }
+
+  #delete-button:hover{
+    background-color: var(--rojo);
+  }
   
   @media only screen and (max-width: 480px) {
     .container-art {
