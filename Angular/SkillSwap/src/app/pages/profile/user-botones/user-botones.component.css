@@ -9,19 +9,38 @@
 
 .default-button {
   margin: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.default-button a{
-  color: inherit;
-  width: 100%; /* Hacer que el enlace ocupe todo el ancho del botón */
-  height: 100%; /* Hacer que el enlace ocupe todo el alto del botón */
-  text-align: center; /* Centrar el texto dentro del enlace */
+.default-button svg {
+  margin-right: 8px;
 }
 
-#boton-git{
+#boton-git {
   background-color: #010409;
 }
 
-#boton-git:hover{
+#boton-git:hover {
   background-color: #2d333a;
+}
+
+/* Media queries para móviles */
+@media (max-width: 767px) {
+  .default-button {
+    width: 40px;
+    height: 40px;
+  }
+  .default-button span {
+    display: none;
+  }
+
+  .default-button svg {
+    margin-right: 0;
+  }
+
+  .botones {
+    flex-direction: row;
+  }
 }
