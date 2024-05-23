@@ -36,7 +36,6 @@ export class UserBotonesComponent implements OnInit{
     });
   }
 
-
   openGit() {
     if (this.miUsuario && this.miUsuario.urlGitHub) {
       window.open(this.miUsuario.urlGitHub, '_blank');
