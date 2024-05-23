@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
@@ -16,6 +17,7 @@ import { articulo } from '../../model/articulo';
   styleUrls: ['./home.component.css'],
   imports: [
     RouterModule,
+    CommonModule, // Asegúrate de importar CommonModule
     NavbarComponent,
     SidebarComponent,
     TarjetaUsuarioComponent,
@@ -27,7 +29,6 @@ export class HomeComponent implements OnInit {
   public articulos: articulo[] = [];
   public pageSize = 5;
   public currentPage = 1;
-
   public pages: number[] = [];
 
   constructor(
@@ -41,11 +42,15 @@ export class HomeComponent implements OnInit {
     });
     this.articuloService.getArticulos().subscribe((data: articulo[]) => {
       this.articulos = data;
+      this.calculatePages(); // Calcular las páginas después de obtener los artículos
     });
-    console.log(this.totalPages);
-    for (let i = 0; i < this.totalPages; i++) {
-        this.pages[i] = i;
-        console.log(i);
+  }
+
+  calculatePages(): void {
+    this.pages = [];
+    const totalPages = this.totalPages;
+    for (let i = 0; i < totalPages; i++) {
+      this.pages.push(i + 1); // Asegurar que las páginas empiecen desde 1
     }
   }
 

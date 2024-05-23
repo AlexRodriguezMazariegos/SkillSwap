@@ -27,15 +27,21 @@
     margin-left: 1.25rem;
 }
 
-.pagination-controls{
+.pagination-controls {
     display: flex;
-    width: 50%;
-    justify-content: flex-end;
+    justify-content: center; /* Centra los botones horizontalmente */
+    width: 100%; /* Asegúrate de que el contenedor ocupe toda el área disponible */
+    margin-top: 1rem; /* Añade un margen superior para separarlos de los artículos */
 }
 
-.default-button{
-    width: 20%;
-    margin: 5%;
+.default-button, .default-button-reverse {
+    width: auto; /* Ajusta la anchura automáticamente */
+    margin: 0 0.5rem; /* Añade un margen lateral para separación */
+}
+
+.active-page {
+    background-color: var(--ppal);
+    color: white;
 }
 
 /* Responsive móvil */
@@ -43,10 +49,6 @@
     .content-home {
         padding-top: 7rem;
     }
-    /* .custom-col {
-        flex-basis: 100%;
-        max-width: 100%;
-      } */
     .filas-home {
         margin-left: 0;
     }
