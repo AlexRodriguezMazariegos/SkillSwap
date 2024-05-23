@@ -27,6 +27,17 @@
     margin-left: 1.25rem;
 }
 
+.pagination-controls{
+    display: flex;
+    width: 50%;
+    justify-content: flex-end;
+}
+
+.default-button{
+    width: 20%;
+    margin: 5%;
+}
+
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {
     .content-home {

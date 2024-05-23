@@ -22,13 +22,21 @@
             <div class="row filas-home">
                 <h1 class="titulo">Artículos</h1>
                 <div class="d-flex flex-column flex-wrap gap-2"> 
-                    @for (articulo of articulos.slice(1,8); track articulo) {
+                    @for (articulo of paginatedArticulos; track articulo) {
                         <div class="col">
                             <app-articulo [articulos]="articulo"></app-articulo>
                         </div>
                      }
                 </div>
-            </div>
-        </div>
+                <div class="pagination-controls">
+                    <button class="default-button" (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+                    <!--@for (let page of pages; let i = index){
+
+                    }-->
+                    <button *ngFor="let page of [].constructor(totalPages); let i = index" class="default-button" (click)="setPage(i + 1)" [disabled]="currentPage === (i + 1)">
+                        {{ i + 1 }}
+                    </button>
+                    <button class="default-button" (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+                </div>
     </div>
 </div>
