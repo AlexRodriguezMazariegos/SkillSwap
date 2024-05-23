@@ -47,6 +47,37 @@ export class EditorArticuloComponent {
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
     placeholder: 'Introduce texto aquí...',
+    height: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    enableToolbar: true,
+    showToolbar: true,
+    defaultFontSize: '',
+    sanitize: true,
+    uploadUrl: 'v1/image',
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [['bold', 'italic'], ['fontSize']],
+    fonts: [
+      { class: 'arial', name: 'Arial' },
+      { class: 'times-new-roman', name: 'Times New Roman' },
+      { class: 'calibri', name: 'Calibri' },
+      { class: 'comic-sans-ms', name: 'Comic Sans MS' },
+    ],
+    customClasses: [
+      {
+        name: 'quote',
+        class: 'quote',
+      },
+      {
+        name: 'redText',
+        class: 'redText',
+      },
+      {
+        name: 'titleText',
+        class: 'titleText',
+        tag: 'h1',
+      },
+    ],
   };
 
   constructor(
@@ -58,7 +89,6 @@ export class EditorArticuloComponent {
   ngOnInit(): void {
     this.usuarioService.getUsuarioById(1).subscribe((data: usuario) => {
       this.miUsuario = data;
-      console.log(this.miUsuario);
     });
   }
 
@@ -68,7 +98,7 @@ export class EditorArticuloComponent {
       usuario: this.miUsuario,
       titulo: this.titulo,
       descripcion: this.descripcion,
-      contenido: JSON.stringify({ content: this.htmlContent }),
+      contenido: this.htmlContent,
       fechaPublicacion: new Date(),
     };
 
@@ -80,9 +110,9 @@ export class EditorArticuloComponent {
         border: '1px solid #002d3c',
         padding: '16px',
         color: '#002d3c',
-        zIndex: 999999999, 
-        position: 'fixed', 
-        top: '60px', 
+        zIndex: 999999999,
+        position: 'fixed',
+        top: '60px',
         left: '650px',
       },
       iconTheme: {
