@@ -54,7 +54,6 @@ export class EditorArticuloComponent {
     showToolbar: true,
     defaultFontSize: '',
     sanitize: true,
-    uploadUrl: 'v1/image',
     toolbarPosition: 'top',
     toolbarHiddenButtons: [['bold', 'italic'], ['fontSize']],
     fonts: [
