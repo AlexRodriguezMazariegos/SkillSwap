@@ -10,6 +10,7 @@ import { ArticuloComponent } from "./articulo/articulo.component";
 import { articulo } from '../../model/articulo';
 import { FormsModule } from '@angular/forms';
 import { forkJoin } from 'rxjs';
+import { log } from 'console';
 @Component({
     selector: 'app-home',
     standalone: true,
@@ -35,20 +36,23 @@ inputText: any;
     public miArticulo:articulo | undefined;
     getarticulos(): void {
       let requests = [];
+      this.articulos = [];
       for (let i = 1; i < 9; i++) {
           requests.push(this.articuloservice.getArticuloById(i));
       }
   
       forkJoin(requests).subscribe((results: articulo[]) => {
-          let articulos: articulo[] = [];
+        let esta = 0;
           for (let i = 0; i < results.length; i++) {
-              let data = results[i];
-              if (data.contenido.includes(this.inputText) || data.titulo.includes(this.inputText)) {
-                  articulos[i + 1] = data;
-              }
+            let data = results[i];
+            
+            if (data.titulo.includes(this.inputText) || data.contenido.includes(this.inputText)) {
+                this.articulos[esta] = data;
+                esta++;
+            }
           }
-          for (let i = 1; i < 9; i++) {
-              console.log(articulos[i]);
+          for (let i = 1; i < results.length; i++) {
+              console.log(this.articulos[i]);
           }
   
           // this.router.navigate([`/buscar-articulos/`]);
