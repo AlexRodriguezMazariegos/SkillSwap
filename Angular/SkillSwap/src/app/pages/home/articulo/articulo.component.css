@@ -49,6 +49,7 @@
 
   #delete-button:hover{
     background-color: var(--rojo);
+    border-color: var(--rojo);
   }
   
   @media only screen and (max-width: 480px) {
