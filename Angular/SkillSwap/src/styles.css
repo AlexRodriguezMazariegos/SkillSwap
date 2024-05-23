@@ -8,7 +8,7 @@
   --body: #ffff;
   --ppal: #ff6d43;
   --ppal_2: #f5896c;
-  --ppal_hover: #ff6c4373;
+  --ppal_hover: #ffae975c;
   --secn: #ececed;
   --blue: #002d3c;
   /* --ppal: #7328ab;
@@ -32,6 +32,7 @@
   height: 35px;
   background-color: var(--ppal);
   margin-top: 6%;
+  padding: 4px;
   border-radius: 5px;
   color: white;
   text-align: center;
@@ -50,6 +51,7 @@
   background-color: white;
   border: 2px solid var(--ppal);
   margin-top: 6%;
+  padding: 4px;
   border-radius: 5px;
   color: var(--ppal);
   text-align: center;

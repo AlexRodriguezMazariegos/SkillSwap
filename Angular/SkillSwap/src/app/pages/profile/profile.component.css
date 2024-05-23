@@ -21,8 +21,17 @@
     padding-top: 4rem;
     font-weight: 400;
 }
- 
- 
+
+.container-articulos {
+    /* max-width: 100%; */
+}
+
+.post-container{
+    background: #E7E7E7;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 2%;
+}
  
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {

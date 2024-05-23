@@ -6,6 +6,7 @@
           href="/postnew"
           class="nav-link"
           id="new-post"
+          [ngClass]="{ 'active': isRouteActive('/postnew') }"
           style="display: flex; align-items: center"
         >
           <svg
@@ -33,6 +34,7 @@
         <a
           (click)="abrirProfile()"
           class="nav-link"
+          [ngClass]="{ 'active': isProfileRouteActive() }"
           style="display: flex; align-items: center; cursor: pointer"
         >
           <svg
@@ -55,10 +57,12 @@
           <span class="ms-2">Mi perfil</span>
         </a>
       </div>
+
       <div class="nav-item">
         <a
           href="/chat"
           class="nav-link"
+          [ngClass]="{ 'active': isRouteActive('/chat') }"
           style="display: flex; align-items: center; cursor: pointer"
         >
           <svg
@@ -81,10 +85,12 @@
           <span class="ms-2">Chat</span>
         </a>
       </div>
+
       <div class="nav-item">
         <a
           href="/mis-articulos"
           class="nav-link"
+          [ngClass]="{ 'active': isRouteActive('/mis-articulos') }"
           style="display: flex; align-items: center; cursor: pointer"
         >
           <svg
@@ -107,6 +113,7 @@
           <span class="ms-2">Mis articulos</span>
         </a>
       </div>
+
       <div class="nav-item">
         <a
           class="nav-link"
@@ -137,6 +144,7 @@
         mat-button
         class="nav-link"
         id="cerrar-sesion"
+        [ngClass]="{ 'active': isRouteActive('/logout') }"
         style="display: flex; align-items: center"
         (click)="openDialog()"
       >
@@ -170,14 +178,14 @@
   </div>
 </div>
 
-@if (menuOpen) {
 <button
   class="hamburger"
   style="background-color: transparent; box-shadow: none"
   (click)="toggleMenu()"
+  *ngIf="menuOpen"
 >
   <svg
-    class="w-6 h-6 text-gray-800 dark:text-white"
+    class="w-6 h-6 text-gray-800 text-white"
     aria-hidden="true"
     xmlns="http://www.w3.org/2000/svg"
     width="24"
@@ -194,8 +202,8 @@
     />
   </svg>
 </button>
-} @else {
-<button class="hamburger" (click)="toggleMenu()">
+
+<button class="hamburger" (click)="toggleMenu()" *ngIf="!menuOpen">
   <svg
     class="w-6 h-6 text-gray-800 dark:text-white"
     aria-hidden="true"
@@ -213,4 +221,3 @@
     />
   </svg>
 </button>
-}

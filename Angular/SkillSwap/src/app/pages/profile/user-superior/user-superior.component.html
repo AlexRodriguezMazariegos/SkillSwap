@@ -7,32 +7,34 @@
         class="img-fluid rounded-circle"
         alt="Imagen"
       />
-      <button class="btn-editar">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="feather feather-edit"
-        >
-          <path d="M12 20h9"></path>
-          <path
-            d="M19.746 4.254a2 2 0 0 1 0 2.828l-1.586 1.586-2.828-2.828 1.586-1.586a2 2 0 0 1 2.828 0zM5 20H3v-2l9-9 2 2z"
-          ></path>
-        </svg>
-      </button>
+      @if (miPerfil) {
+        <button class="btn-editar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-edit"
+          >
+            <path d="M12 20h9"></path>
+            <path
+              d="M19.746 4.254a2 2 0 0 1 0 2.828l-1.586 1.586-2.828-2.828 1.586-1.586a2 2 0 0 1 2.828 0zM5 20H3v-2l9-9 2 2z"
+            ></path>
+          </svg>
+        </button>
+      }
     </div>
   </div>
   <div class="info-usuario">
     <h2>{{ miUsuario?.nombre }} {{ miUsuario?.apellido }}</h2>
     <div class="follow">
-      <p>0 Siguiendo</p>
-      <p>0 Seguidores</p>
+      <p><a class=seguidores-siguiendo href="#">{{seguidos.length}} Siguiendo</a></p>
+      <p><a class=seguidores-siguiendo href="#">{{seguidores.length}} Seguidores</a></p>
     </div>
   </div>
   <div class="acciones-usuario">

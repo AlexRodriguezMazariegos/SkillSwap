@@ -1,5 +1,5 @@
 <div class="container-art d-flex gap-3 justify-content-between" (click)="clickArticulo()">
-  <div class="content-art d-flex flex-column justify-content-center align-content-center">
+  <div class="content-art d-flex flex-column justify-content-center align-content-center" style="width: 80%;">
     <h2 class="title-art">{{articulos.titulo}}<br></h2>
     <p class="descr-art">{{articulos.descripcion}}</p>
   </div>
@@ -10,8 +10,12 @@
     <p class="info-art">{{articulos.usuario.nombre}} {{articulos.usuario.apellido}}</p>
     <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
   </div>
+  <div *ngIf="currentRoute === '/profile'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
+    <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
+  </div>
   <div *ngIf="currentRoute === '/mis-articulos'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
-    <button (click)="editArticulo($event)">Edit</button>
-    <button (click)="deleteArticulo($event)">Delete</button>
+    <button (click)="editArticulo($event)" class="default-button-reverse">Editar</button>
+    <button (click)="deleteArticulo($event)" class="default-button-reverse" id="delete-button">Borrar</button>
+    <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
   </div>
 </div>
