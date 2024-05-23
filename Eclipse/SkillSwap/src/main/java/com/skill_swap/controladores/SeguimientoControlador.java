@@ -58,5 +58,23 @@ public class SeguimientoControlador {
 		seguimientoServicio.borrarSeguimiento(id);
 		return ResponseEntity.ok().build();
 	}
+	
+    @GetMapping("/seguidos/{id}")
+    public ArrayList<Seguimiento> getSeguidos(@PathVariable Long id) {
+        ArrayList<Seguimiento> seguidos = seguimientoServicio.findBySeguido(id);
+        if (seguidos == null || seguidos.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return seguidos;
+    }
+    
+    @GetMapping("/seguidores/{id}")
+    public ArrayList<Seguimiento> getSeguidores(@PathVariable Long id) {
+        ArrayList<Seguimiento> seguidores = seguimientoServicio.findBySeguidor(id);
+        if (seguidores == null || seguidores.isEmpty()) {
+            return new ArrayList<>();
+        }
+        return seguidores;
+    }
 
 }
