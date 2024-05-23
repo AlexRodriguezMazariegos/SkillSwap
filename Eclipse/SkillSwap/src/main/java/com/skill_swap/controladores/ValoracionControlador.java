@@ -20,7 +20,7 @@ import com.skill_swap.entidades.*;
 import com.skill_swap.servicios.ValoracionServicio;
 
 @RestController
-@RequestMapping("/api/v1/articulo")
+@RequestMapping("/api/v1/valoracion")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ValoracionControlador {
 	
