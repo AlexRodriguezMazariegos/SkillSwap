@@ -39,20 +39,23 @@
   border-radius: 5px;
 }
 
-.nav-item a:hover {
+.nav-item a:hover,
+.nav-item a.active {
   color: var(--ppal);
   background-color: #d8d8d8;
 }
 
-#new-post{
+#new-post {
   border: 2px solid #ffff;
 }
 
-#new-post:hover {
+#new-post:hover,
+#new-post.active {
   border: 2px solid var(--ppal);
 }
 
-#cerrar-sesion:hover {
+#cerrar-sesion:hover,
+#cerrar-sesion.active {
   color: var(--rojo);
 }
 
@@ -63,6 +66,7 @@
 button:hover {
   color: var(--ppal_2);
 }
+
 @media (max-width: 900px) {
   .nav-item a {
     padding: 2%;
