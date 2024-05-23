@@ -1,15 +1,17 @@
 <div class="container-art d-flex gap-3 justify-content-between" (click)="clickArticulo()">
-      <div class="content-art d-flex flex-column justify-content-center align-content-center ">
-        <h2 class="title-art">{{articulos.titulo}}<br></h2>
-        <p class="descr-art">{{articulos.descripcion}}</p>
-      </div>
-      <div class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1 ">
-        <div class="photo">
-          <img src="../../../../assets/img/profile/{{articulos.usuario.fotoDePerfil}}.jpg" alt="User" />
-        </div>
-        <p class="info-art">{{articulos.usuario.nombre}} {{articulos.usuario.apellido}}</p>
-        <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
-      </div>
+  <div class="content-art d-flex flex-column justify-content-center align-content-center">
+    <h2 class="title-art">{{articulos.titulo}}<br></h2>
+    <p class="descr-art">{{articulos.descripcion}}</p>
   </div>
-
-
+  <div *ngIf="currentRoute === '/home'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
+    <div class="photo" (click)="clickPerfil($event)">
+      <img [src]="'../../../../assets/img/profile/' + articulos.usuario.fotoDePerfil + '.jpg'" alt="User"/>
+    </div>
+    <p class="info-art">{{articulos.usuario.nombre}} {{articulos.usuario.apellido}}</p>
+    <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
+  </div>
+  <div *ngIf="currentRoute === '/mis-articulos'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
+    <button (click)="editArticulo($event)">Edit</button>
+    <button (click)="deleteArticulo($event)">Delete</button>
+  </div>
+</div>
