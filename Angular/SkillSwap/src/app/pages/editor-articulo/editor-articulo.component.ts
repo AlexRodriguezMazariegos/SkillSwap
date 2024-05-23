@@ -89,7 +89,6 @@ export class EditorArticuloComponent {
   ngOnInit(): void {
     this.usuarioService.getUsuarioById(1).subscribe((data: usuario) => {
       this.miUsuario = data;
-      console.log(this.miUsuario);
     });
   }
 
