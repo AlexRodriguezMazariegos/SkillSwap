@@ -21,7 +21,6 @@ export class NavbarComponent implements OnInit {
       const currentUser = JSON.parse(this.usuario);
       this.nombreUsuario = currentUser.nombre;
       this.imagenUsuario = currentUser.fotoDePerfil;
-      console.log();
     }
   }
   abrirProfile() {

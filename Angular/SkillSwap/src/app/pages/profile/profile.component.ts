@@ -18,6 +18,9 @@ import { UserInfoEditComponent } from './user-info-edit/user-info-edit.component
     imports: [NavbarComponent, SidebarComponent, UserSuperiorComponent, UserInfoComponent, UserBotonesComponent, UserPostComponent, UserInfoEditComponent]
 })
 export class ProfileComponent implements OnInit {
+    usuario = localStorage.getItem('usuario');
+    usuarioId = 0;
+    miPerfil: boolean = false;
     public miUsuario:usuario = {
         id: 0,
         nombre: '',
@@ -36,8 +39,15 @@ export class ProfileComponent implements OnInit {
         const id = params['id'];
         this.usuarioService.getUsuarioById(id).subscribe(data => {
           this.miUsuario = data;
+          if (this.usuario) {
+        const currentUser = JSON.parse(this.usuario);
+        this.usuarioId = currentUser.id;
+      }
+
+      if(this.usuarioId == this.miUsuario.id) {
+        this.miPerfil = true;
+      }
         });
       });
-
   }
 }
