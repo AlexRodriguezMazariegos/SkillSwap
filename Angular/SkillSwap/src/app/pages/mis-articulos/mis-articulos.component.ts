@@ -15,16 +15,19 @@ import { ArticuloService } from '../../services/articulo/articulo.service';
   imports: [NavbarComponent, SidebarComponent, ArticuloComponent],
 })
 export class MisArticulosComponent {
-  @Input() miUsuario: any;
+  storedValue = localStorage.getItem('usuario');
 
   public articulos: articulo[] = [];
   constructor(private articuloService: ArticuloService) {}
 
   ngOnInit(): void {
-    this.articuloService
-      .getArticuloByUserId(this.miUsuario.id)
-      .subscribe((data: articulo[]) => {
-        this.articulos = data;
-      });
+    if (this.storedValue) {
+      const currentUser = JSON.parse(this.storedValue);
+      this.articuloService
+        .getArticuloByUserId(currentUser.id)
+        .subscribe((data: articulo[]) => {
+          this.articulos = data;
+        });
+    }
   }
 }

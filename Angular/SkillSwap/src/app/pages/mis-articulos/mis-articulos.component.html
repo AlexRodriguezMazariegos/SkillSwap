@@ -10,9 +10,9 @@
         </div>
         <div class="content-home col-md-10">
             <div class="row filas-home">
-                <h1 class="titulo">Artículos</h1>
+                <h1 class="titulo">Mis Artículos</h1>
                 <div class="d-flex flex-column flex-wrap gap-2"> 
-                    @for (articulo of articulos.slice(1,6); track articulo) {
+                    @for (articulo of articulos; track articulo) {
                         <div class="col">
                             <app-articulo [articulos]="articulo"></app-articulo>
                         </div>
