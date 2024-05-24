@@ -1,11 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ValoracionEstrellasComponent } from '../../../shared/valoracion-estrellas/valoracion-estrellas.component';
 
 @Component({
   selector: 'app-articulo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ValoracionEstrellasComponent],
   templateUrl: './articulo.component.html',
   styleUrl: './articulo.component.css',
 })

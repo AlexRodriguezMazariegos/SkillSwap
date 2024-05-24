@@ -5,13 +5,14 @@ import { ActivatedRoute, RouterModule} from '@angular/router';
 import { NavbarComponent } from "../../shared/navbar/navbar.component";
 import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { ValoracionEstrellasComponent } from '../../shared/valoracion-estrellas/valoracion-estrellas.component';
 
 @Component({
     selector: 'app-articulo-por-id',
     standalone: true,
     templateUrl: './articulo-por-id.component.html',
     styleUrl: './articulo-por-id.component.css',
-    imports: [NavbarComponent, SidebarComponent, RouterModule]
+    imports: [NavbarComponent, SidebarComponent, ValoracionEstrellasComponent,RouterModule]
 })
 export class ArticuloPorIdComponent implements OnInit {
   articuloPorId: articulo = {

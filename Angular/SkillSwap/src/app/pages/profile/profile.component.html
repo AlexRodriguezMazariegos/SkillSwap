@@ -16,10 +16,12 @@
         <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
         <app-user-info [miUsuario]="miUsuario"></app-user-info>
         <div class="post-container">
-          <h2>Articulos</h2>
-          @for (articulo of articulos; track articulo) {
-                <app-articulo [articulos]="articulo"></app-articulo>
-         }
+            <h2>Articulos</h2>
+          <div class="container-articulos">
+            @for (articulo of articulos; track articulo) {
+                  <app-articulo [articulos]="articulo"></app-articulo>
+           }
+          </div>
         </div>
       }
     </div>

@@ -34,8 +34,8 @@ import { register } from 'module';
 })
 export class EditorArticuloComponent {
   miUsuario!: usuario;
-  titulo: string = 'fffff';
-  descripcion: string = 'fffff';
+  titulo: string = '';
+  descripcion: string = '';
   htmlContent: string = '';
 
   config: AngularEditorConfig = {
@@ -54,7 +54,6 @@ export class EditorArticuloComponent {
     showToolbar: true,
     defaultFontSize: '',
     sanitize: true,
-    uploadUrl: 'v1/image',
     toolbarPosition: 'top',
     toolbarHiddenButtons: [['bold', 'italic'], ['fontSize']],
     fonts: [
@@ -62,6 +61,7 @@ export class EditorArticuloComponent {
       { class: 'times-new-roman', name: 'Times New Roman' },
       { class: 'calibri', name: 'Calibri' },
       { class: 'comic-sans-ms', name: 'Comic Sans MS' },
+      {class: 'consolas', name: 'Consolas'}
     ],
     customClasses: [
       {
@@ -104,6 +104,14 @@ export class EditorArticuloComponent {
 
     console.log('Enviando artículo:', articulo);
 
+    this.showToast();
+
+    this.articuloService.postArticulo(articulo).subscribe((response) => {
+      console.log('Artículo guardado', response);
+    });
+  }
+
+  showToast(){
     this.toast.success('Artículo guardado', {
       duration: 1400,
       style: {
@@ -119,10 +127,6 @@ export class EditorArticuloComponent {
         primary: '#002d3c',
         secondary: '#ffff',
       },
-    });
-
-    this.articuloService.postArticulo(articulo).subscribe((response) => {
-      console.log('Artículo guardado', response);
     });
   }
 }
