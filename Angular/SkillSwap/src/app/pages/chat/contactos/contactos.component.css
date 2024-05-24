@@ -1,5 +1,5 @@
 .sidebar{
-    background: #E7E7E7;
+    background: var(--light-grey);
     display: flex;
     height: 100%;
     flex-direction: column;

@@ -19,29 +19,9 @@
 
 .content-home {
     padding-top: 4rem;
-    padding-left: 2rem;
-    font-weight: 400
-}
-
-.filas-home {
-    margin-left: 1.25rem;
-}
-
-.pagination-controls {
-    display: flex;
-    justify-content: center; /* Centra los botones horizontalmente */
-    width: 100%; /* Asegúrate de que el contenedor ocupe toda el área disponible */
-    margin-top: 1rem; /* Añade un margen superior para separarlos de los artículos */
-}
-
-.default-button, .default-button-reverse {
-    width: auto; /* Ajusta la anchura automáticamente */
-    margin: 0 0.5rem; /* Añade un margen lateral para separación */
-}
-
-.active-page {
-    background-color: var(--ppal);
-    color: white;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-weight: 400;
 }
 
 /* Responsive móvil */

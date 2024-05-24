@@ -1,0 +1,22 @@
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .default-button-reverse {
+    width: 30px;
+    margin: 0 0.5rem;
+    border:none;
+  }
+
+  .default-button-reverse:hover {
+    background-color: var(--ppal_2);
+  }
+  
+  .active-page {
+    color: var(--blue);
+  }
+  

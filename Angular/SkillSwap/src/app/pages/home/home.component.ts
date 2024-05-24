@@ -9,6 +9,7 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 import { ArticuloService } from '../../services/articulo/articulo.service';
 import { ArticuloComponent } from './articulo/articulo.component';
 import { articulo } from '../../model/articulo';
+import { PaginationComponent } from '../../shared/pagination/pagination.component';
 
 @Component({
   selector: 'app-home',
@@ -17,16 +18,19 @@ import { articulo } from '../../model/articulo';
   styleUrls: ['./home.component.css'],
   imports: [
     RouterModule,
-    CommonModule, // Asegúrate de importar CommonModule
+    CommonModule, 
     NavbarComponent,
     SidebarComponent,
     TarjetaUsuarioComponent,
     ArticuloComponent,
+    PaginationComponent
   ],
 })
 export class HomeComponent implements OnInit {
   public misUsuarios: usuario[] = [];
   public articulos: articulo[] = [];
+
+  //Variables para la paginación
   public pageSize = 5;
   public currentPage = 1;
   public pages: number[] = [];
@@ -42,9 +46,12 @@ export class HomeComponent implements OnInit {
     });
     this.articuloService.getArticulos().subscribe((data: articulo[]) => {
       this.articulos = data;
-      this.calculatePages(); // Calcular las páginas después de obtener los artículos
+      //Llamamos al metodo para la paginación
+      this.calculatePages(); 
     });
   }
+
+  //Metodos para la paginación
 
   calculatePages(): void {
     this.pages = [];
@@ -64,21 +71,7 @@ export class HomeComponent implements OnInit {
     return Math.ceil(this.articulos.length / this.pageSize);
   }
 
-  setPage(page: number): void {
-    if (page >= 1 && page <= this.totalPages) {
-      this.currentPage = page;
-    }
-  }
-
-  nextPage(): void {
-    if (this.currentPage < this.totalPages) {
-      this.currentPage++;
-    }
-  }
-
-  previousPage(): void {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-    }
+  onPageChange(page: number): void {
+    this.currentPage = page;
   }
 }

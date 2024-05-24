@@ -61,7 +61,7 @@
 }
 
 .default-button:hover {
-  background-color: rgb(223, 0, 0);
+  background-color: var(--rojo);
 }
 
 .default-button-reverse:hover {
