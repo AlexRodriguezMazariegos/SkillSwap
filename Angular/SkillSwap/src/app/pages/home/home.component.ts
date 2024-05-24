@@ -74,35 +74,43 @@ export class HomeComponent implements OnInit {
   }
   // Fetch articles based on input text
   getarticulos(): void {
-    let requests = [];
-    for (let i = 1; i <= 8; i++) {
-      requests.push(this.articuloService.getArticuloById(i));
-    }
-
-    forkJoin(requests).subscribe((results: articulo[]) => {
-      this.articulos = results.filter(
-        (data) =>
-          data.titulo.includes(this.inputText) ||
-          data.contenido.includes(this.inputText)
-      );
-      this.articulos.forEach((articulo) => console.log(articulo));
+    this.articuloService.getArticulos().subscribe((articulos: articulo[]) => {
+      let requests = [];
+      console.log("Articulos:", articulos);
+      for (let i = 1; i <= articulos.length; i++) { // Acceder a la longitud del array de articulos
+        requests.push(this.articuloService.getArticuloById(i));
+      }
+  
+      forkJoin(requests).subscribe((results: articulo[]) => {
+        this.articulos = results.filter(
+          (data) =>
+            data.titulo.includes(this.inputText) ||
+            data.contenido.includes(this.inputText)
+        );
+        this.articulos.forEach((articulo) => console.log(articulo));
+      });
     });
   }
+  
 
   // Fetch users based on input text
   getusuarios(): void {
-    let requests = [];
-    for (let i = 1; i <= 8; i++) {
-      requests.push(this.usuarioService.getUsuarioById(i));
-    }
-
-    forkJoin(requests).subscribe((results: usuario[]) => {
-      this.misUsuarios = results.filter((data) =>
-        data.nombre.includes(this.inputText)
-      );
-      this.misUsuarios.forEach((usuario) => console.log(usuario));
+    this.usuarioService.getusuarios().subscribe((usuarios: usuario[]) => {
+      let requests = [];
+      console.log("Usuarios:", usuarios);
+      for (let i = 1; i <= usuarios.length; i++) { // Acceder a la longitud del array de usuarios
+        requests.push(this.usuarioService.getUsuarioById(i));
+      }
+  
+      forkJoin(requests).subscribe((results: usuario[]) => {
+        this.misUsuarios = results.filter((data) =>
+          data.nombre.includes(this.inputText)
+        );
+        this.misUsuarios.forEach((usuario) => console.log(usuario));
+      });
     });
   }
+  
 
   // Handle option change event
   onOptionChange(event: any): void {
