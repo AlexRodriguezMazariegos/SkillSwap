@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
+import { UserBotonesComponent } from '../user-botones/user-botones.component';
 
 @Component({
   selector: 'app-user-info',
@@ -10,5 +11,5 @@ import { Component, Input } from '@angular/core';
 export class UserInfoComponent {
 
   @Input() miUsuario: any;
-
+  @Input() mostrarPrimerContenedor: any;
 }

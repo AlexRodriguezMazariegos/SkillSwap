@@ -23,6 +23,7 @@ import { articulo } from '../../model/articulo';
 export class ProfileComponent implements OnInit {
     usuario = localStorage.getItem('usuario');
     usuarioId = 0;
+    public mostrarPrimerContenedor: boolean | undefined = true;
     miPerfil: boolean = false;
     public articulos: articulo[] = [];
     public miUsuario:usuario = {
@@ -59,5 +60,9 @@ export class ProfileComponent implements OnInit {
           }
         });
       });
+    }
+    Vereditar() {
+      this.mostrarPrimerContenedor = !this.mostrarPrimerContenedor;
+      return this.mostrarPrimerContenedor;
     }
 }

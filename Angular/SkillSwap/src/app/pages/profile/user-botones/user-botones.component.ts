@@ -15,6 +15,7 @@ export class UserBotonesComponent implements OnInit{
   usuario = localStorage.getItem('usuario');
   usuarioId = 0;
   miPerfil: boolean = false;
+  mostrarPrimerContenedor = true;
 
   constructor(private router: Router, private route:ActivatedRoute, private usuarioService: UsuarioService) {}
 
@@ -44,5 +45,8 @@ export class UserBotonesComponent implements OnInit{
   
   openChat() {
     this.router.navigate(['/chat']);
+  }
+  Vereditar() {
+    this.mostrarPrimerContenedor = !this.mostrarPrimerContenedor;
   }
 }

@@ -1,27 +1,59 @@
-<div class="info-container">
-  <h2>Información personal</h2>
-  <table class="table">
-    <tbody>
-      <tr>
-        <th scope="row">Puesto</th>
-        <td>{{ miUsuario?.puestoEmpresa }}</td>
-      </tr>
-      <tr>
-        <th scope="row">Email</th>
-        <td>{{ miUsuario?.email }}</td>
-      </tr>
-      <tr>
-        <th scope="row">Lenguajes</th>
-        <td>
-          @for (skill of miUsuario.skills.slice(0,3); track skill) { |
-          {{ skill.nombre }} | }
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">URL GitHub</th>
-        <td>{{miUsuario?.urlGitHub}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+@if (mostrarPrimerContenedor) {
+  <div class="info-container">
+    <h2>Información personal</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Puesto</th>
+          <td>{{ miUsuario?.puestoEmpresa }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>{{ miUsuario?.email }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Lenguajes</th>
+          <td>
+            @for (skill of miUsuario.skills.slice(0,3); track skill) { |
+            {{ skill.nombre }} | }
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">URL GitHub</th>
+          <td>{{miUsuario?.urlGitHub}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+}
+
+@if (!mostrarPrimerContenedor) {
+  <div class="info-container" style="display: none;">
+    <h2>Información personal</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Puesto</th>
+          <td><input type="text" name="" id="" value="{{miUsuario?.puestoEmpresa }}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td><input type="text" name="" id="" value="{{miUsuario?.email}}"></td>
+        </tr>
+        <tr>
+          <th scope="row">Lenguajes</th>
+          <td>
+            @for (skill of miUsuario.skills.slice(0,3); track skill) {
+            <input type="text" name="" id="" value="{{skill.nombre}}"> }
+          </td>
+        </tr>
+        <tr>
+            <th scope="row">URL GitHub</th>
+            <td><input type="text" name="" id="" value="{{miUsuario?.urlGitHub}}"></td>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+}
+
  
