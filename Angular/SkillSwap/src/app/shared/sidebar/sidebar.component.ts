@@ -23,9 +23,16 @@ export class SidebarComponent {
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
-  openDialog(): void {
-    if (!this.dialogRef) {
-      // Verifica si ya hay un diálogo abierto
+  openDialog(pregunta: string = '¿Estás seguro que deseas salir?', textoBoton: string = 'Salir'): void {
+    this.dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        pregunta: pregunta,
+        textoBoton: textoBoton
+      }
+    });
+
+
+    if (!this.dialogRef) { // Verifica si ya hay un diálogo abierto
       const dialogConfig = new MatDialogConfig();
       dialogConfig.panelClass = 'custom-dialog-container';
       dialogConfig.autoFocus = false;
@@ -36,15 +43,17 @@ export class SidebarComponent {
         left: '30vw',
       };
 
-      this.dialogRef = this.dialog.open(
-        ConfirmationModalComponent,
-        dialogConfig
-      );
+      this.dialogRef = this.dialog.open(ConfirmationModalComponent, {
+          data: {
+            pregunta: pregunta,
+            textoBoton: textoBoton
+          }
+        });
 
-      this.dialogRef.afterClosed().subscribe((result) => {
-        this.onLogoutConfirmation(result);
-        this.dialogRef = null; // Restablece la referencia del diálogo al cerrarse
-      });
+        this.dialogRef.afterClosed().subscribe((result) => {
+          this.onLogoutConfirmation(result);
+          this.dialogRef = null; // Restablece la referencia del diálogo al cerrarse
+        });
     }
   }
 
@@ -52,10 +61,16 @@ export class SidebarComponent {
     this.menuOpen = !this.menuOpen;
   }
 
+  onLogoutClick() {
+    this.openDialog('¿Estás seguro que deseas cerrar sesión?', 'Cerrar sesión');
+  }
+
   onLogoutConfirmation(confirmed: boolean): void {
     if (confirmed) {
       console.log('Cerrar sesión confirmado');
-      // Implementa la lógica para cerrar la sesión aquí
+      // Lógica para cerrar sesión
+      localStorage.removeItem('usuario'); // Elimina los datos del usuario del almacenamiento local
+      this.router.navigate(['/']); // Redirige al usuario a la página de inicio de sesión
     }
   }
 
@@ -81,4 +96,5 @@ export class SidebarComponent {
       return this.router.url === `/profile/1`;
     }
   }
+
 }

@@ -26,4 +26,8 @@ export class ArticuloService {
   postArticulo(newArticulo: articulo):Observable<any>{
     return this.http.post(this.baseUrl, newArticulo)
   }
+
+  deleteArticulo(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`)
+  }
 }

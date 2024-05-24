@@ -69,6 +69,15 @@ h2 {
   background-color: var(--ppal_2);
 }
 
+.seguidores-siguiendo {
+  text-decoration: none;
+  color: #000000;
+}
+
+.seguidores-siguiendo:hover {
+  text-decoration: underline;
+}
+
 /* Puntos de quiebre para mejorar la capacidad de respuesta */
 @media only screen and (max-width: 1100px) {
   .perfil {
