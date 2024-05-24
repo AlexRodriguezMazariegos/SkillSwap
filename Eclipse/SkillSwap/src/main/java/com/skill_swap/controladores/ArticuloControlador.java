@@ -39,7 +39,6 @@ public class ArticuloControlador {
 		}
 	}
 	
-	//a
 	@GetMapping("/usuario/{id}")
     public ResponseEntity<List<Articulo>> obtenerArticulosPorUsuario(@PathVariable Long id) {
         List<Articulo> articulos = articuloServicio.obtenerArticulosPorUsuario(id);
@@ -54,16 +53,16 @@ public class ArticuloControlador {
 	public ResponseEntity<Articulo> guardarArticulo(@RequestBody Articulo articulo) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(articuloServicio.crearArticulo(articulo));
 	}
-
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {
-		if (articuloServicio.obtenerArticuloPorId(id) == null) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		} else {
-			articuloServicio.eliminarArticulo(id);
-			return ResponseEntity.status(HttpStatus.OK).build();
-		}
-	}
+	
+	  @DeleteMapping("/{id}")
+	    public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {
+	        if (articuloServicio.obtenerArticuloPorId(id) == null) {
+	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	        } else {
+				articuloServicio.eliminarArticulo(id);
+	            return ResponseEntity.status(HttpStatus.OK).build();
+	        }
+	    }
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Articulo> actualizarArticulo(@PathVariable Long id, @RequestBody Articulo articulo) {

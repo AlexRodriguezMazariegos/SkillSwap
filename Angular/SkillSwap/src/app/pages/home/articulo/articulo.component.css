@@ -1,7 +1,7 @@
 .container-art {
     /* background-color: var(--ppal); */
-    background-color: var(--secn);
-    max-width: 96%;
+    background-color: var(--light-grey);
+    width: 100%;
     border-radius: 8px;
     padding: 20px;
     cursor: pointer;
