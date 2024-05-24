@@ -20,25 +20,21 @@ export class SidebarComponent {
   
   constructor(public dialog: MatDialog, private router: Router) { }
 
-  openDialog(): void {
-    if (!this.dialogRef) { // Verifica si ya hay un diálogo abierto
-      const dialogConfig = new MatDialogConfig();
-      dialogConfig.panelClass = 'custom-dialog-container';
-      dialogConfig.autoFocus = false;
-      dialogConfig.disableClose = true;
-      dialogConfig.width = '40%';
-      dialogConfig.position = {
-        top: '20wh',
-        left: '30vw',
-      };
+  openDialog(pregunta: string = '¿Estás seguro que deseas salir?', textoBoton: string = 'Salir'): void {
+    this.dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        pregunta: pregunta,
+        textoBoton: textoBoton
+      }
+    });
 
-      this.dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+    this.dialogRef.afterClosed().subscribe(result => {
+      this.onLogoutConfirmation(result);
+    });
+  }
 
-      this.dialogRef.afterClosed().subscribe(result => {
-        this.onLogoutConfirmation(result);
-        this.dialogRef = null; // Restablece la referencia del diálogo al cerrarse
-      });
-    }
+  onLogoutClick() {
+    this.openDialog('¿Estás seguro que deseas cerrar sesión?', 'Cerrar sesión');
   }
 
   toggleMenu(): void {
@@ -48,7 +44,9 @@ export class SidebarComponent {
   onLogoutConfirmation(confirmed: boolean): void {
     if (confirmed) {
       console.log('Cerrar sesión confirmado');
-      // Implementa la lógica para cerrar la sesión aquí
+      // Lógica para cerrar sesión
+      localStorage.removeItem('usuario'); // Elimina los datos del usuario del almacenamiento local
+      this.router.navigate(['/']); // Redirige al usuario a la página de inicio de sesión
     }
   }
 
@@ -56,15 +54,13 @@ export class SidebarComponent {
     if (this.storedValue) {
       const currentUser = JSON.parse(this.storedValue);
       console.log(currentUser.id);
-      this.router.navigate([`/profile/${currentUser.id}`])
-      
+      this.router.navigate([`/profile/${currentUser.id}`]);
     } else {
-      this.router.navigate([``])
+      this.router.navigate([``]);
     }
   }
 
   isRouteActive(route: string): boolean {
     return this.router.url.startsWith(route);
   }
-
 }

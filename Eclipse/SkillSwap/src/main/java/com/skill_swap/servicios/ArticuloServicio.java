@@ -41,7 +41,6 @@ public class ArticuloServicio {
 	    }
 	}
 
-
 	public Articulo actualizarArticulo(Long id, Articulo articulo) {
 		Optional<Articulo> articuloExistente = articuloRepositorio.findById(id);
 
