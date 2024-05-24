@@ -1,4 +1,6 @@
+import { usuario } from "./usuario";
+
 export interface seguimiento {
-  id_seguidor: number;
-  id_seguido: number;
+  seguidor: usuario;
+  seguido: usuario;
 }
