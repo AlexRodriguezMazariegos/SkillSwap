@@ -19,11 +19,10 @@
  
 .content-home {
     padding-top: 4rem;
-    padding-left: 2rem;
-    font-weight: 400
+    padding-left: 3rem;
+    padding-right: 3rem;
+    font-weight: 400;
 }
- 
- 
  
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {

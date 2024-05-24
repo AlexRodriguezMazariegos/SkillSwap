@@ -33,6 +33,7 @@ import { register } from 'module';
   styleUrl: './editor-articulo.component.css',
 })
 export class EditorArticuloComponent {
+  storedValue = localStorage.getItem('usuario');
   miUsuario!: usuario;
   titulo: string = '';
   descripcion: string = '';
@@ -41,8 +42,8 @@ export class EditorArticuloComponent {
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
-    minHeight: '30rem',
-    maxHeight: '30rem',
+    minHeight: '27rem',
+    maxHeight: '27rem',
     translate: 'no',
     defaultParagraphSeparator: 'p',
     defaultFontName: 'Arial',
@@ -61,7 +62,7 @@ export class EditorArticuloComponent {
       { class: 'times-new-roman', name: 'Times New Roman' },
       { class: 'calibri', name: 'Calibri' },
       { class: 'comic-sans-ms', name: 'Comic Sans MS' },
-      {class: 'consolas', name: 'Consolas'}
+      { class: 'consolas', name: 'Consolas' },
     ],
     customClasses: [
       {
@@ -87,9 +88,11 @@ export class EditorArticuloComponent {
   ) {}
 
   ngOnInit(): void {
-    this.usuarioService.getUsuarioById(1).subscribe((data: usuario) => {
-      this.miUsuario = data;
-    });
+    if (this.storedValue) {
+      const currentUser = JSON.parse(this.storedValue);
+      this.articuloService.getArticuloByUserId(currentUser.id);
+      this.miUsuario = currentUser;
+    }
   }
 
   saveContent() {
@@ -111,7 +114,7 @@ export class EditorArticuloComponent {
     });
   }
 
-  showToast(){
+  showToast() {
     this.toast.success('Artículo guardado', {
       duration: 1400,
       style: {

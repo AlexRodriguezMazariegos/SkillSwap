@@ -32,7 +32,7 @@ export class ArticuloPorIdComponent implements OnInit {
       contenido: '',
       descripcion: '',
       titulo: '',
-      fechaPublicacion: new Date()
+      fechaPublicacion: new Date(),
   };
 
   fechaPublicacionFormateada: string = '';
