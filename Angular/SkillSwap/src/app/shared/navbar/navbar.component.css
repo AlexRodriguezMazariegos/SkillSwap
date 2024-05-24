@@ -109,7 +109,6 @@
 @media (max-width: 767px) {
     .nav-logo {
         justify-content: flex-start; /* Alinea el contenido a la izquierda en modo móvil */
-        background-color: var(--secn);
         border-radius: 10px;
         padding: 2px;
     }
