@@ -6,6 +6,7 @@ import { NavbarComponent } from "../../shared/navbar/navbar.component";
 import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ValoracionEstrellasComponent } from '../../shared/valoracion-estrellas/valoracion-estrellas.component';
+import { formatDate } from '@angular/common';
 
 @Component({
     selector: 'app-articulo-por-id',
@@ -34,6 +35,7 @@ export class ArticuloPorIdComponent implements OnInit {
       fechaPublicacion: new Date(),
   };
 
+  fechaPublicacionFormateada: string = '';
   sanitizedContent: SafeHtml | undefined;
 
   constructor(
@@ -43,13 +45,20 @@ export class ArticuloPorIdComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-      this.route.params.subscribe(params => {
-          const id = params['id'];
-          this.articuloService.getArticuloById(id).subscribe(data => {
-              this.articuloPorId = data;
-              this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.articuloPorId.contenido);
-              console.log(this.articuloPorId);
-          });
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.articuloService.getArticuloById(id).subscribe(data => {
+        this.articuloPorId = data;
+        // Formatea la fecha de publicación
+        this.fechaPublicacionFormateada = this.formatDate(this.articuloPorId.fechaPublicacion);
+        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.articuloPorId.contenido);
+        console.log(this.articuloPorId);
       });
+    });
+  }
+
+  // Método para formatear la fecha
+  formatDate(fecha: Date): string {
+    return formatDate(fecha, 'dd-MM-yyyy', 'en-US');
   }
 }

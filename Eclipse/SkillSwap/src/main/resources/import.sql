@@ -286,3 +286,17 @@ INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('3', '15');
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('2', '15');
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('20', '15');
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('37', '15');
+
+
+-- Valoraciones
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '1', '1')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '2', '1', '2')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '3', '1', '3')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '5', '1', '4')
+
+--Articulo_Skill
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '1')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '2')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '3')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('2', '1')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '10')
