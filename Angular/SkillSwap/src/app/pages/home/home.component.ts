@@ -26,6 +26,7 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
     TarjetaUsuarioComponent,
     ArticuloComponent,
     PaginationComponent,
+    FormsModule  
   ],
 })
 export class HomeComponent implements OnInit {
