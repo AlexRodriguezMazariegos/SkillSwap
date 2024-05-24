@@ -6,14 +6,14 @@ import {
 } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../../pages/confirmation-modal/confirmation-modal.component';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.css',
+  styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
   storedValue = localStorage.getItem('usuario');
@@ -23,15 +23,7 @@ export class SidebarComponent {
 
   constructor(public dialog: MatDialog, private router: Router) {}
 
-  openDialog(pregunta: string = '¿Estás seguro que deseas salir?', textoBoton: string = 'Salir'): void {
-    this.dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      data: {
-        pregunta: pregunta,
-        textoBoton: textoBoton
-      }
-    });
-
-
+  openDialog(pregunta: string, textoBoton: string): void {
     if (!this.dialogRef) { // Verifica si ya hay un diálogo abierto
       const dialogConfig = new MatDialogConfig();
       dialogConfig.panelClass = 'custom-dialog-container';
@@ -39,21 +31,18 @@ export class SidebarComponent {
       dialogConfig.disableClose = true;
       dialogConfig.width = '40%';
       dialogConfig.position = {
-        top: '20wh',
+        top: '20vh',
         left: '30vw',
       };
 
-      this.dialogRef = this.dialog.open(ConfirmationModalComponent, {
-          data: {
-            pregunta: pregunta,
-            textoBoton: textoBoton
-          }
-        });
+      dialogConfig.data = { pregunta, textoBoton }; // Añade los datos necesarios
 
-        this.dialogRef.afterClosed().subscribe((result) => {
-          this.onLogoutConfirmation(result);
-          this.dialogRef = null; // Restablece la referencia del diálogo al cerrarse
-        });
+      this.dialogRef = this.dialog.open(ConfirmationModalComponent, dialogConfig);
+
+      this.dialogRef.afterClosed().subscribe(result => {
+        this.onLogoutConfirmation(result);
+        this.dialogRef = null; // Restablece la referencia del diálogo al cerrarse
+      });
     }
   }
 
@@ -68,7 +57,6 @@ export class SidebarComponent {
   onLogoutConfirmation(confirmed: boolean): void {
     if (confirmed) {
       console.log('Cerrar sesión confirmado');
-      // Lógica para cerrar sesión
       localStorage.removeItem('usuario'); // Elimina los datos del usuario del almacenamiento local
       this.router.navigate(['/']); // Redirige al usuario a la página de inicio de sesión
     }
@@ -92,9 +80,8 @@ export class SidebarComponent {
     if (this.storedValue) {
       const currentUser = JSON.parse(this.storedValue);
       return this.router.url === `/profile/${currentUser.id}`;
-    }else{
+    } else {
       return this.router.url === `/profile/1`;
     }
   }
-
 }
