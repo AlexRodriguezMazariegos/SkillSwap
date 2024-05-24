@@ -1,30 +1,28 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmation-modal',
-  standalone: true,
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['./confirmation-modal.component.css'],
+  styleUrls: ['./confirmation-modal.component.css']
 })
 export class ConfirmationModalComponent {
-  pregunta: string | undefined;
-  textoBoton: string | undefined;
-  @Output() confirmed: EventEmitter<boolean> = new EventEmitter<boolean>();
+  pregunta: string;
+  textoBoton: string;
 
   constructor(
-    private dialogRef: MatDialogRef<ConfirmationModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    public dialogRef: MatDialogRef<ConfirmationModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { pregunta: string, textoBoton: string }
   ) {
     this.pregunta = data.pregunta;
     this.textoBoton = data.textoBoton;
   }
 
-  closeDialog(confirm: boolean): void {
-    this.dialogRef.close(confirm); // Cierra el diálogo con el resultado
+  confirmDelete(): void {
+    this.dialogRef.close(true);
   }
 
-  confirmDelete(): void {
-    this.closeDialog(true);
+  closeDialog(result: boolean): void {
+    this.dialogRef.close(result);
   }
 }
