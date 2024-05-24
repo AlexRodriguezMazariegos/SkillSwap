@@ -5,19 +5,25 @@
     max-width: 100%;
     overflow-x: hidden;
 }
+
+.botonAtras{
+    background-color: red;
+    width: 2%;
+    position: relative;
+}
  
 .contenido{
-    width: 95%;
+    width: 96%;
     margin: auto;
-    border-radius: 10px;
     padding: 20px;
+    border-radius: 10px;
     background-color: var(--secn);
 }
 
 .titulo {
     font-family: var(--tituloPpal);
     font-size: 34px;
-    margin-bottom: 2%;
+    margin-bottom: 1%;
 }
  
 .descripcion{
@@ -37,16 +43,10 @@
     padding-left: 2rem;
     font-weight: 400
 }
-
-.botonAtras{
-    width: 32px;
-    height: 32px;
-    position: relative;
-}
  
 .valoracion{
     position: absolute;
-    top: 120px;
+    top: 130px;
     right: 60px;
     /*
     background-color: var(--ppal);

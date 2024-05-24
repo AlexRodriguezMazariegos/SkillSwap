@@ -294,3 +294,9 @@ INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NUL
 INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '3', '1', '3')
 INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '5', '1', '4')
 
+--Articulo_Skill
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '1')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '2')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '3')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('2', '1')
+INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '10')
