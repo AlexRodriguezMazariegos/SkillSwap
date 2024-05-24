@@ -10,9 +10,25 @@
     </div>
     <div class="content-home col-md-10">
       <div class="row">
-        <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+        <div class="col-12">
+          <input type="text" placeholder="Título" [(ngModel)]="titulo" class="col-12" />
+        </div>
       </div>
-      <button class="save-button" (click)="saveContent()">Guardar artículo</button>
-    </div>    
+      <div class="row">
+        <div class="col-12">
+          <input type="text" placeholder="Descripción" [(ngModel)]="descripcion" class="col-12" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <angular-editor [(ngModel)]="htmlContent" [config]="config"></angular-editor>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <button class="save-button" (click)="saveContent()">Guardar artículo</button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

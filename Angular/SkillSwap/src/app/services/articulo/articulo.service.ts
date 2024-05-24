@@ -19,6 +19,10 @@ export class ArticuloService {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
+  getArticuloByUserId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/usuario/${id}`);
+  }
+
   postArticulo(newArticulo: articulo):Observable<any>{
     return this.http.post(this.baseUrl, newArticulo)
   }
