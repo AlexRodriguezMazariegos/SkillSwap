@@ -15,7 +15,7 @@ h2 {
 }
 
 .contenedor {
-  background-color: var(--secn);
+  background-color: var(--light-grey);
   display: flex;
   flex-wrap: wrap; /* Permitir que los elementos envuelvan */
   align-items: center;
