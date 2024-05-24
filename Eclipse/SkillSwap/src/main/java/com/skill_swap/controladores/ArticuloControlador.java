@@ -39,7 +39,6 @@ public class ArticuloControlador {
 		}
 	}
 	
-	//a
 	@GetMapping("/usuario/{id}")
     public ResponseEntity<List<Articulo>> obtenerArticulosPorUsuario(@PathVariable Long id) {
         List<Articulo> articulos = articuloServicio.obtenerArticulosPorUsuario(id);
