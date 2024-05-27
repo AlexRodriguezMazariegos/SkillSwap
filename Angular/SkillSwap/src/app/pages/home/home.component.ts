@@ -1,17 +1,18 @@
-import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { TarjetaUsuarioComponent } from './tarjeta-usuario/tarjeta-usuario.component';
-import { usuario } from '../../model/usuario';
 import { UsuarioService } from '../../services/usuario/usuario.service';
 import { ArticuloService } from '../../services/articulo/articulo.service';
 import { ArticuloComponent } from './articulo/articulo.component';
-import { articulo } from '../../model/articulo';
 import { FormsModule } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { SearchService } from '../../services/search/search.service';
+import { normalizeText } from '../../utils/utils';
+import { usuario } from '../../model/usuario';
+import { articulo } from '../../model/articulo';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,6 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
   styleUrls: ['./home.component.css'],
   imports: [
     RouterModule,
-    CommonModule,
     NavbarComponent,
     SidebarComponent,
     TarjetaUsuarioComponent,
@@ -33,107 +33,80 @@ export class HomeComponent implements OnInit {
   public misUsuarios: usuario[] = [];
   public articulos: articulo[] = [];
   public inputText: string = '';
-  public retrievedText: string | null = null;
   public selectedOption: string = 'Articulos';
-
-  //Variables para la paginación
-  public pageSize = 5;
   public currentPage = 1;
+  public pageSize = 5;
   public pages: number[] = [];
 
   constructor(
     private usuarioService: UsuarioService,
-    private articuloService: ArticuloService
+    private articuloService: ArticuloService,
+    private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
     this.loadUsuarios();
     this.loadArticulos();
-    this.usuarioService.getusuarios().subscribe((data: usuario[]) => {
-      this.misUsuarios = data;
-    });
-    this.articuloService.getArticulos().subscribe((data: articulo[]) => {
-      this.articulos = data;
-      //Llamamos al metodo para la paginación
-      this.calculatePages();
+
+    this.searchService.searchCriteria$.subscribe(({ text, option }) => {
+      this.inputText = text;
+      this.selectedOption = option;
+      this.fetchData();
     });
   }
 
-  // Load all users on init
   loadUsuarios(): void {
     this.usuarioService.getusuarios().subscribe((data: usuario[]) => {
       this.misUsuarios = data;
     });
   }
 
-  // Load all articles on init
   loadArticulos(): void {
     this.articuloService.getArticulos().subscribe((data: articulo[]) => {
       this.articulos = data;
     });
   }
-  // Fetch articles based on input text
+
+  getTodos(): void {
+    this.getarticulos();
+    this.getusuarios(); 
+  }
+
   getarticulos(): void {
     this.articuloService.getArticulos().subscribe((articulos: articulo[]) => {
-      let requests = [];
-      console.log("Articulos:", articulos);
-      for (let i = 1; i <= articulos.length; i++) { // Acceder a la longitud del array de articulos
-        requests.push(this.articuloService.getArticuloById(i));
-      }
-  
-      forkJoin(requests).subscribe((results: articulo[]) => {
-        this.articulos = results.filter(
-          (data) =>
-            data.titulo.includes(this.inputText) ||
-            data.contenido.includes(this.inputText)
-        );
-        this.articulos.forEach((articulo) => console.log(articulo));
-      });
+      const normalizedInput = normalizeText(this.inputText);
+      this.articulos = articulos.filter(
+        (data) =>
+          normalizeText(data.titulo).includes(normalizedInput) ||
+          normalizeText(data.contenido).includes(normalizedInput)
+      );
     });
   }
-  
 
-  // Fetch users based on input text
   getusuarios(): void {
     this.usuarioService.getusuarios().subscribe((usuarios: usuario[]) => {
-      let requests = [];
-      console.log("Usuarios:", usuarios);
-      for (let i = 1; i <= usuarios.length; i++) { // Acceder a la longitud del array de usuarios
-        requests.push(this.usuarioService.getUsuarioById(i));
-      }
-  
-      forkJoin(requests).subscribe((results: usuario[]) => {
-        this.misUsuarios = results.filter((data) =>
-          data.nombre.includes(this.inputText)
-        );
-        this.misUsuarios.forEach((usuario) => console.log(usuario));
-      });
+      const normalizedInput = normalizeText(this.inputText);
+      this.misUsuarios = usuarios.filter((data) =>
+        normalizeText(data.nombre).includes(normalizedInput)
+      );
     });
   }
-  
 
-  // Handle option change event
-  onOptionChange(event: any): void {
-    this.selectedOption = event.target.value;
-    console.log('Opción seleccionada:', this.selectedOption);
-  }
-
-  // Method to fetch data based on the selected option
   fetchData(): void {
-    if (this.selectedOption === 'Articulos') {
+    if (this.selectedOption === 'Todos') {
+      this.getTodos();
+    } else if (this.selectedOption === 'Articulos') {
       this.getarticulos();
     } else if (this.selectedOption === 'Usuarios') {
       this.getusuarios();
     }
   }
 
-  //Metodos para la paginación
-
   calculatePages(): void {
     this.pages = [];
     const totalPages = this.totalPages;
     for (let i = 0; i < totalPages; i++) {
-      this.pages.push(i + 1); // Asegurar que las páginas empiecen desde 1
+      this.pages.push(i + 1);
     }
   }
 
