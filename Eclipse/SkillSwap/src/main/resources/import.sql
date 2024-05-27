@@ -103,7 +103,6 @@ INSERT INTO `chat` (`id`, `id_usuario1`, `id_usuario2`) VALUES (NULL, '12', '13'
 -- Chat entre Usuario 14 y Usuario 15
 INSERT INTO `chat` (`id`, `id_usuario1`, `id_usuario2`) VALUES (NULL, '14', '15');
 
-
 -- Comentarios
 
 -- Comentario en el artículo 1 por el usuario 1
@@ -829,10 +828,18 @@ INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('20', '47');
 
 
 -- Valoraciones
-INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '1', '1')
-INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '2', '1', '2')
-INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '3', '1', '3')
-INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '5', '1', '4')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '33', '1')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '2', '44', '2')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '3', '22', '3')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '14', '4')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '11', '5')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '5', '3', '6')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '5', '5', '7')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '5', '45', '8')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '24', '9')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '3', '27', '10')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '2', '29', '3')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '1', '13', '4')
 
 --Articulo_Skill
 INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '1')
@@ -840,3 +847,4 @@ INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '2')
 INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '3')
 INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('2', '1')
 INSERT INTO `articulo_skill` (`articulo`, `skill`) VALUES ('1', '10')
+

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill_swap.entidades.*;
@@ -69,4 +70,15 @@ public class ValoracionControlador {
 			}
 		}
 	}
+	
+	@GetMapping("/valoraciones")
+	public ResponseEntity<List<Valoracion>> obtenerValoracionesPorArticulo(@RequestParam Long articulo) {
+	    List<Valoracion> valoraciones = valoracionServicio.obtenerValoracionPorArticulo(articulo);
+	    if (!valoraciones.isEmpty()) {
+	        return ResponseEntity.status(HttpStatus.OK).body(valoraciones);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
+	}
+
 }
