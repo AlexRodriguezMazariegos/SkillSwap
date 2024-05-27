@@ -30,4 +30,8 @@ export class ArticuloService {
   deleteArticulo(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`)
   }
+
+  updateArticulo(id: number, articulo: articulo): Observable<articulo> {
+    return this.http.put<articulo>(`${this.baseUrl}/${id}`, articulo);
+  }
 }
