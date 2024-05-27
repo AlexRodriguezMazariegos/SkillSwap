@@ -29,6 +29,12 @@
   padding: 2%;
 }
 
+.no-articulos{
+  text-align: center;
+  font-family: var(--tituloPpal);
+  margin: 0;
+}
+
 ::ng-deep .grey-background .default-button-reverse {
   background-color: var(--light-grey);
 }
