@@ -14,6 +14,7 @@ import { ArticuloService } from '../../services/articulo/articulo.service';
 import { articulo } from '../../model/articulo';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
+import { EditProfileService } from '../../services/editprofile/edit-profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
   usuario = localStorage.getItem('usuario');
   usuarioId = 0;
   miPerfil: boolean = false;
+  isEditing: boolean = false;
   public articulos: articulo[] = [];
   public miUsuario: usuario = {
     id: 0,
@@ -58,7 +60,8 @@ export class ProfileComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private route: ActivatedRoute,
-    private articuloService: ArticuloService
+    private articuloService: ArticuloService,
+    private editProfileService: EditProfileService
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +88,11 @@ export class ProfileComponent implements OnInit {
             });
         }
       });
+    });
+    //Escuchar el editar perfil
+    this.editProfileService.isEditing$.subscribe((value: boolean) => {
+      this.isEditing = value;
+      console.log(this.isEditing);
     });
   }
 

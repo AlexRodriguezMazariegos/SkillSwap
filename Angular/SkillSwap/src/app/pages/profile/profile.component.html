@@ -11,9 +11,13 @@
     <div class="content-home col-md-10">
       @if (miPerfil) {
       <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
+      @if (isEditing == true) {
+      <app-user-info-edit [miUsuario]="miUsuario"></app-user-info-edit>
+      }@else {
       <app-user-info [miUsuario]="miUsuario"></app-user-info>
-      } @else {
+      } } @else {
       <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
+
       <app-user-info [miUsuario]="miUsuario"></app-user-info>
       <div class="post-container">
         <h2>Artículos</h2>
