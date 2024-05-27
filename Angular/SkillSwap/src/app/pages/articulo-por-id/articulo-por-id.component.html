@@ -8,11 +8,14 @@
     <div class="col-md-2">
       <app-sidebar></app-sidebar>
     </div>
-    <div style="position: absolute; top: 65px; left: 325px; width: 55px; background-color: transparent;"
-          class="default-button-reverse boton"
+    <div class="content-articulo-id col-md-10 cambio">
+      <div class="contenido">
+        <div
+          class="default-button-reverse contenedor-boton"
           href="javascript:void(0);"
           onclick="window.history.back();"
-        ><a>
+        >
+          <a>
             <svg
               class="w-6 h-6 text-gray-800 dark:text-white"
               aria-hidden="true"
@@ -32,27 +35,25 @@
             </svg>
           </a>
         </div>
-      <div class="content-articulo-id col-md-10 cambio">
+        <div class="arriba">
+          <div class="titulo">{{ articuloPorId.titulo }}</div>
+          <div class="estrellas">
+            <app-valoracion-estrellas></app-valoracion-estrellas>
+          </div>
+        </div>
+        <div class="autor">
+          <p>
+            {{ articuloPorId.usuario.nombre }}
+            {{ articuloPorId.usuario.apellido }}
+          </p>
+          <p>{{ fechaPublicacionFormateada }}</p>
+          <!--<div>{{articuloPorId.}}</div>-->
+        </div>
+        <div class="descripcion">{{ articuloPorId.descripcion }}</div>
         <div class="contenido">
-          <div class="arriba">
-            <div class="titulo">{{ articuloPorId.titulo }}</div>
-            <div class="estrellas">
-              <app-valoracion-estrellas></app-valoracion-estrellas>
-            </div>
-          </div>
-          <div class="autor">
-            <p>
-              {{ articuloPorId.usuario.nombre }}
-              {{ articuloPorId.usuario.apellido }}
-            </p>
-            <p>{{ fechaPublicacionFormateada }}</p>
-            <!--<div>{{articuloPorId.}}</div>-->
-          </div>
-          <div class="descripcion">{{ articuloPorId.descripcion }}</div>
-          <div class="contenido">
-            <div [innerHTML]="sanitizedContent"></div>
-          </div>
+          <div [innerHTML]="sanitizedContent"></div>
         </div>
       </div>
     </div>
   </div>
+</div>
