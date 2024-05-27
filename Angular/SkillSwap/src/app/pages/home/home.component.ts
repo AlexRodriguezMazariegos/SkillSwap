@@ -74,6 +74,8 @@ export class HomeComponent implements OnInit {
 
   getarticulos(): void {
     this.articuloService.getArticulos().subscribe((articulos: articulo[]) => {
+      this.articulos = articulos;
+      this.calculatePages();
       const normalizedInput = normalizeText(this.inputText);
       this.articulos = articulos.filter(
         (data) =>
@@ -108,6 +110,7 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < totalPages; i++) {
       this.pages.push(i + 1);
     }
+    console.log("aaaaaa" + this.pages);
   }
 
   get paginatedArticulos(): articulo[] {

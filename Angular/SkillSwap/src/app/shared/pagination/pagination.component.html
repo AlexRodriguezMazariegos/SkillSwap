@@ -23,14 +23,15 @@
       />
     </svg>
   </button>
+  @for (page of pages; track page) {
   <button
-    *ngFor="let page of pages"
     class="default-button-reverse"
     (click)="setPage(page)"
     [ngClass]="{ 'active-page': currentPage === page }"
   >
     {{ page }}
   </button>
+  }
   <button
     class="default-button-reverse"
     (click)="nextPage()"
