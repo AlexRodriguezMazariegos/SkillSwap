@@ -10,9 +10,10 @@
     </div>
     <div class="content-home col-md-10">
       <div class="row filas-home">
-        @if (misUsuarios.length > 0){
+        @if (misUsuarios.length > 0 ){
         <!-- Verifica si hay usuarios destacados -->
         <h1 class="titulo">Usuarios destacados</h1>
+        @if(usuariosCargados == true){
         <div class="d-flex flex-row flex-wrap">
           @for (usuario of misUsuarios.slice(0, 6); track usuario) {
           <div class="col custom-col">
@@ -20,7 +21,11 @@
           </div>
           }
         </div>
-        }
+        }@else {
+        <div class="spinner-container" role="status">
+          <span class="loading-text">Cargando<span class="dot1">.</span><span class="dot2">.</span><span class="dot3">.</span></span>
+        </div>
+        } }
       </div>
       <div class="row filas-home">
         @if (paginatedArticulos.length > 0){

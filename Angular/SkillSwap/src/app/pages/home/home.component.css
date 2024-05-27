@@ -52,6 +52,35 @@
     outline: none;
 }
 
+/*Mensaje de carga Usuarios*/
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px; /* Ajusta la altura según sea necesario */
+  }
+  
+  .loading-text {
+    font-size: 24px; /* Ajusta el tamaño del texto según sea necesario */
+  }
+  
+  .dot1, .dot2, .dot3 {
+    animation: dots 1.5s infinite; /* Velocidad de la animación */
+    opacity: 0;
+  }
+  
+  @keyframes dots {
+    0% { opacity: 0; }
+    25% { opacity: 1; }
+    50% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+  
+  .dot1 { animation-delay: 0.5s; }
+  .dot2 { animation-delay: 1s; }
+  .dot3 { animation-delay: 1.5s; }
+
 /* Responsive móvil */
 @media only screen and (max-width: 480px) {
     .content-home {
