@@ -5,6 +5,7 @@ import { ConfirmationModalComponent } from '../../confirmation-modal/confirmatio
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ValoracionEstrellasComponent } from '../../../shared/valoracion-estrellas/valoracion-estrellas.component';
 import { ArticuloService } from '../../../services/articulo/articulo.service';
+import { EditorArticuloComponent } from '../../editor-articulo/editor-articulo.component';
 
 
 @Component({
@@ -45,8 +46,9 @@ export class ArticuloComponent implements OnInit {
     this.openDialog('¿Deseas eliminar este elemento?', 'Eliminar', this.articulos.id);
   }
 
-  editArticulo($event: MouseEvent) {
-    throw new Error('Method not implemented.');
+  editArticulo(event: Event) {
+    event.stopPropagation();
+    this.router.navigate([`/editar-articulo/${this.articulos.id}`]);
   }
 
   openDialog(pregunta: string = '¿Estás seguro que deseas eliminar el artículo?', textoBoton: string = 'Borrar artículo', id: number): void {
