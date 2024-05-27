@@ -107,14 +107,23 @@ export class EditorArticuloComponent {
 
     console.log('Enviando artículo:', articulo);
 
-    this.showToast();
+    this.articuloService.postArticulo(articulo).subscribe({
+      next: (response) => {
+        console.log('Artículo guardado', response);
+        this.showSuccessToast();
+      },
+      error: (err) => {
+        console.error('Error al guardar el artículo', err);
+        this.showErrorToast();
+      }
+    });
 
     this.articuloService.postArticulo(articulo).subscribe((response) => {
       console.log('Artículo guardado', response);
     });
   }
 
-  showToast() {
+  showSuccessToast() {
     this.toast.success('Artículo guardado', {
       duration: 1400,
       style: {
@@ -128,6 +137,25 @@ export class EditorArticuloComponent {
       },
       iconTheme: {
         primary: '#002d3c',
+        secondary: '#ffff',
+      },
+    });
+  }
+
+  showErrorToast() {
+    this.toast.error('Artículo no guardado', {
+      duration: 1400,
+      style: {
+        border: '1px solid #d9534f',
+        padding: '16px',
+        color: '#d9534f',
+        zIndex: 999999999,
+        position: 'fixed',
+        top: '60px',
+        left: '650px',
+      },
+      iconTheme: {
+        primary: '#d9534f',
         secondary: '#ffff',
       },
     });
