@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
   imagenUsuario = '';
   searchControl: FormControl = new FormControl();
   inputText: string = '';
-  selectedOption: string = 'Articulos';
+  selectedOption: string = 'Todos';
 
   constructor(public dialog: MatDialog, private router: Router, private searchService: SearchService) {}
 

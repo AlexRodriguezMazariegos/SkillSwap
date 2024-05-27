@@ -67,6 +67,11 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  getTodos(): void {
+    this.getarticulos();
+    this.getusuarios(); 
+  }
+
   getarticulos(): void {
     this.articuloService.getArticulos().subscribe((articulos: articulo[]) => {
       const normalizedInput = normalizeText(this.inputText);
@@ -88,7 +93,9 @@ export class HomeComponent implements OnInit {
   }
 
   fetchData(): void {
-    if (this.selectedOption === 'Articulos') {
+    if (this.selectedOption === 'Todos') {
+      this.getTodos();
+    } else if (this.selectedOption === 'Articulos') {
       this.getarticulos();
     } else if (this.selectedOption === 'Usuarios') {
       this.getusuarios();
