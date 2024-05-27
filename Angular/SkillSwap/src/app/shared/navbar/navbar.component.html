@@ -1,29 +1,79 @@
-<nav class="navbar" style="background-image: linear-gradient(to right, #ff6d43 0%, #f5896c 33%, #f5896c 66%, #ff6d43 100%);">
-    <div class="container-fluid d-flex justify-content-between align-items-center">
-        <div class="nav-logo">
-            <a class="navbar-brand" href="/home">
-                SkillSwap
-            </a>
-        </div>
-        <div class="nav-search">
-            <form class="d-flex">
-                <input class="form-control rounded-start rounded-end-0" type="text" name="searchInput" placeholder="Buscar" aria-label="Search">
-                <button class="btn-search btn btn-outline-success border border-0 rounded-start rounded-start-0" type="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search fw-bold" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-                    </svg>
-                </button>
-            </form>
-        </div>
-        
-        <div class="nav-user-img d-flex">
-            <div class="d-flex flex-row align-items-center gap-2 ">
-                <span>Hola, {{nombreUsuario}}!</span>
-                <button type="button" class="user-img-btn" style="height: 44px; width: 84px;" (click)="abrirProfile()">
-                    <img class="rounded-circle w-50 h-100" alt="..." src="../../../assets/img/profile/{{imagenUsuario}}.jpg">
-                </button>
-            </div>
-        </div>
+<nav
+  class="navbar"
+  style="
+    background-image: linear-gradient(
+      to right,
+      #ff6d43 0%,
+      #f5896c 33%,
+      #f5896c 66%,
+      #ff6d43 100%
+    );
+  "
+>
+  <div
+    class="container-fluid d-flex justify-content-between align-items-center"
+  >
+    <div class="nav-logo">
+      <a class="navbar-brand" href="/home"> SkillSwap </a>
     </div>
-</nav>
+    <div class="nav-search">
+      <form class="d-flex mt-2" (ngSubmit)="onSearch($event)">
+        <input
+          class="form-control rounded-start rounded-end-0"
+          type="text"
+          [formControl]="searchControl"
+          name="searchInput"
+          placeholder="Buscar"
+          aria-label="Search"
+        />
+        <select
+          id="opciones"
+          class="select-art"
+          name="opciones"
+          [(ngModel)]="selectedOption"
+          (change)="onOptionChange($event)"
+        >
+          <option value="Todos">Todos</option>
+          <!-- Opción por defecto -->
+          <option value="Articulos">Articulos</option>
+          <option value="Usuarios">Usuarios</option>
+        </select>
+        <button
+          class="btn-search btn btn-outline-success border border-0 rounded-start rounded-start-0"
+          type="submit"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-search fw-bold"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"
+            />
+          </svg>
+        </button>
+      </form>
+    </div>
 
+    <div class="nav-user-img d-flex">
+      <div class="d-flex flex-row align-items-center gap-2">
+        <span>Hola, {{ nombreUsuario }}!</span>
+        <button
+          type="button"
+          class="user-img-btn"
+          style="height: 44px; width: 84px"
+          (click)="abrirProfile()"
+        >
+          <img
+            class="rounded-circle w-50 h-100"
+            alt="..."
+            src="../../../assets/img/profile/{{ imagenUsuario }}.jpg"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
