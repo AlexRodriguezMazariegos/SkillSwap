@@ -18,6 +18,14 @@
   margin-right: 8px;
 }
 
+#guardar:hover{
+  background-color: var(--verde);
+}
+
+#cancelar:hover{
+  background-color: var(--rojo);
+}
+
 
 #follow-btn {
   background-color: var(--lightgrey);

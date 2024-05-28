@@ -1,6 +1,6 @@
 <div class="botones">
-  @if (miPerfil) {
-  <button class="default-button" onclick="editarPerfil()">
+  @if (miPerfil) { @if (!isEditing) {
+  <button class="default-button" (click)="editarPerfil()">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -17,6 +17,49 @@
     </svg>
     <span class="ms-1">Editar</span>
   </button>
+  }@else {
+  <button class="default-button" id="guardar" (click)="guardarPerfil()">
+    <svg
+      class="w-6 h-6 text-gray-800 dark:text-white"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M8.5 11.5 11 14l4-4m6 2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    </svg>
+    <span class="ms-1">Guardar</span>
+  </button>
+  <button class="default-button" id="cancelar" (click)="cancelarPerfil()">
+    <svg
+      class="w-6 h-6 text-gray-800 dark:text-white"
+      aria-hidden="true"
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <path
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+      />
+    </svg>
+
+    <span class="ms-1">Cancelar</span>
+  </button>
+  } @if (!isEditing) {
   <button class="default-button" id="boton-git" (click)="openGit()">
     <svg
       class="w-6 h-6 text-gray-800 dark:text-white"
@@ -35,7 +78,7 @@
     </svg>
     <span class="ms-1">GitHub</span>
   </button>
-  } @else { @if (estaSiguiendo) {
+  } } @else { @if (estaSiguiendo) {
   <button class="default-button" id="follow-btn" (click)="unfollowUser()">
     <svg
       class="w-6 h-6 text-gray-800 dark:text-white"
@@ -54,7 +97,7 @@
         stroke-width="2"
         d="M5 11.917 9.724 16.5 19 7.5"
       />
-    </svg>  
+    </svg>
     <span class="ms-1">Siguiendo</span>
   </button>
   } @else {
