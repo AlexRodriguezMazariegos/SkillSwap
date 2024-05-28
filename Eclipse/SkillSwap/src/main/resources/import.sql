@@ -494,7 +494,6 @@ INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (21, 47);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 1);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 2);
-INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 3);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 4);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 5);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 45);
