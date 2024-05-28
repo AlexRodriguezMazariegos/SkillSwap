@@ -17,7 +17,7 @@ import { articulo } from '../../model/articulo';
 import { HotToastService } from '@ngneat/hot-toast';
 import { register } from 'module';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-editor-articulo',
   standalone: true,
@@ -87,7 +87,8 @@ export class EditorArticuloComponent {
   constructor(
     private route: ActivatedRoute,
     private articuloService: ArticuloService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -139,6 +140,8 @@ export class EditorArticuloComponent {
         this.showErrorToast();
       },
     });
+
+    this.router.navigate(['/mis-articulos']);
   }
 
   showSuccessToast() {

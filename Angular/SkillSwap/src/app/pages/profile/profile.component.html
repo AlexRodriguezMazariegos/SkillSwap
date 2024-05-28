@@ -23,7 +23,7 @@
         <h2>Artículos</h2>
         <div class="container-articulos">
           @if (paginatedArticulos.length === 0) {
-          <p class="no-articulos">Este usuario no tiene artículos ¯\_(ツ)_/¯</p>
+          <p class="no-articulos">Este usuario no tiene artículos</p>
           } @else { @for (articulo of paginatedArticulos; track articulo) {
           <app-articulo [articulos]="articulo"></app-articulo>
           } }
