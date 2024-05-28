@@ -12,11 +12,11 @@ export class ArticuloService {
   constructor(private http: HttpClient) {}
 
   getArticulos(): Observable<any> {
-    return this.http.get<any>(this.baseUrl);
+    return this.http.get<any>(`${this.baseUrl}/activos`);
   }
 
   getArticuloById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    return this.http.get<any>(`${this.baseUrl}//activos/${id}`);
   }
 
   getArticuloByUserId(id: number): Observable<any> {
