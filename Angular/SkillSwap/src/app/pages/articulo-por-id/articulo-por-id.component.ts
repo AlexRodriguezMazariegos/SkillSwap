@@ -54,7 +54,6 @@ export class ArticuloPorIdComponent implements OnInit {
         // Formatea la fecha de publicación
         this.fechaPublicacionFormateada = this.formatDate(this.articuloPorId.fechaPublicacion);
         this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.articuloPorId.contenido);
-        console.log(this.articuloPorId);
       });
     });
   }

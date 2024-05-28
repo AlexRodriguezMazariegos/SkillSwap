@@ -12,9 +12,17 @@ import { ActivatedRoute } from '@angular/router';
 export class ComentarioArticuloComponent implements OnInit{
   @Input() articuloPorId:any;
 
-  constructor () {}
+  constructor (
+    private articuloService: ArticuloService,
+    private route: ActivatedRoute) {}
   
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      this.articuloService.getArticuloById(id).subscribe(data => {
+        this.articuloPorId = data;
         console.log(this.articuloPorId);
+      });
+    });
   }
 }
