@@ -30,22 +30,22 @@ public class UsuarioServicio {
 
 	// Método para crear o actualizar un usuario
 	public Usuario actualizarUsuario(Long id, Usuario usuario) {
-	    try {
-	        Usuario usuarioAModificar = usuarioRepositorio.findById(id).get();
-	        // El id se queda como estaba
-	        usuarioAModificar.setId(id);
-	        usuarioAModificar.setNombre(usuario.getNombre());
-	        usuarioAModificar.setApellido(usuario.getApellido());
-	        usuarioAModificar.setEmail(usuario.getEmail());
-	        usuarioAModificar.setFotoDePerfil(usuario.getFotoDePerfil());
-	        usuarioAModificar.setContrasena(usuario.getContrasena());
-	        usuarioAModificar.setUrlGitHub(usuario.getUrlGitHub());
-	        usuarioAModificar.setSkills(usuario.getSkills());
-	        return usuarioRepositorio.save(usuarioAModificar);
-	    } catch (NoSuchElementException e) {
-	        // Manejo de la excepción si el usuario no existe
-	        return null;
-	    }
+		try {
+			Usuario usuarioAModificar = usuarioRepositorio.findById(id).get();
+			// El id se queda como estaba
+			usuarioAModificar.setId(id);
+			usuarioAModificar.setNombre(usuario.getNombre());
+			usuarioAModificar.setApellido(usuario.getApellido());
+			usuarioAModificar.setEmail(usuario.getEmail());
+			usuarioAModificar.setFotoDePerfil(usuario.getFotoDePerfil());
+			usuarioAModificar.setContrasena(usuario.getContrasena());
+			usuarioAModificar.setUrlGitHub(usuario.getUrlGitHub());
+			usuarioAModificar.setSkills(usuario.getSkills());
+			return usuarioRepositorio.save(usuarioAModificar);
+		} catch (NoSuchElementException e) {
+			// Manejo de la excepción si el usuario no existe
+			return null;
+		}
 	}
 
 
@@ -60,7 +60,7 @@ public class UsuarioServicio {
 			}
 		}
 	}
-	
+
 	public Boolean FindByEmail(String email) {
 		if (usuarioRepositorio.findByEmail(email)!= null) {
 			return true;
@@ -69,7 +69,7 @@ public class UsuarioServicio {
 			return false;
 		}
 	}
-	
+
 	public Usuario login(String email, String contrasena) {
 		return usuarioRepositorio.login(email, contrasena);
 	}
