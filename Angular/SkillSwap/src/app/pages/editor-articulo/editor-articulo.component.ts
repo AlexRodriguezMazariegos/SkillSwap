@@ -122,26 +122,30 @@ export class EditorArticuloComponent {
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
     };
-
+  
     console.log('Enviando artículo:', articulo);
-
+  
     const saveObservable =
       articulo.id === 0
         ? this.articuloService.postArticulo(articulo)
         : this.articuloService.updateArticulo(articulo.id, articulo);
-
+  
     saveObservable.subscribe({
       next: (response) => {
         console.log('Artículo guardado', response);
         this.showSuccessToast();
+        this.router.navigate(['/mis-articulos']).then(() => {
+          // Añade un pequeño retraso antes de recargar
+          setTimeout(() => {
+            window.location.reload();
+          }, 100); // 100 milisegundos de retraso
+        });
       },
       error: (err) => {
         console.error('Error al guardar el artículo', err);
         this.showErrorToast();
       },
     });
-
-    this.router.navigate(['/mis-articulos']);
   }
 
   showSuccessToast() {
