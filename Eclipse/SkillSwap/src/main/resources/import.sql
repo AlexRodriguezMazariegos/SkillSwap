@@ -494,7 +494,6 @@ INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (21, 47);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 1);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 2);
-INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 3);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 4);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 5);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (47, 45);
@@ -739,7 +738,6 @@ INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('5', '29');
 -- Usuario 30
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('6', '30');
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('7', '30');
-INSERT INTO `
 
 -- Usuario 31
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('1', '31');

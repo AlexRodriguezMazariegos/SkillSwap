@@ -1,7 +1,5 @@
 package com.skill_swap.controladores;
 
-import com.skill_swap.entidades.Articulo;
-import com.skill_swap.servicios.ArticuloServicio;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.skill_swap.entidades.Articulo;
+import com.skill_swap.entidades.Comentario;
+import com.skill_swap.servicios.ArticuloServicio;
+import com.skill_swap.servicios.ComentarioServicio;
 
 @RestController
 @RequestMapping("/api/v1/articulo")
@@ -25,6 +27,9 @@ public class ArticuloControlador {
 
 	@Autowired
 	private ArticuloServicio articuloServicio;
+	
+	@Autowired
+	private ComentarioServicio comentarioServicio;
 
 	@GetMapping("")
 	public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
@@ -110,5 +115,17 @@ public class ArticuloControlador {
 			}
 		}
 	}
+
+	@GetMapping("/{id}/comentarios")
+	public ResponseEntity<List<Comentario>> obtenerComentariosPorArticuloId(@PathVariable Long id) {
+	    List<Comentario> comentarios = comentarioServicio.obtenerComentariosPorArticuloId(id);
+	    System.out.println("Comentarios encontrados: " + comentarios.size());
+	    if (!comentarios.isEmpty()) {
+	        return ResponseEntity.status(HttpStatus.OK).body(comentarios);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
+	}
+
 
 }
