@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -75,6 +76,22 @@ public class ArticuloControlador {
 		return ResponseEntity.status(HttpStatus.CREATED).body(articuloServicio.crearArticulo(articulo));
 	}
 
+	@PatchMapping("/{id}")
+	public ResponseEntity<Articulo> patchearArticulo(@PathVariable Long id){
+		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		if(articuloServicio.obtenerArticuloPorId(id).isPresent()) {
+			Articulo a = articuloServicio.obtenerArticuloPorId(id).get();
+			if(a.getActivo()==true) {
+				a.setActivo(false);
+			}else {
+				a.setActivo(true);
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.crearArticulo(a));
+		}else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {
 		if (articuloServicio.obtenerArticuloPorId(id) == null) {

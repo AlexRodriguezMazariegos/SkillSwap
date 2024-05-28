@@ -71,6 +71,12 @@ export class ArticuloComponent implements OnInit {
     this.router.navigate([`/editar-articulo/${this.articulos.id}`]);
   }
 
+  activarDesactivarArticulo(event: Event) {
+    console.log(this.articulos);
+    event.stopPropagation();
+    this.articuloService.activarDesactivar(this.articulos.id);
+  }
+
   openDialog(pregunta: string = '¿Estás seguro que deseas eliminar el artículo?', textoBoton: string = 'Borrar artículo', id: number): void {
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data: {
@@ -84,10 +90,10 @@ export class ArticuloComponent implements OnInit {
       if (result) {
         this.articuloService.deleteArticulo(id).subscribe({
           next: () => {
-            console.log('Artículo eliminado');
+            console.log('Artículo desactivado');
             window.location.reload(); // Recargar la página después de eliminar el artículo
           },
-          error: (err) => console.error('Error eliminando artículo', err)
+          error: (err) => console.error('Error desactivando el artículo', err)
         });
       } else {
         console.log('Acción cancelada');
