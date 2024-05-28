@@ -739,7 +739,6 @@ INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('5', '29');
 -- Usuario 30
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('6', '30');
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('7', '30');
-INSERT INTO `
 
 -- Usuario 31
 INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('1', '31');
