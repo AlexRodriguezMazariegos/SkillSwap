@@ -57,5 +57,9 @@ public class ComentarioServicio {
 	        return false;
 	    }
 	}
+	
+	public List<Comentario> obtenerComentariosPorArticuloId(Long articuloId) {
+        return comentarioRepositorio.findByArticuloId(articuloId);
+    }
 
 }
