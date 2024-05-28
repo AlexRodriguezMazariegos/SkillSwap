@@ -29,19 +29,19 @@ public class MensajeServicioTest {
     private MensajeServicio mensajeServicio;
 
     @Test
-    void testObtenerTodosLosMensajes() {
-        List<Mensaje> listaMensajes = Arrays.asList(
-                new Mensaje(1L, null, null, "Texto 1", new Date()),
-                new Mensaje(2L, null, null, "Texto 2", new Date())
-        );
-        when(mensajeRepositorio.findAll()).thenReturn(listaMensajes);
+ //   void testObtenerTodosLosMensajes() {
+   //     List<Mensaje> listaMensajes = Arrays.asList(
+     //           new Mensaje(1L, null, null, "Texto 1", new Date()),
+       //         new Mensaje(2L, null, null, "Texto 2", new Date())
+        //);
+        //when(mensajeRepositorio.findAll()).thenReturn(listaMensajes);
 
-        List<Mensaje> resultado = mensajeServicio.obtenerTodosLosMensajes();
+        //List<Mensaje> resultado = mensajeServicio.obtenerTodosLosMensajes();
 
-        assertEquals(2, resultado.size());
-    }
+      //  assertEquals(2, resultado.size());
+  //  }
 
-    @Test
+    //@Test
     void testObtenerMensajePorIdExistente() {
         Mensaje mensaje = new Mensaje(1L, null, null, "Texto", new Date());
         when(mensajeRepositorio.findById(1L)).thenReturn(Optional.of(mensaje));

@@ -17,7 +17,7 @@ import { articulo } from '../../model/articulo';
 import { HotToastService } from '@ngneat/hot-toast';
 import { register } from 'module';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-editor-articulo',
   standalone: true,
@@ -87,7 +87,8 @@ export class EditorArticuloComponent {
   constructor(
     private route: ActivatedRoute,
     private articuloService: ArticuloService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -121,18 +122,24 @@ export class EditorArticuloComponent {
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
     };
-
+  
     console.log('Enviando artículo:', articulo);
-
+  
     const saveObservable =
       articulo.id === 0
         ? this.articuloService.postArticulo(articulo)
         : this.articuloService.updateArticulo(articulo.id, articulo);
-
+  
     saveObservable.subscribe({
       next: (response) => {
         console.log('Artículo guardado', response);
         this.showSuccessToast();
+        this.router.navigate(['/mis-articulos']).then(() => {
+          // Añade un pequeño retraso antes de recargar
+          setTimeout(() => {
+            window.location.reload();
+          }, 100); // 100 milisegundos de retraso
+        });
       },
       error: (err) => {
         console.error('Error al guardar el artículo', err);
