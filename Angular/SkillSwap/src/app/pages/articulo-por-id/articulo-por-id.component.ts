@@ -11,6 +11,8 @@ import { ValoracionService } from '../../services/valoracion/valoracion.service'
 import { usuario } from '../../model/usuario';
 import { formatDate } from '@angular/common';
 
+import { ComentarioArticuloComponent } from "./comentario-articulo/comentario-articulo.component";
+
 
 @Component({
   selector: 'app-articulo-por-id',
@@ -42,12 +44,13 @@ export class ArticuloPorIdComponent implements OnInit {
       urlGitHub: '',
       puestoEmpresa: '',
       skills: [],
-      fotoDePerfil: '',
+      fotoDePerfil: ''
     },
     contenido: '',
     descripcion: '',
     titulo: '',
     fechaPublicacion: new Date(),
+    comentarios: []
   };
 
   fechaPublicacionFormateada: string = '';
@@ -72,16 +75,16 @@ export class ArticuloPorIdComponent implements OnInit {
         this.articuloPorId = data;
         this.fechaPublicacionFormateada = this.formatDate(this.articuloPorId.fechaPublicacion);
         this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.articuloPorId.contenido);
-  
-        // Obtener la valoración para este artículo y usuario
+        console.log(this.articuloPorId);
+
         this.valoracionService.obtenerValoracion(this.articuloPorId.id, this.miUsuario.id)
-          .subscribe((valoracion: valoracion | null) => {
-            if (valoracion) {
-              this.valoracionExistente = true;
-              this.puntuacion = valoracion.puntuacion;
-              this.valoracionId = valoracion.id;
-            }
-          });
+        .subscribe((valoracion: valoracion | null) => {
+          if (valoracion) {
+            this.valoracionExistente = true;
+            this.puntuacion = valoracion.puntuacion;
+            this.valoracionId = valoracion.id;
+          }
+        });
       });
     });
   }
@@ -103,7 +106,6 @@ export class ArticuloPorIdComponent implements OnInit {
       }
     );
   }
-  
 
   formatDate(fecha: Date): string {
     return formatDate(fecha, 'dd-MM-yyyy', 'en-US');

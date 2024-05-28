@@ -1,3 +1,4 @@
+import { comentario } from './comentario';
 import { usuario } from './usuario';
 
 export interface articulo {
@@ -7,4 +8,5 @@ export interface articulo {
   descripcion: string;
   titulo: string;
   fechaPublicacion: Date;
+  comentarios: Array<comentario>
 }
