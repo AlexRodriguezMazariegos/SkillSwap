@@ -16,7 +16,7 @@ export class ArticuloService {
   }
 
   getArticuloById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}//activos/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/activos/${id}`);
   }
 
   getArticuloByUserId(id: number): Observable<any> {
