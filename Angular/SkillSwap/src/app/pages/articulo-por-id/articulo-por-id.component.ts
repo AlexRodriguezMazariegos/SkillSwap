@@ -24,6 +24,7 @@ import { ComentarioArticuloComponent } from "./comentario-articulo/comentario-ar
     SidebarComponent,
     ValoracionEstrellasComponent,
     RouterModule,
+    ComentarioArticuloComponent
   ],
 })
 export class ArticuloPorIdComponent implements OnInit {
