@@ -121,6 +121,7 @@ export class EditorArticuloComponent {
       descripcion: this.descripcion,
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
+      comentarios: []
     };
   
     console.log('Enviando artículo:', articulo);

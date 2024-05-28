@@ -7,32 +7,34 @@ import { SidebarComponent } from "../../shared/sidebar/sidebar.component";
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ValoracionEstrellasComponent } from '../../shared/valoracion-estrellas/valoracion-estrellas.component';
 import { formatDate } from '@angular/common';
+import { ComentarioArticuloComponent } from "./comentario-articulo/comentario-articulo.component";
 
 @Component({
     selector: 'app-articulo-por-id',
     standalone: true,
     templateUrl: './articulo-por-id.component.html',
     styleUrl: './articulo-por-id.component.css',
-    imports: [NavbarComponent, SidebarComponent, ValoracionEstrellasComponent,RouterModule]
+    imports: [NavbarComponent, SidebarComponent, ValoracionEstrellasComponent, RouterModule, ComentarioArticuloComponent]
 })
 export class ArticuloPorIdComponent implements OnInit {
   articuloPorId: articulo = {
+    id: 0,
+    usuario: {
       id: 0,
-      usuario: {
-          id: 0,
-          nombre: '',
-          apellido: '',
-          email: '',
-          contrasena: '',
-          urlGitHub: '',
-          puestoEmpresa: '',
-          skills: [],
-          fotoDePerfil: ''
-      },
-      contenido: '',
-      descripcion: '',
-      titulo: '',
-      fechaPublicacion: new Date(),
+      nombre: '',
+      apellido: '',
+      email: '',
+      contrasena: '',
+      urlGitHub: '',
+      puestoEmpresa: '',
+      skills: [],
+      fotoDePerfil: ''
+    },
+    contenido: '',
+    descripcion: '',
+    titulo: '',
+    fechaPublicacion: new Date(),
+    comentarios: []
   };
 
   fechaPublicacionFormateada: string = '';
