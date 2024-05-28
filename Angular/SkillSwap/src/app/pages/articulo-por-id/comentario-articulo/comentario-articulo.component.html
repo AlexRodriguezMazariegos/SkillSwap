@@ -1,1 +1,6 @@
-<p>comentario-articulo works!</p>
+<div class="comentario-wrapper">
+    <p>{{comentario.texto}}</p>
+    <p>{{comentario.usuario.nombre}} {{comentario.usuario.apellido}}</p>
+    <p>{{comentario.usuario.fotoDePerfil}}</p>
+    <p>{{comentario.fecha | date:'dd-MM-yyyy'}}</p>
+</div>
