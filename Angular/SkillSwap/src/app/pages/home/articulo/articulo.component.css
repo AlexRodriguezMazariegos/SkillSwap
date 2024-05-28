@@ -1,23 +1,30 @@
 .container-art {
     /* background-color: var(--ppal); */
-    background-color: #883fbc77;
-    max-width: 95%;
+    background-color: var(--light-grey);
+    width: 100%;
     border-radius: 8px;
     padding: 20px;
     cursor: pointer;
+    border: 2px solid var(--ppal_2);
 }
 
 .container-art:hover {
-    background-color: #883fbca1;
+    background-color: var(--ppal_hover);
 }
 
 .title-art {
     font-family: var(--tituloPpal);
-    color: var(--body);
+    color: var(--ppal);
     font-size: 28px;
 }
 
 .descr-art {
+    width: 65%;
+    font-weight: lighter;
+    font-size: 15px;
+}
+
+.val-art {
     width: 65%;
     font-weight: lighter;
     font-size: 15px;
@@ -45,4 +52,33 @@
     height: 100%;
     object-fit: cover;
   }
+
+  #delete-button:hover{
+    background-color: var(--rojo);
+    border-color: var(--rojo);
+  }
   
+  @media only screen and (max-width: 480px) {
+    .container-art {
+        padding: 10px;
+        flex-direction: column;
+        gap: 2;
+    }
+
+    .user-art {
+        display: flex;
+        align-items: center;
+    }
+
+    .descr-art {
+        width: 100%;
+    }
+
+    .title-art {
+        font-size: 22px;
+    }
+
+    .info-art {
+        font-size: 12px;
+    }
+  }

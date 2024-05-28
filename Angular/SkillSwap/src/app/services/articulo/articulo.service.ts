@@ -19,7 +19,19 @@ export class ArticuloService {
     return this.http.get<any>(`${this.baseUrl}/${id}`);
   }
 
+  getArticuloByUserId(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/usuario/${id}`);
+  }
+
   postArticulo(newArticulo: articulo):Observable<any>{
     return this.http.post(this.baseUrl, newArticulo)
+  }
+
+  deleteArticulo(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`)
+  }
+
+  updateArticulo(id: number, articulo: articulo): Observable<articulo> {
+    return this.http.put<articulo>(`${this.baseUrl}/${id}`, articulo);
   }
 }

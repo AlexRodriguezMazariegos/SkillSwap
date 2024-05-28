@@ -9,8 +9,36 @@
       <app-sidebar></app-sidebar>
     </div>
     <div class="content-home col-md-10">
-        <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
-        <app-user-info [miUsuario]="miUsuario"></app-user-info>
+      @if (miPerfil) {
+      <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
+      @if (isEditing == true) {
+      <app-user-info-edit [miUsuario]="miUsuario"></app-user-info-edit>
+      }@else {
+      <app-user-info [miUsuario]="miUsuario"></app-user-info>
+      } } @else {
+      <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
+
+      <app-user-info [miUsuario]="miUsuario"></app-user-info>
+      <div class="post-container">
+        <h2>Artículos</h2>
+        <div class="container-articulos">
+          @if (paginatedArticulos.length === 0) {
+          <p class="no-articulos">Este usuario no tiene artículos</p>
+          } @else { @for (articulo of paginatedArticulos; track articulo) {
+          <app-articulo [articulos]="articulo"></app-articulo>
+          } }
+        </div>
+        <app-pagination
+          w
+          [currentPage]="currentPage"
+          [totalPages]="totalPages"
+          [pages]="pages"
+          (pageChange)="onPageChange($event)"
+          class="grey-background"
+        >
+        </app-pagination>
+      </div>
+      }
     </div>
   </div>
 </div>

@@ -1,0 +1,33 @@
+<div class="info-container">
+  <h2>Editar información personal</h2>
+  <form>
+    <table class="table">
+      <tbody>
+        <tr>
+          <th scope="row">Puesto</th>
+          <td>
+            <input type="text" [(ngModel)]="miUsuario.puestoEmpresa" name="puestoEmpresa" required/>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Email</th>
+          <td>
+            <input type="email" [(ngModel)]="miUsuario.email" name="email" required />
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">Lenguajes</th>
+          <td>
+            <p>skills</p>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">URL GitHub</th>
+          <td>
+            <input type="url" [(ngModel)]="miUsuario.urlGitHub" name="urlGitHub" required />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

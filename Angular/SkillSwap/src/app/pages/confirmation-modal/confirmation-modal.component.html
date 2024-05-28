@@ -1,0 +1,11 @@
+<div class="mat-dialog-wrapper">
+  <div class="mat-container">
+    <h2 class="title">{{ pregunta }}</h2>
+    <div class="button-container">
+      <div mat-dialog-actions>
+        <button mat-button class="default-button-reverse" (click)="confirmDelete()">{{ textoBoton }}</button>
+        <button mat-button class="default-button-reverse" (click)="closeDialog(false)">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>

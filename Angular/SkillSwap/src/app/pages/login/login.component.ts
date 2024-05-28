@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit{
 
   @ViewChild('animatedText', { static: true }) animatedTextElement: ElementRef<HTMLHeadingElement> | undefined;
 
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   // Lista de textos posibles
   textosAleatorios: string[] = [

@@ -6,14 +6,15 @@
 @import "bootstrap/dist/css/bootstrap.css";
 :root {
   --body: #ffff;
-  --ppal: #7328ab;
-  --ppal_2: #b063e9;
-  --secn: #e7e7e7;
+  --ppal: #ff6d43;
+  --ppal_2: #f5896c;
+  --ppal_hover: #ffae975c;
+  --blue: #002d3c;
   --light-grey: #ececec;
   --rojo: rgb(223, 0, 0);
-  --degradado: linear-gradient(to right, #ffffff, #7328ab);
+  --verde: rgb(0, 157, 0);
   --tituloPpal: "Orbitron", sans-serif;
-  --texto: "Lato", sans-serif;
+  --texto: "Montserrat", sans-serif;
 }
 
 * {
@@ -27,6 +28,7 @@
   height: 35px;
   background-color: var(--ppal);
   margin-top: 6%;
+  padding: 4px;
   border-radius: 5px;
   color: white;
   text-align: center;
@@ -45,6 +47,7 @@
   background-color: white;
   border: 2px solid var(--ppal);
   margin-top: 6%;
+  padding: 4px;
   border-radius: 5px;
   color: var(--ppal);
   text-align: center;

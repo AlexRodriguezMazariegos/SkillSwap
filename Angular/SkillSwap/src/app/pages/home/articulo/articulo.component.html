@@ -1,16 +1,27 @@
 <div class="container-art d-flex gap-3 justify-content-between" (click)="clickArticulo()">
-      <div class="content-art d-flex flex-column justify-content-center align-content-center ">
-        <h2 class="title-art">{{articulos.titulo}}<br></h2>
-        <p class="descr-art">{{articulos.descripcion}}</p>
-      </div>
-      <div class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1 ">
-        <div class="photo">
-          <img src="../../../../assets/img/profile/{{articulos.usuario.fotoDePerfil}}.jpg" alt="User" />
-        </div>
-        <p class="info-art">{{articulos.usuario.nombre}} {{articulos.usuario.apellido}}</p>
-        <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
-
-      </div>
+  <div class="content-art d-flex flex-column justify-content-center align-content-center" style="width: 80%;">
+    <h2 class="title-art">{{articulos.titulo}}<br></h2>
+    <p class="descr-art">{{articulos.descripcion}}</p>
+    <ng-container *ngIf="mediaValoraciones !== null">
+      <p class="val-art">Valoración: {{ mediaValoraciones.toFixed(1) }} / 5 ⭐</p>
+    </ng-container>
+    <ng-container *ngIf="mediaValoraciones === null">
+      <p class="val-art">No tiene valoraciones</p>
+    </ng-container>
   </div>
-
-
+  <div *ngIf="currentRoute === '/home'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
+    <div class="photo" (click)="clickPerfil($event)">
+      <img [src]="'../../../../assets/img/profile/' + articulos.usuario.fotoDePerfil + '.jpg'" alt="User"/>
+    </div>
+    <p class="info-art">{{articulos.usuario.nombre}} {{articulos.usuario.apellido}}</p>
+    <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
+  </div>
+  <div *ngIf="currentRoute === '/profile'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
+    <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
+  </div>
+  <div *ngIf="currentRoute === '/mis-articulos'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
+    <button (click)="editArticulo($event)" class="default-button-reverse">Editar</button>
+    <button (click)="deleteArticuloDialog($event)" class="default-button-reverse" id="delete-button">Borrar</button>
+    <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
+  </div>
+</div>

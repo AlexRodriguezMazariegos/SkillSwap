@@ -1,4 +1,6 @@
-.perfil{
-    background: #E7E7E7;
+.info-container{
+    background: var(--light-grey);
     border-radius: 10px;
+    margin: 20px;
+    padding: 2%;
 }

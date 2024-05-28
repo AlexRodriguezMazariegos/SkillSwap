@@ -52,4 +52,20 @@ public class SeguimientoServicio {
 			return false;
 		}
 	}
+	
+    public ArrayList<Seguimiento> findBySeguido(Long id) {
+        try {
+            return seguimientoRepositorio.findBySeguido(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public ArrayList<Seguimiento> findBySeguidor(Long id) {
+        try {
+            return seguimientoRepositorio.findBySeguidor(id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

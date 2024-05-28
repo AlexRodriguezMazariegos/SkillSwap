@@ -73,4 +73,10 @@ public class UsuarioServicio {
 	public Usuario login(String email, String contrasena) {
 		return usuarioRepositorio.login(email, contrasena);
 	}
+
+	public Usuario obtenerUsuarioPorNombre(String nombre) {
+		return usuarioRepositorio.findByNombre(nombre);
+	}
+
+
 }

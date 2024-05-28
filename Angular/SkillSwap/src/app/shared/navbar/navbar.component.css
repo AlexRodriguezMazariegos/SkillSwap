@@ -1,102 +1,187 @@
 * {
-    font-family: var(--texto);
+  font-family: var(--texto);
 }
 
 .form-control:focus {
-    border-color: none;
-    box-shadow: none;
-    border: none;
+  border-color: none;
+  box-shadow: none;
+  border: none;
 }
 
 .navbar {
-    position: fixed;
-    z-index: 1100000001;
-    width: 100%;
+  position: fixed;
+  z-index: 1100000001;
+  width: 100%;
 }
 
-.nav-user-img {
-    width: 180px;
-    height: 44px;
-}
-
-.user-img-btn {
-    border: none;
-    background-color: transparent;
-}
-
-.nav-user-img span {
-    max-width: 200px;
-    white-space: nowrap;
-    color: #ffff;
-    font-weight: 600;
+.navbar-brand {
+  font-family: var(--tituloPpal);
+  color: #ffff;
+  font-weight: 600;
+  font-size: 44px;
 }
 
 .nav-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 44px;
-}
-
-
-.nav-logo a{
-    font-family: var(--tituloPpal);
-    color: #ffff;
-    font-weight: 600;
-    font-size: 44px;
+  display: flex;
+  align-items: center;
+  height: 44px;
 }
 
 .nav-search {
-    width: 33%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  height: 44px; /* Mismo alto que la barra de búsqueda */
+}
+
+.nav-search form {
+  display: flex;
+  align-items: center;
+  height: 100%; /* Ajustar al mismo alto que el contenedor */
+}
+
+.nav-search input {
+  height: 40px; /* Altura fija */
+  border-radius: 5px 0 0 5px;
+}
+
+.select-art,
+.btn-search {
+  height: 40px; /* Asegura que todos los elementos tengan la misma altura */
+}
+
+.select-art {
+  padding: 8px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 7px;
+  width: 45%;
+}
+.btn-search {
+  padding: 8px;
 }
 
 .btn-search {
-    color: var(--ppal);
-    font-weight: bold;
-    background-color: #ffff;
+  color: var(--ppal);
+  font-weight: bold;
+  background-color: #ffff;
+  border-radius: 0 5px 5px 0;
 }
 
 .btn-search:hover {
-    color: #ffff;
-    background-color: var(--ppal);
+  color: #ffff;
+  background-color: var(--ppal);
+}
+
+.nav-user-img {
+  display: flex;
+  align-items: center;
+}
+
+.nav-user-img span {
+  margin-right: 20px;
+  white-space: nowrap;
+  color: #ffff;
+  font-weight: 600;
+}
+
+.user-img-btn {
+  border: none;
+  background-color: transparent;
+  width: auto;
+  height: 44px;
+  border-radius: 50%;
+}
+
+.user-img-btn img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 /* Media queries movil */
 @media (max-width: 767px) {
-    .nav-search {
-        width: 30%;
-        padding: 2px;
-    }
+  .nav-search {
+    width: 30%;
+    padding: 2px;
+  }
 
-    .nav-search input::placeholder, .nav-search input {
-        font-size: 12px;
-    }
+  .nav-search input::placeholder,
+  .nav-search input {
+    font-size: 12px;
+  }
 
-    .nav-user-img {
-        width: auto;
-    }
+  .nav-user-img {
+    width: auto;
+  }
 
-    .nav-user-img span {
-        display: none;
-    }
+  .nav-user-img span {
+    display: none;
+  }
 
-    .user-img-btn {
-        height: 34px;
-        width: 34px;
-    }
+  .user-img-btn {
+    height: 34px;
+    width: 34px;
+  }
 
-    .nav-logo a {
-        font-size: 24px;
-    }
+  .nav-logo a {
+    font-size: 24px;
+  }
+
+  .select-art{
+    height: 40px;
+    width: 20px;
+  }
+  .btn-search {
+    height: 40px; 
+    
+  }
 }
 
 /* Media queries tablets */
 @media (min-width: 768px) and (max-width: 991px) {
-    .nav-search {
-        width: 40%;
-    }
+  .row {
+    margin-left: 0 !important;
+  }
 
-    .nav-logo a {
-        font-size: 32px;
-    }
+  .nav-search {
+    width: 40%;
+  }
+
+  .nav-logo a {
+    font-size: 32px;
+  }
+  .select-art{
+    height: 40px;
+    width: 20px;
+  }
+}
+
+@media (max-width: 767px) {
+  .nav-logo {
+    justify-content: flex-start; /* Alinea el contenido a la izquierda en modo móvil */
+    border-radius: 10px;
+    padding: 2px;
+  }
+
+  .nav-logo a {
+    display: none; /* Oculta el texto en modo móvil */
+  }
+
+  .nav-search {
+    width: 50%;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .nav-logo::before {
+    content: ""; /* Agrega un contenido antes del enlace */
+    background-image: url("../../../assets/img/favicon.png"); /* Establece la imagen de fondo */
+    background-size: contain; /* Ajusta el tamaño de la imagen */
+    width: 44px; /* Ajusta el ancho de la imagen */
+    height: 44px; /* Ajusta la altura de la imagen */
+    display: block; /* Permite ajustar el tamaño */
+  }
 }

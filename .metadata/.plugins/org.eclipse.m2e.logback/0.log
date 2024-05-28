@@ -1,0 +1,37 @@
+2024-05-17 10:08:26,617 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-17 10:08:42,346 [Worker-7: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2024-05-17 10:08:44,369 [Worker-7: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.skill_swap:SkillSwap:0.0.1-SNAPSHOT @ C:\Users\a926295\OneDrive - Eviden\Documentos\GitHub\SkillSwap\Eclipse\SkillSwap\pom.xml.
+2024-05-17 10:08:47,802 [Worker-7: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /SkillSwap/src/main/java
+2024-05-17 10:08:47,806 [Worker-7: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SkillSwap/src/main/resources
+2024-05-17 10:08:47,822 [Worker-7: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SkillSwap/src/main/resources
+2024-05-17 10:08:47,837 [Worker-7: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /SkillSwap/src/test/java
+2024-05-17 10:08:47,840 [Worker-7: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /SkillSwap/src/test/resources
+2024-05-17 10:08:50,341 [Worker-7: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed for 1 poms: local refresh takes 0,00 sec, refresh facades takes 4,00 sec, update config takes 3,00 sec 
+2024-05-17 10:08:51,686 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-17 10:08:51,727 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources from src\main\resources to target\classes
+2024-05-17 10:08:51,745 [Worker-5: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\a926295\OneDrive - Eviden\Documentos\GitHub\SkillSwap\Eclipse\SkillSwap\src\test\resources
+2024-05-17 10:24:45,271 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2024-05-17 10:25:34,920 [Worker-7: Launching SkillSwap - SkillSwapApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-17 10:25:34,965 [Worker-7: Launching SkillSwap - SkillSwapApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources from src\main\resources to target\classes
+2024-05-17 10:25:34,980 [Worker-7: Launching SkillSwap - SkillSwapApplication] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\a926295\OneDrive - Eviden\Documentos\GitHub\SkillSwap\Eclipse\SkillSwap\src\test\resources
+2024-05-17 11:07:14,635 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-05-17 11:07:14,715 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 2 resources from src\main\resources to target\classes
+2024-05-17 11:07:14,730 [Worker-36: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\a926295\OneDrive - Eviden\Documentos\GitHub\SkillSwap\Eclipse\SkillSwap\src\test\resources
+2024-05-17 11:12:13,970 [Worker-31: Periodic workspace save.] ERROR o.e.m.c.i.p.r.ProjectRegistryReader - Can't write workspace state
+java.io.FileNotFoundException: C:\Users\a926295\OneDrive - Eviden\Documentos\GitHub\SkillSwap\.metadata\.plugins\org.eclipse.m2e.core\workspaceState.ser (El sistema no puede encontrar la ruta especificada)
+	at java.base/java.io.FileOutputStream.open0(Native Method)
+	at java.base/java.io.FileOutputStream.open(FileOutputStream.java:293)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:235)
+	at java.base/java.io.FileOutputStream.<init>(FileOutputStream.java:184)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryReader.createObjectOutputStream(ProjectRegistryReader.java:127)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryReader.writeWorkspaceState(ProjectRegistryReader.java:116)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.writeWorkspaceState(ProjectRegistryManager.java:1043)
+	at org.eclipse.m2e.core.internal.project.registry.ProjectRegistryManager.saving(ProjectRegistryManager.java:1194)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:452)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:268)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:47)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:271)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1225)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1204)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)

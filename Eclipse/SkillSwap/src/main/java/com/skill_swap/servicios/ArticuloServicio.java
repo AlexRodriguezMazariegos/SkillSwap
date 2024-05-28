@@ -22,6 +22,11 @@ public class ArticuloServicio {
 	public Optional<Articulo> obtenerArticuloPorId(Long id) {
 		return articuloRepositorio.findById(id);
 	}
+	
+	//a	
+	public List<Articulo> obtenerArticulosPorUsuario(Long idUsuario) {
+		return articuloRepositorio.findByUsuarioId(idUsuario);
+	}
 
 	public Articulo crearArticulo(Articulo articulo) {
 		return articuloRepositorio.save(articulo);
@@ -35,7 +40,6 @@ public class ArticuloServicio {
 	        return false;
 	    }
 	}
-
 
 	public Articulo actualizarArticulo(Long id, Articulo articulo) {
 		Optional<Articulo> articuloExistente = articuloRepositorio.findById(id);
