@@ -1,20 +1,16 @@
 package com.skill_swap.entidades;
 
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Transient;
 import jakarta.persistence.UniqueConstraint;
@@ -54,8 +50,23 @@ public class Usuario {
 	@JoinTable
 	private List<Skill> skills;
 	
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable(name = "usuario_rol",
+               joinColumns = @JoinColumn(name = "usuario_id"),
+               inverseJoinColumns = @JoinColumn(name = "rol_id"),
+               uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id","rol_id"})}
+    
+    )
     private List<Rol> roles;
+    
+    @PrePersist
+    public void prePersist(){
+        enabled = true;
+    }
+    
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private boolean admin;
     
     
 	public Usuario() {
@@ -79,16 +90,6 @@ public class Usuario {
 		this.roles = roles;
 		this.admin = admin;
 	}
-	
-    @PrePersist
-    public void prePersist(){
-        enabled = true;
-    }
-    
-    @Transient
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private boolean admin;
-
 
 	public Long getId() {
 		return id;
@@ -170,13 +171,7 @@ public class Usuario {
 		this.enabled = enabled;
 	}
 
-	public List<Rol> getRoles() {
-		return roles;
-	}
 
-	public void setRoles(List<Rol> roles) {
-		this.roles = roles;
-	}
 	
     public boolean isAdmin() {
         return admin;
@@ -184,6 +179,14 @@ public class Usuario {
 
     public void setAdmin(boolean admin) {
         this.admin = admin;
+    }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
     }
 
 

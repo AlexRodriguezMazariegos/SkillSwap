@@ -51,19 +51,20 @@ public class UsuarioServicio implements UserDetailsService {
     
     @Transactional
     public Usuario crearUsuario(Usuario usuario) {
-
-        Optional<Rol> RolUsuario = rolRepositorio.findByName("User");
+        Optional<Rol> rolUsuario = rolRepositorio.findByName("ROLE_USER");
         List<Rol> roles = new ArrayList<>();
 
-        RolUsuario.ifPresent(roles::add);
+        // Asigna el rol ROLE_USER por defecto
+        rolUsuario.ifPresent(roles::add);
 
+        // Si el usuario es administrador, asigna también el rol ROLE_ADMIN
         if (usuario.isAdmin()) {
-            Optional<Rol> adminRol = rolRepositorio.findByName("Admin");
+            Optional<Rol> adminRol = rolRepositorio.findByName("ROLE_ADMIN");
             adminRol.ifPresent(roles::add);
         }
 
         usuario.setRoles(roles);
-        String contrasenaEncriptada = (passwordEncoder.encode(usuario.getContrasena()));
+        String contrasenaEncriptada = passwordEncoder.encode(usuario.getContrasena());
         usuario.setContrasena(contrasenaEncriptada);
 
         return usuarioRepositorio.save(usuario);
@@ -128,4 +129,5 @@ public class UsuarioServicio implements UserDetailsService {
                 authorities);
     }
 }
+
 

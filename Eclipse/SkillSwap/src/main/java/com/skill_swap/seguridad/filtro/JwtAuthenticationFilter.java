@@ -33,7 +33,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         this.authenticationManager = authenticationManager;
     }
     
-    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+    /*public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         // Ignorar rutas de Swagger
         String path = request.getRequestURI();
@@ -43,12 +43,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         }
         // Procesar autenticación JWT normalmente
         super.doFilter(request, response, chain);
-    }
+    }*/
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException {
-
+    	
+    	System.out.println("Intento de autentificacion");
         Usuario usuario = null;
         String email = null;
         String contrasena = null;
@@ -73,10 +74,11 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     protected void successfulAuthentication(
             HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-
+    	System.out.println("exitosa autentificacion");
         String email = ((org.springframework.security.core.userdetails.User) authResult.getPrincipal()).getUsername();
+        System.out.println(email);
         Collection<? extends GrantedAuthority> roles = authResult.getAuthorities();
-
+        
         Claims claims = Jwts.claims()
                 .add("authorities", new ObjectMapper().writeValueAsString(roles))
                 .add("email", email)
@@ -107,7 +109,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     protected void unsuccessfulAuthentication(
             HttpServletRequest request,HttpServletResponse response, AuthenticationException failed)
             throws IOException, ServletException {
-
+    	System.out.println("Error de autentificacion");
         Map<String, String> body = new HashMap<>();
         body.put("message", "Error en la autenticación, email o password incorrecto!!");
         body.put("error", failed.getMessage());

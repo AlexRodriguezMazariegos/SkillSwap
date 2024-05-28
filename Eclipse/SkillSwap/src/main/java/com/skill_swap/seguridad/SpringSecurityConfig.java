@@ -35,35 +35,14 @@ public class SpringSecurityConfig {
     }
 
     @Bean
-    PasswordEncoder passwordEncoder(){
+    PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        return http.authorizeHttpRequests((authz)-> authz
-                .requestMatchers("/api/v1/usuario").authenticated()
+        return http.authorizeHttpRequests((authz) -> authz
                 .requestMatchers("/api/v1/usuario/register").permitAll()
-                .requestMatchers("/api/v1/usuario/{id}").authenticated()
-                .requestMatchers("/api/v1/usuario/email/{email}").authenticated()
-                .requestMatchers("/api/v1/valoracion").authenticated()
-                .requestMatchers("/api/v1/valoracion/{id}").authenticated()
-                .requestMatchers("/api/v1/skill").authenticated()
-                .requestMatchers("/api/v1/skill/{id}").authenticated()
-                .requestMatchers("/api/v1/seguimiento").authenticated()
-                .requestMatchers("/api/v1/seguimiento/{id_seguidor}/{id_seguido}").authenticated()
-                .requestMatchers("/api/v1/seguimiento/seguidos/{id}").authenticated()
-                .requestMatchers("/api/v1/seguimiento/seguidores/{id}").authenticated()
-                .requestMatchers("/api/v1/mensaje").authenticated()
-                .requestMatchers("/api/v1/mensaje/{id}").authenticated()
-                .requestMatchers("/api/v1/comentario").authenticated()
-                .requestMatchers("/api/v1/comentario/{id}").authenticated()
-                .requestMatchers("/api/v1/chat").authenticated()
-                .requestMatchers("/api/v1/chat/{id}").authenticated()
-                .requestMatchers("/api/v1/chat/crear").authenticated()
-                .requestMatchers("/api/v1/articulo").authenticated()
-                .requestMatchers("/api/v1/articulo/{id}").authenticated()
-                .requestMatchers("/api/v1/articulo/usuario/{id}").authenticated()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/swagger-resources/**").permitAll()
                 .requestMatchers("/v2/api-docs").permitAll()
@@ -78,7 +57,7 @@ public class SpringSecurityConfig {
                 .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .build();
     }
-    
+
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
@@ -93,11 +72,11 @@ public class SpringSecurityConfig {
         return source;
     }
 
-
     @Bean
-    FilterRegistrationBean<CorsFilter> corsFilter(){
+    FilterRegistrationBean<CorsFilter> corsFilter() {
         FilterRegistrationBean<CorsFilter> corsBean = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));
         corsBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return corsBean;
     }
 }
+

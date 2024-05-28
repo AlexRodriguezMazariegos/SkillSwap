@@ -39,34 +39,52 @@ public class JwtValidationFilter extends BasicAuthenticationFilter {
             chain.doFilter(request, response);
             return;
         }
-        
-        // Ignorar rutas de Swagger
-        String path = request.getRequestURI();
-        if (path.startsWith("/swagger-ui") || path.startsWith("/swagger-resources") || path.startsWith("/v3/api-docs")) {
-            chain.doFilter(request, response);
-            return;
-        }
-        // Procesar validación JWT normalmente
-        super.doFilterInternal(request, response, chain);
 
         String token = header.replace(PREFIX_TOKEN, "");
 
         try {
+            System.out.println("TRY - Start");
+
+            // Imprimir token antes de procesarlo
+            System.out.println("Token: " + token);
+
+            // Intentar analizar el token
             Claims claims = Jwts.parser().verifyWith(SECRET_KEY).build().parseSignedClaims(token).getPayload();
+            System.out.println("Claims parsed successfully");
+            System.out.println(claims);
+
+            // Obtener y imprimir el correo electrónico del token
             String email = claims.getSubject();
-            //String email2 = (String) claims.get("email");
+            System.out.println("Email: " + email);
+
+            // Obtener y imprimir la reclamación de autoridades
             Object authoritiesClaim = claims.get("authorities");
+            System.out.println("Authorities Claim: " + authoritiesClaim);
 
+            // Procesar autoridades
             Collection<? extends GrantedAuthority> authorities = Arrays.asList(
-                            new ObjectMapper()
-                                    .addMixIn(SimpleGrantedAuthority.class, SimpleGrantedAuthorityJsonCreator.class)
-                                    .readValue(authoritiesClaim.toString().getBytes(), SimpleGrantedAuthority[].class));
+                new ObjectMapper()
+                        .addMixIn(SimpleGrantedAuthority.class, SimpleGrantedAuthorityJsonCreator.class)
+                        .readValue(authoritiesClaim.toString().getBytes(), SimpleGrantedAuthority[].class)
+            );
+            System.out.println("Authorities: " + authorities);
 
-            UsernamePasswordAuthenticationToken authenticationToken= new UsernamePasswordAuthenticationToken(
-            		email, null, authorities );
+            // Crear el token de autenticación y establecer el contexto de seguridad
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
+                email, null, authorities
+            );
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            System.out.println("Authentication token set successfully");
+
+            // Continuar con el filtro de la cadena
             chain.doFilter(request, response);
+            System.out.println("TRY - End");
         } catch (JwtException e) {
+            System.out.println("CATCH");
+
+            // Imprimir el mensaje de excepción
+            System.out.println("JwtException: " + e.getMessage());
+
             Map<String, String> body = new HashMap<>();
             body.put("error", e.getMessage());
             body.put("message", "El Token JWT no es válido");
@@ -74,6 +92,8 @@ public class JwtValidationFilter extends BasicAuthenticationFilter {
             response.getWriter().write(new ObjectMapper().writeValueAsString(body));
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
+
+
 
 
     }

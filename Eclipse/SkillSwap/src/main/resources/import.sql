@@ -17,8 +17,8 @@ INSERT INTO usuario (nombre, apellido, email, foto_de_perfil, contrasena, url_gi
 
 
 --Rol
-INSERT INTO rol (name, usuario_id) VALUES ('User', null);
-INSERT INTO rol (name, usuario_id) VALUES ('Admin', null);
+INSERT INTO rol (id, name) VALUES (NULL, 'ROLE_USER');
+INSERT INTO rol (id, name) VALUES (NULL, 'ROLE_ADMIN');
 
 
 --Articulos
