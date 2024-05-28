@@ -76,7 +76,6 @@ export class ArticuloPorIdComponent implements OnInit {
         this.articuloPorId = data;
         this.fechaPublicacionFormateada = this.formatDate(this.articuloPorId.fechaPublicacion);
         this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.articuloPorId.contenido);
-        console.log(this.articuloPorId);
 
         this.valoracionService.obtenerValoracion(this.articuloPorId.id, this.miUsuario.id)
         .subscribe((valoracion: valoracion | null) => {

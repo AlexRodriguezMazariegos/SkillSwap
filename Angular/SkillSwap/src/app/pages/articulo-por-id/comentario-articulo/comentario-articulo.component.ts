@@ -1,28 +1,24 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ArticuloService } from '../../../services/articulo/articulo.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-comentario-articulo',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './comentario-articulo.component.html',
   styleUrl: './comentario-articulo.component.css'
 })
 export class ComentarioArticuloComponent implements OnInit{
-  @Input() articuloPorId:any;
+  @Input() comentario:any;
 
   constructor (
     private articuloService: ArticuloService,
     private route: ActivatedRoute) {}
   
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.articuloService.getArticuloById(id).subscribe(data => {
-        this.articuloPorId = data;
-        console.log(this.articuloPorId);
-      });
-    });
+    console.log(this.comentario);
+    
   }
 }

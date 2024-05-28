@@ -55,7 +55,9 @@
         </div>
       </div>
       <div class="contenido-comentarios">
-        <app-comentario-articulo></app-comentario-articulo>
+        @for (comentario of articuloPorId.comentarios; track comentario) {
+            <app-comentario-articulo [comentario]="comentario"></app-comentario-articulo>
+        }
       </div>
     </div>
   </div>
