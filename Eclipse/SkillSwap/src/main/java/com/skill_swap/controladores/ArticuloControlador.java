@@ -23,21 +23,37 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticuloControlador {
 
 	@Autowired
-	private ArticuloServicio articuloServicio;
+    private ArticuloServicio articuloServicio;
 
-	@GetMapping("")
-	public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
-		return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulos());
-	}
+    @GetMapping("")
+    public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
+        return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulos());
+    }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<Optional<Articulo>> obtenerArticuloPorId(@PathVariable Long id) {
-		if (articuloServicio.obtenerArticuloPorId(id).isPresent()) {
-			return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerArticuloPorId(id));
-		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-	}
+    @GetMapping("/activos")
+    public ResponseEntity<List<Articulo>> obtenerTodosLosArticulosActivos() {
+        return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulosActivos());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Articulo>> obtenerArticuloPorId(@PathVariable Long id) {
+        Optional<Articulo> articulo = articuloServicio.obtenerArticuloPorId(id);
+        if (articulo.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(articulo);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("/activos/{id}")
+    public ResponseEntity<Optional<Articulo>> obtenerArticuloActivoPorId(@PathVariable Long id) {
+        Optional<Articulo> articulo = articuloServicio.obtenerArticuloActivoPorId(id);
+        if (articulo.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(articulo);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 	
 	@GetMapping("/usuario/{id}")
     public ResponseEntity<List<Articulo>> obtenerArticulosPorUsuario(@PathVariable Long id) {
