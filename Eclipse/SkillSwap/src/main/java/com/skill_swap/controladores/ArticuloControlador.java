@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,62 +24,78 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticuloControlador {
 
 	@Autowired
-    private ArticuloServicio articuloServicio;
+	private ArticuloServicio articuloServicio;
 
-    @GetMapping("")
-    public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
-        return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulos());
-    }
+	@GetMapping("")
+	public ResponseEntity<List<Articulo>> obtenerTodosLosArticulos() {
+		return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulos());
+	}
 
-    @GetMapping("/activos")
-    public ResponseEntity<List<Articulo>> obtenerTodosLosArticulosActivos() {
-        return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulosActivos());
-    }
+	@GetMapping("/activos")
+	public ResponseEntity<List<Articulo>> obtenerTodosLosArticulosActivos() {
+		return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.obtenerTodosLosArticulosActivos());
+	}
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Optional<Articulo>> obtenerArticuloPorId(@PathVariable Long id) {
-        Optional<Articulo> articulo = articuloServicio.obtenerArticuloPorId(id);
-        if (articulo.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(articulo);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
+	@GetMapping("/{id}")
+	public ResponseEntity<Optional<Articulo>> obtenerArticuloPorId(@PathVariable Long id) {
+		Optional<Articulo> articulo = articuloServicio.obtenerArticuloPorId(id);
+		if (articulo.isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(articulo);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
 
-    @GetMapping("/activos/{id}")
-    public ResponseEntity<Optional<Articulo>> obtenerArticuloActivoPorId(@PathVariable Long id) {
-        Optional<Articulo> articulo = articuloServicio.obtenerArticuloActivoPorId(id);
-        if (articulo.isPresent()) {
-            return ResponseEntity.status(HttpStatus.OK).body(articulo);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
-	
+	@GetMapping("/activos/{id}")
+	public ResponseEntity<Optional<Articulo>> obtenerArticuloActivoPorId(@PathVariable Long id) {
+		Optional<Articulo> articulo = articuloServicio.obtenerArticuloActivoPorId(id);
+		if (articulo.isPresent()) {
+			return ResponseEntity.status(HttpStatus.OK).body(articulo);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+
 	@GetMapping("/usuario/{id}")
-    public ResponseEntity<List<Articulo>> obtenerArticulosPorUsuario(@PathVariable Long id) {
-        List<Articulo> articulos = articuloServicio.obtenerArticulosPorUsuario(id);
-        if (!articulos.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.OK).body(articulos);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-    }
+	public ResponseEntity<List<Articulo>> obtenerArticulosPorUsuario(@PathVariable Long id) {
+		List<Articulo> articulos = articuloServicio.obtenerArticulosPorUsuario(id);
+		if (!articulos.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(articulos);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
 
 	@PostMapping("")
 	public ResponseEntity<Articulo> guardarArticulo(@RequestBody Articulo articulo) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(articuloServicio.crearArticulo(articulo));
 	}
+
+	@PatchMapping("/{id}")
+	public ResponseEntity<Articulo> patchearArticulo(@PathVariable Long id){
+		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		if(articuloServicio.obtenerArticuloPorId(id).isPresent()) {
+			Articulo a = articuloServicio.obtenerArticuloPorId(id).get();
+			if(a.getActivo()==true) {
+				a.setActivo(false);
+			}else {
+				a.setActivo(true);
+			}
+			return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.crearArticulo(a));
+		}else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
 	
-	  @DeleteMapping("/{id}")
-	    public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {
-	        if (articuloServicio.obtenerArticuloPorId(id) == null) {
-	            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-	        } else {
-				articuloServicio.eliminarArticulo(id);
-	            return ResponseEntity.status(HttpStatus.OK).build();
-	        }
-	    }
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {
+		if (articuloServicio.obtenerArticuloPorId(id) == null) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		} else {
+			articuloServicio.eliminarArticulo(id);
+			return ResponseEntity.status(HttpStatus.OK).build();
+		}
+	}
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Articulo> actualizarArticulo(@PathVariable Long id, @RequestBody Articulo articulo) {
