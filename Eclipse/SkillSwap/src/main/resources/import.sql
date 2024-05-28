@@ -829,6 +829,8 @@ INSERT INTO `usuario_skills` (`skills_id`, `usuarios_id`) VALUES ('20', '47');
 
 -- Valoraciones
 INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '33', '1')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '1', '22', '1')
+INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '11', '1')
 INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '2', '44', '2')
 INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '3', '22', '3')
 INSERT INTO `valoracion` (`id`, `puntuacion`, `usuario`, `articulo`) VALUES (NULL, '4', '14', '4')

@@ -3,7 +3,7 @@
     <h2 class="title-art">{{articulos.titulo}}<br></h2>
     <p class="descr-art">{{articulos.descripcion}}</p>
     <ng-container *ngIf="mediaValoraciones !== null">
-      <p class="val-art">Valoración: {{ mediaValoraciones.toFixed(0) }} / 5 ⭐</p>
+      <p class="val-art">Valoración: {{ mediaValoraciones.toFixed(1) }} / 5 ⭐</p>
     </ng-container>
     <ng-container *ngIf="mediaValoraciones === null">
       <p class="val-art">No tiene valoraciones</p>
