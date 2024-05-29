@@ -37,4 +37,7 @@ export const routes: Routes = [
     {
         path: 'mis-articulos', component:MisArticulosComponent
     },
+    {
+        path: 'editar-articulo/:id', component: EditorArticuloComponent
+    },
 ];

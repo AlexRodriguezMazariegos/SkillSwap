@@ -5,6 +5,9 @@ import { ConfirmationModalComponent } from '../../confirmation-modal/confirmatio
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ValoracionEstrellasComponent } from '../../../shared/valoracion-estrellas/valoracion-estrellas.component';
 import { ArticuloService } from '../../../services/articulo/articulo.service';
+import { EditorArticuloComponent } from '../../editor-articulo/editor-articulo.component';
+import { ValoracionService } from '../../../services/valoracion/valoracion.service';
+import { valoracion } from '../../../model/valoracion';
 
 
 @Component({
@@ -18,15 +21,33 @@ export class ArticuloComponent implements OnInit {
   currentRoute: string = '';
   @Input() articulos: any;
   dialogRef: MatDialogRef<ConfirmationModalComponent> | null = null;
+  valoraciones: valoracion[] = [];
+  mediaValoraciones: number = 0;
 
   constructor(
     private route: ActivatedRoute, 
     private dialog: MatDialog, 
     private router: Router,
-    private articuloService: ArticuloService
+    private articuloService: ArticuloService,
+    private valoracionService: ValoracionService
   ) {}
 
   ngOnInit(): void {
+    this.valoracionService.getValoracionesByIdByArticulo(this.articulos.id).subscribe((valoraciones: any[]) => {
+
+      if (valoraciones && valoraciones.length > 0) {
+        const sumaValoraciones = valoraciones.reduce((total, valoracion) => {
+          const valor = Number(valoracion.puntuacion);
+          return !isNaN(valor) ? total + valor : total; // Solo agregar si es un número válido
+        }, 0);
+
+        // Verificar que 'valoraciones.length' no sea cero antes de la división
+        this.mediaValoraciones = valoraciones.length > 0 ? sumaValoraciones / valoraciones.length : 0;
+      } else {
+        this.mediaValoraciones = 0; 
+      }
+    });
+
     this.currentRoute = this.router.url;
     console.log(this.currentRoute);
   }
@@ -45,8 +66,9 @@ export class ArticuloComponent implements OnInit {
     this.openDialog('¿Deseas eliminar este elemento?', 'Eliminar', this.articulos.id);
   }
 
-  editArticulo($event: MouseEvent) {
-    throw new Error('Method not implemented.');
+  editArticulo(event: Event) {
+    event.stopPropagation();
+    this.router.navigate([`/editar-articulo/${this.articulos.id}`]);
   }
 
   openDialog(pregunta: string = '¿Estás seguro que deseas eliminar el artículo?', textoBoton: string = 'Borrar artículo', id: number): void {
@@ -70,6 +92,12 @@ export class ArticuloComponent implements OnInit {
       } else {
         console.log('Acción cancelada');
       }
+    });
+  }
+
+  obtenerValoraciones(): void {
+    this.valoracionService.getValoracionesByIdByArticulo(this.articulos.id).subscribe((valoraciones: any[]) => {
+      this.valoraciones = valoraciones;
     });
   }
 }

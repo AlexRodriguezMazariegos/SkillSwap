@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../shared/navbar/navbar.component';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { UserSuperiorComponent } from '../profile/user-superior/user-superior.component';
@@ -16,6 +16,8 @@ import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
 import { HotToastService } from '@ngneat/hot-toast';
 import { register } from 'module';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-editor-articulo',
   standalone: true,
@@ -35,6 +37,7 @@ import { register } from 'module';
 export class EditorArticuloComponent {
   storedValue = localStorage.getItem('usuario');
   miUsuario!: usuario;
+  articuloId: number | null = null;
   titulo: string = '';
   descripcion: string = '';
   htmlContent: string = '';
@@ -82,39 +85,71 @@ export class EditorArticuloComponent {
   };
 
   constructor(
-    private usuarioService: UsuarioService,
+    private route: ActivatedRoute,
     private articuloService: ArticuloService,
-    private toast: HotToastService
+    private toast: HotToastService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     if (this.storedValue) {
       const currentUser = JSON.parse(this.storedValue);
-      this.articuloService.getArticuloByUserId(currentUser.id);
       this.miUsuario = currentUser;
     }
+
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this.articuloId = +id;
+        this.articuloService.getArticuloById(this.articuloId).subscribe({
+          next: (articulo) => {
+            this.titulo = articulo.titulo;
+            this.descripcion = articulo.descripcion;
+            this.htmlContent = articulo.contenido;
+          },
+          error: (err) => console.error('Error al cargar el artículo', err)
+        });
+      }
+    });
   }
 
   saveContent() {
     const articulo: articulo = {
-      id: 0, // El id se asigna automaticamente aunque ponga 0
+      id: this.articuloId || 0, // El id se asigna automáticamente aunque ponga 0
       usuario: this.miUsuario,
       titulo: this.titulo,
       descripcion: this.descripcion,
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
+      comentarios: []
     };
-
+  
     console.log('Enviando artículo:', articulo);
-
-    this.showToast();
-
-    this.articuloService.postArticulo(articulo).subscribe((response) => {
-      console.log('Artículo guardado', response);
+  
+    const saveObservable =
+      articulo.id === 0
+        ? this.articuloService.postArticulo(articulo)
+        : this.articuloService.updateArticulo(articulo.id, articulo);
+  
+    saveObservable.subscribe({
+      next: (response) => {
+        console.log('Artículo guardado', response);
+        this.showSuccessToast();
+        this.router.navigate(['/mis-articulos']).then(() => {
+          // Añade un pequeño retraso antes de recargar
+          setTimeout(() => {
+            window.location.reload();
+          }, 100); // 100 milisegundos de retraso
+        });
+      },
+      error: (err) => {
+        console.error('Error al guardar el artículo', err);
+        this.showErrorToast();
+      },
     });
   }
 
-  showToast() {
+  showSuccessToast() {
     this.toast.success('Artículo guardado', {
       duration: 1400,
       style: {
@@ -128,6 +163,25 @@ export class EditorArticuloComponent {
       },
       iconTheme: {
         primary: '#002d3c',
+        secondary: '#ffff',
+      },
+    });
+  }
+
+  showErrorToast() {
+    this.toast.error('Artículo no guardado', {
+      duration: 1400,
+      style: {
+        border: '1px solid #d9534f',
+        padding: '16px',
+        color: '#d9534f',
+        zIndex: 999999999,
+        position: 'fixed',
+        top: '60px',
+        left: '650px',
+      },
+      iconTheme: {
+        primary: '#d9534f',
         secondary: '#ffff',
       },
     });

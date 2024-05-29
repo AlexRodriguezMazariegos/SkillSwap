@@ -5,18 +5,19 @@ import { UsuarioService } from '../../services/usuario/usuario.service';
 import { json } from 'stream/consumers';
 import { HttpHeaders } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
-export class LoginComponent implements OnInit{
-
-  @ViewChild('animatedText', { static: true }) animatedTextElement: ElementRef<HTMLHeadingElement> | undefined;
-
+export class LoginComponent implements OnInit {
+  @ViewChild('animatedText', { static: true }) animatedTextElement:
+    | ElementRef<HTMLHeadingElement>
+    | undefined;
 
   // Lista de textos posibles
   textosAleatorios: string[] = [
@@ -31,56 +32,87 @@ export class LoginComponent implements OnInit{
     'Innova con creatividad',
     'Crecimiento continuo',
     'Networking efectivo',
-    'Aprende y crece'
+    'Aprende y crece',
   ];
 
-  textoError:string=""
-  usuario:login = {
+  textoError: string = '';
+  user:usuario={
+    id: 0,
+    nombre: '',
+    apellido: '',
     email: '',
-    contrasena: ''
-  }
+    contrasena: '',
+    urlGitHub: '',
+    puestoEmpresa: '',
+    skills: [],
+    fotoDePerfil: ''
+  };
 
   textoAleatorio: string = '';
 
-  constructor(private router: Router, private usuarioService:UsuarioService) { }
+  constructor(
+    private router: Router,
+    private usuarioService: UsuarioService,
+    private authService: AuthService
+  ) {}
 
   //Metodo de inicio
   ngOnInit(): void {
-    this.textoAleatorio = this.textosAleatorios[
-      Math.floor(Math.random() * this.textosAleatorios.length)
-    ];
+    console.log(this.user);
+    
+    this.textoAleatorio =
+      this.textosAleatorios[
+        Math.floor(Math.random() * this.textosAleatorios.length)
+      ];
 
     if (this.animatedTextElement && this.animatedTextElement.nativeElement) {
       const textElement = this.animatedTextElement.nativeElement;
       const textContent = textElement.textContent;
       if (textContent !== null) {
-        textElement.textContent = ''; 
+        textElement.textContent = '';
 
         for (let i = 0; i < textContent.length; i++) {
           const charSpan = document.createElement('span');
           charSpan.textContent = textContent[i];
-          charSpan.style.animationDelay = `${i * 50}ms`; 
+          charSpan.style.animationDelay = `${i * 50}ms`;
           textElement.appendChild(charSpan);
         }
       } else {
         console.error('El contenido del elemento es nulo.');
       }
+      this.user = this.authService.user;
+      if (this.user==null){
+        this.user = new usuario()
+      }
+      if (this.authService.isAuthenticated()) {
+        this.router.navigate(['/home']);
+      }
+    }
+  }
+
+  login() {
+    console.log(this.user.email);
+    
+    if (this.user.email == null || this.user.contrasena == null) {
+      return;
     }
 
+    this.authService.login(this.user).subscribe(
+      (response) => {
+        this.authService.saveUser(response.token);
+        this.authService.saveToken(response.token);
+        this.authService.saveRole(response.token);
 
-  }
+        let user = this.authService.user;
 
-  login(){
-    this.usuarioService.login(this.usuario).subscribe((data:usuario)=>{
-      console.log(data)
-      if(data!=null){
-        localStorage.setItem('usuario',JSON.stringify(data))
-        this.router.navigate(['/home']); 
+        this.router.navigate(['/home']);
+      },
+      (err) => {
+        if (err.status == 401) {
+          this.user.email = '';
+          this.user.contrasena = '';
+        }
       }
-      else{
-        this.textoError = "Email y/o contraseña incorrecto"
-      }
-    })
+    );
   }
-
 }

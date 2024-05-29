@@ -8,7 +8,6 @@ import { valoracion } from '../../model/valoracion';
 })
 export class ValoracionService {
 
-
   baseUrl = 'http://localhost:8080/api/v1/valoracion';
 
   constructor(private http: HttpClient) { }
@@ -26,7 +25,7 @@ export class ValoracionService {
   }
 
   getValoracionesByIdByArticulo(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/${id}`)
+    return this.http.get<any[]>(`${this.baseUrl}/valoraciones?articulo=${id}`);
   }
 
   postValoracion(valoracion: valoracion):Observable<any>{

@@ -1,27 +1,33 @@
 <div class="info-container">
-    <h2>Información personal</h2>
+  <h2>Editar información personal</h2>
+  <form>
     <table class="table">
       <tbody>
         <tr>
           <th scope="row">Puesto</th>
-          <td><input type="text" name="" id="" value="{{miUsuario?.puestoEmpresa }}"></td>
+          <td>
+            <input type="text" [(ngModel)]="miUsuario.puestoEmpresa" name="puestoEmpresa" required/>
+          </td>
         </tr>
         <tr>
           <th scope="row">Email</th>
-          <td><input type="text" name="" id="" value="{{miUsuario?.email}}"></td>
+          <td>
+            <input type="email" [(ngModel)]="miUsuario.email" name="email" required />
+          </td>
         </tr>
         <tr>
           <th scope="row">Lenguajes</th>
           <td>
-            @for (skill of miUsuario.skills.slice(0,3); track skill) {
-            <input type="text" name="" id="" value="{{skill.nombre}}"> }
+            <p>skills</p>
           </td>
         </tr>
         <tr>
-            <th scope="row">URL GitHub</th>
-            <td><input type="text" name="" id="" value="{{miUsuario?.urlGitHub}}"></td>
-          </tr>
+          <th scope="row">URL GitHub</th>
+          <td>
+            <input type="url" [(ngModel)]="miUsuario.urlGitHub" name="urlGitHub" required />
+          </td>
+        </tr>
       </tbody>
     </table>
-  </div>
-  
+  </form>
+</div>
