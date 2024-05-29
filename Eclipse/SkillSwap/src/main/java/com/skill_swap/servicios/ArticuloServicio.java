@@ -19,11 +19,19 @@ public class ArticuloServicio {
 		return articuloRepositorio.findAll();
 	}
 
+	public List<Articulo> obtenerTodosLosArticulosActivos() {
+		return articuloRepositorio.findByActivo(true);
+	}
+
 	public Optional<Articulo> obtenerArticuloPorId(Long id) {
 		return articuloRepositorio.findById(id);
 	}
-	
-	//a	
+
+	public Optional<Articulo> obtenerArticuloActivoPorId(Long id) {
+		return articuloRepositorio.findByIdAndActivo(id);
+	}
+
+	// a
 	public List<Articulo> obtenerArticulosPorUsuario(Long idUsuario) {
 		return articuloRepositorio.findByUsuarioId(idUsuario);
 	}
@@ -33,14 +41,13 @@ public class ArticuloServicio {
 	}
 
 	public boolean eliminarArticulo(Long id) {
-	    if (articuloRepositorio.existsById(id)) {
-	        articuloRepositorio.deleteById(id);
-	        return true;
-	    } else {
-	        return false;
-	    }
+		if (articuloRepositorio.existsById(id)) {
+			articuloRepositorio.deleteById(id);
+			return true;
+		} else {
+			return false;
+		}
 	}
-
 
 	public Articulo actualizarArticulo(Long id, Articulo articulo) {
 		Optional<Articulo> articuloExistente = articuloRepositorio.findById(id);
@@ -58,7 +65,5 @@ public class ArticuloServicio {
 			return null;
 		}
 	}
-
-
 
 }

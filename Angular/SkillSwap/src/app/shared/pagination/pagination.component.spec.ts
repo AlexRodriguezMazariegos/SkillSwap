@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MensajeEnviadoComponent } from './mensaje-enviado.component';
+import { PaginationComponent } from './pagination.component';
 
-describe('MensajeEnviadoComponent', () => {
-  let component: MensajeEnviadoComponent;
-  let fixture: ComponentFixture<MensajeEnviadoComponent>;
+describe('PaginationComponent', () => {
+  let component: PaginationComponent;
+  let fixture: ComponentFixture<PaginationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MensajeEnviadoComponent]
+      imports: [PaginationComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MensajeEnviadoComponent);
+    fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

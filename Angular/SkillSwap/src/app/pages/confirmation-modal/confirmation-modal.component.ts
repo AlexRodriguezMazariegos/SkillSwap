@@ -1,28 +1,28 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog'; 
-import { Router } from '@angular/router';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirmation-modal',
-  standalone: true,
   templateUrl: './confirmation-modal.component.html',
-  styleUrls: ['./confirmation-modal.component.css'],
+  styleUrls: ['./confirmation-modal.component.css']
 })
 export class ConfirmationModalComponent {
-  @Output() confirmed: EventEmitter<boolean> = new EventEmitter<boolean>();
+  pregunta: string;
+  textoBoton: string;
 
-  constructor(private dialog: MatDialogRef<ConfirmationModalComponent>, private router:Router) {} // Inyecta MatDialog en el constructor
-
-  closeDialog(): void {
-    this.dialog.close(); // Cierra el diálogo
+  constructor(
+    public dialogRef: MatDialogRef<ConfirmationModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { pregunta: string, textoBoton: string }
+  ) {
+    this.pregunta = data.pregunta;
+    this.textoBoton = data.textoBoton;
   }
 
-  logout(): void {
-    // Aquí colocarías la lógica para cerrar la sesión
-    localStorage.clear()
-    console.log('Cerrar sesión');
-    this.router.navigate(['']); 
-    // Después de cerrar la sesión, cierra el diálogo
-    this.dialog.close();
+  confirmDelete(): void {
+    this.dialogRef.close(true);
+  }
+
+  closeDialog(result: boolean): void {
+    this.dialogRef.close(result);
   }
 }

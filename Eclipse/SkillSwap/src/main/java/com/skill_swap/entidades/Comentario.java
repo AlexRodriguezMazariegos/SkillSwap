@@ -1,6 +1,9 @@
 package com.skill_swap.entidades;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +22,7 @@ public class Comentario {
 	@JoinColumn(name = "usuario")
 	private Usuario usuario;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "articulo")
 	private Articulo articulo;

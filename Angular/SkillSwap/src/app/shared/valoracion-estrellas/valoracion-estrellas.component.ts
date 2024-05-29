@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-valoracion-estrellas',
   standalone: true,
-  imports: [],
   templateUrl: './valoracion-estrellas.component.html',
   styleUrl: './valoracion-estrellas.component.css'
 })
 export class ValoracionEstrellasComponent {
+  @Input() puntuacion: number | undefined;
+  @Output() starClicked = new EventEmitter<number>();
 
-  pintarValoracion(){
-    
+  ngOnInit(){
+    console.log(this.puntuacion)
+  }
+
+  onStarClick(rating: number): void {
+    this.starClicked.emit(rating);
   }
 }

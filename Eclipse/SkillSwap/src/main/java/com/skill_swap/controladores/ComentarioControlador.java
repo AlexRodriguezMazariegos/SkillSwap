@@ -60,4 +60,15 @@ public class ComentarioControlador {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 	}
+
+	
+	@GetMapping("/{id}/comentarios")
+	public ResponseEntity<List<Comentario>> obtenerComentariosPorArticuloId(@PathVariable Long id) {
+	    List<Comentario> comentarios = comentarioServicio.obtenerComentariosPorArticuloId(id);
+	    if (!comentarios.isEmpty()) {
+	        return ResponseEntity.status(HttpStatus.OK).body(comentarios);
+	    } else {
+	        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+	    }
+	}
 }

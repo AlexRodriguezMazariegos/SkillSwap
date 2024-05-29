@@ -12,11 +12,11 @@ export class ArticuloService {
   constructor(private http: HttpClient) {}
 
   getArticulos(): Observable<any> {
-    return this.http.get<any>(this.baseUrl);
+    return this.http.get<any>(`${this.baseUrl}/activos`);
   }
 
   getArticuloById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/activos/${id}`);
   }
 
   getArticuloByUserId(id: number): Observable<any> {
@@ -25,5 +25,18 @@ export class ArticuloService {
 
   postArticulo(newArticulo: articulo):Observable<any>{
     return this.http.post(this.baseUrl, newArticulo)
+  }
+
+  activarDesactivar(id: number): Observable<any> {
+    console.log("HOLA")
+    return this.http.patch<any>(`${this.baseUrl}/${id}`, {})
+  }
+
+  deleteArticulo(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.baseUrl}/${id}`)
+  }
+
+  updateArticulo(id: number, articulo: articulo): Observable<articulo> {
+    return this.http.put<articulo>(`${this.baseUrl}/${id}`, articulo);
   }
 }
