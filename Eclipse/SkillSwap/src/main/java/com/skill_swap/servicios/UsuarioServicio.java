@@ -46,7 +46,12 @@ public class UsuarioServicio implements UserDetailsService {
     
     @Transactional(readOnly = true)
     public Boolean findByEmail(String email) {
-        return usuarioRepositorio.findByEmail(email) != null;
+        if (usuarioRepositorio.findByEmail(email).isPresent()) {
+        	return true;
+        }
+        else {
+        	return false;
+        }
     }
     
     @Transactional
