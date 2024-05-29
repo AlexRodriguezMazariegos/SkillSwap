@@ -67,4 +67,20 @@ public class ValoracionServicio {
 		}
 	}
 
+	public Valoracion saveOrUpdateValoracion(Valoracion valoracion) {
+		Optional<Valoracion> valoracionExistente = valoracionRepositorio
+				.findByArticuloIdAndUsuarioId(valoracion.getArticulo().getId(), valoracion.getUsuario().getId());
+
+		if (valoracionExistente.isPresent()) {
+			Valoracion valoracionActual = valoracionExistente.get();
+			valoracionActual.setPuntuacion(valoracion.getPuntuacion());
+			return valoracionRepositorio.save(valoracionActual);
+		} else {
+			return valoracionRepositorio.save(valoracion);
+		}
+	}
+
+	public Optional<Valoracion> obtenerValoracionPorArticuloYUsuario(Long articuloId, Long usuarioId) {
+		return valoracionRepositorio.findByArticuloIdAndUsuarioId(articuloId, usuarioId);
+	}
 }

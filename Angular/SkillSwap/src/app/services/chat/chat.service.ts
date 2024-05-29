@@ -1,9 +1,9 @@
-import { ChatMessage } from '../../model/chat-mensaje';
 import { Injectable } from '@angular/core';
 import { Stomp } from '@stomp/stompjs';
 import { BehaviorSubject } from 'rxjs';
 import SockJS from 'sockjs-client';
 import { HttpClient } from '@angular/common/http';
+import { ChatMessage } from '../../model/chat-mensaje';
 
 @Injectable({
   providedIn: 'root'
@@ -37,14 +37,14 @@ export class ChatService {
 
   senMessage(roomId: string, chatMessage: ChatMessage){
     this.stompClient.send(`/app/chat/${roomId}`,{},JSON.stringify(chatMessage))
-  }
+  } 
 
   getMessageSubject(){
     return this.messageSubject.asObservable();
   }
 
   loadMessagesFromDatabase(roomId: string) {
-    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`).subscribe(messages => {
+    this.http.get<ChatMessage[]>(`http://localhost:8080/chat/history/${roomId}`).subscribe(messages => {
       this.messageSubject.next(messages);
     });
   }

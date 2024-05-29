@@ -94,9 +94,12 @@
     width: 95%;
     margin: auto;
     margin-top: 10px;
-    padding: 20px;
     border-radius: 10px;
-    background-color: var(--light-grey);
+}
+
+#titulo-comentarios {
+    font-family: var(--tituloPpal);
+    margin: 20px 0 30px 0;
 }
 
 /* Responsive móvil */
