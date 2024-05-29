@@ -106,21 +106,53 @@ INSERT INTO `chat` (`id`, `id_usuario1`, `id_usuario2`) VALUES (NULL, '14', '15'
 -- Comentarios
 
 -- Comentario en el artículo 1 por el usuario 1
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '1', NULL, '1', 'Contenido del comentario 1');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-20 15:30:00.000000', '1', NULL, '1', 'Muy buen artículo acerca de como crear una base de datos con SQL, me ha ayudado mucho. Estamos en contacto!');
 -- Comentario en el artículo 2 por el usuario 2
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '2', NULL, '2', 'Contenido del comentario 2');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '2', NULL, '2', '5 estrellas para ti!⭐⭐⭐⭐⭐');
 -- Comentario en el artículo 3 por el usuario 3
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '3', NULL, '3', 'Contenido del comentario 3');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '3', NULL, '3', 'Menudo quebradero de cabeza son las dependencias, gracias por compartir!😊');
 -- Comentario en el artículo 1 por el usuario 4
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '1', NULL, '4', 'Contenido del comentario 4');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-03-10 15:30:00.000000', '1', NULL, '4', 'Llevo días parada y este artículo me ha ayudado muchísimo!!! ❤️');
 -- Comentario en el artículo 2 por el usuario 5
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '2', NULL, '5', 'Contenido del comentario 5');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '2', NULL, '5', '5 estrellas por este pedazo de contenido que nos traes!');
 -- Comentario en el artículo 3 por el usuario 6
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '3', NULL, '6', 'Contenido del comentario 6');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '3', NULL, '6', 'Gran trabajo!!!');
 -- Comentario en el artículo 4 por el usuario 7
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '4', NULL, '7', 'Contenido del comentario 7');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '4', NULL, '7', '❤️❤️❤️❤️❤️❤️');
 -- Comentario en el artículo 5 por el usuario 8
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '5', NULL, '8', 'Contenido del comentario 8');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '5', NULL, '8', 'Qué sencillo y conciso escribes, un placer leerte!');
+-- Comentario en el artículo 1 por el usuario 9
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-19 14:45:00.000000', '1', NULL, '9', '¡Excelente artículo! Muy claro y conciso.');
+-- Comentario en el artículo 2 por el usuario 10
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-18 13:30:00.000000', '2', NULL, '10', 'Me gustó mucho la explicación, gracias por compartir.');
+-- Comentario en el artículo 3 por el usuario 11
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-17 12:25:00.000000', '3', NULL, '11', 'Muy informativo, justo lo que estaba buscando.');
+-- Comentario en el artículo 4 por el usuario 12
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-16 11:20:00.000000', '4', NULL, '12', 'Este artículo resolvió todas mis dudas.');
+-- Comentario en el artículo 5 por el usuario 13
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-15 10:15:00.000000', '5', NULL, '13', 'Muy útil, gracias por compartir esta información.');
+-- Comentario en el artículo 1 por el usuario 14
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-14 09:10:00.000000', '1', NULL, '14', 'Gran trabajo, me ha sido de gran ayuda.');
+-- Comentario en el artículo 2 por el usuario 15
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-13 08:05:00.000000', '2', NULL, '15', 'Información muy valiosa, gracias.');
+-- Comentario en el artículo 3 por el usuario 16
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-12 07:00:00.000000', '3', NULL, '16', 'Muy interesante, aprendí mucho.');
+-- Comentario en el artículo 4 por el usuario 17
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-11 06:55:00.000000', '4', NULL, '17', 'Excelente contenido, sigue así.');
+-- Comentario en el artículo 5 por el usuario 18
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-10 05:50:00.000000', '5', NULL, '18', 'Muy claro y útil, gracias.');
+-- Comentario en el artículo 1 por el usuario 19
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-09 04:45:00.000000', '1', NULL, '19', 'Este artículo es justo lo que necesitaba.');
+-- Comentario en el artículo 2 por el usuario 20
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-08 03:40:00.000000', '2', NULL, '20', 'Gran explicación, muy detallada.');
+-- Comentario en el artículo 3 por el usuario 21
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-07 02:35:00.000000', '3', NULL, '21', 'Me ayudó a entender mejor el tema.');
+-- Comentario en el artículo 4 por el usuario 22
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-06 01:30:00.000000', '4', NULL, '22', 'Información muy valiosa, gracias por compartir.');
+-- Comentario en el artículo 5 por el usuario 23
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-05 00:25:00.000000', '5', NULL, '23', 'Muy bien explicado, gracias.');
+-- Comentario en el artículo 1 por el usuario 24
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-04 23:20:00.000000', '1', NULL, '24', 'Un artículo muy útil, me ha aclarado muchas dudas.');
 
 -- Mensajes
 
