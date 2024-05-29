@@ -12,20 +12,22 @@ import { usuario } from '../../model/usuario';
 import { formatDate } from '@angular/common';
 
 import { ComentarioArticuloComponent } from "./comentario-articulo/comentario-articulo.component";
+import { AdjuntarComentarioComponent } from "./adjuntar-comentario/adjuntar-comentario.component";
 
 
 @Component({
-  selector: 'app-articulo-por-id',
-  standalone: true,
-  templateUrl: './articulo-por-id.component.html',
-  styleUrls: ['./articulo-por-id.component.css'],
-  imports: [
-    NavbarComponent,
-    SidebarComponent,
-    ValoracionEstrellasComponent,
-    RouterModule,
-    ComentarioArticuloComponent
-  ],
+    selector: 'app-articulo-por-id',
+    standalone: true,
+    templateUrl: './articulo-por-id.component.html',
+    styleUrls: ['./articulo-por-id.component.css'],
+    imports: [
+        NavbarComponent,
+        SidebarComponent,
+        ValoracionEstrellasComponent,
+        RouterModule,
+        ComentarioArticuloComponent,
+        AdjuntarComentarioComponent
+    ]
 })
 export class ArticuloPorIdComponent implements OnInit {
   storedValue = localStorage.getItem('usuario');

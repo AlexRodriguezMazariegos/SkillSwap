@@ -1,14 +1,15 @@
 .comentario-wrapper {
-    background-color: var(--light-grey);
     margin-top: 10px;
     width: 100%;
-    border-radius: 10px;
+    border-bottom: 2px solid var(--light-grey);
 }
 
 .info-comentario {
     display: flex;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: start;
+    align-items: center;
+    padding-top: 10px;
+    gap: 20px;
 }
 
 .info-comentario-user {
@@ -19,12 +20,16 @@
     gap: 15px;
 }
 
-.foto-nombre-user {
+.contenido-comentario {
+    padding-top: 15px;
+}
+
+.nombre-fecha-user {
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
-    font-weight: bolder;
+    font-weight: 600;
 }
 
 .photo-user {
@@ -40,13 +45,9 @@
     object-fit: cover;
   }
 
-  .fecha {
-    display: flex;
-    justify-content: end;
-    width: 100%;
-  }
 
   #fecha-publicacion {
     color: lightslategrey;
     font-size: 14px;
+    font-weight: 100;
   }
