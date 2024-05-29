@@ -1,6 +1,16 @@
 <div class="comentario-wrapper">
-    <p>{{comentario.texto}}</p>
-    <p>{{comentario.usuario.nombre}} {{comentario.usuario.apellido}}</p>
-    <p>{{comentario.usuario.fotoDePerfil}}</p>
-    <p>{{comentario.fecha | date:'dd-MM-yyyy'}}</p>
+    <div class="info-comentario">
+        <p>{{comentario.texto}}</p>
+    <div class="info-comentario-user">
+        <div class="foto-nombre-user">
+            <div class="photo-user">
+                <img src="../../../../assets/img/profile/{{comentario.usuario.fotoDePerfil}}.jpg" alt="User" />
+            </div>
+            <span>{{comentario.usuario.nombre}} {{comentario.usuario.apellido}}</span>
+        </div>
+        <div class="fecha">
+            <span id="fecha-publicacion">{{comentario.fecha | date:'dd-MM-yyyy'}}</span>
+        </div>
+    </div>
+    </div>
 </div>
