@@ -17,7 +17,7 @@ export class ComentarioArticuloComponent implements OnInit{
 
   @Input() miUsuario:any;
   @Input() comentario:any;
-  usuario = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   miPerfil: boolean = false;
 
   constructor (private comentarioService: ComentariosService) {}

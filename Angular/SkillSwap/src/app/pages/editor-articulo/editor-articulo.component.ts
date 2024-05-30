@@ -35,7 +35,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './editor-articulo.component.css',
 })
 export class EditorArticuloComponent {
-  storedValue = localStorage.getItem('usuario');
+  storedValue = sessionStorage.getItem('usuario');
   miUsuario!: usuario;
   articuloId: number | null = null;
   titulo: string = '';
