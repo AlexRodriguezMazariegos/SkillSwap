@@ -52,6 +52,7 @@
 }
 
 .select-art {
+  display: none;
   padding: 8px;
   margin-left: 10px;
   margin-right: 10px;
