@@ -7,6 +7,7 @@ import {
 import { ConfirmationModalComponent } from '../../pages/confirmation-modal/confirmation-modal.component';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth/auth.service';
  
 @Component({
   selector: 'app-sidebar',
@@ -16,12 +17,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-  storedValue = localStorage.getItem('user');
+  storedValue = sessionStorage.getItem('usuario');
  
   menuOpen = false;
   dialogRef: MatDialogRef<ConfirmationModalComponent> | null = null; // Referencia al diálogo abierto
  
-  constructor(public dialog: MatDialog, private router: Router) {}
+  constructor(public dialog: MatDialog, private router: Router,private authService:AuthService) {}
  
   openDialog(pregunta: string, textoBoton: string): void {
     if (!this.dialogRef) { // Verifica si ya hay un diálogo abierto
@@ -56,9 +57,8 @@ export class SidebarComponent {
  
   onLogoutConfirmation(confirmed: boolean): void {
     if (confirmed) {
-      console.log('Cerrar sesión confirmado');
-      localStorage.removeItem('usuario'); // Elimina los datos del usuario del almacenamiento local
-      this.router.navigate(['/']); // Redirige al usuario a la página de inicio de sesión
+      this.authService.logout()
+      this.router.navigate([``])
     }
   }
  

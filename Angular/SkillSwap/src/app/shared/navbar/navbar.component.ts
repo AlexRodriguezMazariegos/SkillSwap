@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material/dialog';
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
 })
 export class NavbarComponent implements OnInit {
-  usuario = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   nombreUsuario = '';
   imagenUsuario = '';
   searchControl: FormControl = new FormControl();

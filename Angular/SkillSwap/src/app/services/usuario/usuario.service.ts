@@ -45,5 +45,9 @@ export class UsuarioService {
   getUsuarioByEmail(email:string):Observable<any>{
     return this.http.get(`${this.baseUrl}/email/${email}`)
   }
+
+  saveUser(email:string):Observable<any>{
+    return this.http.get(`${this.baseUrl}/GetUsuario/${email}`,{ headers: this.headers })
+  }
   
 }

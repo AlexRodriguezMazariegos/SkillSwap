@@ -54,6 +54,12 @@ public class UsuarioServicio implements UserDetailsService {
         }
     }
     
+    @Transactional(readOnly = true)
+    public Optional<Usuario> GetByEmail(String email) {
+    	return usuarioRepositorio.findByEmail(email);
+    }
+
+    
     @Transactional
     public Usuario crearUsuario(Usuario usuario) {
         Optional<Rol> rolUsuario = rolRepositorio.findByName("ROLE_USER");

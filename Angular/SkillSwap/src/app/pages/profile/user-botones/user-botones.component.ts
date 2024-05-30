@@ -17,7 +17,7 @@ export class UserBotonesComponent implements OnInit{
   @Input() miUsuario: any;
   @Output() edit = new EventEmitter<void>();
   isEditing: boolean = false;
-  usuario = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   usuarioId: usuario = {
     id: 0,
     nombre: '',

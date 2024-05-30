@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService,
     private authService: AuthService
   ) {}
 
@@ -99,13 +98,17 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(this.user).subscribe(
       (response) => {
-        this.authService.saveUser(response.token);
         this.authService.saveToken(response.token);
+        this.authService.saveUser(response.token);
+
         this.authService.saveRole(response.token);
 
         let user = this.authService.user;
+        
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 50);
 
-        this.router.navigate(['/home']);
       },
       (err) => {
         if (err.status == 401) {

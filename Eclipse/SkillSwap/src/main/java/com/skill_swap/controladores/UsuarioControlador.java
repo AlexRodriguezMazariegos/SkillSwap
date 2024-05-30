@@ -85,5 +85,8 @@ public class UsuarioControlador {
 	    return usuarioServicio.login(email, contrasena);
 	}*/
 	
-	
+	@GetMapping("/GetUsuario/{email}")
+	public ResponseEntity<Optional<Usuario>> GetByEmail(@PathVariable String email){
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioServicio.GetByEmail(email));
+	}
 }

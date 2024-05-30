@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { Observable } from 'rxjs';
 import { usuario } from '../../model/usuario';
+import { UsuarioService } from '../usuario/usuario.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,16 +11,17 @@ export class AuthService {
   private _user!: usuario | null;
   private _token!: string | null;
   private _role!: string | null;
+  private usuarioService!: UsuarioService;
 
   private baseUrl = 'http://localhost:8080';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private injector: Injector) {}
 
   public get user(): usuario {
     if (this._user != null) {
       return this._user;
     } else if (this._user == null) {
-      const userStr = sessionStorage.getItem('user');
+      const userStr = sessionStorage.getItem('usuario');
       if (userStr != null) {
         this._user = JSON.parse(userStr) as usuario;
       } else {
@@ -51,9 +53,19 @@ export class AuthService {
   saveUser(accessToken: string): void {
     let payload = this.getDataToken(accessToken);
     this._user = new usuario();
+    
     this._user.email = payload.email;
-    sessionStorage.setItem('user', JSON.stringify(this._user));
+    console.log(this._user.email)
+    this.getUsuarioService().saveUser(this._user.email).subscribe((data)=>
+    {
+      this._user = data
+      console.log(data)
+      sessionStorage.setItem('usuario', JSON.stringify(this._user));
+      console.log(sessionStorage.getItem('usuario'));
+      
+    })
   }
+
   saveToken(accessToken: string): void {
     this._token = accessToken;
     sessionStorage.setItem('token', accessToken);
@@ -86,6 +98,13 @@ export class AuthService {
     this._user = null;
     sessionStorage.clear();
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('usuario');
+  }
+
+  private getUsuarioService(): UsuarioService {
+    if (!this.usuarioService) {
+      this.usuarioService = this.injector.get(UsuarioService);
+    }
+    return this.usuarioService;
   }
 }
