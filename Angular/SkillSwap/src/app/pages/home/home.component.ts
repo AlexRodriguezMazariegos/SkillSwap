@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
     this.loadArticulos();
     console.log(sessionStorage.getItem('token'))
     console.log(sessionStorage.getItem('usuario'))
+    
     this.searchService.searchCriteria$.subscribe(({ text, option }) => {
       this.inputText = text;
       this.selectedOption = option;

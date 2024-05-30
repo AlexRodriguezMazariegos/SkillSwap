@@ -21,6 +21,7 @@ export class ValoracionService {
 
 private addAuthorizationHeader(): HttpHeaders {
   let token = this.authservice.token;
+  console.log(token)
   if (token != null) {
     return this.httpHeaders.append('Authorization', 'Bearer ' + token);
   }
@@ -28,27 +29,28 @@ private addAuthorizationHeader(): HttpHeaders {
 }
 
   getValoraciones():Observable<any>{
-    return this.http.get<any>(this.baseUrl,{ headers: this.headers })
+    return this.http.get<any>(this.baseUrl,{ headers: this.headers})
   }
 
   getValoracionByIdById(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/${id}`,{ headers: this.headers })
+    return this.http.get<any>(`${this.baseUrl}/${id}`,{ headers: this.headers})
   }
 
   getValoracionesByIdByUsuario(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/${id}`,{ headers: this.headers })
+    return this.http.get<any>(`${this.baseUrl}/${id}`,{ headers: this.headers})
   }
 
   getValoracionesByIdByArticulo(id:number):Observable<any>{
-    return this.http.get<any[]>(`${this.baseUrl}/valoraciones?articulo=${id}`,{ headers: this.headers });
+    console.log(this.httpHeaders)
+    return this.http.get<any[]>(`${this.baseUrl}/valoraciones?articulo=${id}`,{ headers: this.headers});
   }
 
   postValoracion(valoracion: valoracion):Observable<any>{
-    return this.http.post(this.baseUrl,valoracion,{ headers: this.headers })
+    return this.http.post(this.baseUrl,valoracion,{ headers: this.headers})
   }
 
   editarValoracionPorId(id:number, valoracion: valoracion):Observable<any>{
-    return this.http.put(this.baseUrl,valoracion,{ headers: this.headers })
+    return this.http.put(this.baseUrl,valoracion,{ headers: this.headers})
   }
   
 }
