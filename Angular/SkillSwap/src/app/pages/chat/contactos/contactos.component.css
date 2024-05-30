@@ -1,4 +1,4 @@
-.sidebar{
+.sidebar {
     background: var(--light-grey);
     display: flex;
     height: 100%;
@@ -6,12 +6,24 @@
     padding-top: 5rem;
 }
 
-.titulo{
+.titulo {
     margin: 3%;
     font-family: var(--tituloPpal);
     text-align: center;
 }
 
-.contactos{
-    margin: 5%;
+.contactos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-right: 2%;
+    margin-left: 2%;
+}
+
+app-card-contacto {
+    /* height: 70px; */
+    box-sizing: border-box;
+    flex: none;
 }
