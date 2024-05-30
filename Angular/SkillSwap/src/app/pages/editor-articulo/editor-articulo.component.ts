@@ -101,7 +101,7 @@ export class EditorArticuloComponent {
       const id = params.get('id');
       if (id) {
         this.articuloId = +id;
-        this.articuloService.getArticuloById(this.articuloId).subscribe({
+        this.articuloService.getArticuloCualquieraById(this.articuloId).subscribe({
           next: (articulo) => {
             this.titulo = articulo.titulo;
             this.descripcion = articulo.descripcion;
@@ -115,7 +115,7 @@ export class EditorArticuloComponent {
 
   saveContent() {
     const articulo: articulo = {
-      id: this.articuloId || 0, // El id se asigna automáticamente aunque ponga 0
+      id: this.articuloId || 0,
       usuario: this.miUsuario,
       titulo: this.titulo,
       descripcion: this.descripcion,
