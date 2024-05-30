@@ -8,6 +8,7 @@ import { ArticuloService } from '../../../services/articulo/articulo.service';
 import { EditorArticuloComponent } from '../../editor-articulo/editor-articulo.component';
 import { ValoracionService } from '../../../services/valoracion/valoracion.service';
 import { valoracion } from '../../../model/valoracion';
+import { HotToastService } from '@ngneat/hot-toast';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class ArticuloComponent implements OnInit {
     private route: ActivatedRoute, 
     private dialog: MatDialog, 
     private router: Router,
+    private toast: HotToastService,
     private articuloService: ArticuloService,
     private valoracionService: ValoracionService
   ) {}
@@ -71,10 +73,42 @@ export class ArticuloComponent implements OnInit {
     this.router.navigate([`/editar-articulo/${this.articulos.id}`]);
   }
 
-  activarDesactivarArticulo(event: Event) {
-    console.log(this.articulos);
+  toggleArticulo(event:Event, id: number) {
     event.stopPropagation();
-    this.articuloService.activarDesactivar(this.articulos.id);
+    this.articuloService.activarDesactivar(id).subscribe(
+      response => {
+        console.log('Artículo actualizado:', response);
+        const articulo = this.articulos.find((a: { id: number; }) => a.id === id);
+        if (!articulo) {
+          articulo.activo = !articulo.activo;
+        }
+      },
+      error => {
+        console.error('Error al actualizar el artículo:', error);
+      }
+      
+    );
+    window.location.reload()
+    this.toggle()
+  }
+
+  toggle() {
+    this.toast.success('Estado actualizado', {
+      duration: 1400,
+      style: {
+        border: '1px solid #002d3c',
+        padding: '16px',
+        color: '#002d3c',
+        zIndex: 999999999,
+        position: 'fixed',
+        top: '60px',
+        left: '950px',
+      },
+      iconTheme: {
+        primary: '#002d3c',
+        secondary: '#ffff',
+      },
+    });
   }
 
   openDialog(pregunta: string = '¿Estás seguro que deseas eliminar el artículo?', textoBoton: string = 'Borrar artículo', id: number): void {
