@@ -21,7 +21,7 @@ import { PaginationComponent } from '../../shared/pagination/pagination.componen
   ],
 })
 export class MisArticulosComponent {
-  storedValue = localStorage.getItem('usuario');
+  storedValue = sessionStorage.getItem('usuario');
   public articulos: articulo[] = [];
 
   //Variables para la paginación

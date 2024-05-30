@@ -30,7 +30,7 @@ import { AdjuntarComentarioComponent } from "./adjuntar-comentario/adjuntar-come
     ]
 })
 export class ArticuloPorIdComponent implements OnInit {
-  storedValue = localStorage.getItem('usuario');
+  storedValue = sessionStorage.getItem('usuario');
   miUsuario!: usuario;
   puntuacion: number = 0;
   valoracionExistente: boolean = false;

@@ -26,7 +26,7 @@ private addAuthorizationHeader(): HttpHeaders {
   return this.httpHeaders;
 }
   getArticulos(): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/activos`,{ headers: this.headers });
+    return this.http.get<any>(`${this.baseUrl}/activos`,{ headers: this.headers});
   }
 
   getArticuloCualquieraById(id: number): Observable<any> {
@@ -34,7 +34,7 @@ private addAuthorizationHeader(): HttpHeaders {
   }
 
   getArticuloById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/activos/${id}`);
+    return this.http.get<any>(`${this.baseUrl}/activos/${id}`,{ headers: this.headers });
   }
 
   getArticuloByUserId(id: number): Observable<any> {
