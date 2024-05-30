@@ -1,6 +1,5 @@
 package com.skill_swap.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,4 +18,36 @@ public class ChatMessage {
         this.chatId = chatId;
 
     }
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Long getChatId() {
+		return chatId;
+	}
+
+	public void setChatId(Long chatId) {
+		this.chatId = chatId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 }

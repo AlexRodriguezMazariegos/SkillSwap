@@ -5,7 +5,10 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.skill_swap.entidades.Skill;
 import com.skill_swap.entidades.Usuario;
+import com.skill_swap.repositorios.SkillRepositorio;
 import com.skill_swap.repositorios.UsuarioRepositorio;
 
 @Service
@@ -13,6 +16,9 @@ public class UsuarioServicio {
 
 	@Autowired
 	UsuarioRepositorio usuarioRepositorio;
+
+	@Autowired
+	SkillRepositorio skillRepositorio;
 
 	// Método para obtener todos los usuarios
 	public List<Usuario> obtenerTodosLosUsuarios() {
@@ -48,7 +54,6 @@ public class UsuarioServicio {
 		}
 	}
 
-
 	// Método para borrar un usuario por su ID
 	public Boolean borrarUsuario(Long id) {
 		{
@@ -62,10 +67,9 @@ public class UsuarioServicio {
 	}
 
 	public Boolean FindByEmail(String email) {
-		if (usuarioRepositorio.findByEmail(email)!= null) {
+		if (usuarioRepositorio.findByEmail(email) != null) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -78,5 +82,12 @@ public class UsuarioServicio {
 		return usuarioRepositorio.findByNombre(nombre);
 	}
 
+	public List<Skill> obtenerSkillsPorIdUsuario(Long idUsuario) {
+		return skillRepositorio.findByUsuariosId(idUsuario);
+	}
+
+	public List<Skill> obtenerSkillsPorIds(List<Long> idsSkills) {
+		return skillRepositorio.findAllById(idsSkills);
+	}
 
 }

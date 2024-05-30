@@ -15,7 +15,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.skill_swap.entidades.Skill;
 import com.skill_swap.entidades.Usuario;
+import com.skill_swap.servicios.SkillServicio;
 import com.skill_swap.servicios.UsuarioServicio;
 
 @RestController
@@ -25,6 +28,9 @@ public class UsuarioControlador {
 
 	@Autowired
 	private UsuarioServicio usuarioServicio;
+
+	@Autowired
+	private SkillServicio skillServicio;
 
 	@GetMapping("")
 	public List<Usuario> obtenerTodosLosUsuarios() {
@@ -68,18 +74,46 @@ public class UsuarioControlador {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 	}
-	
+
 	@GetMapping("/email/{email}")
 	public Boolean getMethodName(@PathVariable String email) {
 		return usuarioServicio.FindByEmail(email);
 	}
-	
+
 	@PostMapping("/login")
 	public Usuario login(@RequestBody Map<String, String> userData) {
-	    String email = userData.get("email");
-	    String contrasena = userData.get("contrasena");
-	    return usuarioServicio.login(email, contrasena);
+		String email = userData.get("email");
+		String contrasena = userData.get("contrasena");
+		return usuarioServicio.login(email, contrasena);
 	}
-	
-	
+
+	@GetMapping("/{id}/skills")
+	public ResponseEntity<List<Skill>> obtenerSkillsDeUsuario(@PathVariable Long id) {
+		Optional<Usuario> usuarioOptional = usuarioServicio.obtenerUsuarioPorId(id);
+		if (!usuarioOptional.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		Usuario usuario = usuarioOptional.get();
+		List<Skill> skills = usuario.getSkills();
+
+		return ResponseEntity.ok().body(skills);
+	}
+
+	@PutMapping("/{id}/skills")
+	public ResponseEntity<Usuario> actualizarSkillsDeUsuario(@PathVariable Long id, @RequestBody List<Long> idSkills) {
+		Optional<Usuario> usuarioOptional = usuarioServicio.obtenerUsuarioPorId(id);
+		if (!usuarioOptional.isPresent()) {
+			return ResponseEntity.notFound().build();
+		}
+
+		Usuario usuario = usuarioOptional.get();
+		List<Skill> skills = skillServicio.obtenerSkillsPorIds(idSkills); 
+
+		usuario.setSkills(skills); 
+
+		Usuario usuarioActualizado = usuarioServicio.actualizarUsuario(id, usuario);
+
+		return ResponseEntity.ok().body(usuarioActualizado);
+	}
 }

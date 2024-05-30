@@ -1,6 +1,79 @@
-.info-container{
-    background: var(--light-grey);
-    border-radius: 10px;
-    margin: 20px;
-    padding: 2%;
+.info-container {
+  background: var(--light-grey);
+  border-radius: 10px;
+  margin: 20px;
+  padding: 2%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="url"] {
+  width: 27%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+}
+
+.custom-select {
+  align-items: center;
+  flex: 1;
+  max-width: 30%;
+  padding: 5px;
+  background-color: var(--select-bg-color);
+  color: var(--select-text-color);
+  font-size: 1rem;
+  font-weight: 400;
+  display: block;
+  line-height: 1.5;
+  color: var(--bs-body-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: var(--bs-body-bg);
+  background-clip: padding-box;
+  border: var(--bs-border-width) solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+}
+
+.selected-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 500px;
+}
+
+.selected-skill {
+  margin: 5px;
+  height: 35px;
+  width: 155px;
+  background-color: var(--ppal);
+  padding: 5px 10px;
+  border-radius: var(--bs-border-radius);
+  color: white;
+  text-align: center;
+  font-family: var(--tituloPpal);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.selected-skill span {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+.selected-skill:hover {
+  background-color: white;
+  color: var(--ppal);
+  border: 1px solid var(--ppal);
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
 }
