@@ -19,10 +19,12 @@ import com.skill_swap.entidades.Articulo;
 import com.skill_swap.entidades.Comentario;
 import com.skill_swap.servicios.ArticuloServicio;
 import com.skill_swap.servicios.ComentarioServicio;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
+
 
 @RestController
 @RequestMapping("/api/v1/articulo")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200", methods = { GET, POST, PUT, PATCH, DELETE })
 public class ArticuloControlador {
 
 	@Autowired
@@ -77,20 +79,15 @@ public class ArticuloControlador {
 	}
 
 	@PatchMapping("/{id}")
-	public ResponseEntity<Articulo> patchearArticulo(@PathVariable Long id){
-		System.out.println("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		if(articuloServicio.obtenerArticuloPorId(id).isPresent()) {
-			Articulo a = articuloServicio.obtenerArticuloPorId(id).get();
-			if(a.getActivo()==true) {
-				a.setActivo(false);
-			}else {
-				a.setActivo(true);
-			}
-			return ResponseEntity.status(HttpStatus.OK).body(articuloServicio.crearArticulo(a));
-		}else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-		}
-	}
+    public ResponseEntity<Articulo> patchearArticulo(@PathVariable Long id) {
+        return articuloServicio.obtenerArticuloPorId(id)
+                .map(articulo -> {
+                    articulo.setActivo(!articulo.getActivo());
+                    Articulo actualizado = articuloServicio.crearArticulo(articulo);
+                    return ResponseEntity.ok(actualizado);
+                })
+                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
 	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminarArticulo(@PathVariable Long id) {

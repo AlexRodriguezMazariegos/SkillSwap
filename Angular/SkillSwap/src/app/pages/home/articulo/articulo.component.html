@@ -21,7 +21,7 @@
   </div>
   <div *ngIf="currentRoute === '/mis-articulos'" class="user-art d-flex flex-column justify-content-center align-content-center gap-1 p-1">
     <button (click)="editArticulo($event)" class="default-button-reverse">Editar</button>
-    <button (click)="activarDesactivarArticulo($event)" class="default-button-reverse" id="delete-button">Desactivar</button>
+    <button (click)="toggleArticulo($event, this.articulos.id)" class="default-button-reverse" id="delete-button">Desactivar</button>
     <p class="info-art date-art">{{articulos.fechaPublicacion | date:'dd-MM-yyyy'}}</p>
   </div>
 </div>

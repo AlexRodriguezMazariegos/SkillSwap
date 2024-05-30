@@ -71,10 +71,20 @@ export class ArticuloComponent implements OnInit {
     this.router.navigate([`/editar-articulo/${this.articulos.id}`]);
   }
 
-  activarDesactivarArticulo(event: Event) {
-    console.log(this.articulos);
+  toggleArticulo(event:Event, id: number) {
     event.stopPropagation();
-    this.articuloService.activarDesactivar(this.articulos.id);
+    this.articuloService.activarDesactivar(id).subscribe(
+      response => {
+        console.log('Artículo actualizado:', response);
+        const articulo = this.articulos.find((a: { id: number; }) => a.id === id);
+        if (!articulo) {
+          articulo.activo = !articulo.activo;
+        }
+      },
+      error => {
+        console.error('Error al actualizar el artículo:', error);
+      }
+    );
   }
 
   openDialog(pregunta: string = '¿Estás seguro que deseas eliminar el artículo?', textoBoton: string = 'Borrar artículo', id: number): void {

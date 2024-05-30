@@ -28,8 +28,9 @@ export class ArticuloService {
   }
 
   activarDesactivar(id: number): Observable<any> {
-    console.log("HOLA")
-    return this.http.patch<any>(`${this.baseUrl}/${id}`, {})
+    console.log("HOLA");
+    console.log(id);
+    return this.http.patch(`${this.baseUrl}/${id}`, {});
   }
 
   deleteArticulo(id: number): Observable<any> {
