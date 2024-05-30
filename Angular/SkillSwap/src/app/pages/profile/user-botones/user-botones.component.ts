@@ -143,9 +143,6 @@ export class UserBotonesComponent implements OnInit{
       }
     );
   }
-  
-  
-
   cancelarPerfil(){
     this.editProfileService.setIsEditing(false);
   }

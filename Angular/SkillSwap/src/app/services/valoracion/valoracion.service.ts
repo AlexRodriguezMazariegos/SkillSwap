@@ -45,15 +45,24 @@ private addAuthorizationHeader(): HttpHeaders {
     return this.http.get<any[]>(`${this.baseUrl}/valoraciones?articulo=${id}`,{ headers: this.headers});
   }
 
-  postValoracion(valoracion: valoracion):Observable<any>{
-    return this.http.post(this.baseUrl,valoracion,{ headers: this.headers})
+  // postValoracion(valoracion: valoracion):Observable<any>{
+  //   return this.http.post(this.baseUrl,valoracion,{ headers: this.headers})
+  // saveOrUpdateValoracion(valoracion: valoracion): Observable<valoracion> {
+  //   return this.http.post<valoracion>(`${this.baseUrl}/saveOrUpdate`, valoracion);
+  // }
+
+  // editarValoracionPorId(id:number, valoracion: valoracion):Observable<any>{
+  //   return this.http.put(this.baseUrl,valoracion,{ headers: this.headers})
+  // obtenerValoracion(articuloId: number, usuarioId: number): Observable<valoracion | null> {
+  //   return this.http.get<valoracion | null>(`${this.baseUrl}/obtenerValoracion?articuloId=${articuloId}&usuarioId=${usuarioId}`);
+  // }
+
   saveOrUpdateValoracion(valoracion: valoracion): Observable<valoracion> {
     return this.http.post<valoracion>(`${this.baseUrl}/saveOrUpdate`, valoracion);
   }
-
-  editarValoracionPorId(id:number, valoracion: valoracion):Observable<any>{
-    return this.http.put(this.baseUrl,valoracion,{ headers: this.headers})
+ 
   obtenerValoracion(articuloId: number, usuarioId: number): Observable<valoracion | null> {
     return this.http.get<valoracion | null>(`${this.baseUrl}/obtenerValoracion?articuloId=${articuloId}&usuarioId=${usuarioId}`);
   }
+
 }

@@ -50,21 +50,6 @@ export class ArticuloComponent implements OnInit {
       }
     });
 
-    this.valoracionService.getValoracionesByIdByArticulo(this.articulos.id).subscribe((valoraciones: any[]) => {
-
-      if (valoraciones && valoraciones.length > 0) {
-        const sumaValoraciones = valoraciones.reduce((total, valoracion) => {
-          const valor = Number(valoracion.puntuacion);
-          return !isNaN(valor) ? total + valor : total; // Solo agregar si es un número válido
-        }, 0);
-
-        // Verificar que 'valoraciones.length' no sea cero antes de la división
-        this.mediaValoraciones = valoraciones.length > 0 ? sumaValoraciones / valoraciones.length : 0;
-      } else {
-        this.mediaValoraciones = 0; 
-      }
-    });
-
     this.currentRoute = this.router.url;
     console.log(this.currentRoute);
   }
@@ -149,8 +134,6 @@ export class ArticuloComponent implements OnInit {
       }
     });
   }
-
-
 
   obtenerValoraciones(): void {
     this.valoracionService.getValoracionesByIdByArticulo(this.articulos.id).subscribe((valoraciones: any[]) => {
