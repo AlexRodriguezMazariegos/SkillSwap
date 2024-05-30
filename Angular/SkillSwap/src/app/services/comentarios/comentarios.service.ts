@@ -13,4 +13,8 @@ export class ComentariosService {
   postComentario(nuevoComentario: comentario, idUsuario: number, idArticulo: number) {
     return this.http.post(`${this.baseUrl}/${idArticulo}/newComentario/${idUsuario}`, nuevoComentario)
   }
+
+  deleteComentario(idComentario: number) {
+    return this.http.delete(`${this.baseUrl}/${idComentario}`)
+  }
 }
