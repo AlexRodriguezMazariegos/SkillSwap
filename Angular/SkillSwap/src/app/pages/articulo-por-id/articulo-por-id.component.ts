@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { articulo } from '../../model/articulo';
 import { valoracion } from '../../model/valoracion';
 import { ArticuloService } from '../../services/articulo/articulo.service';
@@ -58,7 +58,7 @@ export class ArticuloPorIdComponent implements OnInit {
 
   fechaPublicacionFormateada: string = '';
   sanitizedContent: SafeHtml | undefined;
-
+  
   constructor(
     private articuloService: ArticuloService,
     private route: ActivatedRoute,

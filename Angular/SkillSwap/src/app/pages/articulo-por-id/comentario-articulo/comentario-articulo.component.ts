@@ -18,7 +18,5 @@ export class ComentarioArticuloComponent implements OnInit{
     private route: ActivatedRoute) {}
   
   ngOnInit(): void {
-    console.log(this.comentario);
-    
   }
 }
