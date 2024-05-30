@@ -5,17 +5,19 @@ import { comentario } from '../../../model/comentario';
 import { articulo } from '../../../model/articulo';
 import { ArticuloService } from '../../../services/articulo/articulo.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-adjuntar-comentario',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './adjuntar-comentario.component.html',
   styleUrl: './adjuntar-comentario.component.css'
 })
 export class AdjuntarComentarioComponent implements OnInit{
   storedValue = localStorage.getItem('usuario');
   miUsuario!: usuario;
+  texto: string = '';
   articuloPorId: articulo = {
     id: 0,
     usuario: {
@@ -58,10 +60,10 @@ enviarComentario() {
     usuario: this.miUsuario,
     articulo: this.articuloPorId,
     fecha: new Date(),
-    texto: 'Holi'
+    texto: this.texto
   }
   
-  this.comentariosService.postComentario(comentario).subscribe({
+  this.comentariosService.postComentario(comentario, comentario.usuario.id, comentario.articulo.id).subscribe({
     next: (response) => {
       console.log('Comentario introducido correctamente', response);
     },
@@ -69,6 +71,7 @@ enviarComentario() {
       console.error('Error al introducir el comentario', error);
     }
   });
+  window.location.reload()
 }
 
 }

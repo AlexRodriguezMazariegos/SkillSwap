@@ -10,7 +10,7 @@ export class ComentariosService {
   baseUrl = 'http://localhost:8080/api/v1/comentarios';
   constructor(private http: HttpClient) { }
 
-  postComentario(nuevoComentario: comentario) {
-    return this.http.post(this.baseUrl, nuevoComentario)
+  postComentario(nuevoComentario: comentario, idUsuario: number, idArticulo: number) {
+    return this.http.post(`${this.baseUrl}/${idArticulo}/newComentario/${idUsuario}`, nuevoComentario)
   }
 }
