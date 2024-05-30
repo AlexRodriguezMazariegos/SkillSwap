@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skill_swap.entidades.*;
@@ -23,7 +24,7 @@ import com.skill_swap.servicios.ValoracionServicio;
 @RequestMapping("/api/v1/valoracion")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ValoracionControlador {
-	
+
 	@Autowired
 	private ValoracionServicio valoracionServicio;
 
@@ -40,12 +41,12 @@ public class ValoracionControlador {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 	}
-	
+
 	@PostMapping("")
 	public ResponseEntity<Valoracion> guardarValoracion(@RequestBody Valoracion valoracion) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(valoracionServicio.crearValoracion(valoracion));
 	}
-	
+
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Void> eliminarValoracion(@PathVariable Long id) {
 		if (valoracionServicio.obtenerValoracionPorId(id) == null) {
@@ -55,7 +56,7 @@ public class ValoracionControlador {
 			return ResponseEntity.status(HttpStatus.OK).build();
 		}
 	}
-	
+
 	@PutMapping("/{id}")
 	public ResponseEntity<Valoracion> actualizarValoracion(@PathVariable Long id, @RequestBody Valoracion valoracion) {
 		if (valoracionServicio.obtenerValoracionPorId(id) == null) {
@@ -69,4 +70,28 @@ public class ValoracionControlador {
 			}
 		}
 	}
+
+	@GetMapping("/valoraciones")
+	public ResponseEntity<List<Valoracion>> obtenerValoracionesPorArticulo(@RequestParam Long articulo) {
+		List<Valoracion> valoraciones = valoracionServicio.obtenerValoracionPorArticulo(articulo);
+		if (!valoraciones.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.OK).body(valoraciones);
+		} else {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+		}
+	}
+
+	@PostMapping("/saveOrUpdate")
+	public ResponseEntity<Valoracion> saveOrUpdateValoracion(@RequestBody Valoracion valoracion) {
+		Valoracion savedValoracion = valoracionServicio.saveOrUpdateValoracion(valoracion);
+		return ResponseEntity.status(HttpStatus.OK).body(savedValoracion);
+	}
+
+	@GetMapping("/obtenerValoracion")
+	public ResponseEntity<Valoracion> obtenerValoracion(@RequestParam Long articuloId, @RequestParam Long usuarioId) {
+		Optional<Valoracion> valoracion = valoracionServicio.obtenerValoracionPorArticuloYUsuario(articuloId,
+				usuarioId);
+		return valoracion.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.ok(null));
+	}
+
 }

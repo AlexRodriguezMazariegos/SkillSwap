@@ -1,28 +1,49 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ArticuloService } from '../../../services/articulo/articulo.service';
 import { ActivatedRoute } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
+import { ComentariosService } from '../../../services/comentarios/comentarios.service';
+import { response } from 'express';
 
 @Component({
   selector: 'app-comentario-articulo',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './comentario-articulo.component.html',
   styleUrl: './comentario-articulo.component.css'
 })
 export class ComentarioArticuloComponent implements OnInit{
-  @Input() articuloPorId:any;
 
-  constructor (
-    private articuloService: ArticuloService,
-    private route: ActivatedRoute) {}
+  @Input() miUsuario:any;
+  @Input() comentario:any;
+  usuario = localStorage.getItem('usuario');
+  miPerfil: boolean = false;
+
+  constructor (private comentarioService: ComentariosService) {}
   
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const id = params['id'];
-      this.articuloService.getArticuloById(id).subscribe(data => {
-        this.articuloPorId = data;
-        console.log(this.articuloPorId);
-      });
-    });
+    
+    if (this.usuario) {
+      const currentUser = JSON.parse(this.usuario);
+      this.miUsuario = currentUser;
+    }
+    
+    if (this.miUsuario.id === this.comentario.usuario.id) {
+      this.miPerfil = true
+    }
   }
+
+  borrarComentario() {
+    this.comentarioService.deleteComentario(this.comentario.id).subscribe({
+      next: (response) => {
+        console.log('Comentario borrado correctamente', response);
+      },
+      error: (error) => {
+        console.log('Error al borrar comentario', error);
+      }
+    })
+    window.location.reload()
+    }
+
 }

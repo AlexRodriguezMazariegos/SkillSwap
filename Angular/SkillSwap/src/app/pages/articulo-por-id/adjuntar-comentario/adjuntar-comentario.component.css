@@ -1,0 +1,21 @@
+.comment-container {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 5px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.comment-container textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+    padding: 5px;
+}
+
+.default-button {
+    display: flex;
+}

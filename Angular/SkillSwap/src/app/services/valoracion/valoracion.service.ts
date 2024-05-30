@@ -1,11 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { valoracion } from '../../model/valoracion';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ValoracionService {
 
@@ -47,10 +47,13 @@ private addAuthorizationHeader(): HttpHeaders {
 
   postValoracion(valoracion: valoracion):Observable<any>{
     return this.http.post(this.baseUrl,valoracion,{ headers: this.headers})
+  saveOrUpdateValoracion(valoracion: valoracion): Observable<valoracion> {
+    return this.http.post<valoracion>(`${this.baseUrl}/saveOrUpdate`, valoracion);
   }
 
   editarValoracionPorId(id:number, valoracion: valoracion):Observable<any>{
     return this.http.put(this.baseUrl,valoracion,{ headers: this.headers})
+  obtenerValoracion(articuloId: number, usuarioId: number): Observable<valoracion | null> {
+    return this.http.get<valoracion | null>(`${this.baseUrl}/obtenerValoracion?articuloId=${articuloId}&usuarioId=${usuarioId}`);
   }
-  
 }

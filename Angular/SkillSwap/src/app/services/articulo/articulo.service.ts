@@ -26,11 +26,15 @@ private addAuthorizationHeader(): HttpHeaders {
   return this.httpHeaders;
 }
   getArticulos(): Observable<any> {
-    return this.http.get<any>(this.baseUrl,{ headers: this.headers });
+    return this.http.get<any>(`${this.baseUrl}/activos`,{ headers: this.headers });
+  }
+
+  getArticuloCualquieraById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`,{ headers: this.headers });
   }
 
   getArticuloById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.baseUrl}/${id}`,{ headers: this.headers });
+    return this.http.get<any>(`${this.baseUrl}/activos/${id}`);
   }
 
   getArticuloByUserId(id: number): Observable<any> {
@@ -41,10 +45,15 @@ private addAuthorizationHeader(): HttpHeaders {
     return this.http.post(this.baseUrl, newArticulo,{ headers: this.headers })
   }
 
+  activarDesactivar(id: number): Observable<any> {
+    return this.http.patch(`${this.baseUrl}/${id}`, {});
+  }
+
   deleteArticulo(id: number): Observable<any> {
     return this.http.delete<any>(`${this.baseUrl}/${id}`,{ headers: this.headers })
   }
     updateArticulo(id: number, articulo: articulo): Observable<articulo> {
     return this.http.put<articulo>(`${this.baseUrl}/${id}`, articulo,{ headers: this.headers } );
   }
+
 }

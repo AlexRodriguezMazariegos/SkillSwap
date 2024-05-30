@@ -1,10 +1,3 @@
-<!-- <div class="chat">
-    <app-mensaje-recibido></app-mensaje-recibido>
-    <app-mensaje-enviado></app-mensaje-enviado>
-
-</div> -->
-
-
 <div class="chat_window">
     <div class="top_menu">
       <div class="title">
@@ -12,31 +5,30 @@
       </div>
     </div>
     <ul class="messages">
-
-      <!-- <li class="message right" *ngFor="let item of messageList" 
+<!-- 
+      <li class="message right" *ngFor="let item of messageList" 
         [ngClass]="{'left': item.message_side === 'receiver', 'right': item.message_side =='sender'}"
       > -->
-
-      <li class="message right" *ngFor="let item of messageList">
+      <li class="message right"    >
         <div class="avatar">
           
         </div>
         <div class="text_wrapper">
-          <div class="text">{{item.message}} </div>
+          <!-- <div class="text">{{item.message}} </div> -->
+          <div class="text"> l</div>
+
         </div>
       </li>
       
     </ul>
     <div class="bottom_wrapper clearfix">
-      <!-- <div class="message_input_wrapper">
-        <input class="message_input" placeholder="Mensaje..."[(ngModel)]="messageInput" 
-        (keyup.enter)="sendMessage()" />
-      </div> -->
       <div class="message_input_wrapper">
-        <input class="message_input" placeholder="" />
+        <!-- <input class="message_input" placeholder="Mensaje..."[(ngModel)]="messageInput" 
+        (keyup.enter)="sendMessage()" /> -->
+        <input class="message_input" />
       </div>
       <!-- <div class="send_message" (click)="sendMessage()"> -->
-      <div class="send_message">
+        <div class="send_message">
 
         <div class="icon"></div>
         <div class="text">Enviar</div>

@@ -4,12 +4,19 @@ import { debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { SearchService } from '../../services/search/search.service';
 import { CommonModule } from '@angular/common';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { debounceTime } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { SearchService } from '../../services/search/search.service';
+import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css'],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   styleUrls: ['./navbar.component.css'],
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
 })
@@ -20,7 +27,11 @@ export class NavbarComponent implements OnInit {
   searchControl: FormControl = new FormControl();
   inputText: string = '';
   selectedOption: string = 'Todos';
+  searchControl: FormControl = new FormControl();
+  inputText: string = '';
+  selectedOption: string = 'Todos';
 
+  constructor(public dialog: MatDialog, private router: Router, private searchService: SearchService) {}
   constructor(public dialog: MatDialog, private router: Router, private searchService: SearchService) {}
 
   ngOnInit(): void {
@@ -51,6 +62,11 @@ export class NavbarComponent implements OnInit {
     } else {
       this.router.navigate([``]);
     }
+  }
+
+  onSearch(event: Event) {
+    event.preventDefault();
+    this.searchService.setSearchCriteria(this.inputText, this.selectedOption);
   }
 
   onSearch(event: Event) {
