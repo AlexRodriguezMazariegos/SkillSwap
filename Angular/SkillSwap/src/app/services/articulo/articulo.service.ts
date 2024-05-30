@@ -15,6 +15,10 @@ export class ArticuloService {
     return this.http.get<any>(`${this.baseUrl}/activos`);
   }
 
+  getArticuloCualquieraById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`);
+  }
+
   getArticuloById(id: number): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}/activos/${id}`);
   }
@@ -28,8 +32,7 @@ export class ArticuloService {
   }
 
   activarDesactivar(id: number): Observable<any> {
-    console.log("HOLA")
-    return this.http.patch<any>(`${this.baseUrl}/${id}`, {})
+    return this.http.patch(`${this.baseUrl}/${id}`, {});
   }
 
   deleteArticulo(id: number): Observable<any> {

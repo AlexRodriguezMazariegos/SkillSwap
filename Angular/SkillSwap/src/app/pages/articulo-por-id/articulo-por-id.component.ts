@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { articulo } from '../../model/articulo';
 import { valoracion } from '../../model/valoracion';
 import { ArticuloService } from '../../services/articulo/articulo.service';
@@ -12,20 +12,22 @@ import { usuario } from '../../model/usuario';
 import { formatDate } from '@angular/common';
 
 import { ComentarioArticuloComponent } from "./comentario-articulo/comentario-articulo.component";
+import { AdjuntarComentarioComponent } from "./adjuntar-comentario/adjuntar-comentario.component";
 
 
 @Component({
-  selector: 'app-articulo-por-id',
-  standalone: true,
-  templateUrl: './articulo-por-id.component.html',
-  styleUrls: ['./articulo-por-id.component.css'],
-  imports: [
-    NavbarComponent,
-    SidebarComponent,
-    ValoracionEstrellasComponent,
-    RouterModule,
-    ComentarioArticuloComponent
-  ],
+    selector: 'app-articulo-por-id',
+    standalone: true,
+    templateUrl: './articulo-por-id.component.html',
+    styleUrls: ['./articulo-por-id.component.css'],
+    imports: [
+        NavbarComponent,
+        SidebarComponent,
+        ValoracionEstrellasComponent,
+        RouterModule,
+        ComentarioArticuloComponent,
+        AdjuntarComentarioComponent
+    ]
 })
 export class ArticuloPorIdComponent implements OnInit {
   storedValue = localStorage.getItem('usuario');
@@ -56,7 +58,7 @@ export class ArticuloPorIdComponent implements OnInit {
 
   fechaPublicacionFormateada: string = '';
   sanitizedContent: SafeHtml | undefined;
-
+  
   constructor(
     private articuloService: ArticuloService,
     private route: ActivatedRoute,
