@@ -30,6 +30,12 @@ export class NavbarComponent implements OnInit {
       this.imagenUsuario = currentUser.fotoDePerfil;
     }
 
+    const { text, option } = this.searchService.getSearchCriteria();
+    this.inputText = text;
+    this.selectedOption = option;
+    this.searchControl.setValue(this.inputText);
+
+    // Suscripción al evento valueChanges del FormControl de la barra de búsqueda
     this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(value => {
       this.inputText = value;
       this.searchService.setSearchCriteria(this.inputText, this.selectedOption);
