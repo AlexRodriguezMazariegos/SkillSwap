@@ -48,7 +48,7 @@ export class ChatboxComponent implements OnInit {
     const chatMessage = {
       message: this.messageInput,
       user: this.userId.toString(),
-      chatId: 2 /* El ID del chat al que estás enviando el mensaje */,
+      chatId:  /* El ID del chat al que estás enviando el mensaje */,
       userId: this.userId
     } as ChatMessage;
     this.chatService.sendMessage("ABC", chatMessage);
