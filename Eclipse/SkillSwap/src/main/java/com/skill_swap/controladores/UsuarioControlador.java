@@ -1,7 +1,6 @@
 package com.skill_swap.controladores;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
@@ -23,7 +22,7 @@ import com.skill_swap.servicios.UsuarioServicio;
 
 @RestController
 @RequestMapping("api/v1/usuario")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioControlador {
 
 	@Autowired
@@ -48,11 +47,16 @@ public class UsuarioControlador {
 		}
 	}
 
-	// Endpoint para crear un nuevo usuario
-	@PostMapping("")
+
 	public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(usuarioServicio.crearUsuario(usuario));
 	}
+	
+    @PostMapping("/register")
+    public ResponseEntity<Usuario> register(@RequestBody Usuario usuario){
+        usuario.setAdmin(false);
+        return crearUsuario(usuario);
+    }
 
 	// Endpoint para actualizar un usuario existente
 	@PutMapping("/{id}")
@@ -77,43 +81,18 @@ public class UsuarioControlador {
 
 	@GetMapping("/email/{email}")
 	public Boolean getMethodName(@PathVariable String email) {
-		return usuarioServicio.FindByEmail(email);
+		return usuarioServicio.findByEmail(email);
 	}
-
-	@PostMapping("/login")
+	
+	/*@PostMapping("/login")
 	public Usuario login(@RequestBody Map<String, String> userData) {
-		String email = userData.get("email");
-		String contrasena = userData.get("contrasena");
-		return usuarioServicio.login(email, contrasena);
-	}
-
-	@GetMapping("/{id}/skills")
-	public ResponseEntity<List<Skill>> obtenerSkillsDeUsuario(@PathVariable Long id) {
-		Optional<Usuario> usuarioOptional = usuarioServicio.obtenerUsuarioPorId(id);
-		if (!usuarioOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Usuario usuario = usuarioOptional.get();
-		List<Skill> skills = usuario.getSkills();
-
-		return ResponseEntity.ok().body(skills);
-	}
-
-	@PutMapping("/{id}/skills")
-	public ResponseEntity<Usuario> actualizarSkillsDeUsuario(@PathVariable Long id, @RequestBody List<Long> idSkills) {
-		Optional<Usuario> usuarioOptional = usuarioServicio.obtenerUsuarioPorId(id);
-		if (!usuarioOptional.isPresent()) {
-			return ResponseEntity.notFound().build();
-		}
-
-		Usuario usuario = usuarioOptional.get();
-		List<Skill> skills = skillServicio.obtenerSkillsPorIds(idSkills); 
-
-		usuario.setSkills(skills); 
-
-		Usuario usuarioActualizado = usuarioServicio.actualizarUsuario(id, usuario);
-
-		return ResponseEntity.ok().body(usuarioActualizado);
+	    String email = userData.get("email");
+	    String contrasena = userData.get("contrasena");
+	    return usuarioServicio.login(email, contrasena);
+	}*/
+	
+	@GetMapping("/GetUsuario/{email}")
+	public ResponseEntity<Optional<Usuario>> GetByEmail(@PathVariable String email){
+		return ResponseEntity.status(HttpStatus.OK).body(usuarioServicio.GetByEmail(email));
 	}
 }

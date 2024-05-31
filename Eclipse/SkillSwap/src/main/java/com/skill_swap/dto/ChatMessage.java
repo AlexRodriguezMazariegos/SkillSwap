@@ -1,12 +1,8 @@
 package com.skill_swap.dto;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
 public class ChatMessage {
-    private String user;
+
+	private String user;
     private String message;
     private Long chatId;
     private Long userId;

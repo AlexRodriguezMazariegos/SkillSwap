@@ -22,7 +22,7 @@ export class UserBotonesComponent implements OnInit {
   @Output() userData$ = new EventEmitter<usuario>();
 
   isEditing: boolean = false;
-  usuario: string | null = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   usuarioId: usuario = {
     id: 0,
     nombre: '',
@@ -208,8 +208,10 @@ export class UserBotonesComponent implements OnInit {
 
       this.editProfileService.setIsEditing(false);
   }
+  
+  
 
-  cancelarPerfil() {
+  cancelarPerfil(){
     this.editProfileService.setIsEditing(false);
   }
 }

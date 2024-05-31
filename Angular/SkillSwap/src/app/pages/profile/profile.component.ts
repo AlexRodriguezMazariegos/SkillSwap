@@ -35,7 +35,7 @@ import { EditProfileService } from '../../services/editprofile/edit-profile.serv
   ],
 })
 export class ProfileComponent implements OnInit {
-  usuario = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   usuarioId = 0;
   miPerfil: boolean = false;
   isEditing: boolean = false;
