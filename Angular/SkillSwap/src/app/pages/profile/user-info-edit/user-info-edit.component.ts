@@ -107,5 +107,7 @@ export class UserInfoEditComponent implements OnInit {
       skills: this.selectedSkills,
     };
     this.editService.setUsuarioEditado(usuarioModificado);
+    
+    this.window.location.reload();
   }
 }

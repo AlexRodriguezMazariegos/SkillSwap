@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.skill_swap.entidades.Skill;
 import com.skill_swap.entidades.Usuario;
-import com.skill_swap.servicios.SkillServicio;
 import com.skill_swap.servicios.UsuarioServicio;
 
 @RestController
@@ -27,9 +24,6 @@ public class UsuarioControlador {
 
 	@Autowired
 	private UsuarioServicio usuarioServicio;
-
-	@Autowired
-	private SkillServicio skillServicio;
 
 	@GetMapping("")
 	public List<Usuario> obtenerTodosLosUsuarios() {

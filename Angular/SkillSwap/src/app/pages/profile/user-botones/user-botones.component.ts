@@ -5,9 +5,8 @@ import { UsuarioService } from '../../../services/usuario/usuario.service';
 import { seguimiento } from '../../../model/seguimiento';
 import { SeguimientoService } from '../../../services/seguimiento/seguimiento.service';
 import { EditProfileService } from '../../../services/editprofile/edit-profile.service';
-import { SkillService } from '../../../services/skill/skill.service';
-import { filter, switchMap, take } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { filter, take } from 'rxjs/operators';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-user-botones',
@@ -60,14 +59,14 @@ export class UserBotonesComponent implements OnInit {
       fotoDePerfil: '',
     },
   };
+  window: any;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private usuarioService: UsuarioService,
     private seguimientoService: SeguimientoService,
-    private editProfileService: EditProfileService,
-    private skillService: SkillService
+    private editProfileService: EditProfileService
   ) {}
 
   ngOnInit(): void {
@@ -165,53 +164,54 @@ export class UserBotonesComponent implements OnInit {
   }
 
   guardarPerfil(): void {
-    // Creamos una nueva promesa
-    const promise = new Promise<void>((resolve, reject) => {
-      this.editProfileService.usuarioEditado$
-        .pipe(
-          filter((usuario) => usuario !== null), // Filtramos para asegurarnos de que el usuario no sea nulo
-          take(1) // Tomamos solo la primera emisión
-        )
-        .subscribe({
-          next: (usuario) => {
-            if (usuario) {
-              // Si hay un usuario, actualizamos miUsuario
-              this.miUsuario = usuario;
-              resolve(); // Resolvemos la promesa
-            } else {
-              reject('No se recibió el usuario editado.'); // Rechazamos la promesa si el usuario es nulo
-            }
-          },
-          error: (error) => {
-            reject(error); // Rechazamos la promesa en caso de error
-          },
-        });
-    });
-
-    promise
-      .then(() => {
-        // Una vez que la promesa se resuelve, procedemos con la actualización del perfil
-        this.usuarioService
-          .postUsuario(this.miUsuario)
-          .subscribe({
-            next: () => {
-              //console.log('Usuario actualizado correctamente.');
-            },
-            error: (error) => {
-              //console.error('Error al actualizar el usuario:', error);
-            },
-          });
-      })
-      .catch((error) => {
-        //console.error('Error al obtener el usuario editado:', error);
+    this.editProfileService.usuarioEditado$
+      .pipe(
+        filter(usuario => usuario !== null),
+        take(1)
+      )
+      .subscribe({
+        next: (usuario) => {
+          if (usuario) {
+            this.miUsuario = usuario;
+  
+            // Obtener la contraseña actual del usuario
+            const contrasenaActual = this.miUsuario.contrasena;
+  
+            // Crear el objeto para actualizar, excluyendo la contraseña pero incluyendo los demás campos
+            const usuarioParaActualizar: usuario = {
+              id: this.miUsuario.id,
+              nombre: this.miUsuario.nombre,
+              apellido: this.miUsuario.apellido,
+              email: this.miUsuario.email,
+              contrasena: this.miUsuario.contrasena,
+              urlGitHub: this.miUsuario.urlGitHub,
+              puestoEmpresa: this.miUsuario.puestoEmpresa,
+              skills: this.miUsuario.skills,
+              fotoDePerfil: this.miUsuario.fotoDePerfil,
+             
+            };
+  
+            // Enviar la solicitud PUT
+            this.usuarioService.putUsuario(this.miUsuario.id, usuarioParaActualizar).subscribe({
+              next: () => {
+                console.log('Usuario actualizado correctamente.');
+              },
+              error: (error) => {
+                console.error('Error al actualizar el usuario:', error);
+              }
+            });
+          } else {
+            console.error('No se recibió el usuario editado.');
+          }
+        },
+        error: (error) => {
+          console.error('Error al obtener el usuario editado:', error);
+        }
       });
-
       this.editProfileService.setIsEditing(false);
   }
   
-  
-
-  cancelarPerfil(){
+  cancelarPerfil() {
     this.editProfileService.setIsEditing(false);
   }
 }
