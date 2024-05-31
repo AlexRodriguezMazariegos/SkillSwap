@@ -52,7 +52,8 @@ export class ArticuloPorIdComponent implements OnInit {
     descripcion: '',
     titulo: '',
     fechaPublicacion: new Date(),
-    comentarios: []
+    comentarios: [],
+    activado: true
   };
 
   fechaPublicacionFormateada: string = '';

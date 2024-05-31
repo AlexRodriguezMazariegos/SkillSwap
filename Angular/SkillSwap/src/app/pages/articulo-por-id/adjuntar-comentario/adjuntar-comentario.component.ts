@@ -35,7 +35,8 @@ export class AdjuntarComentarioComponent implements OnInit{
     descripcion: '',
     titulo: '',
     fechaPublicacion: new Date(),
-    comentarios: []
+    comentarios: [],
+    activado: true
   };
 
   constructor(private comentariosService: ComentariosService, private articuloService: ArticuloService, private route: ActivatedRoute) {}
