@@ -87,8 +87,8 @@ export class ArticuloComponent implements OnInit {
         console.error('Error al actualizar el artículo:', error);
       }
     );
-    // window.location.reload()
     this.toggle()
+    setTimeout(() => window.location.reload(), 1400);
   }
  
   toggle() {
