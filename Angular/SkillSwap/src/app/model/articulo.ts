@@ -8,5 +8,6 @@ export interface articulo {
   descripcion: string;
   titulo: string;
   fechaPublicacion: Date;
-  comentarios: Array<comentario>
+  comentarios: Array<comentario>;
+  activado: boolean
 }
