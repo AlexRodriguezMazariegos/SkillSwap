@@ -56,27 +56,4 @@ export class ChatboxComponent implements OnInit {
       });
     }
   }
- 
-  sendMessage(){
-    console.log('**send UserId: '+this.userId);
-    const chatMessage = {
-      message: this.messageInput,
-      user: this.userId.toString(),
-      chatId: 2 /* El ID del chat al que estás enviando el mensaje */,
-      userId: this.userId
-    } as ChatMessage;
-    this.chatService.sendMessage("ABC", chatMessage);
-    this.messageInput='';
-}
-
-  listenerMessage(){
-    this.chatService.getMessageSubject().subscribe((messages: any)=>{
-      this.messageList=messages.map((item: any)=>({
-        ...item,
-        message_side: item.user === this.userId ? 'sender': 'receiver' 
-      }))
-    });
-  }
-
-}
   
