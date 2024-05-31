@@ -1,4 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SeguimientoService } from '../../../../services/seguimiento/seguimiento.service';
+import { seguimiento } from '../../../../model/seguimiento';
+import { UsuarioService } from '../../../../services/usuario/usuario.service';
+import { usuario } from '../../../../model/usuario';
 
 @Component({
   selector: 'app-card-contacto',
@@ -8,5 +12,6 @@ import { Component } from '@angular/core';
   styleUrl: './card-contacto.component.css'
 })
 export class CardContactoComponent {
+  @Input() misUsuarios: any;
 
 }
