@@ -58,11 +58,11 @@ private addAuthorizationHeader(): HttpHeaders {
   // }
 
   saveOrUpdateValoracion(valoracion: valoracion): Observable<valoracion> {
-    return this.http.post<valoracion>(`${this.baseUrl}/saveOrUpdate`, valoracion);
+    return this.http.post<valoracion>(`${this.baseUrl}/saveOrUpdate`, valoracion,{ headers: this.headers});
   }
  
   obtenerValoracion(articuloId: number, usuarioId: number): Observable<valoracion | null> {
-    return this.http.get<valoracion | null>(`${this.baseUrl}/obtenerValoracion?articuloId=${articuloId}&usuarioId=${usuarioId}`);
+    return this.http.get<valoracion | null>(`${this.baseUrl}/obtenerValoracion?articuloId=${articuloId}&usuarioId=${usuarioId}`,{ headers: this.headers});
   }
 
 }
