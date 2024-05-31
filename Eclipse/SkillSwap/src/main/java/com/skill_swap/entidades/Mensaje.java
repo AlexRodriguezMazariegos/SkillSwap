@@ -1,6 +1,7 @@
 package com.skill_swap.entidades;
 
 import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,87 +13,74 @@ import jakarta.validation.constraints.Size;
 @Entity
 public class Mensaje {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "usuario")
-    private Usuario usuario;
+	@ManyToOne
+	@JoinColumn(name = "usuario")
+	private Usuario usuario;
 
-    @ManyToOne
-    @JoinColumn(name = "chat")
-    private Chat chat;
+	@ManyToOne
+	@JoinColumn(name = "chat")
+	private Chat chat;
 
-    @Size(max = 200)
-    private String texto;
+	@Size(max = 200)
+	private String texto;
 
-    private Date fecha;
+	private Date fecha;
 
-    @ManyToOne
-    @JoinColumn(name = "target_user_id")
-    private Usuario targetUser;
+	public Mensaje(Long id, Usuario usuario, Chat chat, String texto, Date fecha) {
+		super();
+		this.id = id;
+		this.usuario = usuario;
+		this.chat = chat;
+		this.texto = texto;
+		this.fecha = fecha;
+	}
 
-    // Constructor, getters y setters
-    public Mensaje() {
-        super();
-    }
+	public Mensaje() {
+		super();
+	}
 
-    public Mensaje(Long id, Usuario usuario, Chat chat, String texto, Date fecha, Usuario targetUser) {
-        this.id = id;
-        this.usuario = usuario;
-        this.chat = chat;
-        this.texto = texto;
-        this.fecha = fecha;
-        this.targetUser = targetUser;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    // Getters y setters
-    public Long getId() {
-        return id;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+	public Chat getChat() {
+		return chat;
+	}
 
-    public Chat getChat() {
-        return chat;
-    }
+	public void setChat(Chat chat) {
+		this.chat = chat;
+	}
 
-    public void setChat(Chat chat) {
-        this.chat = chat;
-    }
+	public String getTexto() {
+		return texto;
+	}
 
-    public String getTexto() {
-        return texto;
-    }
+	public void setTexto(String texto) {
+		this.texto = texto;
+	}
 
-    public void setTexto(String texto) {
-        this.texto = texto;
-    }
+	public Date getFecha() {
+		return fecha;
+	}
 
-    public Date getFecha() {
-        return fecha;
-    }
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public Usuario getTargetUser() {
-        return targetUser;
-    }
-
-    public void setTargetUser(Usuario targetUser) {
-        this.targetUser = targetUser;
-    }
 }
