@@ -1,11 +1,10 @@
-.sidebar {
-    background: var(--light-grey);
+.contenedor-cartas {
     display: flex;
-    height: 100%;
-    flex-direction: column;
-    padding-top: 5rem;
+    flex-wrap: wrap; /* Permite que las tarjetas se ajusten a la siguiente fila si no caben en una sola */
+    gap: 4rem;
+    justify-content: center; /* Centra las tarjetas dentro del contenedor */
+    padding: 20px;
 }
-
 .titulo {
     margin: 3%;
     font-family: var(--tituloPpal);
