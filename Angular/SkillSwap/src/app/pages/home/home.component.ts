@@ -14,7 +14,7 @@ import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
 import { SeguimientoService } from '../../services/seguimiento/seguimiento.service';
 import { seguimiento } from '../../model/seguimiento';
-
+ 
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -41,29 +41,27 @@ export class HomeComponent implements OnInit {
   public usuariosCargados: boolean = false;
   seguidores: seguimiento[] = [];
   private seguidoresMap: { [userId: number]: number } = {};
-
+ 
   constructor(
     private usuarioService: UsuarioService,
     private articuloService: ArticuloService,
     private searchService: SearchService,
     private seguimientoService: SeguimientoService
   ) {}
-
+ 
   ngOnInit(): void {
     const { text, option } = this.searchService.getSearchCriteria();
     this.inputText = text;
     this.selectedOption = option;
-
+ 
     this.searchService.searchCriteria$.subscribe(({ text, option }) => {
       console.log(text);
       this.inputText = text;
       this.selectedOption = option;
       this.loadSeguidores();
     });
-
-    
   }
-
+ 
   private loadSeguidores(): void {
     this.usuarioService.getusuarios().subscribe((data: usuario[]) => {
       this.misUsuarios = data;
@@ -80,7 +78,7 @@ export class HomeComponent implements OnInit {
       });
     });
   }
-
+ 
   private loadUsuarios(): void {
     if (this.usuariosCargados) {
       if (this.inputText.trim() === '') {
@@ -97,7 +95,7 @@ export class HomeComponent implements OnInit {
       }
     }
   }
-
+ 
   private loadArticulos(): void {
     this.articuloService.getArticulos().subscribe((data: articulo[]) => {
       const normalizedInput = normalizeText(this.inputText);
@@ -109,12 +107,12 @@ export class HomeComponent implements OnInit {
       this.calculatePages();
     });
   }
-
+ 
   private getTodos(): void {
     this.loadArticulos();
     this.loadUsuarios();
   }
-
+ 
   private fetchData(): void {
     if (this.selectedOption === 'Todos') {
       this.getTodos();
@@ -124,7 +122,7 @@ export class HomeComponent implements OnInit {
       this.loadUsuarios();
     }
   }
-
+ 
   private calculatePages(): void {
     this.pages = [];
     const totalPages = this.totalPages;
@@ -132,17 +130,17 @@ export class HomeComponent implements OnInit {
       this.pages.push(i + 1);
     }
   }
-
+ 
   get paginatedArticulos(): articulo[] {
     const start = (this.currentPage - 1) * this.pageSize;
     const end = start + this.pageSize;
     return this.articulos.slice(start, end);
   }
-
+ 
   get totalPages(): number {
     return Math.ceil(this.articulos.length / this.pageSize);
   }
-
+ 
   onPageChange(page: number): void {
     this.currentPage = page;
   }

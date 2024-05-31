@@ -1,24 +1,49 @@
 package com.skill_swap.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ChatMessage {
-    private String user;
+
+	private String user;
     private String message;
     private Long chatId;
     private Long userId;
-    private Long targetUserId; // Añadido para identificar el usuario con el que se está chateando
 
-    public ChatMessage(String user, String message, Long chatId, Long userId, Long targetUserId) {
-        this.user = user;
-        this.message = message;
+    public ChatMessage(String sender, String content, Long timestamp, Long chatId) {
+        this.message = sender;
+        this.message = content;
+        this.chatId = timestamp;
         this.chatId = chatId;
-        this.userId = userId;
-        this.targetUserId = targetUserId;
+
     }
+
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public Long getChatId() {
+		return chatId;
+	}
+
+	public void setChatId(Long chatId) {
+		this.chatId = chatId;
+	}
+
+	public Long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 }

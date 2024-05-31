@@ -1,51 +1,53 @@
--- Usuarios
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Juan', 'juan@eviden.com', 'Pérez', 'Ingeniero', '1111', 'https://github.com/juan', 'user1');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'María', 'maria@eviden.com', 'López', 'Diseñador', '2222', 'https://github.com/maria', 'user2');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Luisa', 'luisa@eviden.com', 'Gómez', 'Analista', '3333', 'https://github.com/luisa', 'user3');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Laura', 'laura@eviden.com', 'Martínez', 'Ingeniero', '4444', 'https://github.com/laura', 'user4');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Sofía', 'sofia@eviden.com', 'González', 'Programador', '5555', 'https://github.com/sofia', 'user5');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Pedro', 'pedro@eviden.com', 'Hernández', 'Analista', '6666', 'https://github.com/pedro', 'user6');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Ana', 'ana@eviden.com', 'Rodríguez', 'Desarrollador', '7777', 'https://github.com/ana', 'user7');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Marta', 'marta@eviden.com', 'Fernández', 'Diseñador', '8888', 'https://github.com/marta', 'user8');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Elena', 'elena@eviden.com', 'Pérez', 'Analista', '9999', 'https://github.com/elena', 'user9');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Carmen', 'carmen@eviden.com', 'Ruiz', 'Programador', '2020', 'https://github.com/carmen', 'user10');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Sara', 'sara@eviden.com', 'Sánchez', 'Analista', '3030', 'https://github.com/sara', 'user11');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Lucía', 'lucia@eviden.com', 'Torres', 'Desarrollador', '4040', 'https://github.com/lucia', 'user12');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Paula', 'paula@eviden.com', 'Díaz', 'Diseñador', '5050', 'https://github.com/paula', 'user13');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Eva', 'eva@eviden.com', 'Gutiérrez', 'Analista', '6060', 'https://github.com/eva', 'user14');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Juana', 'juana@eviden.com', 'Gutiérrez', 'Analista', '6060', 'https://github.com/juana', 'user15');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Alberto', 'alberto@eviden.com', 'Núñez', 'Ingeniero', '7070', 'https://github.com/alberto', 'user16');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Esteban', 'esteban@eviden.com', 'Cruz', 'Programador', '8080', 'https://github.com/esteban', 'user17');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Natalia', 'natalia@eviden.com', 'Mendoza', 'Desarrollador', '9090', 'https://github.com/natalia', 'user18');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Ignacio', 'ignacio@eviden.com', 'Vargas', 'Analista', '1010', 'https://github.com/ignacio', 'user19');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Cristina', 'cristina@eviden.com', 'Ramos', 'Diseñador', '2021', 'https://github.com/cristina', 'user20');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Patricia', 'patricia@eviden.com', 'Gil', 'Ingeniero', '3031', 'https://github.com/patricia', 'user21');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Gustavo', 'gustavo@eviden.com', 'Peña', 'Analista', '4041', 'https://github.com/gustavo', 'user22');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Felipe', 'felipe@eviden.com', 'Ortiz', 'Programador', '5051', 'https://github.com/felipe', 'user23');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Adriana', 'adriana@eviden.com', 'Moreno', 'Diseñador', '6061', 'https://github.com/adriana', 'user24');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Roberto', 'roberto@eviden.com', 'Soto', 'Desarrollador', '7071', 'https://github.com/roberto', 'user25');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Lorena', 'lorena@eviden.com', 'Suárez', 'Ingeniero', '8081', 'https://github.com/lorena', 'user26');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Claudia', 'claudia@eviden.com', 'Castillo', 'Analista', '9091', 'https://github.com/claudia', 'user27');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Emilio', 'emilio@eviden.com', 'Iglesias', 'Programador', '1011', 'https://github.com/emilio', 'user28');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Verónica', 'veronica@eviden.com', 'Vidal', 'Diseñador', '2022', 'https://github.com/veronica', 'user29');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Rafael', 'rafael@eviden.com', 'Cabrera', 'Desarrollador', '3032', 'https://github.com/rafael', 'user30');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Daniela', 'daniela@eviden.com', 'Campos', 'Analista', '4042', 'https://github.com/daniela', 'user31');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Julio', 'julio@eviden.com', 'Herrera', 'Ingeniero', '5052', 'https://github.com/julio', 'user32');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Silvia', 'silvia@eviden.com', 'Martí', 'Programador', '6062', 'https://github.com/silvia', 'user33');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Antonio', 'antonio@eviden.com', 'Navarro', 'Diseñador', '7072', 'https://github.com/antonio', 'user34');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Teresa', 'teresa@eviden.com', 'Santos', 'Desarrollador', '8082', 'https://github.com/teresa', 'user35');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Fernando', 'fernando@eviden.com', 'Blanco', 'Analista', '9092', 'https://github.com/fernando', 'user36');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Andrea', 'andrea@eviden.com', 'Reyes', 'Ingeniero', '1012', 'https://github.com/andrea', 'user37');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Mario', 'mario@eviden.com', 'Flores', 'Programador', '2023', 'https://github.com/mario', 'user38');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Valeria', 'valeria@eviden.com', 'Montero', 'Diseñador', '3033', 'https://github.com/valeria', 'user39');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Alejandro', 'alejandro.rodriguez@eviden.com', 'Rodríguez', 'Frontend / Git', '1234', 'https://github.com/AlexRodriguezMazariegos', 'user40');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Alejandro', 'alejandro.lopez@eviden.com', 'López', 'Backend Testing', '1234', 'https://github.com/AlejandroLopezEviden', 'user41');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Diego', 'diego.mosquero@eviden.com', 'Mosquero', 'Frontend', '1234', 'https://github.com/Dmosquero', 'user42');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Juan', 'juan.ramos@eviden.com', 'Ramos', 'Full Stack', '1234', 'https://github.com/JuanRamosQuintana1', 'user43');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Adrián', 'adrian.hernandez@eviden.com', 'Hernández', 'Backend', '1234', 'https://github.com/AdrianHZExternal', 'user44');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Jorge', 'jorge.burgos@eviden.com', 'Burgos', 'Frontend / Git', '1234', 'https://github.com/JorgeBurgosB', 'user45');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Andrés', 'becker.salinas@eviden.com', 'Salinas', 'Backend Testing', '1234', 'https://github.com/AndresBG95', 'user46');
-INSERT INTO `usuario` (`id`, `nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`) VALUES (NULL, 'Miriam', 'miriam.ramirez@eviden.com', 'Ramírez', 'Backend', '1234', 'https://github.com/MiriamRamirezSanchez', 'user47');
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Juan', 'juan@eviden.com', 'Pérez', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/juan', 'user1', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('María', 'maria@eviden.com', 'López', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/maria', 'user2', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Luisa', 'luisa@eviden.com', 'Gómez', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/luisa', 'user3', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Laura', 'laura@eviden.com', 'Martínez', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/laura', 'user4', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Sofía', 'sofia@eviden.com', 'González', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/sofia', 'user5', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Pedro', 'pedro@eviden.com', 'Hernández', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/pedro', 'user6', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Ana', 'ana@eviden.com', 'Rodríguez', 'Desarrollador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/ana', 'user7', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Marta', 'marta@eviden.com', 'Fernández', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/marta', 'user8', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Elena', 'elena@eviden.com', 'Pérez', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/elena', 'user9', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Carmen', 'carmen@eviden.com', 'Ruiz', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/carmen', 'user10', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Sara', 'sara@eviden.com', 'Sánchez', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/sara', 'user11', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Lucía', 'lucia@eviden.com', 'Torres', 'Desarrollador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/lucia', 'user12', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Paula', 'paula@eviden.com', 'Díaz', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/paula', 'user13', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Eva', 'eva@eviden.com', 'Gutiérrez', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/eva', 'user14', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Juana', 'juana@eviden.com', 'Gutiérrez', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/juana', 'user15', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Alberto', 'alberto@eviden.com', 'Núñez', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/alberto', 'user16', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Esteban', 'esteban@eviden.com', 'Cruz', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/esteban', 'user17', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Natalia', 'natalia@eviden.com', 'Mendoza', 'Desarrollador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/natalia', 'user18', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Ignacio', 'ignacio@eviden.com', 'Vargas', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/ignacio', 'user19', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Cristina', 'cristina@eviden.com', 'Ramos', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/cristina', 'user20', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Patricia', 'patricia@eviden.com', 'Gil', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/patricia', 'user21', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Gustavo', 'gustavo@eviden.com', 'Peña', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/gustavo', 'user22', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Felipe', 'felipe@eviden.com', 'Ortiz', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/felipe', 'user23', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Adriana', 'adriana@eviden.com', 'Moreno', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/adriana', 'user24', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Roberto', 'roberto@eviden.com', 'Soto', 'Desarrollador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/roberto', 'user25', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Alfonso', 'alfonso@eviden.com', 'Suárez', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/alfonso', 'user26', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Lorena', 'lorena@eviden.com', 'Castro', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/lorena', 'user27', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Verónica', 'veronica@eviden.com', 'Delgado', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/veronica', 'user28', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Raúl', 'raul@eviden.com', 'Muñoz', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/raul', 'user29', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Manuel', 'manuel@eviden.com', 'Álvarez', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/manuel', 'user30', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Daniela', 'daniela@eviden.com', 'Campos', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/daniela', 'user31', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Julio', 'julio@eviden.com', 'Herrera', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/julio', 'user32', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Silvia', 'silvia@eviden.com', 'Martí', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/silvia', 'user33', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Antonio', 'antonio@eviden.com', 'Navarro', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/antonio', 'user34', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Teresa', 'teresa@eviden.com', 'Santos', 'Desarrollador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/teresa', 'user35', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Fernando', 'fernando@eviden.com', 'Blanco', 'Analista', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/fernando', 'user36', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Andrea', 'andrea@eviden.com', 'Reyes', 'Ingeniero', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/andrea', 'user37', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Mario', 'mario@eviden.com', 'Flores', 'Programador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/mario', 'user38', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Valeria', 'valeria@eviden.com', 'Montero', 'Diseñador', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/valeria', 'user39', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Alejandro', 'alejandro.rodriguez@eviden.com', 'Rodríguez', 'Frontend / Git', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/AlexRodriguezMazariegos', 'user40', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Alejandro', 'alejandro.lopez@eviden.com', 'López', 'Backend Testing', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/AlejandroLopezEviden', 'user41', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Diego', 'diego.mosquero@eviden.com', 'Mosquero', 'Frontend', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/Dmosquero', 'user42', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Juan', 'juan.ramos@eviden.com', 'Ramos', 'Full Stack', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/JuanRamosQuintana1', 'user43', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Adrián', 'adrian.hernandez@eviden.com', 'Hernández', 'Backend', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/AdrianHZExternal', 'user44', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Jorge', 'jorge.burgos@eviden.com', 'Burgos', 'Frontend / Git', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/JorgeBurgosB', 'user45', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Andrés', 'becker.salinas@eviden.com', 'Salinas', 'Backend Testing', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/AndresBG95', 'user46', true);
+INSERT INTO `usuario` (`nombre`, `email`, `apellido`, `puesto_empresa`, `contrasena`, `url_git_hub`, `foto_de_perfil`, `enabled`) VALUES ('Miriam', 'miriam.ramirez@eviden.com', 'Ramírez', 'Backend', '$2a$10$LduYEvpM6R9AAyZLAzG/IuD8r7ZxoLbZDAyKZCezJ/pk5XQQSQapW', 'https://github.com/MiriamRamirezSanchez', 'user47', true);
+--Rol
+INSERT INTO rol (id, name) VALUES (NULL, 'ROLE_USER');
+INSERT INTO rol (id, name) VALUES (NULL, 'ROLE_ADMIN');
 
 
 --Articulos
@@ -104,55 +106,54 @@ INSERT INTO `chat` (`id`, `id_usuario1`, `id_usuario2`) VALUES (NULL, '12', '13'
 INSERT INTO `chat` (`id`, `id_usuario1`, `id_usuario2`) VALUES (NULL, '14', '15');
 
 -- Comentarios
-
 -- Comentario en el artículo 1 por el usuario 1
 INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-20 15:30:00.000000', '1', NULL, '1', 'Muy buen artículo acerca de como crear una base de datos con SQL, me ha ayudado mucho. Estamos en contacto!');
 -- Comentario en el artículo 2 por el usuario 2
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '2', NULL, '2', '5 estrellas para ti!⭐⭐⭐⭐⭐');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-19 14:30:00.000000', '2', NULL, '2', '5 estrellas para ti!⭐⭐⭐⭐⭐');
 -- Comentario en el artículo 3 por el usuario 3
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '3', NULL, '3', 'Menudo quebradero de cabeza son las dependencias, gracias por compartir!😊');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-18 13:30:00.000000', '3', NULL, '3', 'Menudo quebradero de cabeza son las dependencias, gracias por compartir!😊');
 -- Comentario en el artículo 1 por el usuario 4
 INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-03-10 15:30:00.000000', '1', NULL, '4', 'Llevo días parada y este artículo me ha ayudado muchísimo!!! ❤️');
 -- Comentario en el artículo 2 por el usuario 5
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '2', NULL, '5', '5 estrellas por este pedazo de contenido que nos traes!');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-17 12:30:00.000000', '2', NULL, '5', '5 estrellas por este pedazo de contenido que nos traes!');
 -- Comentario en el artículo 3 por el usuario 6
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '3', NULL, '6', 'Gran trabajo!!!');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-16 11:30:00.000000', '3', NULL, '6', 'Gran trabajo!!!');
 -- Comentario en el artículo 4 por el usuario 7
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '4', NULL, '7', '❤️❤️❤️❤️❤️❤️');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-15 10:30:00.000000', '4', NULL, '7', '❤️❤️❤️❤️❤️❤️');
 -- Comentario en el artículo 5 por el usuario 8
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES (CURRENT_TIME(), '5', NULL, '8', 'Qué sencillo y conciso escribes, un placer leerte!');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-14 09:30:00.000000', '5', NULL, '8', 'Qué sencillo y conciso escribes, un placer leerte!');
 -- Comentario en el artículo 1 por el usuario 9
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-19 14:45:00.000000', '1', NULL, '9', '¡Excelente artículo! Muy claro y conciso.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-13 08:30:00.000000', '1', NULL, '9', '¡Excelente artículo! Muy claro y conciso.');
 -- Comentario en el artículo 2 por el usuario 10
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-18 13:30:00.000000', '2', NULL, '10', 'Me gustó mucho la explicación, gracias por compartir.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-12 07:30:00.000000', '2', NULL, '10', 'Me gustó mucho la explicación, gracias por compartir.');
 -- Comentario en el artículo 3 por el usuario 11
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-17 12:25:00.000000', '3', NULL, '11', 'Muy informativo, justo lo que estaba buscando.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-11 06:30:00.000000', '3', NULL, '11', 'Muy informativo, justo lo que estaba buscando.');
 -- Comentario en el artículo 4 por el usuario 12
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-16 11:20:00.000000', '4', NULL, '12', 'Este artículo resolvió todas mis dudas.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-10 05:30:00.000000', '4', NULL, '12', 'Este artículo resolvió todas mis dudas.');
 -- Comentario en el artículo 5 por el usuario 13
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-15 10:15:00.000000', '5', NULL, '13', 'Muy útil, gracias por compartir esta información.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-09 04:30:00.000000', '5', NULL, '13', 'Muy útil, gracias por compartir esta información.');
 -- Comentario en el artículo 1 por el usuario 14
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-14 09:10:00.000000', '1', NULL, '14', 'Gran trabajo, me ha sido de gran ayuda.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-08 03:30:00.000000', '1', NULL, '14', 'Gran trabajo, me ha sido de gran ayuda.');
 -- Comentario en el artículo 2 por el usuario 15
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-13 08:05:00.000000', '2', NULL, '15', 'Información muy valiosa, gracias.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-07 02:30:00.000000', '2', NULL, '15', 'Información muy valiosa, gracias.');
 -- Comentario en el artículo 3 por el usuario 16
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-12 07:00:00.000000', '3', NULL, '16', 'Muy interesante, aprendí mucho.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-06 01:30:00.000000', '3', NULL, '16', 'Muy interesante, aprendí mucho.');
 -- Comentario en el artículo 4 por el usuario 17
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-11 06:55:00.000000', '4', NULL, '17', 'Excelente contenido, sigue así.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-05 00:30:00.000000', '4', NULL, '17', 'Excelente contenido, sigue así.');
 -- Comentario en el artículo 5 por el usuario 18
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-10 05:50:00.000000', '5', NULL, '18', 'Muy claro y útil, gracias.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-04 23:30:00.000000', '5', NULL, '18', 'Muy claro y útil, gracias.');
 -- Comentario en el artículo 1 por el usuario 19
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-09 04:45:00.000000', '1', NULL, '19', 'Este artículo es justo lo que necesitaba.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-03 22:30:00.000000', '1', NULL, '19', 'Este artículo es justo lo que necesitaba.');
 -- Comentario en el artículo 2 por el usuario 20
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-08 03:40:00.000000', '2', NULL, '20', 'Gran explicación, muy detallada.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-02 21:30:00.000000', '2', NULL, '20', 'Gran explicación, muy detallada.');
 -- Comentario en el artículo 3 por el usuario 21
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-07 02:35:00.000000', '3', NULL, '21', 'Me ayudó a entender mejor el tema.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-01 20:30:00.000000', '3', NULL, '21', 'Me ayudó a entender mejor el tema.');
 -- Comentario en el artículo 4 por el usuario 22
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-06 01:30:00.000000', '4', NULL, '22', 'Información muy valiosa, gracias por compartir.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-04-30 19:30:00.000000', '4', NULL, '22', 'Información muy valiosa, gracias por compartir.');
 -- Comentario en el artículo 5 por el usuario 23
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-05 00:25:00.000000', '5', NULL, '23', 'Muy bien explicado, gracias.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-04-29 18:30:00.000000', '5', NULL, '23', 'Muy bien explicado, gracias.');
 -- Comentario en el artículo 1 por el usuario 24
-INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-05-04 23:20:00.000000', '1', NULL, '24', 'Un artículo muy útil, me ha aclarado muchas dudas.');
+INSERT INTO `comentario` (`fecha`, `articulo`, `id`, `usuario`, `texto`) VALUES ('2024-04-28 17:30:00.000000', '1', NULL, '24', 'Un artículo muy útil, me ha aclarado muchas dudas.');
 
 -- Mensajes
 
@@ -340,7 +341,6 @@ INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (27, 26);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (28, 26);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (29, 26);
-INSERT INTO `
 
 -- Usuario 26
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (30, 26);

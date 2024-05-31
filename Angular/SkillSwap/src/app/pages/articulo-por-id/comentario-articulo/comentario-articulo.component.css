@@ -14,7 +14,6 @@
 
 .info-comentario-user {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 15px;
@@ -24,13 +23,13 @@
     padding-top: 15px;
 }
 
-.nombre-fecha-user {
+/* .nombre-fecha-user {
     display: flex;
     gap: 10px;
     justify-content: center;
     align-items: center;
     font-weight: 600;
-}
+} */
 
 .photo-user {
     width: 40px;
@@ -45,8 +44,21 @@
     object-fit: cover;
   }
 
+  #removeComment {
+    all: unset;
+    cursor: pointer;
+  }
+
+  #removeComment svg:hover{
+    color: var(--rojo);
+  }
+
+  #nombre-comentario {
+    font-weight: bold; 
+  }
 
   #fecha-publicacion {
+    height: 18px;
     color: lightslategrey;
     font-size: 14px;
     font-weight: 100;

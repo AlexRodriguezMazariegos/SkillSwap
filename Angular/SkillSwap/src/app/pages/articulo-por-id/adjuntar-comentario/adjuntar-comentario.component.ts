@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './adjuntar-comentario.component.css'
 })
 export class AdjuntarComentarioComponent implements OnInit{
-  storedValue = localStorage.getItem('usuario');
+  storedValue = sessionStorage.getItem('usuario');
   miUsuario!: usuario;
   texto: string = '';
   articuloPorId: articulo = {
