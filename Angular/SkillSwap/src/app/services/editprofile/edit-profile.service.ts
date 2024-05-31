@@ -12,6 +12,9 @@ export class EditProfileService {
   private usuarioEditadoSubject: BehaviorSubject<usuario | null> = new BehaviorSubject<usuario | null>(null);
   usuarioEditado$ = this.usuarioEditadoSubject.asObservable();
 
+  // Creamos un BehaviorSubject para almacenar los datos del usuario
+  private userData$: BehaviorSubject<usuario | null> = new BehaviorSubject<usuario | null>(null);
+
   constructor() {}
 
   setIsEditing(value: boolean): void {
@@ -20,5 +23,11 @@ export class EditProfileService {
 
   setUsuarioEditado(usuario: usuario): void {
     this.usuarioEditadoSubject.next(usuario);
+    this.userData$.next(usuario); // Actualizamos los datos del usuario
+  }
+
+  // Método para obtener los datos del usuario
+  getUserData(): Observable<usuario | null> {
+    return this.userData$.asObservable();
   }
 }

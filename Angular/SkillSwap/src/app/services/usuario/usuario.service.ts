@@ -20,12 +20,10 @@ export class UsuarioService {
   }
 
   postUsuario(usuario: usuario): Observable<any> {
-    console.log('POST:', usuario);
     return this.http.post(this.baseUrl, usuario);
   }
 
   putUsuario(id: number, usuario: usuario): Observable<usuario> {
-    console.log('PUT:', usuario);
     return this.http.put<usuario>(`${this.baseUrl}/${id}`, usuario);
   }
 

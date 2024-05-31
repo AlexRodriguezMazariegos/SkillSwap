@@ -53,8 +53,6 @@ export class UserInfoEditComponent implements OnInit {
         this.actualizarUsuario();
       }
     });
-
-    this.originalUsuario = { ...this.miUsuario };
   }
 
   onSkillSelect(event: Event): void {
@@ -103,11 +101,11 @@ export class UserInfoEditComponent implements OnInit {
     });
   }
 
-  actualizarUsuario() {
+  actualizarUsuario(): void {
     const usuarioModificado = {
       ...this.miUsuario,
       skills: this.selectedSkills,
     };
-    this.usuarioModificado.emit(usuarioModificado);
+    this.editService.setUsuarioEditado(usuarioModificado);
   }
 }

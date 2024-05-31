@@ -9,12 +9,10 @@ export class SearchService {
   searchCriteria$ = this.searchCriteriaSubject.asObservable();
 
   setSearchCriteria(text: string, option: string) {
-    console.log(text);
     this.searchCriteriaSubject.next({ text, option });
   }
 
   getSearchCriteria() {
-    console.log(this.searchCriteriaSubject.value);
     return this.searchCriteriaSubject.value;
   }
 }

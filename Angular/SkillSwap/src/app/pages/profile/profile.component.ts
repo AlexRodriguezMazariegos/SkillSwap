@@ -63,13 +63,6 @@ export class ProfileComponent implements OnInit {
     private articuloService: ArticuloService,
     private editProfileService: EditProfileService
   ) {
-    this.editProfileService.usuarioEditado$.subscribe((usuario) => {
-      console.log('PROFILE: ', usuario);
-      usuario = usuario;
-    });
-    this.editProfileService.isEditing$.subscribe((editing) => {
-      this.isEditing = editing;
-    });
   }
 
   ngOnInit(): void {
