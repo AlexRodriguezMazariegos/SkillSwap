@@ -46,7 +46,7 @@ private addAuthorizationHeader(): HttpHeaders {
   }
 
   activarDesactivar(id: number): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/${id}`, {});
+    return this.http.patch(`${this.baseUrl}/${id}`,{ headers: this.headers});
   }
 
   deleteArticulo(id: number): Observable<any> {
