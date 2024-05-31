@@ -9,9 +9,14 @@ import com.skill_swap.entidades.Articulo;
 import com.skill_swap.entidades.Usuario;
 import com.skill_swap.entidades.Valoracion;
 
-public interface ValoracionRepositorio  extends JpaRepository<Valoracion, Long> {
+public interface ValoracionRepositorio extends JpaRepository<Valoracion, Long> {
+
 	Optional<Valoracion> findById(Long id);
+
 	Optional<List<Valoracion>> findByArticulo(Articulo articulo);
+
 	Optional<List<Valoracion>> findByUsuario(Usuario usuario);
+
+	Optional<Valoracion> findByArticuloIdAndUsuarioId(Long articuloId, Long usuarioId);
 
 }

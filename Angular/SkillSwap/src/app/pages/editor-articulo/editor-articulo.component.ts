@@ -4,7 +4,6 @@ import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { UserSuperiorComponent } from '../profile/user-superior/user-superior.component';
 import { UserInfoComponent } from '../profile/user-info/user-info.component';
 import { UserBotonesComponent } from '../profile/user-botones/user-botones.component';
-import { UsuarioService } from '../../services/usuario/usuario.service';
 import {
   AngularEditorConfig,
   AngularEditorModule,
@@ -15,8 +14,6 @@ import { ArticuloService } from '../../services/articulo/articulo.service';
 import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
 import { HotToastService } from '@ngneat/hot-toast';
-import { register } from 'module';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-editor-articulo',
@@ -35,7 +32,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './editor-articulo.component.css',
 })
 export class EditorArticuloComponent {
-  storedValue = localStorage.getItem('usuario');
+  storedValue = sessionStorage.getItem('usuario');
   miUsuario!: usuario;
   articuloId: number | null = null;
   titulo: string = '';
@@ -101,7 +98,7 @@ export class EditorArticuloComponent {
       const id = params.get('id');
       if (id) {
         this.articuloId = +id;
-        this.articuloService.getArticuloById(this.articuloId).subscribe({
+        this.articuloService.getArticuloCualquieraById(this.articuloId).subscribe({
           next: (articulo) => {
             this.titulo = articulo.titulo;
             this.descripcion = articulo.descripcion;
@@ -115,33 +112,39 @@ export class EditorArticuloComponent {
 
   saveContent() {
     const articulo: articulo = {
-      id: this.articuloId || 0, // El id se asigna automáticamente aunque ponga 0
+      id: this.articuloId || 0,
       usuario: this.miUsuario,
       titulo: this.titulo,
       descripcion: this.descripcion,
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
+      comentarios: [],
+      activado: true
     };
-
+  
     console.log('Enviando artículo:', articulo);
-
+  
     const saveObservable =
       articulo.id === 0
         ? this.articuloService.postArticulo(articulo)
         : this.articuloService.updateArticulo(articulo.id, articulo);
-
+  
     saveObservable.subscribe({
       next: (response) => {
         console.log('Artículo guardado', response);
         this.showSuccessToast();
+        this.router.navigate(['/mis-articulos']).then(() => {
+          // Añade un pequeño retraso antes de recargar
+          setTimeout(() => {
+            window.location.reload();
+          }, 100); // 100 milisegundos de retraso
+        });
       },
       error: (err) => {
         console.error('Error al guardar el artículo', err);
         this.showErrorToast();
       },
     });
-
-    this.router.navigate(['/mis-articulos']);
   }
 
   showSuccessToast() {

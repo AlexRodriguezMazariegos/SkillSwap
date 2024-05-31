@@ -6,25 +6,87 @@
         <tr>
           <th scope="row">Puesto</th>
           <td>
-            <input type="text" [(ngModel)]="miUsuario.puestoEmpresa" name="puestoEmpresa" required/>
+            <input
+              type="text"
+              [(ngModel)]="miUsuario.puestoEmpresa"
+              name="puestoEmpresa"
+              required
+            />
           </td>
         </tr>
         <tr>
           <th scope="row">Email</th>
           <td>
-            <input type="email" [(ngModel)]="miUsuario.email" name="email" required />
+            <input
+              type="email"
+              [(ngModel)]="miUsuario.email"
+              name="email"
+              required
+            />
           </td>
         </tr>
         <tr>
           <th scope="row">Lenguajes</th>
           <td>
-            <p>skills</p>
+            <div style="display: flex;">
+              <select
+                multiple
+                class="custom-select"
+                style="flex: 1; max-width: 300px"
+                (change)="onSkillSelect($event)"
+              >
+                <option
+                  *ngFor="let skill of skills"
+                  [value]="skillToString(skill)"
+                  [disabled]="isSkillSelected(skill)"
+                >
+                  {{ skill.nombre }}
+                </option>
+              </select>
+              <div class="skills-user">
+                <div class="selected-skills-container">
+                  <div
+                    *ngFor="let skill of selectedSkills"
+                    class="selected-skill"
+                    type="button"
+                    (click)="onSkillDeselect(skill)"
+                  >
+                    <svg
+                      class="w-6 h-6 text-gray-800 dark:text-white"
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="m15 9-6 6m0-6 6 6m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                      ></path>
+                    </svg>
+                    <span class="ms-1">{{ skill.nombre }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="selectedSkills.length > 12" class="error">
+              No puedes seleccionar más de 12 habilidades.
+            </div>
           </td>
         </tr>
         <tr>
           <th scope="row">URL GitHub</th>
           <td>
-            <input type="url" [(ngModel)]="miUsuario.urlGitHub" name="urlGitHub" required />
+            <input
+              type="url"
+              [(ngModel)]="miUsuario.urlGitHub"
+              name="urlGitHub"
+              required
+            />
           </td>
         </tr>
       </tbody>

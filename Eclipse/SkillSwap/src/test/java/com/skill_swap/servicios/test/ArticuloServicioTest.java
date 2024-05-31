@@ -29,8 +29,8 @@ public class ArticuloServicioTest {
     @Test
     void testObtenerTodosLosArticulos() {
         List<Articulo> listaArticulos = Arrays.asList(
-                new Articulo(1L, null, "Contenido 1", "Descripción 1", "Título 1", null),
-                new Articulo(2L, null, "Contenido 2", "Descripción 2", "Título 2", null)
+                new Articulo(1L, null, "Contenido 1", "Descripción 1", "Título 1", null, null, null),
+                new Articulo(2L, null, "Contenido 2", "Descripción 2", "Título 2", null, null, null)
         );
         when(articuloRepositorio.findAll()).thenReturn(listaArticulos);
 
@@ -41,7 +41,7 @@ public class ArticuloServicioTest {
 
     @Test
     void testObtenerArticuloPorIdExistente() {
-        Articulo articulo = new Articulo(1L, null, "Contenido", "Descripción", "Título", null);
+        Articulo articulo = new Articulo(1L, null, "Contenido", "Descripción", "Título", null, null, null);
         when(articuloRepositorio.findById(1L)).thenReturn(Optional.of(articulo));
 
         Optional<Articulo> resultado = articuloServicio.obtenerArticuloPorId(1L);
@@ -61,7 +61,7 @@ public class ArticuloServicioTest {
 
     @Test
     void testCrearArticulo() {
-        Articulo nuevoArticulo = new Articulo(null, null, "Contenido Nuevo", "Descripción Nuevo", "Título Nuevo", new Date(System.currentTimeMillis()));
+        Articulo nuevoArticulo = new Articulo(null, null, "Contenido Nuevo", "Descripción Nuevo", "Título Nuevo", new Date(System.currentTimeMillis()), null, null);
 
         when(articuloRepositorio.save(nuevoArticulo)).thenReturn(nuevoArticulo);
 
@@ -76,8 +76,8 @@ public class ArticuloServicioTest {
 
     @Test
     void testActualizarArticuloExistente() {
-        Articulo articuloExistente = new Articulo(1L, null, "Contenido Antiguo", "Descripción Antigua", "Título Antiguo", new Date(System.currentTimeMillis()));
-        Articulo datosActualizados = new Articulo(1L, null, "Contenido Nuevo", "Descripción Nuevo", "Título Nuevo", new Date(System.currentTimeMillis()));
+        Articulo articuloExistente = new Articulo(1L, null, "Contenido Antiguo", "Descripción Antigua", "Título Antiguo", new Date(System.currentTimeMillis()), null, null);
+        Articulo datosActualizados = new Articulo(1L, null, "Contenido Nuevo", "Descripción Nuevo", "Título Nuevo", new Date(System.currentTimeMillis()), null, null);
 
         when(articuloRepositorio.findById(1L)).thenReturn(Optional.of(articuloExistente));
         when(articuloRepositorio.save(articuloExistente)).thenReturn(datosActualizados);

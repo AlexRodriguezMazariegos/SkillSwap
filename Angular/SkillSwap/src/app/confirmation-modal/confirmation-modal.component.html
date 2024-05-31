@@ -1,0 +1,19 @@
+<div class="mat-dialog-wrapper">
+  <div class="mat-container">
+    <h2 class="title">¿Seguro que quieres cerrar sesión?</h2>
+    <div class="button-container">
+      <div mat-dialog-actions>
+        <button mat-button class="default-button" (click)="logout()">
+          Cerrar sesión
+        </button>
+        <button
+          mat-button
+          class="default-button-reverse"
+          (click)="closeDialog()"
+        >
+          Volver
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

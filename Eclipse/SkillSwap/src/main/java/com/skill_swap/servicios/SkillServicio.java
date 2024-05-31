@@ -30,19 +30,17 @@ public class SkillServicio {
 
 	// Método para crear o actualizar un skill
 	public Skill actualizarSkill(Long id, Skill skill) {
-	    try 
-	    {
-		Skill skillAModificar = skillRepositorio.findById(id).get();
-		// El id se queda como estaba
-		skillAModificar.setId(id);
-		skillAModificar.setNombre(skill.getNombre());
-		skillAModificar.setUsuarios(skill.getUsuarios());
-		return skillRepositorio.save(skillAModificar);
-	    } 
-	    catch (NoSuchElementException e) {
-	        // Manejo de la excepción si el usuario no existe
-	        return null;
-	    }
+		try {
+			Skill skillAModificar = skillRepositorio.findById(id).get();
+			// El id se queda como estaba
+			skillAModificar.setId(id);
+			skillAModificar.setNombre(skill.getNombre());
+			skillAModificar.setUsuarios(skill.getUsuarios());
+			return skillRepositorio.save(skillAModificar);
+		} catch (NoSuchElementException e) {
+			// Manejo de la excepción si el usuario no existe
+			return null;
+		}
 	}
 
 	// Método para borrar un usuario por su ID
@@ -56,4 +54,13 @@ public class SkillServicio {
 			}
 		}
 	}
+
+	public List<Skill> obtenerSkillsPorIdUsuario(Long idUsuario) {
+		return skillRepositorio.findByUsuariosId(idUsuario);
+	}
+
+	public List<Skill> obtenerSkillsPorIds(List<Long> idsSkills) {
+		return skillRepositorio.findAllById(idsSkills);
+	}
+
 }

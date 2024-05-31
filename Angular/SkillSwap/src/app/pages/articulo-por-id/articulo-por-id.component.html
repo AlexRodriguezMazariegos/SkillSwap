@@ -37,9 +37,10 @@
         </div>
         <div class="arriba">
           <div class="titulo">{{ articuloPorId.titulo }}</div>
-          <div class="estrellas">
-            <app-valoracion-estrellas></app-valoracion-estrellas>
-          </div>
+          <app-valoracion-estrellas
+            [puntuacion]="puntuacion"
+            (starClicked)="onStarClicked($event)"
+          ></app-valoracion-estrellas>
         </div>
         <div class="autor">
           <p>
@@ -47,12 +48,22 @@
             {{ articuloPorId.usuario.apellido }}
           </p>
           <p>{{ fechaPublicacionFormateada }}</p>
-          <!--<div>{{articuloPorId.}}</div>-->
         </div>
         <div class="descripcion">{{ articuloPorId.descripcion }}</div>
         <div class="contenido">
           <div [innerHTML]="sanitizedContent"></div>
         </div>
+      </div>
+      <div class="contenido-comentarios">
+        <h2 id="titulo-comentarios">Comentarios</h2>
+        @if (articuloPorId.comentarios.length > 0) {
+          @for (comentario of articuloPorId.comentarios; track comentario) {
+            <app-comentario-articulo [comentario]="comentario"></app-comentario-articulo>
+        }
+        } @else {
+          <p>Sé el primero en comentar!</p>
+        }
+        <app-adjuntar-comentario></app-adjuntar-comentario>
       </div>
     </div>
   </div>

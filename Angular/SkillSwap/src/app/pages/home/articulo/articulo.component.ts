@@ -8,7 +8,7 @@ import { ArticuloService } from '../../../services/articulo/articulo.service';
 import { EditorArticuloComponent } from '../../editor-articulo/editor-articulo.component';
 import { ValoracionService } from '../../../services/valoracion/valoracion.service';
 import { valoracion } from '../../../model/valoracion';
-
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'app-articulo',
@@ -25,28 +25,33 @@ export class ArticuloComponent implements OnInit {
   mediaValoraciones: number = 0;
 
   constructor(
-    private route: ActivatedRoute, 
-    private dialog: MatDialog, 
+    private route: ActivatedRoute,
+    private dialog: MatDialog,
     private router: Router,
+    private toast: HotToastService,
     private articuloService: ArticuloService,
     private valoracionService: ValoracionService
   ) {}
 
   ngOnInit(): void {
-    this.valoracionService.getValoracionesByIdByArticulo(this.articulos.id).subscribe((valoraciones: any[]) => {
+    this.valoracionService
+      .getValoracionesByIdByArticulo(this.articulos.id)
+      .subscribe((valoraciones: any[]) => {
+        if (valoraciones && valoraciones.length > 0) {
+          const sumaValoraciones = valoraciones.reduce((total, valoracion) => {
+            const valor = Number(valoracion.puntuacion);
+            return !isNaN(valor) ? total + valor : total; // Solo agregar si es un número válido
+          }, 0);
 
-      if (valoraciones && valoraciones.length > 0) {
-        const sumaValoraciones = valoraciones.reduce((total, valoracion) => {
-          const valor = Number(valoracion.puntuacion);
-          return !isNaN(valor) ? total + valor : total; // Solo agregar si es un número válido
-        }, 0);
-
-        // Verificar que 'valoraciones.length' no sea cero antes de la división
-        this.mediaValoraciones = valoraciones.length > 0 ? sumaValoraciones / valoraciones.length : 0;
-      } else {
-        this.mediaValoraciones = 0; 
-      }
-    });
+          // Verificar que 'valoraciones.length' no sea cero antes de la división
+          this.mediaValoraciones =
+            valoraciones.length > 0
+              ? sumaValoraciones / valoraciones.length
+              : 0;
+        } else {
+          this.mediaValoraciones = 0;
+        }
+      });
 
     this.currentRoute = this.router.url;
     console.log(this.currentRoute);
@@ -63,7 +68,11 @@ export class ArticuloComponent implements OnInit {
 
   deleteArticuloDialog(event: Event) {
     event.stopPropagation();
-    this.openDialog('¿Deseas eliminar este elemento?', 'Eliminar', this.articulos.id);
+    this.openDialog(
+      '¿Deseas eliminar este elemento?',
+      'Eliminar',
+      this.articulos.id
+    );
   }
 
   editArticulo(event: Event) {
@@ -71,23 +80,66 @@ export class ArticuloComponent implements OnInit {
     this.router.navigate([`/editar-articulo/${this.articulos.id}`]);
   }
 
-  openDialog(pregunta: string = '¿Estás seguro que deseas eliminar el artículo?', textoBoton: string = 'Borrar artículo', id: number): void {
+  toggleArticulo(event: Event, id: number) {
+    event.stopPropagation();
+    this.articuloService.activarDesactivar(id).subscribe(
+      (response) => {
+        console.log('Artículo actualizado:', response);
+        const articulo = this.articulos.find(
+          (a: { id: number }) => a.id === id
+        );
+        if (!articulo) {
+          articulo.activo = !articulo.activo;
+        }
+      },
+      (error) => {
+        console.error('Error al actualizar el artículo:', error);
+      }
+    );
+    this.toggle();
+    setTimeout(() => window.location.reload(), 1400);
+  }
+
+  toggle() {
+    this.toast.success('Estado actualizado', {
+      duration: 1400,
+      style: {
+        border: '1px solid #002d3c',
+        padding: '16px',
+        color: '#002d3c',
+        zIndex: 999999999,
+        position: 'fixed',
+        top: '60px',
+        left: '740px',
+      },
+      iconTheme: {
+        primary: '#002d3c',
+        secondary: '#ffff',
+      },
+    });
+  }
+
+  openDialog(
+    pregunta: string = '¿Estás seguro que deseas eliminar el artículo?',
+    textoBoton: string = 'Borrar artículo',
+    id: number
+  ): void {
     const dialogRef = this.dialog.open(ConfirmationModalComponent, {
       data: {
         pregunta: pregunta,
         textoBoton: textoBoton,
-        id: id
-      }
+        id: id,
+      },
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
         this.articuloService.deleteArticulo(id).subscribe({
           next: () => {
-            console.log('Artículo eliminado');
+            console.log('Artículo desactivado');
             window.location.reload(); // Recargar la página después de eliminar el artículo
           },
-          error: (err) => console.error('Error eliminando artículo', err)
+          error: (err) => console.error('Error desactivando el artículo', err),
         });
       } else {
         console.log('Acción cancelada');
@@ -96,8 +148,10 @@ export class ArticuloComponent implements OnInit {
   }
 
   obtenerValoraciones(): void {
-    this.valoracionService.getValoracionesByIdByArticulo(this.articulos.id).subscribe((valoraciones: any[]) => {
-      this.valoraciones = valoraciones;
-    });
+    this.valoracionService
+      .getValoracionesByIdByArticulo(this.articulos.id)
+      .subscribe((valoraciones: any[]) => {
+        this.valoraciones = valoraciones;
+      });
   }
 }

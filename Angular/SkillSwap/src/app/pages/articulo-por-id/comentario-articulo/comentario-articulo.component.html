@@ -1,0 +1,23 @@
+<div class="comentario-wrapper">
+    <div class="info-comentario">
+        <div class="photo-user">
+            <img src="../../../../assets/img/profile/{{comentario.usuario.fotoDePerfil}}.jpg" alt="User" />
+        </div>
+    <div class="info-comentario-user">
+            @if (miPerfil) {
+                <span id="nombre-comentario">{{comentario.usuario.nombre}} {{comentario.usuario.apellido}}</span>
+                <span id="fecha-publicacion">{{comentario.fecha | date:'dd-MM-yyyy'}}</span>
+                <button id="removeComment" (click)="borrarComentario()"><svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                  </svg>
+                  </button>
+            } @else {
+                <span id="nombre-comentario">{{comentario.usuario.nombre}} {{comentario.usuario.apellido}}</span>
+                <span id="fecha-publicacion">{{comentario.fecha | date:'dd-MM-yyyy'}}</span>
+            }
+    </div>
+    </div>
+    <div class="contenido-comentario">
+        <p>{{comentario.texto}}</p>
+    </div>
+</div>

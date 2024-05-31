@@ -14,7 +14,7 @@ import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
 import { SeguimientoService } from '../../services/seguimiento/seguimiento.service';
 import { seguimiento } from '../../model/seguimiento';
-
+ 
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -27,7 +27,7 @@ import { seguimiento } from '../../model/seguimiento';
     TarjetaUsuarioComponent,
     ArticuloComponent,
     PaginationComponent,
-    FormsModule  
+    FormsModule,
   ],
 })
 export class HomeComponent implements OnInit {
@@ -40,112 +40,107 @@ export class HomeComponent implements OnInit {
   public pages: number[] = [];
   public usuariosCargados: boolean = false;
   seguidores: seguimiento[] = [];
-
+  private seguidoresMap: { [userId: number]: number } = {};
+ 
   constructor(
     private usuarioService: UsuarioService,
     private articuloService: ArticuloService,
     private searchService: SearchService,
     private seguimientoService: SeguimientoService
   ) {}
-
+ 
   ngOnInit(): void {
-    this.loadUsuarios();
-    this.loadArticulos();
-
+    const { text, option } = this.searchService.getSearchCriteria();
+    this.inputText = text;
+    this.selectedOption = option;
+ 
     this.searchService.searchCriteria$.subscribe(({ text, option }) => {
+      console.log(text);
       this.inputText = text;
       this.selectedOption = option;
-      this.fetchData();
+      this.loadSeguidores();
     });
   }
-
-  loadUsuarios(): void {
-    // Creamos un objeto auxiliar para almacenar el recuento de seguidores de cada usuario
-    const seguidoresMap: { [userId: number]: number } = {};
-  
+ 
+  private loadSeguidores(): void {
     this.usuarioService.getusuarios().subscribe((data: usuario[]) => {
       this.misUsuarios = data;
-  
-      // Obtener la cantidad de seguidores para cada usuario
-      this.misUsuarios.forEach(usuario => {
-        this.seguimientoService.getSeguidores(usuario.id).subscribe((seguidores: any[]) => {
-          // Asignamos la cantidad de seguidores al objeto auxiliar
-          seguidoresMap[usuario.id] = seguidores.length;
-          
-          // Ordenamos los usuarios una vez que hemos recopilado todos los datos de los seguidores
-          if (Object.keys(seguidoresMap).length === this.misUsuarios.length) {
-            this.misUsuarios.sort((a, b) => seguidoresMap[b.id] - seguidoresMap[a.id]);
-            this.usuariosCargados = true;
-          }
-        });
+      this.misUsuarios.forEach((usuario) => {
+        this.seguimientoService
+          .getSeguidores(usuario.id)
+          .subscribe((seguidores: any[]) => {
+            this.seguidoresMap[usuario.id] = seguidores.length;
+            if (Object.keys(this.seguidoresMap).length === this.misUsuarios.length) {
+              this.usuariosCargados = true;
+              this.fetchData();
+            }
+          });
       });
     });
   }
-  
-
-
-  loadArticulos(): void {
+ 
+  private loadUsuarios(): void {
+    if (this.usuariosCargados) {
+      if (this.inputText.trim() === '') {
+        // Si la barra de búsqueda está vacía, mostrar los usuarios destacados
+        console.log("La barra de busqueda esta vacia");
+        this.misUsuarios.sort((a, b) => this.seguidoresMap[b.id] - this.seguidoresMap[a.id]);
+        console.log("Usuarios ordenados: ", this.misUsuarios);
+      } else {
+        // Si hay texto en la barra de búsqueda, filtrar por el texto
+        const normalizedInput = normalizeText(this.inputText);
+        this.misUsuarios = this.misUsuarios
+          .filter((data) => normalizeText(data.nombre).includes(normalizedInput))
+          .sort((a, b) => this.seguidoresMap[b.id] - this.seguidoresMap[a.id]);
+      }
+    }
+  }
+ 
+  private loadArticulos(): void {
     this.articuloService.getArticulos().subscribe((data: articulo[]) => {
-      this.articulos = data;
-    });
-  }
-
-  getTodos(): void {
-    this.getarticulos();
-    this.getusuarios(); 
-  }
-
-  getarticulos(): void {
-    this.articuloService.getArticulos().subscribe((articulos: articulo[]) => {
-      this.articulos = articulos;
+      const normalizedInput = normalizeText(this.inputText);
+      this.articulos = data.filter(
+        (articulo) =>
+          normalizeText(articulo.titulo).includes(normalizedInput) ||
+          normalizeText(articulo.contenido).includes(normalizedInput)
+      );
       this.calculatePages();
-      const normalizedInput = normalizeText(this.inputText);
-      this.articulos = articulos.filter(
-        (data) =>
-          normalizeText(data.titulo).includes(normalizedInput) ||
-          normalizeText(data.contenido).includes(normalizedInput)
-      );
     });
   }
-
-  getusuarios(): void {
-    this.usuarioService.getusuarios().subscribe((usuarios: usuario[]) => {
-      const normalizedInput = normalizeText(this.inputText);
-      this.misUsuarios = usuarios.filter((data) =>
-        normalizeText(data.nombre).includes(normalizedInput)
-      );
-    });
+ 
+  private getTodos(): void {
+    this.loadArticulos();
+    this.loadUsuarios();
   }
-
-  fetchData(): void {
+ 
+  private fetchData(): void {
     if (this.selectedOption === 'Todos') {
       this.getTodos();
     } else if (this.selectedOption === 'Articulos') {
-      this.getarticulos();
+      this.loadArticulos();
     } else if (this.selectedOption === 'Usuarios') {
-      this.getusuarios();
+      this.loadUsuarios();
     }
   }
-
-  calculatePages(): void {
+ 
+  private calculatePages(): void {
     this.pages = [];
     const totalPages = this.totalPages;
     for (let i = 0; i < totalPages; i++) {
       this.pages.push(i + 1);
     }
-    console.log("aaaaaa" + this.pages);
   }
-
+ 
   get paginatedArticulos(): articulo[] {
     const start = (this.currentPage - 1) * this.pageSize;
     const end = start + this.pageSize;
     return this.articulos.slice(start, end);
   }
-
+ 
   get totalPages(): number {
     return Math.ceil(this.articulos.length / this.pageSize);
   }
-
+ 
   onPageChange(page: number): void {
     this.currentPage = page;
   }

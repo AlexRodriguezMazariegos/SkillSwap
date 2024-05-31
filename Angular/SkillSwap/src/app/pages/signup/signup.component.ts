@@ -93,7 +93,6 @@ export class SignupComponent implements OnInit {
         this.textoError = 'Por favor rellene todos los campos';
       } else if (this.emailExistente == true) {
         this.textoError = 'El email ya esta registrado';
-        console.log(this.emailExistente);
       } else if (this.contrasena1 != this.contrasena2) {
         this.textoError = 'Las contraseñas no coinciden';
       } else if (!this.email.includes('@') || !this.email.includes('.')) {
@@ -106,7 +105,6 @@ export class SignupComponent implements OnInit {
         this.usuarioService
           .postUsuario(this.nuevoUsuario)
           .subscribe((data: usuario) => {
-            console.log(data);
             this.router.navigate(['/']);
           });
       }
