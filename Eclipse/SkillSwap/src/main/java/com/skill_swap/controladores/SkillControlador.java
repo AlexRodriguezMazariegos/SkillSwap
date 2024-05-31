@@ -26,7 +26,7 @@ public class SkillControlador {
 	@Autowired
 	private SkillServicio skillServicio;
 
-	@GetMapping("")
+	@GetMapping
 	public List<Skill> obtenerTodosLosSkills() {
 		return skillServicio.obtenerTodosLosSkills();
 	}

@@ -14,14 +14,18 @@ import { MatDialog } from '@angular/material/dialog';
   imports: [CommonModule, ReactiveFormsModule, FormsModule],
 })
 export class NavbarComponent implements OnInit {
-  usuario = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   nombreUsuario = '';
   imagenUsuario = '';
   searchControl: FormControl = new FormControl();
   inputText: string = '';
   selectedOption: string = 'Todos';
 
-  constructor(public dialog: MatDialog, private router: Router, private searchService: SearchService) {}
+  constructor(
+    public dialog: MatDialog,
+    private router: Router,
+    private searchService: SearchService
+  ) {}
 
   ngOnInit(): void {
     if (this.usuario) {
@@ -30,13 +34,23 @@ export class NavbarComponent implements OnInit {
       this.imagenUsuario = currentUser.fotoDePerfil;
     }
 
-    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(value => {
-      this.inputText = value;
-      this.searchService.setSearchCriteria(this.inputText, this.selectedOption);
-      if (this.router.url !== '/home') {
-        this.router.navigate(['/home']);
-      }
-    });
+    const { text, option } = this.searchService.getSearchCriteria();
+    this.inputText = text;
+    this.selectedOption = option;
+    this.searchControl.setValue(this.inputText);
+
+    this.searchControl.valueChanges
+      .pipe(debounceTime(300))
+      .subscribe((value) => {
+        this.inputText = value;
+        this.searchService.setSearchCriteria(
+          this.inputText,
+          this.selectedOption
+        );
+        if (this.router.url !== '/home') {
+          this.router.navigate(['/home']);
+        }
+      });
   }
 
   onOptionChange(event: any): void {

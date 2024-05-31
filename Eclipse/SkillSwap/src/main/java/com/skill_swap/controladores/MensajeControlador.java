@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/mensajes")
+@RequestMapping("/api/v1/mensaje")
 @CrossOrigin(origins = "http://localhost:4200")
 public class MensajeControlador {
 

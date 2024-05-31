@@ -33,7 +33,6 @@ public class UsuarioServicioTest {
 
 	public Long id = 1L;
 
-	// No se hasta que punto este método es necesario
 	@BeforeEach
 	void init() {
 		MockitoAnnotations.openMocks(this);

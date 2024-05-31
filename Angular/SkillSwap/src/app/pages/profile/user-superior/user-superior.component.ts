@@ -14,7 +14,7 @@ import { seguimiento } from '../../../model/seguimiento';
 })
 export class UserSuperiorComponent implements OnInit {
   @Input() miUsuario: any;
-  usuario = localStorage.getItem('usuario');
+  usuario = sessionStorage.getItem('usuario');
   usuarioId = 0;
   miPerfil: boolean = false;
   profileImgSrc: string = '';
