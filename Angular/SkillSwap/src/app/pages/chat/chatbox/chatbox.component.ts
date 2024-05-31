@@ -3,6 +3,7 @@ import { ChatMessage } from '../../../model/chat-mensaje';
 import { ChatService } from '../../../services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-chatbox',
   templateUrl: './chatbox.component.html',
@@ -22,22 +23,23 @@ export class ChatboxComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.log('Initializing ChatboxComponent');
     if (this.usuario) {
       const currentUser = JSON.parse(this.usuario);
       this.userId = currentUser.id;
     }
 
     this.chatService.joinRoom("ABC");
-    console.log('*** UserId: ' + this.userId);
+    console.log('User ID:', this.userId);
     this.listenerMessage();
   }
 
   sendMessage() {
-    console.log('**send UserId: ' + this.userId);
+    console.log('Sending message with User ID:', this.userId);
     const chatMessage: ChatMessage = {
       message: this.messageInput,
       user: this.userId,
-      chatId: 2, // aqui va el id del usuario al que se envia el mensaje
+      chatId: 2, // aquí va el ID del usuario al que se envía el mensaje
       targetUserId: 1,
       userId: 0
     };

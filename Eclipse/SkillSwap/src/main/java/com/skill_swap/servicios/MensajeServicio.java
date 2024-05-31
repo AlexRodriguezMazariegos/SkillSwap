@@ -41,7 +41,6 @@ public class MensajeServicio {
         return chatMessage;
     }
 
-
     public Boolean borrarMensaje(Long id) {
         if (mensajeRepositorio.existsById(id)) {
             try {
@@ -54,7 +53,7 @@ public class MensajeServicio {
             return false;
         }
     }
-    
+
     public Mensaje actualizarMensaje(Long id, Mensaje mensaje) {
         if (mensajeRepositorio.findById(id).isPresent()) {
             Mensaje mensajeAModificar = mensajeRepositorio.findById(id).get();
@@ -66,7 +65,6 @@ public class MensajeServicio {
             return null;
         }
     }
-    
 
     public List<ChatMessage> obtenerMensajesPorChatId(Long chatId) {
         List<Mensaje> mensajes = mensajeRepositorio.findByChatId(chatId);
@@ -86,9 +84,4 @@ public class MensajeServicio {
         ChatMessage chatMessage = new ChatMessage(mensaje.getUsuario().getNombre(), mensaje.getTexto(), mensaje.getChat().getId(), mensaje.getUsuario().getId());
         messagingTemplate.convertAndSend("/topic/" + mensaje.getChat().getId(), chatMessage);
     }
-
-	public Object crearMensaje(Mensaje mensaje) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
