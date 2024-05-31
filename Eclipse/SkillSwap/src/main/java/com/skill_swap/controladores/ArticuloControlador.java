@@ -76,6 +76,7 @@ public class ArticuloControlador {
 
 	@PostMapping("")
 	public ResponseEntity<Articulo> guardarArticulo(@RequestBody Articulo articulo) {
+		articulo.setActivo(true);
 		return ResponseEntity.status(HttpStatus.CREATED).body(articuloServicio.crearArticulo(articulo));
 	}
 

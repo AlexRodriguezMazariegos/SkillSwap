@@ -32,8 +32,7 @@ import { AdjuntarComentarioComponent } from "./adjuntar-comentario/adjuntar-come
 export class ArticuloPorIdComponent implements OnInit {
   storedValue = sessionStorage.getItem('usuario');
   miUsuario!: usuario;
-  puntuacion: number = 0;
-  valoracionExistente: boolean = false;
+  puntuacion: number = 4;
   valoracionId: number | undefined;
 
   articuloPorId: articulo = {
@@ -53,7 +52,8 @@ export class ArticuloPorIdComponent implements OnInit {
     descripcion: '',
     titulo: '',
     fechaPublicacion: new Date(),
-    comentarios: []
+    comentarios: [],
+    activado: true
   };
 
   fechaPublicacionFormateada: string = '';
@@ -82,7 +82,6 @@ export class ArticuloPorIdComponent implements OnInit {
         this.valoracionService.obtenerValoracion(this.articuloPorId.id, this.miUsuario.id)
         .subscribe((valoracion: valoracion | null) => {
           if (valoracion) {
-            this.valoracionExistente = true;
             this.puntuacion = valoracion.puntuacion;
             this.valoracionId = valoracion.id;
           }
