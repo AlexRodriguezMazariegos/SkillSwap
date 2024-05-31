@@ -8,36 +8,34 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { ArticuloPorIdComponent } from './pages/articulo-por-id/articulo-por-id.component';
 import { EditorArticuloComponent } from './pages/editor-articulo/editor-articulo.component';
 import { MisArticulosComponent } from './pages/mis-articulos/mis-articulos.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-    {
-        path: 'login', component:AppComponent
-    },
     {
         path: '', component:LoginComponent
     },
     {
-        path: 'home', component:HomeComponent
+        path: 'home', component:HomeComponent, canActivate: [authGuard]
     },
     {
-        path: 'profile/:id', component:ProfileComponent
+        path: 'profile/:id', component:ProfileComponent, canActivate: [authGuard]
     },
     {
         path: 'register', component:SignupComponent
     },
     {
-        path: 'chat', component:ChatComponent
+        path: 'chat', component:ChatComponent, canActivate: [authGuard]
     },
     {
-        path: 'articulo/:id', component:ArticuloPorIdComponent
+        path: 'articulo/:id', component:ArticuloPorIdComponent, canActivate: [authGuard]
     },
     {
-        path: 'postnew', component:EditorArticuloComponent
+        path: 'postnew', component:EditorArticuloComponent, canActivate: [authGuard]
     },
     {
-        path: 'mis-articulos', component:MisArticulosComponent
+        path: 'mis-articulos', component:MisArticulosComponent, canActivate: [authGuard]
     },
     {
-        path: 'editar-articulo/:id', component: EditorArticuloComponent
+        path: 'editar-articulo/:id', component: EditorArticuloComponent, canActivate: [authGuard]
     },
 ];
