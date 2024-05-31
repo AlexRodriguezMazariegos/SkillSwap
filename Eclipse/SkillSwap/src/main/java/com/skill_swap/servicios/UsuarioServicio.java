@@ -39,7 +39,6 @@ public class UsuarioServicio implements UserDetailsService {
         return usuarioRepositorio.findAll();
     }
 
-    @Transactional(readOnly = true)
     public Optional<Usuario> obtenerUsuarioPorId(Long id) {
         return usuarioRepositorio.findById(id);
     }
@@ -150,10 +149,9 @@ public class UsuarioServicio implements UserDetailsService {
 	}
 
 
-	public Usuario obtenerUsuarioPorNombre(String nombre) {
-		return usuarioRepositorio.findByNombre(nombre);
-	}
-
+    public Usuario obtenerUsuarioPorNombre(String nombre) {
+        return usuarioRepositorio.findByNombre(nombre);
+    }
 
 }
 

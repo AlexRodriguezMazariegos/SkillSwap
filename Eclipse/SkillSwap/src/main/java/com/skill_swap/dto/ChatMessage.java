@@ -2,48 +2,60 @@ package com.skill_swap.dto;
 
 public class ChatMessage {
 
-	private String user;
+    private String user;
     private String message;
     private Long chatId;
     private Long userId;
+    private Long targetUserId;
 
-    public ChatMessage(String sender, String content, Long timestamp, Long chatId) {
-        this.message = sender;
-        this.message = content;
-        this.chatId = timestamp;
-        this.chatId = chatId;
-
+    public ChatMessage() {
     }
 
-	public String getUser() {
-		return user;
-	}
+    public ChatMessage(String user, String message, Long chatId, Long userId, Long targetUserId) {
+        this.user = user;
+        this.message = message;
+        this.chatId = chatId;
+        this.userId = userId;
+        this.targetUserId = targetUserId;
+    }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+    public String getUser() {
+        return user;
+    }
 
-	public String getMessage() {
-		return message;
-	}
+    public void setUser(String user) {
+        this.user = user;
+    }
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
+    public String getMessage() {
+        return message;
+    }
 
-	public Long getChatId() {
-		return chatId;
-	}
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-	public void setChatId(Long chatId) {
-		this.chatId = chatId;
-	}
+    public Long getChatId() {
+        return chatId;
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public void setChatId(Long chatId) {
+        this.chatId = chatId;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getTargetUserId() {
+        return targetUserId;
+    }
+
+    public void setTargetUserId(Long targetUserId) {
+        this.targetUserId = targetUserId;
+    }
 }

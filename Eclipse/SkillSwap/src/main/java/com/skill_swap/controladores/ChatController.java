@@ -11,10 +11,11 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/chat")
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ChatController {
 
     @Autowired
@@ -32,12 +33,12 @@ public class ChatController {
     @PostMapping("/chat/{roomId}")
     public ChatMessage chat(@PathVariable Long roomId, @RequestBody ChatMessage message) {
         Usuario usuario = usuarioServicio.obtenerUsuarioPorNombre(message.getUser());
-
         if (usuario == null) {
             throw new RuntimeException("Usuario no encontrado: " + message.getUser());
         }
 
-        Usuario targetUser = usuarioServicio.obtenerUsuarioPorId(message.getTargetUserId());
+        Usuario targetUser = usuarioServicio.obtenerUsuarioPorId(message.getTargetUserId())
+                                            .orElseThrow(() -> new RuntimeException("Usuario objetivo no encontrado: " + message.getTargetUserId()));
 
         // Verificar si ya existe una sala de chat entre los usuarios
         Chat chat = chatServicio.obtenerChatPorUsuarios(usuario.getId(), targetUser.getId());
