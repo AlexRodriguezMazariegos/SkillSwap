@@ -59,4 +59,9 @@ public class ChatController {
     public List<ChatMessage> getChatHistoryByUser(@PathVariable Long roomId, @PathVariable Long userId) {
         return mensajeServicio.obtenerMensajesPorChatIdYUsuarioId(roomId, userId);
     }
+    
+    @GetMapping("/saludo/{nombre}") // Corrección: retire '/api/v1' de la ruta
+    public String saludo(@PathVariable String nombre) {
+        return "Hola, " + nombre + "!";
+    }   
 }

@@ -6,6 +6,7 @@ import com.skill_swap.entidades.Mensaje;
 import com.skill_swap.entidades.Usuario;
 import com.skill_swap.repositorios.MensajeRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,6 +20,9 @@ public class MensajeServicio {
     @Autowired
     private MensajeRepositorio mensajeRepositorio;
 
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
+
     public List<Mensaje> obtenerTodosLosMensajes() {
         return mensajeRepositorio.findAll();
     }
@@ -27,21 +31,16 @@ public class MensajeServicio {
         return mensajeRepositorio.findById(id);
     }
 
-    public Mensaje crearMensaje(Mensaje mensaje) {
-        return mensajeRepositorio.save(mensaje);
+    public ChatMessage crearMensaje(ChatMessage chatMessage, Usuario usuario, Chat chat) {
+        Mensaje mensaje = new Mensaje();
+        mensaje.setUsuario(usuario);
+        mensaje.setChat(chat);
+        mensaje.setTexto(chatMessage.getMessage());
+        mensaje.setFecha(new Date());
+        mensajeRepositorio.save(mensaje);
+        return chatMessage;
     }
 
-    public Mensaje actualizarMensaje(Long id, Mensaje mensaje) {
-        if (mensajeRepositorio.findById(id).isPresent()) {
-            Mensaje mensajeAModificar = mensajeRepositorio.findById(id).get();
-            mensajeAModificar.setId(id);
-            mensajeAModificar.setFecha(mensaje.getFecha());
-            mensajeAModificar.setTexto(mensaje.getTexto());
-            return mensajeRepositorio.save(mensajeAModificar);
-        } else {
-            return null;
-        }
-    }
 
     public Boolean borrarMensaje(Long id) {
         if (mensajeRepositorio.existsById(id)) {
@@ -55,6 +54,19 @@ public class MensajeServicio {
             return false;
         }
     }
+    
+    public Mensaje actualizarMensaje(Long id, Mensaje mensaje) {
+        if (mensajeRepositorio.findById(id).isPresent()) {
+            Mensaje mensajeAModificar = mensajeRepositorio.findById(id).get();
+            mensajeAModificar.setId(id);
+            mensajeAModificar.setFecha(mensaje.getFecha());
+            mensajeAModificar.setTexto(mensaje.getTexto());
+            return mensajeRepositorio.save(mensajeAModificar);
+        } else {
+            return null;
+        }
+    }
+    
 
     public List<ChatMessage> obtenerMensajesPorChatId(Long chatId) {
         List<Mensaje> mensajes = mensajeRepositorio.findByChatId(chatId);
@@ -70,13 +82,13 @@ public class MensajeServicio {
                 .collect(Collectors.toList());
     }
 
-    public ChatMessage crearMensaje(ChatMessage chatMessage, Usuario usuario, Chat chat) {
-        Mensaje mensaje = new Mensaje();
-        mensaje.setUsuario(usuario);
-        mensaje.setChat(chat);
-        mensaje.setTexto(chatMessage.getMessage());
-        mensaje.setFecha(new Date());
-        mensajeRepositorio.save(mensaje);
-        return chatMessage;
+    public void enviarMensajeAClientes(Mensaje mensaje) {
+        ChatMessage chatMessage = new ChatMessage(mensaje.getUsuario().getNombre(), mensaje.getTexto(), mensaje.getChat().getId(), mensaje.getUsuario().getId());
+        messagingTemplate.convertAndSend("/topic/" + mensaje.getChat().getId(), chatMessage);
     }
+
+	public Object crearMensaje(Mensaje mensaje) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

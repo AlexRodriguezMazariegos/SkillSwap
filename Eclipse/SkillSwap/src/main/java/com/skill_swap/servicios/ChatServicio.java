@@ -49,8 +49,7 @@ public class ChatServicio {
             return false;
         }
     }
-    
-    
+
     public Chat obtenerChatPorUsuarios(Long usuarioId1, Long usuarioId2) {
         return chatRepositorio.findByUsuarioId1AndUsuarioId2(usuarioId1, usuarioId2);
     }

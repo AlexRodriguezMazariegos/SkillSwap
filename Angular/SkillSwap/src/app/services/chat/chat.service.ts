@@ -1,38 +1,40 @@
 import { Injectable } from '@angular/core';
-import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
+import { Client, IMessage, Stomp } from '@stomp/stompjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  private socket!: WebSocketSubject<any>;
+  private client!: Client;
   private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
+  private successMessageSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
   constructor(private http: HttpClient) {
     this.initConnectionSocket();
   }
 
-  initConnectionSocket() {
-    const url = 'ws://localhost:8080/chat-socket';
-    this.socket = webSocket(url);
+  private initConnectionSocket() {
+    console.log('Connecting to WebSocket...');
+    this.client = Stomp.client('ws://localhost:8080/chat-socket');
 
-    this.socket.subscribe({
-      next: (message: any) => {
-        const currentMessages = this.messageSubject.getValue();
-        currentMessages.push(message);
-        this.messageSubject.next(currentMessages);
-      },
-      error: (error: any) => {
-        console.error('WebSocket error:', error);
-      },
-      complete: () => {
-        console.log('WebSocket connection closed');
-      }
-    });
+    this.client.onConnect = (frame) => {
+      console.log('Connected: ' + frame);
+      this.successMessageSubject.next("STOMP connected successfully");
+      this.client.subscribe('/topic/messages', (message: IMessage) => {
+        if (message.body) {
+          const messageContent = JSON.parse(message.body);
+          const currentMessages = this.messageSubject.getValue();
+          currentMessages.push(messageContent);
+          this.messageSubject.next(currentMessages);
+        }
+      });
+    };
+
+    this.client.activate();
   }
 
   joinRoom(roomId: string) {
@@ -41,7 +43,11 @@ export class ChatService {
   }
 
   sendMessage(roomId: string, chatMessage: ChatMessage) {
-    this.socket.next({ type: 'MESSAGE', roomId: roomId, content: chatMessage });
+    if (this.client && this.client.connected) {
+      this.client.publish({ destination: '/app/chat/' + roomId, body: JSON.stringify(chatMessage) });
+    } else {
+      console.error('STOMP client is not connected.');
+    }
   }
 
   getMessageSubject() {
@@ -54,12 +60,11 @@ export class ChatService {
         this.messageSubject.next(messages);
       },
       error: (error: any) => {
-        console.error('Error al cargar los mensajes del historial:', error);
+        console.error('Error loading chat history messages:', error);
       },
       complete: () => {
-        console.log('Carga de mensajes del historial completada');
+        console.log('Loading chat history messages completed');
       }
     });
   }
-  
 }
