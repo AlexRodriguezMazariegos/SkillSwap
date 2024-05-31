@@ -1,5 +1,6 @@
 package com.skill_swap.controladores;
 
+
 import com.skill_swap.dto.ChatMessage;
 import com.skill_swap.entidades.Chat;
 import com.skill_swap.entidades.Usuario;
@@ -7,14 +8,20 @@ import com.skill_swap.servicios.ChatServicio;
 import com.skill_swap.servicios.MensajeServicio;
 import com.skill_swap.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping("/api/v1/chat")
 @CrossOrigin(origins = "http://localhost:4200")
+
 public class ChatController {
 
     @Autowired
@@ -26,42 +33,37 @@ public class ChatController {
     @Autowired
     private UsuarioServicio usuarioServicio;
 
-    @Autowired
-    private SimpMessagingTemplate messagingTemplate;
-
-    @PostMapping("/chat/{roomId}")
-    public ChatMessage chat(@PathVariable Long roomId, @RequestBody ChatMessage message) {
+    @MessageMapping("/chat/{roomId}")
+    @SendTo("/topic/{roomId}")
+    public ChatMessage chat(@DestinationVariable Long roomId, ChatMessage message) {
         Usuario usuario = usuarioServicio.obtenerUsuarioPorNombre(message.getUser());
 
         if (usuario == null) {
             throw new RuntimeException("Usuario no encontrado: " + message.getUser());
         }
 
-        Usuario targetUser = usuarioServicio.obtenerUsuarioPorId(message.getTargetUserId());
+        Optional<Chat> optionalChat = chatServicio.obtenerChatPorId(roomId);
 
-        // Verificar si ya existe una sala de chat entre los usuarios
-        Chat chat = chatServicio.obtenerChatPorUsuarios(usuario.getId(), targetUser.getId());
-
-        // Si no existe la sala de chat, crear una nueva
-        if (chat == null) {
-            chat = chatServicio.crearChat(new Chat(usuario, targetUser));
+        if (optionalChat.isEmpty()) {
+            throw new RuntimeException("Chat no encontrado: " + roomId);
         }
 
-        ChatMessage savedMessage = mensajeServicio.crearMensaje(message, usuario, chat, targetUser);
+        Chat chat = optionalChat.get();
 
-        // Enviar el mensaje a los clientes suscritos
-        messagingTemplate.convertAndSend("/topic/" + roomId, savedMessage);
-
-        return savedMessage;
+        return mensajeServicio.crearMensaje(message, usuario, chat);
     }
 
-    @GetMapping("/history/{roomId}")
+    @GetMapping("/chat/history/{roomId}")
+    @ResponseBody
     public List<ChatMessage> getChatHistory(@PathVariable Long roomId) {
         return mensajeServicio.obtenerMensajesPorChatId(roomId);
     }
 
-    @GetMapping("/history/{roomId}/{userId}")
+    @GetMapping("/chat/history/{roomId}/{userId}")
+    @ResponseBody
     public List<ChatMessage> getChatHistoryByUser(@PathVariable Long roomId, @PathVariable Long userId) {
         return mensajeServicio.obtenerMensajesPorChatIdYUsuarioId(roomId, userId);
     }
+
+
 }
