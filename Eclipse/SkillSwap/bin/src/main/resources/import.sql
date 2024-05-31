@@ -341,6 +341,7 @@ INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (27, 26);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (28, 26);
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (29, 26);
+INSERT INTO `
 
 -- Usuario 26
 INSERT INTO `seguimiento` (`id_usuario_seguido`, `id_usuario_seguidor`) VALUES (30, 26);

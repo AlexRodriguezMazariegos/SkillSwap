@@ -139,8 +139,6 @@ public class UsuarioServicio implements UserDetailsService {
                 true,
                 authorities);
     }
-	// Método para borrar un usuario por su ID
-
 
 	public Boolean FindByEmail(String email) {
 		if (usuarioRepositorio.findByEmail(email)!= null) {
