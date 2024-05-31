@@ -140,16 +140,7 @@ public class UsuarioServicio implements UserDetailsService {
                 authorities);
     }
 	// Método para borrar un usuario por su ID
-	public Boolean borrarUsuario(Long id) {
-		{
-			try {
-				usuarioRepositorio.deleteById(id);
-				return true;
-			} catch (Exception e) {
-				return false;
-			}
-		}
-	}
+
 
 	public Boolean FindByEmail(String email) {
 		if (usuarioRepositorio.findByEmail(email)!= null) {
@@ -160,9 +151,6 @@ public class UsuarioServicio implements UserDetailsService {
 		}
 	}
 
-	public Usuario login(String email, String contrasena) {
-		return usuarioRepositorio.login(email, contrasena);
-	}
 
 	public Usuario obtenerUsuarioPorNombre(String nombre) {
 		return usuarioRepositorio.findByNombre(nombre);
