@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Stomp } from '@stomp/stompjs';
 import { BehaviorSubject } from 'rxjs';
-import SockJS from 'sockjs-client';
 import { HttpClient } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
 
@@ -10,33 +8,33 @@ import { ChatMessage } from '../../model/chat-mensaje';
 })
 export class ChatService {
 
-  private stompClient: any;
+  private socket!: WebSocket;
   private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
 
   constructor(private http: HttpClient) {
-    this.iniConnectionSocket();
+    this.initConnectionSocket();
   }
 
-  iniConnectionSocket() {
-    const url = '//localhost:8080/api/v1/chat/chat-socket';
-    const socket = new SockJS(url);
-    this.stompClient = Stomp.over(socket);
+  initConnectionSocket() {
+    const url = 'ws://localhost:8080/chat-socket';
+    this.socket = new WebSocket(url);
   }
 
   joinRoom(roomId: string) {
-    this.stompClient.connect({}, () => {
-      this.stompClient.subscribe(`/topic/${roomId}`, (message: any) => {
-        const messageContent = JSON.parse(message.body);
-        const currentMessages = this.messageSubject.getValue();
-        currentMessages.push(messageContent);
-        this.messageSubject.next(currentMessages);
-      });
-      this.loadMessagesFromDatabase(roomId);
-    });
+    this.socket.onopen = () => {
+      this.socket.send(JSON.stringify({ type: 'JOIN', roomId: roomId }));
+    };
+    this.socket.onmessage = (message: any) => {
+      const messageContent = JSON.parse(message.data);
+      const currentMessages = this.messageSubject.getValue();
+      currentMessages.push(messageContent);
+      this.messageSubject.next(currentMessages);
+    };
+    this.loadMessagesFromDatabase(roomId);
   }
 
   sendMessage(roomId: string, chatMessage: ChatMessage) {
-    this.stompClient.send(`/app/chat/${roomId}`, {}, JSON.stringify(chatMessage));
+    this.socket.send(JSON.stringify({ type: 'MESSAGE', roomId: roomId, content: chatMessage }));
   }
 
   getMessageSubject() {

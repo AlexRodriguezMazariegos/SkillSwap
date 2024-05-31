@@ -21,39 +21,48 @@ import { ChatService } from '../../../services/chat/chat.service';
 })
 export class ChatboxComponent implements OnInit {
 
-    messageInput: string = '';
-    userId: string = '';
-    messageList: any[] = [];
-   
-    // route: any;
-    // chatService: any;
-  
-    constructor(private chatService: ChatService, private route: ActivatedRoute) { }
-  
-    ngOnInit(): void {
-      this.userId = this.route.snapshot.params["userId"];
-      this.chatService.joinRoom("ABC");
-      console.log('*** UserId: ' + this.userId);
-      this.listenerMessage();
-    }
-  
-    sendMessage() {
-      console.log('**send UserId: ' + this.userId);
-      const chatMessage = {
-        message: this.messageInput,
-        user: this.userId
-      } as ChatMessage
-      this.chatService.sendMessage("ABC", chatMessage);
-      this.messageInput = '';
-    }
-  
-    listenerMessage() {
-      this.chatService.getMessageSubject().subscribe((messages: any) => {
-        this.messageList = messages.map((item: any) => ({
-          ...item,
-          message_side: item.user === this.userId ? 'sender' : 'receiver'
-        }))
-      });
-    }
+  messageInput: string= '';
+  user = localStorage.getItem('usuario')
+  messageList: any[]=[];
+  userId = 0;
+
+  constructor(private chatService: ChatService,
+    private route: ActivatedRoute
+    ){
   }
+
+  ngOnInit():void{
+
+    if (this.user) {
+      const currentUser = JSON.parse(this.user);
+      this.userId = currentUser.id;
+    }
+
+    this.chatService.joinRoom("ABC");
+    console.log('*** UserId: '+this.userId);
+    this.listenerMessage();
+  }
+ 
+  sendMessage(){
+    console.log('**send UserId: '+this.userId);
+    const chatMessage = {
+      message: this.messageInput,
+      user: this.userId.toString(),
+      chatId: 2 /* El ID del chat al que estás enviando el mensaje */,
+      userId: this.userId
+    } as ChatMessage;
+    this.chatService.sendMessage("ABC", chatMessage);
+    this.messageInput='';
+}
+
+  listenerMessage(){
+    this.chatService.getMessageSubject().subscribe((messages: any)=>{
+      this.messageList=messages.map((item: any)=>({
+        ...item,
+        message_side: item.user === this.userId ? 'sender': 'receiver' 
+      }))
+    });
+  }
+
+}
   

@@ -1,4 +1,6 @@
-export interface ChatMessage{
+export interface ChatMessage {
+    user: string;
     message: string;
-    user: string;   
+    chatId: number;
+    userId: number;
 }

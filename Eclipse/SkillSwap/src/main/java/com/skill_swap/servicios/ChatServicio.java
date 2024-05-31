@@ -11,49 +11,35 @@ import java.util.Optional;
 @Service
 public class ChatServicio {
 
-	@Autowired
-	private ChatRepositorio chatRepositorio;
+    @Autowired
+    private ChatRepositorio chatRepositorio;
 
-	// Método para obtener todos los Chats
-	public List<Chat> obtenerTodosLosChats() {
-		return chatRepositorio.findAll();
-	}
+    public List<Chat> obtenerTodosLosChats() {
+        return chatRepositorio.findAll();
+    }
 
-	public Optional<Chat> obtenerChatPorId(Long id) {
-		return chatRepositorio.findById(id);
-	}
+    public Optional<Chat> obtenerChatPorId(Long id) {
+        return chatRepositorio.findById(id);
+    }
 
-	// Método para crear o actualizar un Chat
-	public Chat crearChat(Chat chat) {
-		return chatRepositorio.save(chat);
-	}
+    public Chat crearChat(Chat chat) {
+        return chatRepositorio.save(chat);
+    }
 
-	// Método para crear o actualizar un Chat
-	public Chat actualizarChat(Long id, Chat chat) {
-		if (chatRepositorio.findById(id).isPresent()) {
-			Chat ChatAModificar = chatRepositorio.findById(id).get();
-			// El id se queda como estaba
-			ChatAModificar.setId(id);
-			ChatAModificar.setUsuario1(chat.getUsuario1());
-			ChatAModificar.setUsuario2(chat.getUsuario2());
-			return chatRepositorio.save(ChatAModificar);
-		} else {
-			return null;
-		}
-	}
+    public Chat obtenerChatPorUsuarios(Long usuario1Id, Long usuario2Id) {
+        return chatRepositorio.findByUsuarios(usuario1Id, usuario2Id);
+    }
 
-	// Método para borrar un usuario por su ID
-	public Boolean borrarChat(Long id) {
-	    if (chatRepositorio.existsById(id)) {
-	        try {
-	            chatRepositorio.deleteById(id);
-	            return true;
-	        } catch (Exception e) {
-	            return false;
-	        }
-	    } else {
-	        return false;
-	    }
-	}
-
+    public Boolean borrarChat(Long id) {
+        if (chatRepositorio.existsById(id)) {
+            try {
+                chatRepositorio.deleteById(id);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
 }
