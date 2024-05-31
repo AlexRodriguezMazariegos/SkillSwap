@@ -56,7 +56,6 @@ export class ChatboxComponent implements OnInit {
       });
     }
   }
-<<<<<<< HEAD
  
   sendMessage(){
     console.log('**send UserId: '+this.userId);
@@ -80,6 +79,4 @@ export class ChatboxComponent implements OnInit {
   }
 
 }
-=======
->>>>>>> parent of d699bf0 (chat)
   

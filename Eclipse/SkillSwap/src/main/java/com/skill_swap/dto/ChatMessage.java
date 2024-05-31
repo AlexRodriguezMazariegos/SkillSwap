@@ -8,7 +8,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
->>>>>>> parent of d699bf0 (chat)
 public class ChatMessage {
 
 	private String user;
