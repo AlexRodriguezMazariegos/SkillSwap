@@ -15,6 +15,7 @@ export class ChatboxComponent implements OnInit {
   usuario = sessionStorage.getItem('usuario');
   messageInput: string = '';
   userId: number = 0;
+  targetUserId: number = 0; // ID del usuario objetivo con el que se desea chatear
   messageList: any[] = [];
 
   constructor(
@@ -29,6 +30,11 @@ export class ChatboxComponent implements OnInit {
       this.userId = currentUser.id;
     }
 
+    // Supongamos que el ID del usuario objetivo se pasa como parámetro de ruta
+    this.route.params.subscribe(params => {
+      this.targetUserId = params['targetUserId'];
+    });
+
     this.chatService.joinRoom("ABC");
     console.log('User ID:', this.userId);
     this.listenerMessage();
@@ -39,12 +45,17 @@ export class ChatboxComponent implements OnInit {
     const chatMessage: ChatMessage = {
       message: this.messageInput,
       user: this.userId,
-      chatId: 2, // aquí va el ID del usuario al que se envía el mensaje
-      targetUserId: 1,
+      chatId: 0, // Este valor se actualizará después de obtener o crear el chat
+      targetUserId: this.targetUserId,
       userId: 0
     };
-    this.chatService.sendMessage("ABC", chatMessage);
-    this.messageInput = '';
+
+    // Primero, crear o obtener el chat entre los usuarios
+    this.chatService.getOrCreateChat(this.userId, this.targetUserId).subscribe(chat => {
+      chatMessage.chatId = chat.id;
+      this.chatService.sendMessage("ABC", chatMessage);
+      this.messageInput = '';
+    });
   }
 
   listenerMessage() {

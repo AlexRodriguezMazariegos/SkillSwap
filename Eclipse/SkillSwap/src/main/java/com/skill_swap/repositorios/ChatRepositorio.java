@@ -1,5 +1,7 @@
 package com.skill_swap.repositorios;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,4 +14,8 @@ public interface ChatRepositorio extends JpaRepository<Chat, Long> {
 
     @Query("SELECT c FROM Chat c WHERE (c.usuario1.id = :usuarioId1 AND c.usuario2.id = :usuarioId2) OR (c.usuario1.id = :usuarioId2 AND c.usuario2.id = :usuarioId1)")
     Chat findByUsuarioId1AndUsuarioId2(@Param("usuarioId1") Long usuarioId1, @Param("usuarioId2") Long usuarioId2);
+
+    Optional<Chat> findByUsuario1IdAndUsuario2Id(Long usuario1Id, Long usuario2Id);
+    Optional<Chat> findByUsuario1IdAndUsuario2IdOrUsuario2IdAndUsuario1Id(Long usuario1Id, Long usuario2Id, Long usuario2IdAgain, Long usuario1IdAgain);
+
 }

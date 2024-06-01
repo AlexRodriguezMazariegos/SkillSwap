@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
 import { Client, IMessage, Stomp } from '@stomp/stompjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { chat } from '../../model/chat';
 
 @Injectable({
   providedIn: 'root'
@@ -79,4 +80,14 @@ export class ChatService {
       }
     });
   }
+
+  crearChat(chat: chat) {
+    return this.http.post<chat>('http://localhost:8080/api/v1/chat/crear', chat);
+  }
+
+  getOrCreateChat(usuarioId1: number, usuarioId2: number) {
+    return this.http.get<chat>(`http://localhost:8080/api/v1/chat/${usuarioId1}/${usuarioId2}`);
+  }
+
+
 }
