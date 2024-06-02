@@ -2,17 +2,20 @@ package com.skill_swap.dto;
 
 public class ChatMessage {
 
-	private String user;
+    private String user;
     private String message;
     private Long chatId;
     private Long userId;
+    private Long targetUserId; //CAMPO PARA CREAR CHAT CON OTRO USUARIO
 
-    public ChatMessage(String sender, String content, Long timestamp, Long chatId) {
-        this.message = sender;
-        this.message = content;
-        this.chatId = timestamp;
+    public ChatMessage() {
+    }
+
+    public ChatMessage(String user, String message, Long chatId, Long userId) {
+        this.user = user;
+        this.message = message;
         this.chatId = chatId;
-
+        this.userId = userId;
     }
 
 	public String getUser() {
@@ -46,4 +49,14 @@ public class ChatMessage {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
+
+	public Long getTargetUserId() {
+		return targetUserId;
+	}
+
+	public void setTargetUserId(Long targetUserId) {
+		this.targetUserId = targetUserId;
+	}
+
+
 }

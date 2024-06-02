@@ -1,51 +1,93 @@
 import { Injectable } from '@angular/core';
-import { Stomp } from '@stomp/stompjs';
 import { BehaviorSubject } from 'rxjs';
-import SockJS from 'sockjs-client';
 import { HttpClient } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
+import { Client, IMessage, Stomp } from '@stomp/stompjs';
+import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
+import { chat } from '../../model/chat';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
-  private stompClient: any
-  private messageSubject: BehaviorSubject<ChatMessage[]>=new BehaviorSubject<ChatMessage[]>([]);
+  private client!: Client;
+  private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
+  private successMessageSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private socket$: WebSocketSubject<any> | undefined;
 
-  constructor(private http: HttpClient){
-    this.iniConnectionSocket();
+  constructor(private http: HttpClient) {
+    console.log('Initializing ChatService');
+    this.initConnectionSocket();
   }
 
-  iniConnectionSocket(){
-    const url='//localhost:8080/chat-socket';
-    const socket= new SockJS(url);
-    this.stompClient=Stomp.over(socket)
+  private initConnectionSocket() {
+    console.log('Connecting to WebSocket...');
+    this.socket$ = webSocket('ws://localhost:8080/chat-socket');
+
+    this.socket$.subscribe(
+      (message) => {
+        console.log('Message received from WebSocket', message);
+        if (message.body) {
+          const messageContent = JSON.parse(message.body);
+          console.log('Parsed message content', messageContent);
+          const currentMessages = this.messageSubject.getValue();
+          currentMessages.push(messageContent);
+          this.messageSubject.next(currentMessages);
+        }
+      },
+      (error) => {
+        console.error('Error from WebSocket', error);
+      },
+      () => {
+        console.log('WebSocket connection closed');
+      }
+    );
   }
 
-  joinRoom(roomId:string){
-    this.stompClient.connect({},()=>{
-      this.stompClient.subscribe(`/topic/${roomId}`, (messages:any)=>{
-        const messageContent =JSON.parse(messages.body);
-        const currentMessage = this.messageSubject.getValue();
-        currentMessage.push(messageContent);
-        this.messageSubject.next(currentMessage);
-      })
-      this.loadMessagesFromDatabase(roomId);
-    })
+  joinRoom(roomId: string) {
+    console.log('Joining room', roomId);
+    const messages = JSON.parse(localStorage.getItem(roomId) || '[]');
+    this.messageSubject.next(messages);
   }
 
-  senMessage(roomId: string, chatMessage: ChatMessage){
-    this.stompClient.send(`/app/chat/${roomId}`,{},JSON.stringify(chatMessage))
-  } 
+  sendMessage(roomId: string, chatMessage: ChatMessage) {
+    console.log('Sending message', chatMessage);
+    if (this.socket$) {
+      this.socket$.next({ destination: '/app/chat/' + roomId, body: JSON.stringify(chatMessage) });
+    } else {
+      console.error('STOMP client is not connected.');
+    }
+  }
 
-  getMessageSubject(){
+  getMessageSubject() {
+    console.log('Getting message subject');
     return this.messageSubject.asObservable();
   }
 
   loadMessagesFromDatabase(roomId: string) {
-    this.http.get<ChatMessage[]>(`http://localhost:8080/chat/history/${roomId}`).subscribe(messages => {
-      this.messageSubject.next(messages);
+    console.log('Loading messages from database for room', roomId);
+    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`).subscribe({
+      next: (messages: ChatMessage[]) => {
+        console.log('Received messages from database', messages);
+        this.messageSubject.next(messages);
+      },
+      error: (error: any) => {
+        console.error('Error loading chat history messages:', error);
+      },
+      complete: () => {
+        console.log('Loading chat history messages completed');
+      }
     });
   }
+
+  crearChat(chat: chat) {
+    return this.http.post<chat>('http://localhost:8080/api/v1/chat/crear', chat);
+  }
+
+  getOrCreateChat(usuarioId1: number, usuarioId2: number) {
+    return this.http.get<chat>(`http://localhost:8080/api/v1/chat/${usuarioId1}/${usuarioId2}`);
+  }
+
+
 }
