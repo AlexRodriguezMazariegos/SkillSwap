@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.skill_swap.entidades.Articulo;
 import com.skill_swap.entidades.Comentario;
@@ -24,7 +25,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 @RequestMapping("/api/v1/articulo")
-@CrossOrigin(origins = "http://localhost:4200", methods = { GET, POST, PUT, PATCH, DELETE })
+@CrossOrigin(origins = "http://localhost:4200", methods = { RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.PATCH, RequestMethod.DELETE, RequestMethod.OPTIONS })
 public class ArticuloControlador {
 
 	@Autowired
@@ -75,6 +76,7 @@ public class ArticuloControlador {
 
 	@PostMapping("")
 	public ResponseEntity<Articulo> guardarArticulo(@RequestBody Articulo articulo) {
+		articulo.setActivo(true);
 		return ResponseEntity.status(HttpStatus.CREATED).body(articuloServicio.crearArticulo(articulo));
 	}
 

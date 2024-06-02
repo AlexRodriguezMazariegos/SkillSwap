@@ -5,19 +5,16 @@ import { login, usuario } from '../../model/usuario';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
-
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   private headers!: HttpHeaders;
   baseUrl = 'http://localhost:8080/api/v1/usuario';
 
-  constructor(private http: HttpClient, private authservice: AuthService) { 
-    
-      this.headers = this.addAuthorizationHeader();
-    
+  constructor(private http: HttpClient, private authservice: AuthService) {
+    this.headers = this.addAuthorizationHeader();
   }
 
   private addAuthorizationHeader(): HttpHeaders {
@@ -28,26 +25,43 @@ export class UsuarioService {
     return this.httpHeaders;
   }
 
-
-  getusuarios():Observable<any>{
+  getusuarios(): Observable<any> {
     let token = this.authservice.token;
-    return this.http.get<any>(this.baseUrl,{ headers: this.headers } )
+    console.log(token)
+    return this.http.get<any>(this.baseUrl, { headers: this.headers });
   }
 
-  getUsuarioById(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseUrl}/${id}`, { headers: this.headers })
+  getUsuarioById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/${id}`, {
+      headers: this.headers,
+    });
   }
 
-  postUsuario(usuario:usuario):Observable<any>{
-    return this.http.post(`${this.baseUrl}/register`,usuario)
+  postUsuario(usuario: usuario): Observable<any> {
+    return this.http.post(`${this.baseUrl}/register`, usuario);
   }
 
-  getUsuarioByEmail(email:string):Observable<any>{
-    return this.http.get(`${this.baseUrl}/email/${email}`)
+  getUsuarioByEmail(email: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/email/${email}`);
   }
 
-  saveUser(email:string):Observable<any>{
-    return this.http.get(`${this.baseUrl}/GetUsuario/${email}`,{ headers: this.headers })
+  saveUser(email: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/GetUsuario/${email}`, {
+      headers: this.headers,
+    });
   }
-  
+
+  actualizarSkillsUsuario(
+    idUsuario: number,
+    idSkills: number[]
+  ): Observable<any> {
+    return this.http.put(`${this.baseUrl}/${idUsuario}/skills`, idSkills);
+  }
+
+  putUsuario(id: number, usuario: usuario): Observable<any> {
+    console.log("PUT", usuario)
+    return this.http.put(`${this.baseUrl}/${id}`, usuario, {
+      headers: this.headers,
+    });
+  }
 }

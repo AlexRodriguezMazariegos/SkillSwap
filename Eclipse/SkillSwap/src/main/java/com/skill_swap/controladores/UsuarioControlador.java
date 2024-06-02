@@ -72,7 +72,7 @@ public class UsuarioControlador {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 	}
-	
+
 	@GetMapping("/email/{email}")
 	public Boolean getMethodName(@PathVariable String email) {
 		return usuarioServicio.findByEmail(email);

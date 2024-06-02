@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
     fotoDePerfil: '',
   };
 
-  //Variables para la paginación
+  // Variables para la paginación
   public pageSize = 1;
   public currentPage = 1;
   public pages: number[] = [];
@@ -62,7 +62,8 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private articuloService: ArticuloService,
     private editProfileService: EditProfileService
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -83,20 +84,20 @@ export class ProfileComponent implements OnInit {
             .getArticuloByUserId(this.miUsuario.id)
             .subscribe((data: articulo[]) => {
               this.articulos = data;
-              //Llamamos al metodo para la paginación
+              // Llamamos al metodo para la paginación
               this.calculatePages();
             });
         }
       });
     });
-    //Escuchar el editar perfil
+
+    // Escuchar el editar perfil
     this.editProfileService.isEditing$.subscribe((value: boolean) => {
       this.isEditing = value;
-      console.log(this.isEditing);
     });
   }
 
-  //Metodos para la paginación
+  // Metodos para la paginación
 
   calculatePages(): void {
     this.pages = [];
@@ -118,5 +119,9 @@ export class ProfileComponent implements OnInit {
 
   onPageChange(page: number): void {
     this.currentPage = page;
+  }
+
+  onUsuarioModificado(usuario: usuario) {
+    this.miUsuario = usuario;
   }
 }

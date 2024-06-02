@@ -12,9 +12,9 @@
       @if (miPerfil) {
       <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
       @if (isEditing == true) {
-      <app-user-info-edit [miUsuario]="miUsuario"></app-user-info-edit>
+        <app-user-info-edit [miUsuario]="miUsuario" (usuarioModificado)="onUsuarioModificado($event)"></app-user-info-edit>
       }@else {
-      <app-user-info [miUsuario]="miUsuario"></app-user-info>
+      <app-user-info [miUsuario]="miUsuario" *ngIf="!isEditing"></app-user-info>
       } } @else {
       <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
 

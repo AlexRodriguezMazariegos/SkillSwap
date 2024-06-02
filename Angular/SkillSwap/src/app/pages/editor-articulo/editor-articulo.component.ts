@@ -4,7 +4,6 @@ import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 import { UserSuperiorComponent } from '../profile/user-superior/user-superior.component';
 import { UserInfoComponent } from '../profile/user-info/user-info.component';
 import { UserBotonesComponent } from '../profile/user-botones/user-botones.component';
-import { UsuarioService } from '../../services/usuario/usuario.service';
 import {
   AngularEditorConfig,
   AngularEditorModule,
@@ -15,8 +14,6 @@ import { ArticuloService } from '../../services/articulo/articulo.service';
 import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
 import { HotToastService } from '@ngneat/hot-toast';
-import { register } from 'module';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-editor-articulo',
@@ -121,7 +118,8 @@ export class EditorArticuloComponent {
       descripcion: this.descripcion,
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
-      comentarios: []
+      comentarios: [],
+      activado: true
     };
   
     console.log('Enviando artículo:', articulo);

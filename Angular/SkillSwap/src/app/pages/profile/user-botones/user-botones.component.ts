@@ -5,17 +5,21 @@ import { UsuarioService } from '../../../services/usuario/usuario.service';
 import { seguimiento } from '../../../model/seguimiento';
 import { SeguimientoService } from '../../../services/seguimiento/seguimiento.service';
 import { EditProfileService } from '../../../services/editprofile/edit-profile.service';
+import { filter, take } from 'rxjs/operators';
+import { Console } from 'console';
 
 @Component({
   selector: 'app-user-botones',
   standalone: true,
   imports: [],
   templateUrl: './user-botones.component.html',
-  styleUrl: './user-botones.component.css',
+  styleUrls: ['./user-botones.component.css'],
 })
-export class UserBotonesComponent implements OnInit{
-  @Input() miUsuario: any;
-  @Output() edit = new EventEmitter<void>();
+export class UserBotonesComponent implements OnInit {
+  @Input()
+  miUsuario!: usuario;
+  @Output() userData$ = new EventEmitter<usuario>();
+
   isEditing: boolean = false;
   usuario = sessionStorage.getItem('usuario');
   usuarioId: usuario = {
@@ -27,7 +31,7 @@ export class UserBotonesComponent implements OnInit{
     urlGitHub: '',
     puestoEmpresa: '',
     skills: [],
-    fotoDePerfil: ''
+    fotoDePerfil: '',
   };
   miPerfil: boolean = false;
   estaSiguiendo: boolean = false;
@@ -41,7 +45,7 @@ export class UserBotonesComponent implements OnInit{
       urlGitHub: '',
       puestoEmpresa: '',
       skills: [],
-      fotoDePerfil: ''
+      fotoDePerfil: '',
     },
     seguido: {
       id: 0,
@@ -52,98 +56,162 @@ export class UserBotonesComponent implements OnInit{
       urlGitHub: '',
       puestoEmpresa: '',
       skills: [],
-      fotoDePerfil: ''
-    }
+      fotoDePerfil: '',
+    },
   };
+  window: any;
 
-  constructor(private router: Router, private route: ActivatedRoute, private usuarioService: UsuarioService, private seguimientoService: SeguimientoService, private editProfileService : EditProfileService) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private usuarioService: UsuarioService,
+    private seguimientoService: SeguimientoService,
+    private editProfileService: EditProfileService
+  ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params) => {
       const id = params['id'];
-      this.usuarioService.getUsuarioById(id).subscribe(data => {
-        this.miUsuario = data;
-        if (this.usuario) {
-          const currentUser = JSON.parse(this.usuario);
-          this.usuarioId = currentUser;
-        }
-
-        if (this.usuarioId.id === this.miUsuario.id) {
-          this.miPerfil = true;
-        }
-
-        this.seguirUsuario.seguido = this.miUsuario;
-        this.seguirUsuario.seguidor = this.usuarioId;
-      
-        this.seguimientoService.getSeguimiento(this.usuarioId.id, this.miUsuario.id).subscribe(data => {
-          if(data) {
-            this.estaSiguiendo = true;
-          } else {
-            this.estaSiguiendo = false;
-          }
-        });
-      });
+      this.fetchUsuarioData(id);
     });
-    //Escuchar el editar perfil
+
     this.editProfileService.isEditing$.subscribe((value: boolean) => {
       this.isEditing = value;
     });
+
+    this.editProfileService.usuarioEditado$.subscribe((usuario) => {
+      if (usuario) {
+        this.miUsuario = usuario;
+      }
+    });
   }
 
-  openGit() {
+  private fetchUsuarioData(id: number): void {
+    this.usuarioService.getUsuarioById(id).subscribe({
+      next: (data) => {
+        this.miUsuario = data;
+        this.checkUserSession();
+        this.setSeguirUsuarioData();
+        this.checkIfFollowing();
+      },
+      error: (error) => {
+        console.error('Error al cargar los datos del usuario:', error);
+      },
+    });
+  }
+
+  private checkUserSession(): void {
+    if (this.usuario) {
+      const currentUser = JSON.parse(this.usuario);
+      this.usuarioId = currentUser;
+
+      if (this.usuarioId.id === this.miUsuario.id) {
+        this.miPerfil = true;
+      }
+    }
+  }
+
+  private setSeguirUsuarioData(): void {
+    this.seguirUsuario.seguido = this.miUsuario;
+    this.seguirUsuario.seguidor = this.usuarioId;
+  }
+
+  private checkIfFollowing(): void {
+    this.seguimientoService
+      .getSeguimiento(this.usuarioId.id, this.miUsuario.id)
+      .subscribe({
+        next: (data) => {
+          this.estaSiguiendo = !!data;
+        },
+        error: (error) => {
+          console.error('Error al verificar seguimiento:', error);
+        },
+      });
+  }
+
+  openGit(): void {
     if (this.miUsuario && this.miUsuario.urlGitHub) {
       window.open(this.miUsuario.urlGitHub, '_blank');
     }
   }
-  
-  openChat() {
+
+  openChat(): void {
     this.router.navigate(['/chat']);
   }
 
-  followUser() {
-    this.seguimientoService.postSeguimiento(this.seguirUsuario).subscribe(data => {
-      // TODO - Intentar pasar el servicio de getSeguidores
-      location.reload();   
+  followUser(): void {
+    this.seguimientoService.postSeguimiento(this.seguirUsuario).subscribe({
+      next: () => location.reload(),
+      error: (error) => {
+        console.error('Error al seguir al usuario:', error);
+      },
     });
   }
 
-  unfollowUser() {
-    this.seguimientoService.deleteSeguimiento(this.usuarioId.id, this.miUsuario.id).subscribe(data => {
-      location.reload();
-    })
+  unfollowUser(): void {
+    this.seguimientoService
+      .deleteSeguimiento(this.usuarioId.id, this.miUsuario.id)
+      .subscribe({
+        next: () => location.reload(),
+        error: (error) => {
+          console.error('Error al dejar de seguir al usuario:', error);
+        },
+      });
   }
 
-  editarPerfil(){
+  editarPerfil() {
     this.editProfileService.setIsEditing(true);
   }
 
-  guardarPerfil() {
-    // Crear un objeto de tipo usuario con las propiedades del formulario
-    const usuarioParaGuardar: usuario = {
-      id: this.miUsuario.id, // Asigna el ID existente si lo tienes, de lo contrario, déjalo como está
-      nombre: this.miUsuario.nombre, // Asigna el nombre existente si lo tienes, de lo contrario, déjalo como está
-      apellido: this.miUsuario.apellido, // Asigna el apellido existente si lo tienes, de lo contrario, déjalo como está
-      contrasena: this.miUsuario.contrasena, // Asigna la contraseña existente si lo tienes, de lo contrario, déjalo como está
-      puestoEmpresa: this.miUsuario.puestoEmpresa,
-      email: this.miUsuario.email,
-      urlGitHub: this.miUsuario.urlGitHub,
-      // Asigna valores predeterminados o nulos a las propiedades adicionales si es necesario
-      skills: this.miUsuario.skills || [], // Utiliza las skills existentes si las tienes, de lo contrario, asigna un array vacío
-      fotoDePerfil: this.miUsuario.fotoDePerfil || '' // Utiliza la foto de perfil existente si la tienes, de lo contrario, asigna una cadena vacía
-    };
+  guardarPerfil(): void {
+    this.editProfileService.usuarioEditado$
+      .pipe(
+        filter(usuario => usuario !== null),
+        take(1)
+      )
+      .subscribe({
+        next: (usuario) => {
+          if (usuario) {
+            this.miUsuario = usuario;
   
-    // Llamar al servicio para guardar el perfil
-    this.usuarioService.postUsuario(usuarioParaGuardar).subscribe(
-      (response) => {
-        console.log('Perfil guardado exitosamente:', response);
-        this.editProfileService.setIsEditing(false);
-      },
-      (error) => {
-        console.error('Error al guardar el perfil:', error);
-      }
-    );
+            // Obtener la contraseña actual del usuario
+            const contrasenaActual = this.miUsuario.contrasena;
+  
+            // Crear el objeto para actualizar, excluyendo la contraseña pero incluyendo los demás campos
+            const usuarioParaActualizar: usuario = {
+              id: this.miUsuario.id,
+              nombre: this.miUsuario.nombre,
+              apellido: this.miUsuario.apellido,
+              email: this.miUsuario.email,
+              contrasena: this.miUsuario.contrasena,
+              urlGitHub: this.miUsuario.urlGitHub,
+              puestoEmpresa: this.miUsuario.puestoEmpresa,
+              skills: this.miUsuario.skills,
+              fotoDePerfil: this.miUsuario.fotoDePerfil,
+             
+            };
+  
+            // Enviar la solicitud PUT
+            this.usuarioService.putUsuario(this.miUsuario.id, usuarioParaActualizar).subscribe({
+              next: () => {
+                console.log('Usuario actualizado correctamente.');
+              },
+              error: (error) => {
+                console.error('Error al actualizar el usuario:', error);
+              }
+            });
+          } else {
+            console.error('No se recibió el usuario editado.');
+          }
+        },
+        error: (error) => {
+          console.error('Error al obtener el usuario editado:', error);
+        }
+      });
+      this.editProfileService.setIsEditing(false);
   }
-  cancelarPerfil(){
+  
+  cancelarPerfil() {
     this.editProfileService.setIsEditing(false);
   }
 }

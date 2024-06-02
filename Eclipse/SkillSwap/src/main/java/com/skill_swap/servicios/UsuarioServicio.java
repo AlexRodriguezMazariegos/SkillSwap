@@ -90,8 +90,8 @@ public class UsuarioServicio implements UserDetailsService {
             usuarioAModificar.setNombre(usuario.getNombre());
             usuarioAModificar.setApellido(usuario.getApellido());
             usuarioAModificar.setEmail(usuario.getEmail());
+            usuarioAModificar.setPuestoEmpresa(usuario.getPuestoEmpresa());
             usuarioAModificar.setFotoDePerfil(usuario.getFotoDePerfil());
-            usuarioAModificar.setContrasena(usuario.getContrasena());
             usuarioAModificar.setUrlGitHub(usuario.getUrlGitHub());
             usuarioAModificar.setSkills(usuario.getSkills());
             return usuarioRepositorio.save(usuarioAModificar);
@@ -141,10 +141,9 @@ public class UsuarioServicio implements UserDetailsService {
     }
 
 	public Boolean FindByEmail(String email) {
-		if (usuarioRepositorio.findByEmail(email)!= null) {
+		if (usuarioRepositorio.findByEmail(email) != null) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
