@@ -43,6 +43,7 @@ public class SpringSecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http.authorizeHttpRequests((authz) -> authz
                 .requestMatchers("/api/v1/usuario/register").permitAll()
+                .requestMatchers("/chat-socket").permitAll()
                 .requestMatchers("/api/v1/usuario/email/{email}").permitAll()
                 .requestMatchers("/swagger-ui/**").permitAll()
                 .requestMatchers("/swagger-resources/**").permitAll()

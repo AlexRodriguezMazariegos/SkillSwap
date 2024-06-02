@@ -1,24 +1,36 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
 import { Client, IMessage, Stomp } from '@stomp/stompjs';
 import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
 import { chat } from '../../model/chat';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
 
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   private client!: Client;
   private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
   private successMessageSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
   private socket$: WebSocketSubject<any> | undefined;
+  private headers!: HttpHeaders;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authservice: AuthService) {
     console.log('Initializing ChatService');
     this.initConnectionSocket();
+    this.headers = this.addAuthorizationHeader();
+  }
+
+  private addAuthorizationHeader(): HttpHeaders {
+    let token = this.authservice.token;
+    if (token != null) {
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
   }
 
   private initConnectionSocket() {
@@ -67,7 +79,7 @@ export class ChatService {
 
   loadMessagesFromDatabase(roomId: string) {
     console.log('Loading messages from database for room', roomId);
-    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`).subscribe({
+    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`, { headers: this.headers }).subscribe({
       next: (messages: ChatMessage[]) => {
         console.log('Received messages from database', messages);
         this.messageSubject.next(messages);
@@ -82,11 +94,11 @@ export class ChatService {
   }
 
   crearChat(chat: chat) {
-    return this.http.post<chat>('http://localhost:8080/api/v1/chat/crear', chat);
+    return this.http.post<chat>('http://localhost:8080/api/v1/chat/crear', chat, { headers: this.headers });
   }
 
   getOrCreateChat(usuarioId1: number, usuarioId2: number) {
-    return this.http.get<chat>(`http://localhost:8080/api/v1/chat/${usuarioId1}/${usuarioId2}`);
+    return this.http.get<chat>(`http://localhost:8080/api/v1/chat/${usuarioId1}/${usuarioId2}`, { headers: this.headers });
   }
 
 
