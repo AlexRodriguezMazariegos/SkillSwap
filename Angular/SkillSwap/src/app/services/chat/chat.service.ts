@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Stomp } from '@stomp/stompjs';
 import { BehaviorSubject } from 'rxjs';
-import SockJS from 'sockjs-client';
 import { HttpClient } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
 
@@ -10,41 +8,41 @@ import { ChatMessage } from '../../model/chat-mensaje';
 })
 export class ChatService {
 
-  private stompClient: any
-  private messageSubject: BehaviorSubject<ChatMessage[]>=new BehaviorSubject<ChatMessage[]>([]);
+  private socket!: WebSocket;
+  private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
 
-  constructor(private http: HttpClient){
-    this.iniConnectionSocket();
+  constructor(private http: HttpClient) {
+    this.initConnectionSocket();
   }
 
-  iniConnectionSocket(){
-    const url='//localhost:8080/chat-socket';
-    const socket= new SockJS(url);
-    this.stompClient=Stomp.over(socket)
+  initConnectionSocket() {
+    const url = 'ws://localhost:8080/chat-socket';
+    this.socket = new WebSocket(url);
   }
 
-  joinRoom(roomId:string){
-    this.stompClient.connect({},()=>{
-      this.stompClient.subscribe(`/topic/${roomId}`, (messages:any)=>{
-        const messageContent =JSON.parse(messages.body);
-        const currentMessage = this.messageSubject.getValue();
-        currentMessage.push(messageContent);
-        this.messageSubject.next(currentMessage);
-      })
-      this.loadMessagesFromDatabase(roomId);
-    })
+  joinRoom(roomId: string) {
+    this.socket.onopen = () => {
+      this.socket.send(JSON.stringify({ type: 'JOIN', roomId: roomId }));
+    };
+    this.socket.onmessage = (message: any) => {
+      const messageContent = JSON.parse(message.data);
+      const currentMessages = this.messageSubject.getValue();
+      currentMessages.push(messageContent);
+      this.messageSubject.next(currentMessages);
+    };
+    this.loadMessagesFromDatabase(roomId);
   }
 
-  senMessage(roomId: string, chatMessage: ChatMessage){
-    this.stompClient.send(`/app/chat/${roomId}`,{},JSON.stringify(chatMessage))
-  } 
+  sendMessage(roomId: string, chatMessage: ChatMessage) {
+    this.socket.send(JSON.stringify({ type: 'MESSAGE', roomId: roomId, content: chatMessage }));
+  }
 
-  getMessageSubject(){
+  getMessageSubject() {
     return this.messageSubject.asObservable();
   }
 
   loadMessagesFromDatabase(roomId: string) {
-    this.http.get<ChatMessage[]>(`http://localhost:8080/chat/history/${roomId}`).subscribe(messages => {
+    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`).subscribe(messages => {
       this.messageSubject.next(messages);
     });
   }
