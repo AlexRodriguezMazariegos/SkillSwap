@@ -10,6 +10,9 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ChatService {
 
+  messageInput: string = '';
+
+
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   private webSocket: WebSocket | undefined; // Definición de WebSocket
   private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
@@ -50,12 +53,10 @@ export class ChatService {
       this.messageSubject.next(currentMessages);
     };
 
-    // Cuando ocurre un error
     this.webSocket.onerror = (error) => {
       console.error('Error from WebSocket', error);
     };
 
-    // Cuando la conexión se cierra
     this.webSocket.onclose = () => {
       console.log('WebSocket connection closed');
     };
@@ -65,21 +66,41 @@ export class ChatService {
     console.log('Joining room', roomId);
     const messages = JSON.parse(localStorage.getItem(roomId) || '[]');
     this.messageSubject.next(messages);
+    this.loadMessagesFromDatabase(roomId);
   }
 
-  // Enviar un mensaje
-  sendMessage(roomId: string, chatMessage: ChatMessage) {
-    console.log('Sending message', chatMessage);
-    if (this.webSocket) {
-      console.log("roomId " + roomId);
-      console.log("roomId " + chatMessage);
-      this.webSocket.send(JSON.stringify({ destination: '/chat/' + roomId, body: JSON.stringify(chatMessage) }));
-    } else {
-      console.error('WebSocket is not connected.');
-    }
+
+
+// Enviar un mensaje
+sendMessage(roomId: string, chatMessage: ChatMessage) {
+  console.log("roomId", roomId);
+  console.log("chatMessage", chatMessage);
+  if (this.webSocket) {
+    this.webSocket.send(JSON.stringify({ destination: '/chat/' + roomId, body: JSON.stringify(chatMessage) }));
+    
+    // Guardar el mensaje en la base de datos
+    this.http.post<ChatMessage>('http://localhost:8080/api/v1/chat/chat/' + roomId, chatMessage, { headers: this.headers })
+      .subscribe({
+        next: (savedMessage: ChatMessage) => {
+          console.log('Message saved:', savedMessage);
+          const currentMessages = this.messageSubject.getValue();
+          currentMessages.push(savedMessage);
+          this.messageSubject.next(currentMessages);
+
+          this.messageInput = '';
+        },
+        error: (error: any) => {
+          console.error('Error saving message:', error);
+        }
+      });
+  } else {
+    console.error('WebSocket is not initialized.');
   }
+}
+
+
   
-
+  
   getMessageSubject() {
     console.log('Getting message subject');
     return this.messageSubject.asObservable();

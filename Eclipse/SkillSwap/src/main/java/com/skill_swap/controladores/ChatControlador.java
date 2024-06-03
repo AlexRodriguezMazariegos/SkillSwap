@@ -84,14 +84,17 @@ public class ChatControlador {
 
     @PostMapping("/chat/{roomId}")
     public ChatMessage chat(@PathVariable Long roomId, @RequestBody ChatMessage message) {
-        Usuario usuario = usuarioServicio.obtenerUsuarioPorNombre(message.getUser());
-        if (usuario == null) {
-            throw new RuntimeException("Usuario no encontrado: " + message.getUser());
-        }
+        // Obtener el ID del usuario directamente del mensaje
+        Long userId = message.getUserId();
+        // Verificar si el usuario existe
+        Usuario usuario = usuarioServicio.obtenerUsuarioPorId(userId)
+                                      .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + userId));
 
+        // Obtener el usuario objetivo por su ID
         Usuario targetUser = usuarioServicio.obtenerUsuarioPorId(message.getTargetUserId())
                                             .orElseThrow(() -> new RuntimeException("Usuario objetivo no encontrado: " + message.getTargetUserId()));
 
+        // Resto del código sigue igual
         Chat chat = chatServicio.obtenerChatPorUsuarios(usuario.getId(), targetUser.getId());
         if (chat == null) {
             chat = chatServicio.crearChat(new Chat(usuario, targetUser));
@@ -102,6 +105,7 @@ public class ChatControlador {
 
         return savedMessage;
     }
+
 
     @GetMapping("/history/{roomId}")
     public List<ChatMessage> getChatHistory(@PathVariable Long roomId) {
