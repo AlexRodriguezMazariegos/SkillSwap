@@ -6,17 +6,16 @@ public class ChatMessage {
     private String message;
     private Long chatId;
     private Long userId;
-    private Long targetUserId;
+    private Long targetUserId; //CAMPO PARA CREAR CHAT CON OTRO USUARIO
 
     public ChatMessage() {
     }
 
-    public ChatMessage(String user, String message, Long chatId, Long userId, Long targetUserId) {
+    public ChatMessage(String user, String message, Long chatId, Long userId) {
         this.user = user;
         this.message = message;
         this.chatId = chatId;
         this.userId = userId;
-        this.targetUserId = targetUserId;
     }
 
     public String getUser() {
@@ -47,15 +46,17 @@ public class ChatMessage {
         return userId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-    public Long getTargetUserId() {
-        return targetUserId;
-    }
+	public Long getTargetUserId() {
+		return targetUserId;
+	}
 
-    public void setTargetUserId(Long targetUserId) {
-        this.targetUserId = targetUserId;
-    }
+	public void setTargetUserId(Long targetUserId) {
+		this.targetUserId = targetUserId;
+	}
+
+
 }

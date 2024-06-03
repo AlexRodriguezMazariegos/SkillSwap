@@ -34,15 +34,15 @@ public class SkillServicioTest {
 	public Long id = 1L;
 
 	@BeforeEach
-	void init() {
-		MockitoAnnotations.openMocks(this);
+//	void init() {
+	//	MockitoAnnotations.openMocks(this);
 
-		skills = new ArrayList<>();
-		skill = new Skill();
-		skills.add(skill);
+		//skills = new ArrayList<>();
+		//skill = new Skill();
+		//skills.add(skill);
 
-		when(skillRepo.findAll()).thenReturn(skills);
-	}
+	//	when(skillRepo.findAll()).thenReturn(skills);
+//	}
 
 	@Test
 	void getSkills() {

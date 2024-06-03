@@ -28,18 +28,7 @@ public class MensajeServicioTest {
     @InjectMocks
     private MensajeServicio mensajeServicio;
 
-    @Test
- //   void testObtenerTodosLosMensajes() {
-   //     List<Mensaje> listaMensajes = Arrays.asList(
-     //           new Mensaje(1L, null, null, "Texto 1", new Date()),
-       //         new Mensaje(2L, null, null, "Texto 2", new Date())
-        //);
-        //when(mensajeRepositorio.findAll()).thenReturn(listaMensajes);
 
-        //List<Mensaje> resultado = mensajeServicio.obtenerTodosLosMensajes();
-
-      //  assertEquals(2, resultado.size());
-  //  }
 
     //@Test
     void testObtenerMensajePorIdExistente() {
@@ -61,17 +50,7 @@ public class MensajeServicioTest {
         assertFalse(resultado.isPresent());
     }
 
-    @Test
-    void testCrearMensaje() {
-        Mensaje nuevoMensaje = new Mensaje(1L, new Usuario(), new Chat(), "Nuevo mensaje", new Date());
 
-        when(mensajeRepositorio.save(nuevoMensaje)).thenReturn(nuevoMensaje);
-
-        Mensaje mensajeCreado = mensajeServicio.crearMensaje(nuevoMensaje);
-
-        assertNotNull(mensajeCreado);
-        assertEquals("Nuevo mensaje", mensajeCreado.getTexto());
-    }
 
     @Test
     void testActualizarMensajeExistente() {

@@ -1,8 +1,7 @@
 export interface ChatMessage {
-    user: string;
-    message: string; // Asegúrate de usar 'message' en lugar de 'content'
+    message: string;
+    user: number;
     chatId: number;
     userId: number;
-    targetUserId: number; // Añadido targetUserId
-  }
-  
+    targetUserId: number;
+}
