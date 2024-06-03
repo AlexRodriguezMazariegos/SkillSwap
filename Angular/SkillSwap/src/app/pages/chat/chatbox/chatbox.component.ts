@@ -9,19 +9,19 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.css'],
   standalone: true,
-  imports: [FormsModule]
+  imports: [FormsModule],
 })
 export class ChatboxComponent implements OnInit {
   usuario = sessionStorage.getItem('usuario');
   messageInput: string = '';
-  userId: number = 0;
+  userId: number = 0; //Tu id
   targetUserId: number = 0; // ID del usuario objetivo con el que se desea chatear
   messageList: any[] = [];
 
   constructor(
     private chatService: ChatService,
     private route: ActivatedRoute
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     console.log('Initializing ChatboxComponent');
@@ -30,31 +30,37 @@ export class ChatboxComponent implements OnInit {
       this.userId = currentUser.id;
     }
 
-    // Supongamos que el ID del usuario objetivo se pasa como parámetro de ruta
-    this.route.params.subscribe(params => {
-      this.targetUserId = params['targetUserId'];
-    });
-
-    this.chatService.joinRoom("ABC");
+    this.chatService.joinRoom('ABC');
     console.log('User ID:', this.userId);
     this.listenerMessage();
+
+    this.route.params.subscribe((params) => {
+      const id = params['id'];
+      this.chatService.loadMessagesFromDatabase(id);
+    });
+
+    // Obtener el targetUserId
+    this.chatService.getTargetUserId().subscribe((targetUserId) => {
+      if (targetUserId) {
+        this.targetUserId = targetUserId;
+        console.log('RECOIENDO EL TARGET ID ' + this.targetUserId);
+      }
+    });
   }
 
   sendMessage() {
     console.log('Sending message with User ID:', this.userId);
-    const chatMessage: ChatMessage = {
-      message: this.messageInput,
-      user: this.userId,
-      chatId: 0, // Este valor se actualizará después de obtener o crear el chat
-      targetUserId: this.targetUserId,
-      userId: 0
-    };
 
-    // Primero, crear o obtener el chat entre los usuarios
-    this.chatService.getOrCreateChat(this.userId, this.targetUserId).subscribe(chat => {
-      chatMessage.chatId = chat.id;
-      this.chatService.sendMessage("ABC", chatMessage);
-      this.messageInput = '';
+    this.route.params.subscribe((params) => {
+      const id = params['id'];
+      const chatMessage: ChatMessage = {
+        message: this.messageInput,
+        user: this.userId,
+        chatId: id, 
+        targetUserId: this.targetUserId,
+        userId: this.userId,
+      };
+      this.chatService.sendMessage('ABC', chatMessage);
     });
   }
 
@@ -62,7 +68,7 @@ export class ChatboxComponent implements OnInit {
     this.chatService.getMessageSubject().subscribe((messages: any) => {
       this.messageList = messages.map((item: any) => ({
         ...item,
-        message_side: item.user === this.userId ? 'sender' : 'receiver'
+        message_side: item.user === this.userId ? 'sender' : 'receiver',
       }));
     });
   }

@@ -13,6 +13,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -42,6 +43,20 @@ public class ChatControlador {
         Optional<Chat> chat = chatServicio.obtenerChatPorId(id);
         return chat.map(value -> ResponseEntity.status(HttpStatus.OK).body(chat))
                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+    }
+    
+    @PostMapping("/get-or-create")
+    public ResponseEntity<Chat> getOrCreateChat(@RequestBody Map<String, Long> userIds) {
+        Long usuarioId1 = userIds.get("usuarioId1");
+        Long usuarioId2 = userIds.get("usuarioId2");
+
+        if (usuarioId1 == null || usuarioId2 == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        // Accede a la instancia de ChatServicio usando this
+        Chat chat = chatServicio.obtenerChatPorUsuarios(usuarioId1, usuarioId2);
+        return ResponseEntity.status(HttpStatus.OK).body(chat);
     }
 
     @PostMapping("/crear")
