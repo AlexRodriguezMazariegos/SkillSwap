@@ -1,11 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ConfirmationModalComponent } from '../../confirmation-modal/confirmation-modal.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ValoracionEstrellasComponent } from '../../../shared/valoracion-estrellas/valoracion-estrellas.component';
 import { ArticuloService } from '../../../services/articulo/articulo.service';
-import { EditorArticuloComponent } from '../../editor-articulo/editor-articulo.component';
 import { ValoracionService } from '../../../services/valoracion/valoracion.service';
 import { valoracion } from '../../../model/valoracion';
 import { HotToastService } from '@ngneat/hot-toast';

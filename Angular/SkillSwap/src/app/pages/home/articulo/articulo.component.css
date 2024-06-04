@@ -1,84 +1,83 @@
 .container-art {
-    /* background-color: var(--ppal); */
-    background-color: var(--light-grey);
-    width: 100%;
-    border-radius: 8px;
-    padding: 20px;
-    cursor: pointer;
-    border: 2px solid var(--ppal_2);
+  background-color: var(--light-grey);
+  width: 100%;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  border: 2px solid var(--ppal_2);
 }
 
 .container-art:hover {
-    background-color: var(--ppal_hover);
+  background-color: var(--ppal_hover);
 }
 
 .title-art {
-    font-family: var(--tituloPpal);
-    color: var(--ppal);
-    font-size: 28px;
+  font-family: var(--tituloPpal);
+  color: var(--ppal);
+  font-size: 28px;
 }
 
 .descr-art {
-    width: 65%;
-    font-weight: lighter;
-    font-size: 15px;
+  width: 65%;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 .val-art {
-    width: 65%;
-    font-weight: lighter;
-    font-size: 15px;
+  width: 65%;
+  font-weight: lighter;
+  font-size: 15px;
 }
 
 .date-art {
-    font-weight: lighter;
-    font-size: 13px;
+  font-weight: lighter;
+  font-size: 13px;
 }
 
 .info-art {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .photo {
-    width: 60px;
-    height: 60px;
-    overflow: hidden;
-    border-radius: 50%;
-    margin: 0 2rem;
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 2rem;
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#delete-button:hover {
+  background-color: var(--rojo);
+  border-color: var(--rojo);
+}
+
+@media only screen and (max-width: 480px) {
+  .container-art {
+    padding: 10px;
+    flex-direction: column;
+    gap: 2;
   }
-  
-  .photo img {
+
+  .user-art {
+    display: flex;
+    align-items: center;
+  }
+
+  .descr-art {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 
-  #delete-button:hover{
-    background-color: var(--rojo);
-    border-color: var(--rojo);
+  .title-art {
+    font-size: 22px;
   }
-  
-  @media only screen and (max-width: 480px) {
-    .container-art {
-        padding: 10px;
-        flex-direction: column;
-        gap: 2;
-    }
 
-    .user-art {
-        display: flex;
-        align-items: center;
-    }
-
-    .descr-art {
-        width: 100%;
-    }
-
-    .title-art {
-        font-size: 22px;
-    }
-
-    .info-art {
-        font-size: 12px;
-    }
+  .info-art {
+    font-size: 12px;
   }
+}

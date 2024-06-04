@@ -14,7 +14,7 @@ import { usuario } from '../../model/usuario';
 import { articulo } from '../../model/articulo';
 import { SeguimientoService } from '../../services/seguimiento/seguimiento.service';
 import { seguimiento } from '../../model/seguimiento';
- 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -41,19 +41,19 @@ export class HomeComponent implements OnInit {
   public usuariosCargados: boolean = false;
   seguidores: seguimiento[] = [];
   private seguidoresMap: { [userId: number]: number } = {};
- 
+
   constructor(
     private usuarioService: UsuarioService,
     private articuloService: ArticuloService,
     private searchService: SearchService,
     private seguimientoService: SeguimientoService
   ) {}
- 
+
   ngOnInit(): void {
     const { text, option } = this.searchService.getSearchCriteria();
     this.inputText = text;
     this.selectedOption = option;
- 
+
     this.searchService.searchCriteria$.subscribe(({ text, option }) => {
       console.log(text);
       this.inputText = text;
@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
       this.loadSeguidores();
     });
   }
- 
+
   private loadSeguidores(): void {
     this.usuarioService.getusuarios().subscribe((data: usuario[]) => {
       this.misUsuarios = data;
@@ -70,7 +70,9 @@ export class HomeComponent implements OnInit {
           .getSeguidores(usuario.id)
           .subscribe((seguidores: any[]) => {
             this.seguidoresMap[usuario.id] = seguidores.length;
-            if (Object.keys(this.seguidoresMap).length === this.misUsuarios.length) {
+            if (
+              Object.keys(this.seguidoresMap).length === this.misUsuarios.length
+            ) {
               this.usuariosCargados = true;
               this.fetchData();
             }
@@ -78,24 +80,28 @@ export class HomeComponent implements OnInit {
       });
     });
   }
- 
+
   private loadUsuarios(): void {
     if (this.usuariosCargados) {
       if (this.inputText.trim() === '') {
         // Si la barra de búsqueda está vacía, mostrar los usuarios destacados
-        console.log("La barra de busqueda esta vacia");
-        this.misUsuarios.sort((a, b) => this.seguidoresMap[b.id] - this.seguidoresMap[a.id]);
-        console.log("Usuarios ordenados: ", this.misUsuarios);
+        console.log('La barra de busqueda esta vacia');
+        this.misUsuarios.sort(
+          (a, b) => this.seguidoresMap[b.id] - this.seguidoresMap[a.id]
+        );
+        console.log('Usuarios ordenados: ', this.misUsuarios);
       } else {
         // Si hay texto en la barra de búsqueda, filtrar por el texto
         const normalizedInput = normalizeText(this.inputText);
         this.misUsuarios = this.misUsuarios
-          .filter((data) => normalizeText(data.nombre).includes(normalizedInput))
+          .filter((data) =>
+            normalizeText(data.nombre).includes(normalizedInput)
+          )
           .sort((a, b) => this.seguidoresMap[b.id] - this.seguidoresMap[a.id]);
       }
     }
   }
- 
+
   private loadArticulos(): void {
     this.articuloService.getArticulos().subscribe((data: articulo[]) => {
       const normalizedInput = normalizeText(this.inputText);
@@ -107,12 +113,12 @@ export class HomeComponent implements OnInit {
       this.calculatePages();
     });
   }
- 
+
   private getTodos(): void {
     this.loadArticulos();
     this.loadUsuarios();
   }
- 
+
   private fetchData(): void {
     if (this.selectedOption === 'Todos') {
       this.getTodos();
@@ -122,7 +128,7 @@ export class HomeComponent implements OnInit {
       this.loadUsuarios();
     }
   }
- 
+
   private calculatePages(): void {
     this.pages = [];
     const totalPages = this.totalPages;
@@ -130,17 +136,17 @@ export class HomeComponent implements OnInit {
       this.pages.push(i + 1);
     }
   }
- 
+
   get paginatedArticulos(): articulo[] {
     const start = (this.currentPage - 1) * this.pageSize;
     const end = start + this.pageSize;
     return this.articulos.slice(start, end);
   }
- 
+
   get totalPages(): number {
     return Math.ceil(this.articulos.length / this.pageSize);
   }
- 
+
   onPageChange(page: number): void {
     this.currentPage = page;
   }

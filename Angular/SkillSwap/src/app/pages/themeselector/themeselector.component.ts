@@ -7,11 +7,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './themeselector.component.html',
-  styleUrl: './themeselector.component.css'
+  styleUrl: './themeselector.component.css',
 })
 export class ThemeselectorComponent {
   selectedTheme: string = 'theme-default';
-  
+
   constructor(private themeService: ThemeService) {}
 
   setTheme(theme: string) {

@@ -1,54 +1,54 @@
 /* General button styling */
 button {
-    font-family: var(--texto);
-    font-size: 1rem;
-    width: 30px;
-    height: 30px;
-    margin: 10px;
-    border-radius: 50%;
-    color: #fff;
-    cursor: pointer;
-    transition: transform 0.3s, box-shadow 0.3s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-  }
-  
-  /* Individual theme styles */
-  button.default {
-    background-color: #ff6d43;
-  }
-  
-  button.blue {
-    background-color: var(--ppal-blue);
-  }
-  
-  button.pink {
-    background-color: var(--ppal-pink);
-  }
-  
-  button.purple {
-    background-color: var(--ppal-purple);
-  }
-  
-  /* Hover effects */
-  button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  }
-  
-  /* Active button styles */
-  button:active {
-    transform: translateY(0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Button container for centering */
-  .button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
+  font-family: var(--texto);
+  font-size: 1rem;
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Individual theme styles */
+button.default {
+  background-color: #ff6d43;
+}
+
+button.blue {
+  background-color: var(--ppal-blue);
+}
+
+button.pink {
+  background-color: var(--ppal-pink);
+}
+
+button.purple {
+  background-color: var(--ppal-purple);
+}
+
+/* Hover effects */
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Active button styles */
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Button container for centering */
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}

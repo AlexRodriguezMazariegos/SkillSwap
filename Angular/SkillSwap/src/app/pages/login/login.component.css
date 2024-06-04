@@ -1,4 +1,4 @@
-h1{
+h1 {
   color: white;
   text-align: center;
   font-family: var(--tituloPpal);
@@ -6,20 +6,29 @@ h1{
 }
 
 .typewriter {
-  overflow: hidden; 
-  border-right: .15em solid rgb(255, 255, 255);
-  white-space: nowrap; 
-  animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+  overflow: hidden;
+  border-right: 0.15em solid rgb(255, 255, 255);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: rgb(255, 255, 255); }
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(255, 255, 255);
+  }
 }
 
 h2 {
@@ -28,14 +37,10 @@ h2 {
   text-align: center;
   margin: 7%;
   font-family: var(--tituloPpal);
-  color: transparent; 
-  background-image: linear-gradient(
-    to right,
-    var(--ppal),
-    var(--ppal_2)
-  ); 
-  -webkit-background-clip: text; 
-  background-clip: text; 
+  color: transparent;
+  background-image: linear-gradient(to right, var(--ppal), var(--ppal_2));
+  -webkit-background-clip: text;
+  background-clip: text;
 }
 
 .welcome {
@@ -48,13 +53,13 @@ h2 {
   font-weight: bold;
 }
 
-.contenedor{
+.contenedor {
   display: flex;
   height: 100%;
   margin: 0px;
   width: 100;
   background: url("../../../assets/img/login-background.png"),
-              linear-gradient(to right, var(--ppal_2), var(--ppal));
+    linear-gradient(to right, var(--ppal_2), var(--ppal));
   background-size: cover;
   background-position: center;
 }
@@ -91,26 +96,24 @@ input {
   background-color: var(--light-grey);
 }
 
-a{
+a {
   text-decoration: none;
 }
 
-.no-account{
+.no-account {
   margin-top: 7%;
   text-align: center;
 }
 
 .copyright {
-  position: absolute; 
-  bottom: 10px; 
-  left: 50%; 
-  transform: translateX(
-    -50%
-  ); 
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   color: rgb(94, 94, 94);
   font-family: var(--texto);
   text-align: center;
-  width: 100%; 
+  width: 100%;
 }
 
 .form-check-input {
