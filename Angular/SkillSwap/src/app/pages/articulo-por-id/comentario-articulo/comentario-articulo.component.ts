@@ -11,26 +11,24 @@ import { response } from 'express';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './comentario-articulo.component.html',
-  styleUrl: './comentario-articulo.component.css'
+  styleUrl: './comentario-articulo.component.css',
 })
-export class ComentarioArticuloComponent implements OnInit{
-
-  @Input() miUsuario:any;
-  @Input() comentario:any;
+export class ComentarioArticuloComponent implements OnInit {
+  @Input() miUsuario: any;
+  @Input() comentario: any;
   usuario = sessionStorage.getItem('usuario');
   miPerfil: boolean = false;
 
-  constructor (private comentarioService: ComentariosService) {}
-  
+  constructor(private comentarioService: ComentariosService) {}
+
   ngOnInit(): void {
-    
     if (this.usuario) {
       const currentUser = JSON.parse(this.usuario);
       this.miUsuario = currentUser;
     }
-    
+
     if (this.miUsuario.id === this.comentario.usuario.id) {
-      this.miPerfil = true
+      this.miPerfil = true;
     }
   }
 
@@ -41,9 +39,8 @@ export class ComentarioArticuloComponent implements OnInit{
       },
       error: (error) => {
         console.log('Error al borrar comentario', error);
-      }
-    })
-    window.location.reload()
-    }
-
+      },
+    });
+    window.location.reload();
+  }
 }
