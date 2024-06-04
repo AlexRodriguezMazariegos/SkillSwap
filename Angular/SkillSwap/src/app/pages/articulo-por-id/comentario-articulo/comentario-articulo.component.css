@@ -1,26 +1,26 @@
 .comentario-wrapper {
-    margin-top: 10px;
-    width: 100%;
-    border-bottom: 2px solid var(--light-grey);
+  margin-top: 10px;
+  width: 100%;
+  border-bottom: 2px solid var(--light-grey);
 }
 
 .info-comentario {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    padding-top: 10px;
-    gap: 20px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-top: 10px;
+  gap: 20px;
 }
 
 .info-comentario-user {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .contenido-comentario {
-    padding-top: 15px;
+  padding-top: 15px;
 }
 
 /* .nombre-fecha-user {
@@ -32,34 +32,34 @@
 } */
 
 .photo-user {
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-  
-  .photo-user img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
 
-  #removeComment {
-    all: unset;
-    cursor: pointer;
-  }
+.photo-user img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  #removeComment svg:hover{
-    color: var(--rojo);
-  }
+#removeComment {
+  all: unset;
+  cursor: pointer;
+}
 
-  #nombre-comentario {
-    font-weight: bold; 
-  }
+#removeComment svg:hover {
+  color: var(--rojo);
+}
 
-  #fecha-publicacion {
-    height: 18px;
-    color: lightslategrey;
-    font-size: 14px;
-    font-weight: 100;
-  }
+#nombre-comentario {
+  font-weight: bold;
+}
+
+#fecha-publicacion {
+  height: 18px;
+  color: lightslategrey;
+  font-size: 14px;
+  font-weight: 100;
+}

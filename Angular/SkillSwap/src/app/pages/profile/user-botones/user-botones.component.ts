@@ -6,19 +6,18 @@ import { seguimiento } from '../../../model/seguimiento';
 import { SeguimientoService } from '../../../services/seguimiento/seguimiento.service';
 import { EditProfileService } from '../../../services/editprofile/edit-profile.service';
 import { filter, take } from 'rxjs/operators';
-import { Console } from 'console';
+import { ThemeselectorComponent } from '../../themeselector/themeselector.component';
 import { ChatService } from '../../../services/chat/chat.service';
 
 @Component({
   selector: 'app-user-botones',
   standalone: true,
-  imports: [],
+  imports: [ThemeselectorComponent],
   templateUrl: './user-botones.component.html',
   styleUrls: ['./user-botones.component.css'],
 })
 export class UserBotonesComponent implements OnInit {
-  @Input()
-  miUsuario!: usuario;
+  @Input() miUsuario!: usuario;
   @Output() userData$ = new EventEmitter<usuario>();
 
   isEditing: boolean = false;
@@ -193,18 +192,16 @@ export class UserBotonesComponent implements OnInit {
   guardarPerfil(): void {
     this.editProfileService.usuarioEditado$
       .pipe(
-        filter(usuario => usuario !== null),
+        filter((usuario) => usuario !== null),
         take(1)
       )
       .subscribe({
         next: (usuario) => {
           if (usuario) {
             this.miUsuario = usuario;
-  
-            // Obtener la contraseña actual del usuario
+
             const contrasenaActual = this.miUsuario.contrasena;
-  
-            // Crear el objeto para actualizar, excluyendo la contraseña pero incluyendo los demás campos
+
             const usuarioParaActualizar: usuario = {
               id: this.miUsuario.id,
               nombre: this.miUsuario.nombre,
@@ -215,17 +212,15 @@ export class UserBotonesComponent implements OnInit {
               puestoEmpresa: this.miUsuario.puestoEmpresa,
               skills: this.miUsuario.skills,
               fotoDePerfil: this.miUsuario.fotoDePerfil,
-             
             };
-  
-            // Enviar la solicitud PUT
+
             this.usuarioService.putUsuario(this.miUsuario.id, usuarioParaActualizar).subscribe({
               next: () => {
                 console.log('Usuario actualizado correctamente.');
               },
               error: (error) => {
                 console.error('Error al actualizar el usuario:', error);
-              }
+              },
             });
           } else {
             console.error('No se recibió el usuario editado.');
@@ -233,11 +228,11 @@ export class UserBotonesComponent implements OnInit {
         },
         error: (error) => {
           console.error('Error al obtener el usuario editado:', error);
-        }
+        },
       });
-      this.editProfileService.setIsEditing(false);
+    this.editProfileService.setIsEditing(false);
   }
-  
+
   cancelarPerfil() {
     this.editProfileService.setIsEditing(false);
   }

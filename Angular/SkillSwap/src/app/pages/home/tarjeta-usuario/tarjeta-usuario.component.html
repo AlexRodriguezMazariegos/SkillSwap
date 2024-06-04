@@ -2,23 +2,28 @@
   <div class="user-card">
     <div class="purple-part">
       <div class="photo">
-        <img src="../../../../assets/img/profile/{{miUsuario.fotoDePerfil}}.jpg" alt="User" />
+        <img
+          src="../../../../assets/img/profile/{{ miUsuario.fotoDePerfil }}.jpg"
+          alt="User"
+        />
       </div>
     </div>
-    
+
     <div class="card-back">
       <span class="card-back-titulo">Skills</span>
       <ul class="card-info">
-      @for (skill of miUsuario.skills.slice(0,3); track skill) {
-        <li>{{skill.nombre}}</li>
-      }
-    </ul>
-      <button (click)="clickPerfil()" class="default-button" id="perfil-button">Perfil</button>
+        @for (skill of miUsuario.skills.slice(0,3); track skill) {
+        <li>{{ skill.nombre }}</li>
+        }
+      </ul>
+      <button (click)="clickPerfil()" class="default-button" id="perfil-button">
+        Perfil
+      </button>
     </div>
     <div class="info">
-      <h2>{{ miUsuario.nombre }}<br>{{miUsuario.apellido}}</h2>
+      <h2>{{ miUsuario.nombre }}<br />{{ miUsuario.apellido }}</h2>
       <hr class="separacion" />
-      <p>{{miUsuario.puestoEmpresa}}</p>
+      <p>{{ miUsuario.puestoEmpresa }}</p>
     </div>
   </div>
 </div>

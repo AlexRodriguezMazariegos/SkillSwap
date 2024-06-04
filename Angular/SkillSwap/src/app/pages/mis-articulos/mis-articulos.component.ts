@@ -50,7 +50,7 @@ export class MisArticulosComponent {
     this.pages = [];
     const totalPages = this.totalPages;
     for (let i = 0; i < totalPages; i++) {
-      this.pages.push(i + 1); 
+      this.pages.push(i + 1);
     }
   }
 

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { SearchService } from '../../services/search/search.service';
 import { CommonModule } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
+import { ThemeService } from '../../services/theme/theme.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,12 +23,15 @@ export class NavbarComponent implements OnInit {
   selectedOption: string = 'Todos';
 
   constructor(
+    private themeService: ThemeService,
     public dialog: MatDialog,
     private router: Router,
     private searchService: SearchService
   ) {}
 
   ngOnInit(): void {
+    const storedTheme = this.themeService.getTheme();
+    this.themeService.setTheme(storedTheme);
     if (this.usuario) {
       const currentUser = JSON.parse(this.usuario);
       this.nombreUsuario = currentUser.nombre;

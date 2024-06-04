@@ -56,12 +56,13 @@
       </div>
       <div class="contenido-comentarios">
         <h2 id="titulo-comentarios">Comentarios</h2>
-        @if (articuloPorId.comentarios.length > 0) {
-          @for (comentario of articuloPorId.comentarios; track comentario) {
-            <app-comentario-articulo [comentario]="comentario"></app-comentario-articulo>
-        }
-        } @else {
-          <p>Sé el primero en comentar!</p>
+        @if (articuloPorId.comentarios.length > 0) { @for (comentario of
+        articuloPorId.comentarios; track comentario) {
+        <app-comentario-articulo
+          [comentario]="comentario"
+        ></app-comentario-articulo>
+        } } @else {
+        <p>Sé el primero en comentar!</p>
         }
         <app-adjuntar-comentario></app-adjuntar-comentario>
       </div>

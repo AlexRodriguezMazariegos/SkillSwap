@@ -43,7 +43,7 @@ export class SignupComponent implements OnInit {
     urlGitHub: '',
     puestoEmpresa: '',
     skills: [],
-    fotoDePerfil: 'profile'
+    fotoDePerfil: 'profile',
   };
   emailExistente: boolean = false;
   textoError: string = '';

@@ -94,18 +94,20 @@ export class EditorArticuloComponent {
       this.miUsuario = currentUser;
     }
 
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       if (id) {
         this.articuloId = +id;
-        this.articuloService.getArticuloCualquieraById(this.articuloId).subscribe({
-          next: (articulo) => {
-            this.titulo = articulo.titulo;
-            this.descripcion = articulo.descripcion;
-            this.htmlContent = articulo.contenido;
-          },
-          error: (err) => console.error('Error al cargar el artículo', err)
-        });
+        this.articuloService
+          .getArticuloCualquieraById(this.articuloId)
+          .subscribe({
+            next: (articulo) => {
+              this.titulo = articulo.titulo;
+              this.descripcion = articulo.descripcion;
+              this.htmlContent = articulo.contenido;
+            },
+            error: (err) => console.error('Error al cargar el artículo', err),
+          });
       }
     });
   }
@@ -119,16 +121,16 @@ export class EditorArticuloComponent {
       contenido: this.htmlContent,
       fechaPublicacion: new Date(),
       comentarios: [],
-      activado: true
+      activado: true,
     };
-  
+
     console.log('Enviando artículo:', articulo);
-  
+
     const saveObservable =
       articulo.id === 0
         ? this.articuloService.postArticulo(articulo)
         : this.articuloService.updateArticulo(articulo.id, articulo);
-  
+
     saveObservable.subscribe({
       next: (response) => {
         console.log('Artículo guardado', response);

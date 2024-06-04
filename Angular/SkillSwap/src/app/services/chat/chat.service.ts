@@ -6,9 +6,13 @@ import { chat } from '../../model/chat';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
+  private stompClient: any;
+  private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<
+    ChatMessage[]
+  >([]);
 
   messageInput: string = '';
 

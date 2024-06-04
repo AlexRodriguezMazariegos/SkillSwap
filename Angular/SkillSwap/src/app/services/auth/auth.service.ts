@@ -53,17 +53,17 @@ export class AuthService {
   saveUser(accessToken: string): void {
     let payload = this.getDataToken(accessToken);
     this._user = new usuario();
-    
+
     this._user.email = payload.email;
-    console.log(this._user.email)
-    this.getUsuarioService().saveUser(this._user.email).subscribe((data)=>
-    {
-      this._user = data
-      console.log(data)
-      sessionStorage.setItem('usuario', JSON.stringify(this._user));
-      console.log(sessionStorage.getItem('usuario'));
-      
-    })
+    console.log(this._user.email);
+    this.getUsuarioService()
+      .saveUser(this._user.email)
+      .subscribe((data) => {
+        this._user = data;
+        console.log(data);
+        sessionStorage.setItem('usuario', JSON.stringify(this._user));
+        console.log(sessionStorage.getItem('usuario'));
+      });
   }
 
   saveToken(accessToken: string): void {
@@ -85,12 +85,10 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    
-    if (this.getDataToken(this.token)){
-      return true
-    }
-    else{
-      return false
+    if (this.getDataToken(this.token)) {
+      return true;
+    } else {
+      return false;
     }
   }
 

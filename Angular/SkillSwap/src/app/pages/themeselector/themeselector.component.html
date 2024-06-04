@@ -1,0 +1,26 @@
+<div class="button-container">
+  <button
+    class="default"
+    [ngClass]="{ selected: isSelected('theme-default') }"
+    (click)="setTheme('theme-default')"
+    title="Default"
+  ></button>
+  <button
+    class="blue"
+    [ngClass]="{ selected: isSelected('theme-blue') }"
+    (click)="setTheme('theme-blue')"
+    title="Blue"
+  ></button>
+  <button
+    class="pink"
+    [ngClass]="{ selected: isSelected('theme-pink') }"
+    (click)="setTheme('theme-pink')"
+    title="Pink"
+  ></button>
+  <button
+    class="purple"
+    [ngClass]="{ selected: isSelected('theme-purple') }"
+    (click)="setTheme('theme-purple')"
+    title="Purple"
+  ></button>
+</div>

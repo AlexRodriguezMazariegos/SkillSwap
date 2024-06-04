@@ -15,7 +15,41 @@
   --verde: rgb(0, 157, 0);
   --tituloPpal: "Orbitron", sans-serif;
   --texto: "Montserrat", sans-serif;
+
+  /* Additional themes */
+  --ppal-blue: #007bff;
+  --ppal-blue2: #57a8ff;
+  --ppal_hover-blue: #007bff59;
+
+  --ppal-pink: #ff69b4;
+  --ppal-pink2: #ff98cc;
+  --ppal_hover-pink:#ff69b44e;
+
+  --ppal-purple: #800080;
+  --ppal-purple2: #ab28ab;
+  --ppal_hover-purple:#80008044;
 }
+
+/*-------------------- TEMAS --------------------*/
+
+.theme-blue {
+  --ppal: var(--ppal-blue);
+  --ppal_2: var(--ppal-blue2);
+  --ppal_hover: var(--ppal_hover-blue);
+}
+
+.theme-pink {
+  --ppal: var(--ppal-pink);
+  --ppal_2: var(--ppal-pink2);
+  --ppal_hover: var(--ppal_hover-pink);
+}
+
+.theme-purple {
+  --ppal: var(--ppal-purple);
+  --ppal_2: var(--ppal-purple2);
+  --ppal_hover: var(--ppal_hover-purple);
+}
+
 
 * {
   margin: 0px;
