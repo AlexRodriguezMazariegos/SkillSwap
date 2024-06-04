@@ -15,7 +15,9 @@
         <app-user-info-edit [miUsuario]="miUsuario" (usuarioModificado)="onUsuarioModificado($event)"></app-user-info-edit>
       }@else {
       <app-user-info [miUsuario]="miUsuario" *ngIf="!isEditing"></app-user-info>
-      } } @else {
+      } 
+    <app-user-config></app-user-config>
+      } @else {
       <app-user-superior [miUsuario]="miUsuario"></app-user-superior>
 
       <app-user-info [miUsuario]="miUsuario"></app-user-info>
