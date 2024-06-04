@@ -103,4 +103,18 @@ public class ChatControlador {
     public String saludo(@PathVariable String nombre) {
         return "Hola, " + nombre + "!";
     }
+    
+    @PostMapping("/get-or-create")
+    public ResponseEntity<Chat> createOrGetRoom(@RequestBody Chat chat) {
+        Optional<Usuario> usuario1 = usuarioServicio.obtenerUsuarioPorId(chat.getUsuario1().getId());
+        Optional<Usuario> usuario2 = usuarioServicio.obtenerUsuarioPorId(chat.getUsuario2().getId());
+
+        if (usuario1.isPresent() && usuario2.isPresent()) {
+            Optional<Chat> existingChat = chatServicio.createOrGetRoom(usuario1.get(), usuario2.get());
+            return existingChat.map(value -> ResponseEntity.status(HttpStatus.OK).body(value))
+                               .orElseGet(() -> ResponseEntity.status(HttpStatus.CREATED).body(chatServicio.crearChat(new Chat(usuario1.get(), usuario2.get()))));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

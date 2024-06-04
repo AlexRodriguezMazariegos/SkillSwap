@@ -71,5 +71,17 @@ public class ChatServicio {
                 });
     }
     
+    public Optional<Chat> createOrGetRoom(Usuario usuario1, Usuario usuario2) {
+        Optional<Chat> existingChat = chatRepositorio.findByUsuarios(usuario1, usuario2);
+        if (existingChat.isPresent()) {
+            return existingChat;
+        } else {
+            Chat newChat = new Chat();
+            newChat.setUsuario1(usuario1);
+            newChat.setUsuario2(usuario2);
+            return Optional.of(chatRepositorio.save(newChat));
+        }
+    }
+    
     
 }

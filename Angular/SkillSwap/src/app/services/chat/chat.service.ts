@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
 import { chat } from '../../model/chat';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,22 @@ export class ChatService {
   private webSocket: WebSocket | undefined; // Definición de WebSocket
   private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
   private successMessageSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  private headers!: HttpHeaders;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authservice: AuthService) {
     console.log('Initializing ChatService');
     this.initConnectionSocket();
+    this.headers = this.addAuthorizationHeader();
+    console.log(this.headers);
+  }
+ 
+  private addAuthorizationHeader(): HttpHeaders {
+    let token = this.authservice.token;
+    if (token != null) {
+      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
+    }
+    return this.httpHeaders;
   }
 
   // Inicialización de la conexión WebSocket
@@ -90,6 +103,7 @@ export class ChatService {
   }
 
   getOrCreateChat(usuarioId1: number, usuarioId2: number) {
-    return this.http.post<chat>('http://localhost:8080/api/v1/chat/get-or-create', { usuarioId1, usuarioId2 });
+    return this.http.post<chat>('http://localhost:8080/api/v1/chat/get-or-create', { usuarioId1, usuarioId2 }, { headers: this.headers });
   }
+  
 }
