@@ -3,6 +3,7 @@ import { ChatMessage } from '../../../model/chat-mensaje';
 import { ChatService } from '../../../services/chat/chat.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { UsuarioService } from '../../../services/usuario/usuario.service';
 
 @Component({
   selector: 'app-chatbox',
@@ -16,17 +17,25 @@ export class ChatboxComponent implements OnInit {
   messageInput: string = '';
   userId: number = 0; // Tu id
   targetUserId: number = 2; // ID del usuario objetivo con el que se desea chatear
+  targetUserName:string ="";
   messageList: any[] = [];
   // roomId: string | null = null; // ID de la sala
   roomId: string = '';
 
   constructor(
     private chatService: ChatService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
     console.log('Initializing ChatboxComponent');
+    // Recuperar el targetUserId de sessionStorage
+  const storedTargetUserId = sessionStorage.getItem('targetUserId');
+  if (storedTargetUserId) {
+    this.targetUserId = JSON.parse(storedTargetUserId);
+    
+  }
     if (this.usuario) {
       const currentUser = JSON.parse(this.usuario);
       this.userId = currentUser.id;
@@ -46,9 +55,15 @@ export class ChatboxComponent implements OnInit {
     this.chatService.getTargetUserId().subscribe((targetUserId) => {
       if (targetUserId) {
         this.targetUserId = targetUserId;
-        console.log('RECOIENDO EL TARGET ID ' + this.targetUserId);
+        console.log('RECOGIENDO EL TARGET ID ' + this.targetUserId);
+        // Almacenar el targetUserId en sessionStorage
+        sessionStorage.setItem('targetUserId', JSON.stringify(this.targetUserId));
       }
     });
+
+    this.usuarioService.getUsuarioById(this.targetUserId).subscribe((data)=>{
+      this.targetUserName = data.nombre + " " + data.apellido
+    })
   }
 
   joinRoomAndLoadMessages(roomId: string) {
