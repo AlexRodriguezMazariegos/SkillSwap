@@ -10,9 +10,6 @@ import { AuthService } from '../auth/auth.service';
 })
 export class ChatService {
   private stompClient: any;
-  private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<
-    ChatMessage[]
-  >([]);
 
   messageInput: string = '';
 
