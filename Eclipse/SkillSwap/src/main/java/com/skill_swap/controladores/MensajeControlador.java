@@ -36,9 +36,10 @@ public class MensajeControlador {
 
 	// Endpoint para crear un nuevo mensaje
 	@PostMapping("")
-	public ResponseEntity<Mensaje> crearMensaje(@RequestBody Mensaje mensaje) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(mensajeServicio.crearMensaje(mensaje));
-	}
+	//public ResponseEntity<Mensaje> crearMensaje(@RequestBody Mensaje mensaje) {
+		
+	//return ResponseEntity.status(HttpStatus.CREATED).body(mensajeServicio.crearMensaje(mensaje));
+	//}
 
 	// Endpoint para actualizar un mensaje existente
 	@PutMapping("/{id}")

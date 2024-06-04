@@ -24,7 +24,7 @@ export const routes: Routes = [
         path: 'register', component:SignupComponent
     },
     {
-        path: 'chat', component:ChatComponent, canActivate: [authGuard]
+        path: 'chat/:id', component:ChatComponent, canActivate: [authGuard]
     },
     {
         path: 'articulo/:id', component:ArticuloPorIdComponent, canActivate: [authGuard]
@@ -38,4 +38,5 @@ export const routes: Routes = [
     {
         path: 'editar-articulo/:id', component: EditorArticuloComponent, canActivate: [authGuard]
     },
+    
 ];

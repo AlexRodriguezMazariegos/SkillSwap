@@ -7,6 +7,7 @@ import { SeguimientoService } from '../../../services/seguimiento/seguimiento.se
 import { EditProfileService } from '../../../services/editprofile/edit-profile.service';
 import { filter, take } from 'rxjs/operators';
 import { ThemeselectorComponent } from '../../themeselector/themeselector.component';
+import { ChatService } from '../../../services/chat/chat.service';
 
 @Component({
   selector: 'app-user-botones',
@@ -65,7 +66,8 @@ export class UserBotonesComponent implements OnInit {
     private route: ActivatedRoute,
     private usuarioService: UsuarioService,
     private seguimientoService: SeguimientoService,
-    private editProfileService: EditProfileService
+    private editProfileService: EditProfileService,
+    private chatService: ChatService
   ) {}
 
   ngOnInit(): void {
@@ -134,9 +136,34 @@ export class UserBotonesComponent implements OnInit {
     }
   }
 
-  openChat(): void {
-    this.router.navigate(['/chat']);
+  openChat() {
+    // Obtener el ID del usuario objetivo (targetUserId)
+    const targetUserId = this.miUsuario?.id;
+    
+    // Verificar si el targetUserId está definido
+    if (targetUserId) {
+      // Llamar al método setTargetUserId() del servicio de chat para establecer el targetUserId
+      this.chatService.setTargetUserId(targetUserId);
+  
+      const usuarioId1 = this.usuarioId.id; // LOGEADO
+      
+      this.chatService.getOrCreateChat(usuarioId1, targetUserId).subscribe({
+        next: (chat) => {
+          console.log('Chat creado o obtenido:', chat);
+    
+          // Redirigir al usuario al chat utilizando el enrutador
+          this.router.navigate(['/chat', chat.id]); // Suponiendo que el ID del chat se encuentra en chat.id
+        },
+        error: (error) => {
+          console.error('Error al obtener o crear el chat:', error);
+        }
+      });
+    } else {
+      console.error('El usuario no está definido.');
+    }
   }
+  
+  
 
   followUser(): void {
     this.seguimientoService.postSeguimiento(this.seguirUsuario).subscribe({
