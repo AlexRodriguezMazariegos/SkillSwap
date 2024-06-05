@@ -1,0 +1,62 @@
+.config-container{
+    display: flex;
+    flex-direction: column;
+    background: #E7E7E7;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 2%;
+}
+
+.temas{
+    display: flex;
+    font-family: var(--texto);
+    align-items: center;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+h4{
+    margin: 0;
+}
+
+.custom-switch {
+    display: flex;
+    align-items: center;
+  }
+  
+  .toggle-switch {
+    /*---------- Oculta el checkbox -----------*/
+    display: none;
+  }
+  
+  .switch-label {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  .switch-label::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: white;
+    transition: transform 0.3s ease;
+  }
+  
+  .toggle-switch:checked + .switch-label {
+    /* Color cuando esta true */
+    background-color: var(--ppal);
+  }
+  
+  .toggle-switch:checked + .switch-label::after {
+    transform: translateX(20px);
+  }
+  

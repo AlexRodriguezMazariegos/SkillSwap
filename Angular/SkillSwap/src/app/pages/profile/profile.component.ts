@@ -15,24 +15,26 @@ import { articulo } from '../../model/articulo';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from '../../shared/pagination/pagination.component';
 import { EditProfileService } from '../../services/editprofile/edit-profile.service';
+import { UserConfigComponent } from "./user-config/user-config.component";
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css',
-  imports: [
-    NavbarComponent,
-    SidebarComponent,
-    UserSuperiorComponent,
-    UserInfoComponent,
-    UserBotonesComponent,
-    UserInfoEditComponent,
-    MisArticulosComponent,
-    ArticuloComponent,
-    CommonModule,
-    PaginationComponent,
-  ],
+    selector: 'app-profile',
+    standalone: true,
+    templateUrl: './profile.component.html',
+    styleUrl: './profile.component.css',
+    imports: [
+        NavbarComponent,
+        SidebarComponent,
+        UserSuperiorComponent,
+        UserInfoComponent,
+        UserBotonesComponent,
+        UserInfoEditComponent,
+        MisArticulosComponent,
+        ArticuloComponent,
+        CommonModule,
+        PaginationComponent,
+        UserConfigComponent
+    ]
 })
 export class ProfileComponent implements OnInit {
   usuario = sessionStorage.getItem('usuario');
