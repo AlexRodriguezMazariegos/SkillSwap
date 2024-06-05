@@ -16,6 +16,10 @@
   --tituloPpal: "Orbitron", sans-serif;
   --texto: "Montserrat", sans-serif;
 
+  /* DARK MODE */
+  --body-dark: #212121;
+  --light-grey-dark: #111111;
+
   /* Additional themes */
   --ppal-blue: #007bff;
   --ppal-blue2: #57a8ff;
@@ -31,6 +35,11 @@
 }
 
 /*-------------------- TEMAS --------------------*/
+
+.dark-theme{
+  --body: var(--body-dark);
+  --light-grey: var(--light-grey-dark);
+}
 
 .theme-blue {
   --ppal: var(--ppal-blue);
