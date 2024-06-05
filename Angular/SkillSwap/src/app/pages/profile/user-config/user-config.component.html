@@ -6,13 +6,13 @@
         <th scope="row">Temas</th>
         <td><app-themeselector></app-themeselector></td>
       </tr>
-      <tr>
+      <tr style="display: none;">
         <th scope="row">Modo oscuro</th>
         <td>
-          <div class="custom-switch">
+          <div class="custom-switch" (click)="setTheme('dark-theme')">
             <input type="checkbox" id="toggle" class="toggle-switch" />
             <label for="toggle" class="switch-label"></label>
-          </div>
+        </div>
         </td>
       </tr>
     </tbody>
