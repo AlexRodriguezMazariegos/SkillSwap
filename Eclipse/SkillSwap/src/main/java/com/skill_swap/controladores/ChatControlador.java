@@ -13,6 +13,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -44,6 +45,20 @@ public class ChatControlador {
         return chat.map(value -> ResponseEntity.status(HttpStatus.OK).body(chat))
                    .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
+    
+    @PostMapping("/get-or-create")
+    public ResponseEntity<Chat> getOrCreateChat(@RequestBody Map<String, Long> userIds) {
+        Long usuarioId1 = userIds.get("usuarioId1");
+        Long usuarioId2 = userIds.get("usuarioId2");
+
+        if (usuarioId1 == null || usuarioId2 == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+
+        // Accede a la instancia de ChatServicio usando this
+        Chat chat = chatServicio.obtenerChatPorUsuarios(usuarioId1, usuarioId2);
+        return ResponseEntity.status(HttpStatus.OK).body(chat);
+    }
 
     @PostMapping("/crear")
     public ResponseEntity<Chat> crearChat(@RequestBody Chat chat) {
@@ -70,14 +85,17 @@ public class ChatControlador {
 
     @PostMapping("/chat/{roomId}")
     public ChatMessage chat(@PathVariable Long roomId, @RequestBody ChatMessage message) {
-        Usuario usuario = usuarioServicio.obtenerUsuarioPorNombre(message.getUser());
-        if (usuario == null) {
-            throw new RuntimeException("Usuario no encontrado: " + message.getUser());
-        }
+        // Obtener el ID del usuario directamente del mensaje
+        Long userId = message.getUserId();
+        // Verificar si el usuario existe
+        Usuario usuario = usuarioServicio.obtenerUsuarioPorId(userId)
+                                      .orElseThrow(() -> new RuntimeException("Usuario no encontrado: " + userId));
 
+        // Obtener el usuario objetivo por su ID
         Usuario targetUser = usuarioServicio.obtenerUsuarioPorId(message.getTargetUserId())
                                             .orElseThrow(() -> new RuntimeException("Usuario objetivo no encontrado: " + message.getTargetUserId()));
 
+        // Resto del código sigue igual
         Chat chat = chatServicio.obtenerChatPorUsuarios(usuario.getId(), targetUser.getId());
         if (chat == null) {
             chat = chatServicio.crearChat(new Chat(usuario, targetUser));
@@ -88,6 +106,7 @@ public class ChatControlador {
 
         return savedMessage;
     }
+
 
     @GetMapping("/history/{roomId}")
     public List<ChatMessage> getChatHistory(@PathVariable Long roomId) {

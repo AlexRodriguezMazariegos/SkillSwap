@@ -1,28 +1,32 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ChatMessage } from '../../model/chat-mensaje';
 import { chat } from '../../model/chat';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ChatService {
+  private stompClient: any;
 
+  messageInput: string = '';
+
+
+  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   private webSocket: WebSocket | undefined; // Definición de WebSocket
   private messageSubject: BehaviorSubject<ChatMessage[]> = new BehaviorSubject<ChatMessage[]>([]);
   private successMessageSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
-  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
   private headers!: HttpHeaders;
+  private targetUserIdSubject: BehaviorSubject<number | null> = new BehaviorSubject<number | null>(null);
 
   constructor(private http: HttpClient, private authservice: AuthService) {
     console.log('Initializing ChatService');
     this.initConnectionSocket();
     this.headers = this.addAuthorizationHeader();
-    console.log(this.headers);
   }
- 
+
   private addAuthorizationHeader(): HttpHeaders {
     let token = this.authservice.token;
     if (token != null) {
@@ -50,12 +54,10 @@ export class ChatService {
       this.messageSubject.next(currentMessages);
     };
 
-    // Cuando ocurre un error
     this.webSocket.onerror = (error) => {
       console.error('Error from WebSocket', error);
     };
 
-    // Cuando la conexión se cierra
     this.webSocket.onclose = () => {
       console.log('WebSocket connection closed');
     };
@@ -65,18 +67,41 @@ export class ChatService {
     console.log('Joining room', roomId);
     const messages = JSON.parse(localStorage.getItem(roomId) || '[]');
     this.messageSubject.next(messages);
+    this.loadMessagesFromDatabase(roomId);
   }
 
-  // Enviar un mensaje
-  sendMessage(roomId: string, chatMessage: ChatMessage) {
-    console.log('Sending message', chatMessage);
-    if (this.webSocket) {
-      this.webSocket.send(JSON.stringify({ destination: '/app/chat/' + roomId, body: JSON.stringify(chatMessage) }));
-    } else {
-      console.error('WebSocket is not connected.');
-    }
-  }
 
+
+// Enviar un mensaje
+sendMessage(roomId: string, chatMessage: ChatMessage) {
+  console.log("roomId", roomId);
+  console.log("chatMessage", chatMessage);
+  if (this.webSocket) {
+    this.webSocket.send(JSON.stringify({ destination: '/chat/' + roomId, body: JSON.stringify(chatMessage) }));
+    
+    // Guardar el mensaje en la base de datos
+    this.http.post<ChatMessage>('http://localhost:8080/api/v1/chat/chat/' + roomId, chatMessage, { headers: this.headers })
+      .subscribe({
+        next: (savedMessage: ChatMessage) => {
+          console.log('Message saved:', savedMessage);
+          const currentMessages = this.messageSubject.getValue();
+          currentMessages.push(savedMessage);
+          this.messageSubject.next(currentMessages);
+
+          this.messageInput = '';
+        },
+        error: (error: any) => {
+          console.error('Error saving message:', error);
+        }
+      });
+  } else {
+    console.error('WebSocket is not initialized.');
+  }
+}
+
+
+  
+  
   getMessageSubject() {
     console.log('Getting message subject');
     return this.messageSubject.asObservable();
@@ -84,7 +109,7 @@ export class ChatService {
 
   loadMessagesFromDatabase(roomId: string) {
     console.log('Loading messages from database for room', roomId);
-    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`).subscribe({
+    this.http.get<ChatMessage[]>(`http://localhost:8080/api/v1/chat/history/${roomId}`, { headers: this.headers}).subscribe({
       next: (messages: ChatMessage[]) => {
         console.log('Received messages from database', messages);
         this.messageSubject.next(messages);
@@ -103,7 +128,15 @@ export class ChatService {
   }
 
   getOrCreateChat(usuarioId1: number, usuarioId2: number) {
-    return this.http.post<chat>('http://localhost:8080/api/v1/chat/get-or-create', { usuarioId1, usuarioId2 }, { headers: this.headers });
+    return this.http.post<chat>('http://localhost:8080/api/v1/chat/get-or-create', { usuarioId1, usuarioId2 }, { headers: this.headers});
+  }
+
+  setTargetUserId(targetUserId: number) {
+    this.targetUserIdSubject.next(targetUserId);
+  }
+
+  getTargetUserId(): Observable<number | null> {
+    return this.targetUserIdSubject.asObservable();
   }
   
 }

@@ -1,9 +1,6 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { login, usuario } from '../../model/usuario';
-import { UsuarioService } from '../../services/usuario/usuario.service';
-import { json } from 'stream/consumers';
-import { HttpHeaders } from '@angular/common/http';
+import { usuario } from '../../model/usuario';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth/auth.service';
 
@@ -36,7 +33,7 @@ export class LoginComponent implements OnInit {
   ];
 
   textoError: string = '';
-  user:usuario={
+  user: usuario = {
     id: 0,
     nombre: '',
     apellido: '',
@@ -45,20 +42,17 @@ export class LoginComponent implements OnInit {
     urlGitHub: '',
     puestoEmpresa: '',
     skills: [],
-    fotoDePerfil: ''
+    fotoDePerfil: '',
   };
 
   textoAleatorio: string = '';
 
-  constructor(
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   //Metodo de inicio
   ngOnInit(): void {
     console.log(this.user);
-    
+
     this.textoAleatorio =
       this.textosAleatorios[
         Math.floor(Math.random() * this.textosAleatorios.length)
@@ -80,8 +74,8 @@ export class LoginComponent implements OnInit {
         console.error('El contenido del elemento es nulo.');
       }
       this.user = this.authService.user;
-      if (this.user==null){
-        this.user = new usuario()
+      if (this.user == null) {
+        this.user = new usuario();
       }
       if (this.authService.isAuthenticated()) {
         this.router.navigate(['/home']);
@@ -91,7 +85,7 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(this.user.email);
-    
+
     if (this.user.email == null || this.user.contrasena == null) {
       return;
     }
@@ -104,11 +98,10 @@ export class LoginComponent implements OnInit {
         this.authService.saveRole(response.token);
 
         let user = this.authService.user;
-        
+
         setTimeout(() => {
           this.router.navigate(['/home']);
         }, 50);
-
       },
       (err) => {
         if (err.status == 401) {

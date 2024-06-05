@@ -8,10 +8,9 @@ describe('TarjetaUsuarioComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TarjetaUsuarioComponent]
-    })
-    .compileComponents();
-    
+      imports: [TarjetaUsuarioComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TarjetaUsuarioComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

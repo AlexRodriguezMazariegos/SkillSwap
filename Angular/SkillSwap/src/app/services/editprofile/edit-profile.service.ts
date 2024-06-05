@@ -6,14 +6,17 @@ import { usuario } from '../../model/usuario';
   providedIn: 'root',
 })
 export class EditProfileService {
-  private isEditingSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private isEditingSubject: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   isEditing$ = this.isEditingSubject.asObservable();
 
-  private usuarioEditadoSubject: BehaviorSubject<usuario | null> = new BehaviorSubject<usuario | null>(null);
+  private usuarioEditadoSubject: BehaviorSubject<usuario | null> =
+    new BehaviorSubject<usuario | null>(null);
   usuarioEditado$ = this.usuarioEditadoSubject.asObservable();
 
   // Creamos un BehaviorSubject para almacenar los datos del usuario
-  private userData$: BehaviorSubject<usuario | null> = new BehaviorSubject<usuario | null>(null);
+  private userData$: BehaviorSubject<usuario | null> =
+    new BehaviorSubject<usuario | null>(null);
 
   constructor() {}
 

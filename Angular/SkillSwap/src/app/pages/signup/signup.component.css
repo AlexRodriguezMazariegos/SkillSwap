@@ -1,128 +1,131 @@
-h1{
-    color: white;
-    text-align: center;
-    font-family: var(--tituloPpal);
-    font-weight: bold;
-  }
-  
-  .typewriter {
-    overflow: hidden; 
-    border-right: .15em solid rgb(255, 255, 255);
-    white-space: nowrap; 
-    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-  }
-  
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: rgb(255, 255, 255); }
-  }
-  
-  h2 {
-    font-size: 40px;
-    font-weight: bold;
-    text-align: center;
-    margin: 7%;
-    font-family: var(--tituloPpal);
-    color: transparent; 
-    background-image: linear-gradient(
-      to right,
-      var(--ppal),
-      var(--ppal_2)
-    ); 
-    -webkit-background-clip: text; 
-    background-clip: text; 
-  }
-  
-  .welcome {
-    text-align: center;
-  }
-  
-  .welcome-login {
-    margin: 0;
-    font-family: var(--tituloPpal);
-    font-weight: bold;
-  }
-  
-  .contenedor{
-    display: flex;
-    height: 100%;
-    margin: 0px;
-    width: 100;
-    background: url("../../../assets/img/login-background.png"),
-              linear-gradient(to right, var(--ppal_2), var(--ppal));
-    background-size: cover;
-    background-position: center;
-  }
-  
-  .right-column {
-    width: 30%;
-  }
-  
-  .left-column {
-    position: relative;
-    flex: 1;
-    width: 100%;
-    padding: 5%;
-    height: 100vh;
-  }
-  
-  .login-form {
-    position: relative;
-    height: 100vh;
-    padding: 25px;
-    background: rgba(255, 255, 255, 1);
-    border-radius: 8px;
-  }
-  
-  .form-group {
-    padding: 0px;
-    margin-top: 4%;
-  }
-  
-  input {
-    width: 100%;
-    background-color: var(--light-grey);
-  }
-  
-  a{
-    text-decoration: none;
-  }
-  
-  .no-account{
-    margin-top: 4%;
-    text-align: center;
-  }
-  
-  .copyright {
-    position: absolute; 
-    left: 50%; 
-    transform: translateX(
-      -50%
-    ); 
-    color: rgb(94, 94, 94);
-    font-family: var(--texto);
-    text-align: center;
-    width: 100%; 
-  }
-  
-  .form-check-input {
-    margin-right: 10px;
-  }
-  .error{
-    color: red;
-  }
-  
-  @media only screen and (max-width: 480px) {
-    .left-column {
-      display: none;
-    }
+h1 {
+  color: white;
+  text-align: center;
+  font-family: var(--tituloPpal);
+  font-weight: bold;
+}
 
-    .right-column {
-      width: 100%;
-    }
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid rgb(255, 255, 255);
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
   }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgb(255, 255, 255);
+  }
+}
+
+h2 {
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+  margin: 7%;
+  font-family: var(--tituloPpal);
+  color: transparent;
+  background-image: linear-gradient(to right, var(--ppal), var(--ppal_2));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.welcome {
+  text-align: center;
+}
+
+.welcome-login {
+  margin: 0;
+  font-family: var(--tituloPpal);
+  font-weight: bold;
+}
+
+.contenedor {
+  display: flex;
+  height: 100%;
+  margin: 0px;
+  width: 100;
+  background: url("../../../assets/img/login-background.png"),
+    linear-gradient(to right, var(--ppal_2), var(--ppal));
+  background-size: cover;
+  background-position: center;
+}
+
+.right-column {
+  width: 30%;
+}
+
+.left-column {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  padding: 5%;
+  height: 100vh;
+}
+
+.login-form {
+  position: relative;
+  height: 100vh;
+  padding: 25px;
+  background: rgba(255, 255, 255, 1);
+  border-radius: 8px;
+}
+
+.form-group {
+  padding: 0px;
+  margin-top: 4%;
+}
+
+input {
+  width: 100%;
+  background-color: var(--light-grey);
+}
+
+a {
+  text-decoration: none;
+}
+
+.no-account {
+  margin-top: 4%;
+  text-align: center;
+}
+
+.copyright {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgb(94, 94, 94);
+  font-family: var(--texto);
+  text-align: center;
+  width: 100%;
+}
+
+.form-check-input {
+  margin-right: 10px;
+}
+.error {
+  color: red;
+}
+
+@media only screen and (max-width: 480px) {
+  .left-column {
+    display: none;
+  }
+
+  .right-column {
+    width: 100%;
+  }
+}

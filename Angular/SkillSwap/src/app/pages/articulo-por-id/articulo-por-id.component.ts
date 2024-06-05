@@ -11,23 +11,22 @@ import { ValoracionService } from '../../services/valoracion/valoracion.service'
 import { usuario } from '../../model/usuario';
 import { formatDate } from '@angular/common';
 
-import { ComentarioArticuloComponent } from "./comentario-articulo/comentario-articulo.component";
-import { AdjuntarComentarioComponent } from "./adjuntar-comentario/adjuntar-comentario.component";
-
+import { ComentarioArticuloComponent } from './comentario-articulo/comentario-articulo.component';
+import { AdjuntarComentarioComponent } from './adjuntar-comentario/adjuntar-comentario.component';
 
 @Component({
-    selector: 'app-articulo-por-id',
-    standalone: true,
-    templateUrl: './articulo-por-id.component.html',
-    styleUrls: ['./articulo-por-id.component.css'],
-    imports: [
-        NavbarComponent,
-        SidebarComponent,
-        ValoracionEstrellasComponent,
-        RouterModule,
-        ComentarioArticuloComponent,
-        AdjuntarComentarioComponent
-    ]
+  selector: 'app-articulo-por-id',
+  standalone: true,
+  templateUrl: './articulo-por-id.component.html',
+  styleUrls: ['./articulo-por-id.component.css'],
+  imports: [
+    NavbarComponent,
+    SidebarComponent,
+    ValoracionEstrellasComponent,
+    RouterModule,
+    ComentarioArticuloComponent,
+    AdjuntarComentarioComponent,
+  ],
 })
 export class ArticuloPorIdComponent implements OnInit {
   storedValue = sessionStorage.getItem('usuario');
@@ -46,19 +45,19 @@ export class ArticuloPorIdComponent implements OnInit {
       urlGitHub: '',
       puestoEmpresa: '',
       skills: [],
-      fotoDePerfil: ''
+      fotoDePerfil: '',
     },
     contenido: '',
     descripcion: '',
     titulo: '',
     fechaPublicacion: new Date(),
     comentarios: [],
-    activado: true
+    activado: true,
   };
 
   fechaPublicacionFormateada: string = '';
   sanitizedContent: SafeHtml | undefined;
-  
+
   constructor(
     private articuloService: ArticuloService,
     private route: ActivatedRoute,
@@ -71,21 +70,26 @@ export class ArticuloPorIdComponent implements OnInit {
       const currentUser = JSON.parse(this.storedValue);
       this.miUsuario = currentUser;
     }
-  
+
     this.route.params.subscribe((params) => {
       const id = params['id'];
       this.articuloService.getArticuloById(id).subscribe((data) => {
         this.articuloPorId = data;
-        this.fechaPublicacionFormateada = this.formatDate(this.articuloPorId.fechaPublicacion);
-        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(this.articuloPorId.contenido);
+        this.fechaPublicacionFormateada = this.formatDate(
+          this.articuloPorId.fechaPublicacion
+        );
+        this.sanitizedContent = this.sanitizer.bypassSecurityTrustHtml(
+          this.articuloPorId.contenido
+        );
 
-        this.valoracionService.obtenerValoracion(this.articuloPorId.id, this.miUsuario.id)
-        .subscribe((valoracion: valoracion | null) => {
-          if (valoracion) {
-            this.puntuacion = valoracion.puntuacion;
-            this.valoracionId = valoracion.id;
-          }
-        });
+        this.valoracionService
+          .obtenerValoracion(this.articuloPorId.id, this.miUsuario.id)
+          .subscribe((valoracion: valoracion | null) => {
+            if (valoracion) {
+              this.puntuacion = valoracion.puntuacion;
+              this.valoracionId = valoracion.id;
+            }
+          });
       });
     });
   }
@@ -97,7 +101,7 @@ export class ArticuloPorIdComponent implements OnInit {
       usuario: this.miUsuario,
       articulo: this.articuloPorId,
     };
-  
+
     this.valoracionService.saveOrUpdateValoracion(valoracion).subscribe(
       (response) => {
         console.log('Valoración guardada/actualizada:', response);

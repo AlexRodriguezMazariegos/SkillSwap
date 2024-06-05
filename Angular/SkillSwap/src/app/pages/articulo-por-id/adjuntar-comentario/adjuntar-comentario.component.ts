@@ -12,9 +12,9 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './adjuntar-comentario.component.html',
-  styleUrl: './adjuntar-comentario.component.css'
+  styleUrl: './adjuntar-comentario.component.css',
 })
-export class AdjuntarComentarioComponent implements OnInit{
+export class AdjuntarComentarioComponent implements OnInit {
   storedValue = sessionStorage.getItem('usuario');
   miUsuario!: usuario;
   texto: string = '';
@@ -29,21 +29,25 @@ export class AdjuntarComentarioComponent implements OnInit{
       urlGitHub: '',
       puestoEmpresa: '',
       skills: [],
-      fotoDePerfil: ''
+      fotoDePerfil: '',
     },
     contenido: '',
     descripcion: '',
     titulo: '',
     fechaPublicacion: new Date(),
     comentarios: [],
-    activado: true
+    activado: true,
   };
 
-  constructor(private comentariosService: ComentariosService, private articuloService: ArticuloService, private route: ActivatedRoute) {}
+  constructor(
+    private comentariosService: ComentariosService,
+    private articuloService: ArticuloService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     if (this.storedValue) {
-      const currentUser = JSON.parse(this.storedValue); 
+      const currentUser = JSON.parse(this.storedValue);
       this.miUsuario = currentUser;
     }
 
@@ -52,27 +56,28 @@ export class AdjuntarComentarioComponent implements OnInit{
       this.articuloService.getArticuloById(id).subscribe((data) => {
         this.articuloPorId = data;
       });
-    });  
+    });
   }
 
-enviarComentario() {
-  const comentario: comentario = {
-    id: 0,
-    usuario: this.miUsuario,
-    articulo: this.articuloPorId,
-    fecha: new Date(),
-    texto: this.texto
-  }
-  
-  this.comentariosService.postComentario(comentario, comentario.usuario.id, comentario.articulo.id).subscribe({
-    next: (response) => {
-      console.log('Comentario introducido correctamente', response);
-    },
-    error: (error) => {
-      console.error('Error al introducir el comentario', error);
-    }
-  });
-  window.location.reload()
-}
+  enviarComentario() {
+    const comentario: comentario = {
+      id: 0,
+      usuario: this.miUsuario,
+      articulo: this.articuloPorId,
+      fecha: new Date(),
+      texto: this.texto,
+    };
 
+    this.comentariosService
+      .postComentario(comentario, comentario.usuario.id, comentario.articulo.id)
+      .subscribe({
+        next: (response) => {
+          console.log('Comentario introducido correctamente', response);
+        },
+        error: (error) => {
+          console.error('Error al introducir el comentario', error);
+        },
+      });
+    window.location.reload();
+  }
 }
